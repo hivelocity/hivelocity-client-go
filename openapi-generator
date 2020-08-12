@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #
-# Taken from https://github.com/OpenAPITools/openapi-generator
+# Use the generator from https://github.com/OpenAPITools/openapi-generator
 #
 ####
 # Save as openapi-generator-cli on your PATH. chmod u+x. Enjoy.
@@ -24,7 +24,7 @@
 set -o pipefail
 
 for cmd in {mvn,python,curl}; do
-  if ! command -v "${cmd}" > /dev/null; then
+  if ! command -v ${cmd} > /dev/null; then
   >&2 echo "This script requires '${cmd}' to be installed."
     exit 1
   fi
@@ -32,7 +32,7 @@ done
 
 function latest.tag {
   local uri="https://api.github.com/repos/${1}/tags"
-  curl -s "${uri}" | python -c "import sys, json; print json.load(sys.stdin)[0]['name'][1:]"
+  curl -s ${uri} | python -c "import sys, json; print json.load(sys.stdin)[0]['name'][1:]"
 }
 
 ghrepo=openapitools/openapi-generator
@@ -43,21 +43,21 @@ ver=${OPENAPI_GENERATOR_VERSION:-$(latest.tag $ghrepo)}
 jar=${artifactid}-${ver}.jar
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
-if [ ! -f "${DIR}"/"${jar}" ]; then
+if [ ! -f ${DIR}/${jar} ]; then
   repo="central::default::https://repo1.maven.org/maven2/"
   if [[ ${ver} =~ ^.*-SNAPSHOT$ ]]; then
       repo="central::default::https://oss.sonatype.org/content/repositories/snapshots"
   fi
   mvn org.apache.maven.plugins:maven-dependency-plugin:2.9:get \
     -DremoteRepositories=${repo} \
-    -Dartifact=${groupid}:${artifactid}:"${ver}" \
+    -Dartifact=${groupid}:${artifactid}:${ver} \
     -Dtransitive=false \
-    -Ddest="${DIR}"/"${jar}"
+    -Ddest=${DIR}/${jar}
 fi
 
 java -ea                          \
-  "${JAVA_OPTS}"                  \
+  ${JAVA_OPTS}                    \
   -Xms512M                        \
   -Xmx1024M                       \
   -server                         \
-  -jar "${DIR}"/"${jar}" "$@"
+  -jar ${DIR}/${jar} "$@"
