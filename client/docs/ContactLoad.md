@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Password** | **string** |  | [optional] [default to 749f6d8048160df78512171d33cbd417]
-**Login** | **string** |  | [optional] [default to SC794OV4]
+**Login** | **string** |  | [optional] [default to ZFBYKCV9]
 **Description** | **string** |  | 
 **FullName** | **string** |  | 
 **Phone** | **string** |  | [optional] 
