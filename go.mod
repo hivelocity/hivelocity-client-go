@@ -1,4 +1,4 @@
-module "https://github.com/hivelocity/hivelocity-client-go"
+module github.com/hivelocity/hivelocity-client-go
 
 go 1.14
 
