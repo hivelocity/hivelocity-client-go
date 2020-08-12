@@ -1,0 +1,9 @@
+language: go
+sudo: false
+os:
+  - linux
+go:
+  - 1.14.x
+script:
+  - make client
+
