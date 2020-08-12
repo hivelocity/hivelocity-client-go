@@ -1,20 +1,21 @@
 # TicketCreateReply
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Encrypted** | **string** |  | [optional] [default to null]
-**Type_** | **float32** |  | [optional] [default to null]
-**Attachments** | [**[]interface{}**](interface{}.md) |  | [optional] [default to null]
-**Date** | **float32** |  | [optional] [default to null]
-**Subject** | **string** |  | [optional] [default to null]
-**ReplyTo** | **string** |  | [optional] [default to null]
-**Hidden** | **float32** |  | [optional] [default to null]
-**Recipient** | **string** |  | [optional] [default to null]
-**Headers** | **string** |  | [optional] [default to null]
-**Body** | **string** |  | [default to null]
-**Cc** | **string** |  | [optional] [default to null]
-**ContactId** | **float32** |  | [optional] [default to null]
+**Subject** | **string** |  | [optional] 
+**Encrypted** | **string** |  | [optional] 
+**Type** | **float32** |  | [optional] 
+**Date** | **float32** |  | [optional] 
+**ReplyTo** | **string** |  | [optional] 
+**Body** | **string** |  | 
+**Headers** | **string** |  | [optional] 
+**Recipient** | **string** |  | [optional] 
+**Hidden** | **float32** |  | [optional] 
+**Attachments** | **[]map[string]interface{}** |  | [optional] 
+**ContactId** | **float32** |  | [optional] 
+**Cc** | **string** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

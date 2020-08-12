@@ -1,0 +1,2301 @@
+openapi: 3.0.1
+info:
+  description: Interact with Hivelocity
+  title: Hivelocity API
+  version: "2.0"
+servers:
+- url: /api/v2
+security:
+- apiKey: []
+tags:
+- description: Request RRDTool Based Bandwidth Data from a Resource.
+  name: Bandwidth
+- description: Endpoints to manage Billing Info
+  name: BillingInfo
+- description: Cancellation information
+  name: Cancellation
+- description: Endpoints to manager Contacts
+  name: Contact
+- description: Endpoints to manage Credit
+  name: Credit
+- description: Access to your Bare-Metal or Virtual Devices
+  name: Device
+- description: Products Inventory Data
+  name: Inventory
+- description: Invoice information and PDF download
+  name: Invoice
+- description: Get Order and its details
+  name: Order
+- description: Endpoints to manage Permissions
+  name: Permission
+- description: Endpoints to manage Products
+  name: Product
+- description: Endpoints to manage Profiles
+  name: Profile
+- description: Endpoints to handle your servers provisioning
+  name: Deployment
+- description: Service information
+  name: Service
+- description: Ticket information
+  name: Ticket
+- description: Endpoints to manage Public API Token
+  name: Token
+- description: Access and modify your Hivelocity webhooks.
+  name: Webhook
+paths:
+  /bandwidth/device/{deviceId}:
+    post:
+      operationId: post_device_id_bandwidth_resource
+      parameters:
+      - description: ID of Device to View
+        in: path
+        name: deviceId
+        required: true
+        schema:
+          type: integer
+      - description: Preconfigured Time Periods for Graph Data
+        in: query
+        name: period
+        required: true
+        schema:
+          default: day
+          enum:
+          - day
+          - week
+          - month
+          - custom
+          type: string
+      - description: Network Interface to use for Graph Data
+        in: query
+        name: interface
+        required: true
+        schema:
+          default: eth0
+          enum:
+          - eth0
+          - eth1
+          - public
+          - private
+          - all
+          type: string
+      - description: Include Historical Interface Data for Device for Resellers
+        in: query
+        name: historical
+        schema:
+          default: false
+          type: boolean
+      - description: Interval of Graph in Seconds
+        in: query
+        name: step
+        required: true
+        schema:
+          default: 300
+          type: integer
+      - description: Start Time of Custom Time Period. (Unix Epoch Time)
+        in: query
+        name: start
+        schema:
+          default: 0
+          type: integer
+      - description: End Time of Custom Time Period (Unix Epoch Time)
+        in: query
+        name: end
+        schema:
+          default: 1597157095
+          type: integer
+      responses:
+        "200":
+          content: {}
+          description: Device Bandwidth Graph retrieved.
+        "400":
+          content: {}
+          description: Unable to retrieve Bandwidth Graph for this Device.
+      summary: Returns RRDTool Xport based bandwidth data in JSON format
+      tags:
+      - Bandwidth
+  /bandwidth/device/{deviceId}/image:
+    post:
+      operationId: post_device_id_bandwidth_image_resource
+      parameters:
+      - description: ID of Device to View
+        in: path
+        name: deviceId
+        required: true
+        schema:
+          type: integer
+      - description: Preconfigured Time Periods for Graph Data
+        in: query
+        name: period
+        required: true
+        schema:
+          default: day
+          enum:
+          - day
+          - week
+          - month
+          - custom
+          type: string
+      - description: Network Interface to use for Graph Data
+        in: query
+        name: interface
+        required: true
+        schema:
+          default: eth0
+          enum:
+          - eth0
+          - eth1
+          - public
+          - private
+          - all
+          type: string
+      - description: Start Time of Custom Time Period. (Unix Epoch Time)
+        in: query
+        name: start
+        schema:
+          default: 0
+          type: integer
+      - description: End Time of Custom Time Period (Unix Epoch Time)
+        in: query
+        name: end
+        schema:
+          default: 1597157095
+          type: integer
+      responses:
+        "200":
+          content: {}
+          description: Device Bandwidth Graph retrieved.
+        "400":
+          content: {}
+          description: Unable to retrieve Bandwidth Graph for this Device.
+      summary: Returns RRDTool Graph based bandwidth in PNG format
+      tags:
+      - Bandwidth
+  /bandwidth/service/{serviceId}:
+    post:
+      operationId: post_service_id_bandwidth_resource
+      parameters:
+      - description: ID of Service to View
+        in: path
+        name: serviceId
+        required: true
+        schema:
+          type: integer
+      - description: Preconfigured Time Periods for Graph Data
+        in: query
+        name: period
+        required: true
+        schema:
+          default: day
+          enum:
+          - day
+          - week
+          - month
+          - custom
+          type: string
+      - description: Network Interface to use for Graph Data
+        in: query
+        name: interface
+        required: true
+        schema:
+          default: eth0
+          enum:
+          - eth0
+          - eth1
+          - public
+          - private
+          - all
+          type: string
+      - description: Interval of Graph in Seconds
+        in: query
+        name: step
+        required: true
+        schema:
+          default: 300
+          type: integer
+      - description: Start Time of Custom Time Period. (Unix Epoch Time)
+        in: query
+        name: start
+        schema:
+          default: 0
+          type: integer
+      - description: End Time of Custom Time Period (Unix Epoch Time)
+        in: query
+        name: end
+        schema:
+          default: 1597157095
+          type: integer
+      responses:
+        "200":
+          content: {}
+          description: Service Bandwidth Graph retrieved.
+        "400":
+          content: {}
+          description: Unable to retrieve Bandwidth Graph for this Service.
+      summary: Returns RRDTool Xport based bandwidth data in JSON format
+      tags:
+      - Bandwidth
+  /bandwidth/service/{serviceId}/image:
+    post:
+      operationId: post_service_id_bandwidth_image_resource
+      parameters:
+      - description: ID of Service to View
+        in: path
+        name: serviceId
+        required: true
+        schema:
+          type: integer
+      - description: Preconfigured Time Periods for Graph Data
+        in: query
+        name: period
+        required: true
+        schema:
+          default: day
+          enum:
+          - day
+          - week
+          - month
+          - custom
+          type: string
+      - description: Network Interface to use for Graph Data
+        in: query
+        name: interface
+        required: true
+        schema:
+          default: eth0
+          enum:
+          - eth0
+          - eth1
+          - public
+          - private
+          - all
+          type: string
+      - description: Start Time of Custom Time Period. (Unix Epoch Time)
+        in: query
+        name: start
+        schema:
+          default: 0
+          type: integer
+      - description: End Time of Custom Time Period (Unix Epoch Time)
+        in: query
+        name: end
+        schema:
+          default: 1597157095
+          type: integer
+      responses:
+        "200":
+          content: {}
+          description: Service Bandwidth Graph retrieved.
+        "400":
+          content: {}
+          description: Unable to retrieve Bandwidth Graph for this Service.
+      summary: Returns RRDTool Graph based bandwidth in PNG format
+      tags:
+      - Bandwidth
+  /billing-info/:
+    get:
+      operationId: get_billing_info_resource
+      responses:
+        "200":
+          content: {}
+          description: Success
+      summary: Return a list with all Billing Info
+      tags:
+      - BillingInfo
+  /cancellation/cancellation:
+    get:
+      operationId: get_cancellation_resource
+      responses:
+        "200":
+          content: {}
+          description: Success
+      summary: Returns the services cancellations of a client
+      tags:
+      - Cancellation
+    post:
+      description: |-
+        reason options are:
+            'My current service is being upgraded',
+            'Hardware/software/network or power issues',
+            'I think I have found a better deal',
+            'I have experienced tech support problems',
+            'I am consolidating my Hivelocity accounts',
+            'I am a reseller and my customer cancelled',
+            'I am moving to a different technology solution: Public Cloud',
+            'I am moving to a different technology solution: Managed Hosting Company',
+            'A product difference (Example: AWS)'
+      operationId: post_cancellation_resource
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CancellationCreate'
+        required: true
+      responses:
+        "200":
+          content: {}
+          description: Success
+        "404":
+          content: {}
+          description: Device not found
+        "500":
+          content: {}
+          description: Service/Device already being cancelled
+      summary: Creates Cancellation for a device/service
+      tags:
+      - Cancellation
+      x-codegen-request-body-name: payload
+  /cancellation/cancellation/{cancellationId}:
+    get:
+      operationId: get_cancellation_id_resource
+      parameters:
+      - in: path
+        name: cancellationId
+        required: true
+        schema:
+          type: integer
+      responses:
+        "200":
+          content: {}
+          description: Success
+      summary: Return any cancellation by ID
+      tags:
+      - Cancellation
+  /cancellation/device/{deviceId}:
+    get:
+      operationId: get_cancellation_device_resource
+      parameters:
+      - in: path
+        name: deviceId
+        required: true
+        schema:
+          type: integer
+      responses:
+        "200":
+          content: {}
+          description: Success
+        "404":
+          content: {}
+          description: Device not found
+      summary: Return the Cancellation found for a Device
+      tags:
+      - Cancellation
+  /cancellation/service/{serviceId}:
+    get:
+      operationId: get_cancellation_service_resource
+      parameters:
+      - in: path
+        name: serviceId
+        required: true
+        schema:
+          type: integer
+      responses:
+        "200":
+          content: {}
+          description: Success
+        "404":
+          content: {}
+          description: Service not found
+      summary: Return the Cancellation found for a Service
+      tags:
+      - Cancellation
+  /contact/:
+    get:
+      operationId: get_contact_resource
+      responses:
+        "200":
+          content: {}
+          description: Success
+      summary: Return a list with all Contacts
+      tags:
+      - Contact
+    post:
+      operationId: post_contact_resource
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Contact-load'
+        required: true
+      responses:
+        "201":
+          content: {}
+          description: Contact successfully created
+        "400":
+          content: {}
+          description: Unable to create Contact
+      summary: Create a new Contact
+      tags:
+      - Contact
+      x-codegen-request-body-name: payload
+  /contact/password:
+    post:
+      operationId: post_password_reset
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PasswordRequest'
+        required: true
+      responses:
+        "200":
+          content: {}
+          description: Success
+      summary: Recieve a request to reset password, and send a link by email with
+        token
+      tags:
+      - Contact
+      x-codegen-request-body-name: payload
+    put:
+      operationId: put_password_reset
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PasswordResponse'
+        required: true
+      responses:
+        "200":
+          content: {}
+          description: Success
+      summary: Recieve a token and password, verify the user and reset your password
+      tags:
+      - Contact
+      x-codegen-request-body-name: payload
+  /contact/{contactId}:
+    delete:
+      operationId: delete_id_resource
+      parameters:
+      - description: ID of Contact to View / Update
+        in: path
+        name: contactId
+        required: true
+        schema:
+          type: integer
+      responses:
+        "204":
+          content: {}
+          description: Contact successfully deleted.
+        "404":
+          content: {}
+          description: Contact not found.
+      summary: Delete a Contact
+      tags:
+      - Contact
+    get:
+      operationId: get_id_resource
+      parameters:
+      - description: ID of Contact to View / Update
+        in: path
+        name: contactId
+        required: true
+        schema:
+          type: integer
+      responses:
+        "200":
+          content: {}
+          description: Success
+      summary: Return details of a specific Contact
+      tags:
+      - Contact
+    put:
+      operationId: put_id_resource
+      parameters:
+      - description: ID of Contact to View / Update
+        in: path
+        name: contactId
+        required: true
+        schema:
+          type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ContactUpdate'
+        required: true
+      responses:
+        "200":
+          content: {}
+          description: Contact successfully updated.
+        "400":
+          content: {}
+          description: Unable to update Contact Data.
+      summary: Edit a Contact
+      tags:
+      - Contact
+      x-codegen-request-body-name: payload
+  /contact/{contactId}/password:
+    put:
+      operationId: put_password_resource
+      parameters:
+      - description: '"ID of Contact to change password"'
+        in: path
+        name: contactId
+        required: true
+        schema:
+          type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Password'
+        required: true
+      responses:
+        "200":
+          content: {}
+          description: Password was changed.
+        "400":
+          content: {}
+          description: Invalid password for authentication.
+      summary: Change password for a Contact
+      tags:
+      - Contact
+      x-codegen-request-body-name: payload
+  /credit/:
+    get:
+      operationId: get_credit_resource
+      responses:
+        "200":
+          content: {}
+          description: Success
+      summary: Return a list with all Credits
+      tags:
+      - Credit
+    post:
+      operationId: post_credit_resource
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateCredit'
+        required: true
+      responses:
+        "201":
+          content: {}
+          description: Successfully added a new credit.
+        "503":
+          content: {}
+          description: Unable to add new credit.
+      summary: Receive billing method id and amount and return the created Credit
+      tags:
+      - Credit
+      x-codegen-request-body-name: payload
+  /credit/total:
+    get:
+      operationId: get_total_active_credit_resource
+      responses:
+        "200":
+          content: {}
+          description: Success
+      summary: Return the client's total active credit amount
+      tags:
+      - Credit
+  /deploy/:
+    get:
+      operationId: get_deployment_resource
+      responses:
+        "200":
+          content: {}
+          description: Deployments found successfuly
+      summary: Return a list with all client deployments
+      tags:
+      - Deployment
+    post:
+      operationId: post_deployment_resource
+      parameters:
+      - in: query
+        name: deploymentName
+        schema:
+          type: string
+      - description: An optional fields mask
+        in: header
+        name: X-Fields
+        schema:
+          format: mask
+          type: string
+      responses:
+        "201":
+          content: {}
+          description: Deployment Created
+      summary: Start a new deployment
+      tags:
+      - Deployment
+  /deploy/{deploymentId}:
+    delete:
+      operationId: delete_deployment_id_resource
+      parameters:
+      - description: Id of the deployment to interact with
+        in: path
+        name: deploymentId
+        required: true
+        schema:
+          type: integer
+      responses:
+        "204":
+          content: {}
+          description: Deployment Deleted
+        "401":
+          content: {}
+          description: Access to this Deployment not Allowed
+        "404":
+          content: {}
+          description: Deployment Not Found
+      summary: Delete the specified deployment
+      tags:
+      - Deployment
+    get:
+      operationId: get_deployment_id_resource
+      parameters:
+      - description: Id of the deployment to interact with
+        in: path
+        name: deploymentId
+        required: true
+        schema:
+          type: integer
+      responses:
+        "200":
+          content: {}
+          description: Deployment Found
+        "401":
+          content: {}
+          description: Access to Deployment not Allowed
+        "404":
+          content: {}
+          description: Deployment Not Found
+      summary: Return a dictionary with deployment information
+      tags:
+      - Deployment
+    post:
+      operationId: post_deployment_id_resource
+      parameters:
+      - description: Id of the deployment to interact with
+        in: path
+        name: deploymentId
+        required: true
+        schema:
+          type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DeploymentStart'
+        required: true
+      responses:
+        "201":
+          content: {}
+          description: Deployment Started
+        "401":
+          content: {}
+          description: Access to Deployment not Allowed
+        "404":
+          content: {}
+          description: Deployment Not Found
+      summary: Input a billing info id to process and finish a deployment
+      tags:
+      - Deployment
+      x-codegen-request-body-name: payload
+    put:
+      operationId: put_deployment_id_resource
+      parameters:
+      - description: Id of the deployment to interact with
+        in: path
+        name: deploymentId
+        required: true
+        schema:
+          type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DeploymentCustomization'
+        required: true
+      responses:
+        "200":
+          content: {}
+          description: Server configuration added to Deployment
+        "400":
+          content: {}
+          description: Your configuration have incompatible or unavailable options
+        "401":
+          content: {}
+          description: Access to this Deployment not Allowed
+        "404":
+          content: {}
+          description: Deployment Not Found
+      summary: Receive product, quantity and options to be added on the deployment
+      tags:
+      - Deployment
+      x-codegen-request-body-name: payload
+  /device/:
+    get:
+      operationId: get_device_resource
+      responses:
+        "200":
+          content: {}
+          description: Success
+      summary: Returns Active Devices and basic MetaData
+      tags:
+      - Device
+  /device/ipmi/thresholds:
+    put:
+      operationId: put_ipmi_devices_thresholds_id_resource
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateDevicesIPMIThresholds'
+        required: true
+      responses:
+        "200":
+          content: {}
+          description: Devices IPMI Thresholds updated.
+        "400":
+          content: {}
+          description: Unable to update IPMI Thresholds for this Device list.
+      summary: Updates IPMI thresholds for device list
+      tags:
+      - Device
+      x-codegen-request-body-name: payload
+  /device/tags:
+    get:
+      operationId: get_client_device_tag_resource
+      responses:
+        "200":
+          content: {}
+          description: Success
+      summary: Get all device tags for current client
+      tags:
+      - Device
+  /device/tags-order:
+    get:
+      operationId: get_client_device_tag_order_resource
+      responses:
+        "200":
+          content: {}
+          description: Success
+      summary: Get device tags order for current user
+      tags:
+      - Device
+    put:
+      operationId: put_client_device_tag_order_resource
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DeviceTag'
+        required: true
+      responses:
+        "200":
+          content: {}
+          description: Device tags order updated.
+        "400":
+          content: {}
+          description: Bad request.
+      summary: Update device tags order for current user
+      tags:
+      - Device
+      x-codegen-request-body-name: payload
+  /device/tags-order/all:
+    get:
+      operationId: get_all_device_tag_order_resource
+      responses:
+        "200":
+          content: {}
+          description: Success
+      summary: Get all device tags order
+      tags:
+      - Device
+  /device/{deviceId}:
+    get:
+      operationId: get_id_resource
+      parameters:
+      - description: ID of Device to View / Update
+        in: path
+        name: deviceId
+        required: true
+        schema:
+          type: integer
+      responses:
+        "200":
+          content: {}
+          description: Success
+      summary: Returns detailed information for a Single Device
+      tags:
+      - Device
+    put:
+      operationId: put_id_resource
+      parameters:
+      - description: ID of Device to View / Update
+        in: path
+        name: deviceId
+        required: true
+        schema:
+          type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DeviceUpdate'
+        required: true
+      responses:
+        "200":
+          content: {}
+          description: Device MetaData was updated.
+        "400":
+          content: {}
+          description: Unable to update Device MetaData.
+      summary: Updates Device MetaData for a Single Device
+      tags:
+      - Device
+      x-codegen-request-body-name: payload
+  /device/{deviceId}/events:
+    get:
+      operationId: get_device_id_event_resource
+      parameters:
+      - in: path
+        name: deviceId
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content: {}
+          description: Success
+        "404":
+          content: {}
+          description: Device not found
+      summary: Returns all Events found for a single device
+      tags:
+      - Device
+  /device/{deviceId}/initial-password:
+    get:
+      operationId: get_initial_password_id_resource
+      parameters:
+      - description: ID of Device to retrieve initial password
+        in: path
+        name: deviceId
+        required: true
+        schema:
+          type: integer
+      responses:
+        "200":
+          content: {}
+          description: Device initial password.
+        "400":
+          content: {}
+          description: Unable to get initial password this Device.
+      summary: Returns initial password for the device
+      tags:
+      - Device
+  /device/{deviceId}/interfaces:
+    get:
+      operationId: get_network_interface_resource
+      parameters:
+      - description: ID of Device to view Network Interfaces.
+        in: path
+        name: deviceId
+        required: true
+        schema:
+          type: integer
+      - description: An optional fields mask
+        in: header
+        name: X-Fields
+        schema:
+          format: mask
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/DeviceInterface'
+                type: array
+          description: Success
+      summary: Returns a list of all Network Interfaces bound to a Device
+      tags:
+      - Device
+  /device/{deviceId}/ipmi:
+    get:
+      operationId: get_ipmi_info_id_resource
+      parameters:
+      - description: ID of Device to retrieve IPMI info.
+        in: path
+        name: deviceId
+        required: true
+        schema:
+          type: integer
+      responses:
+        "200":
+          content: {}
+          description: Device IPMI Thresholds retrieved
+        "400":
+          content: {}
+          description: Unable to retrieve IPMI Thresholds for this Device.
+      summary: Returns IPMI info data
+      tags:
+      - Device
+  /device/{deviceId}/ipmi/thresholds:
+    get:
+      operationId: get_ipmi_thresholds_id_resource
+      parameters:
+      - description: ID of Device to View
+        in: path
+        name: deviceId
+        required: true
+        schema:
+          type: integer
+      responses:
+        "200":
+          content: {}
+          description: Device IPMI Thresholds retrieved.
+        "400":
+          content: {}
+          description: Unable to retrieve IPMI Thresholds for this Device.
+      summary: Returns IPMI thresholds data
+      tags:
+      - Device
+    put:
+      operationId: put_ipmi_thresholds_id_resource
+      parameters:
+      - description: ID of Device to View
+        in: path
+        name: deviceId
+        required: true
+        schema:
+          type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DeviceIPMIThresholds'
+        required: true
+      responses:
+        "200":
+          content: {}
+          description: Device IPMI Thresholds retrieved.
+        "400":
+          content: {}
+          description: Unable to update IPMI Thresholds for this Device.
+      summary: Updates IPMI thresholds data
+      tags:
+      - Device
+      x-codegen-request-body-name: payload
+  /device/{deviceId}/ipmi/valid-login:
+    get:
+      operationId: get_ipmi_valid_login_id_resource
+      parameters:
+      - description: ID of Device to check IPMI credentials
+        in: path
+        name: deviceId
+        required: true
+        schema:
+          type: integer
+      responses:
+        "200":
+          content: {}
+          description: IPMI credentials validated.
+        "400":
+          content: {}
+          description: Unable to validate IPMI credentials this Device.
+      summary: Returns if device have valid credentials for IPMI login
+      tags:
+      - Device
+  /device/{deviceId}/ipmi/whitelist/:
+    post:
+      operationId: post_device_ipmi_whitelist_resource
+      parameters:
+      - description: ID of the Device to put IP in Whitelist
+        in: path
+        name: deviceId
+        required: true
+        schema:
+          type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DeviceIPMIWhitelistIP'
+        required: true
+      responses:
+        "202":
+          content: {}
+          description: The request was accepted.
+        "400":
+          content: {}
+          description: The request has problems. Revise it and try again.
+      summary: Include the custip (custom IP) on IPMI WhiteList
+      tags:
+      - Device
+      x-codegen-request-body-name: payload
+  /device/{deviceId}/ipmi/whitelist/{actionId}:
+    get:
+      operationId: get_device_ipmi_whitelist_action_resource
+      parameters:
+      - description: ID of the Device to put IP in Whitelist
+        in: path
+        name: deviceId
+        required: true
+        schema:
+          type: integer
+      - in: path
+        name: actionId
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content: {}
+          description: The state of action! The possible values are Running or Succeeded.
+        "404":
+          content: {}
+          description: Action ID wasn't found.
+      summary: Retrieve the state of the action to put the IP into White List
+      tags:
+      - Device
+  /device/{deviceId}/power:
+    get:
+      operationId: get_power_resource
+      parameters:
+      - description: ID of Device to View / Update
+        in: path
+        name: deviceId
+        required: true
+        schema:
+          type: integer
+      responses:
+        "200":
+          content: {}
+          description: Success
+      summary: Get device's current power status
+      tags:
+      - Device
+    post:
+      operationId: post_power_resource
+      parameters:
+      - description: ID of Device to View / Update
+        in: path
+        name: deviceId
+        required: true
+        schema:
+          type: integer
+      - description: Must be one of boot|reboot|shutdown
+        in: query
+        name: action
+        required: true
+        schema:
+          pattern: boot|reboot|shutdown
+          type: string
+      responses:
+        "200":
+          content: {}
+          description: Success
+      summary: Apply action to device power
+      tags:
+      - Device
+  /device/{deviceId}/tags:
+    get:
+      operationId: get_device_tag_id_resource
+      parameters:
+      - description: ID of Device to View / Update
+        in: path
+        name: deviceId
+        required: true
+        schema:
+          type: integer
+      responses:
+        "200":
+          content: {}
+          description: Success
+      summary: Get device tags
+      tags:
+      - Device
+    put:
+      operationId: put_device_tag_id_resource
+      parameters:
+      - description: ID of Device to View / Update
+        in: path
+        name: deviceId
+        required: true
+        schema:
+          type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DeviceTag'
+        required: true
+      responses:
+        "200":
+          content: {}
+          description: Device tags updated.
+        "400":
+          content: {}
+          description: Bad request.
+      summary: Update device tags
+      tags:
+      - Device
+      x-codegen-request-body-name: payload
+  /inventory/product:
+    get:
+      operationId: get_stock_resource
+      parameters:
+      - description: Filter products by location
+        in: query
+        name: location
+        schema:
+          default: MAIN
+          enum:
+          - MAIN
+          - MASSIVESTORAGE
+          - GPU
+          - OUTLET
+          - LANDING
+          type: string
+      - description: Get results grouped by 'city' or 'facility'
+        in: query
+        name: group_by
+        schema:
+          default: facility
+          type: string
+      responses:
+        "200":
+          content: {}
+          description: Product data was found
+      summary: Return a structured sps stock data, grouped by city or facility code
+        for all products
+      tags:
+      - Inventory
+  /inventory/product/{productId}:
+    get:
+      operationId: get_stock_by_product_resource
+      parameters:
+      - description: Product database ID
+        in: path
+        name: productId
+        required: true
+        schema:
+          type: integer
+      responses:
+        "200":
+          content: {}
+          description: Product data was found
+        "404":
+          content: {}
+          description: Product with given id not found
+      summary: Return a structured sps stock data, grouped by city or facility code
+        for a single product
+      tags:
+      - Inventory
+  /invoice/:
+    get:
+      operationId: get_invoice_resource
+      responses:
+        "200":
+          content: {}
+          description: Success
+      summary: Return serialized data on all invoices
+      tags:
+      - Invoice
+  /invoice/{invoiceId}:
+    get:
+      operationId: get_invoice_id_resource
+      parameters:
+      - description: Invoice database ID
+        in: path
+        name: invoiceId
+        required: true
+        schema:
+          type: integer
+      responses:
+        "200":
+          content: {}
+          description: Success
+      summary: Return serialized data on a single invoice
+      tags:
+      - Invoice
+  /invoice/{invoiceId}/details:
+    get:
+      description: Same data as the PDF file but serialized
+      operationId: get_invoice_id_details
+      parameters:
+      - description: Invoice database ID
+        in: path
+        name: invoiceId
+        required: true
+        schema:
+          type: integer
+      responses:
+        "200":
+          content: {}
+          description: Success
+      summary: Return detailed information for an invoice
+      tags:
+      - Invoice
+  /invoice/{invoiceId}/pdf-download:
+    get:
+      operationId: get_invoice_pdf_resource
+      parameters:
+      - description: Invoice database ID
+        in: path
+        name: invoiceId
+        required: true
+        schema:
+          type: integer
+      responses:
+        "200":
+          content: {}
+          description: Success
+      summary: Return an Invoice PDF file in Base64 Encoded Format
+      tags:
+      - Invoice
+  /order/:
+    get:
+      operationId: get_order_resource
+      responses:
+        "200":
+          content: {}
+          description: A list of orders if the current user has them.
+      summary: Return a list with all Orders
+      tags:
+      - Order
+  /order/{orderId}:
+    get:
+      operationId: get_order_id_resource
+      parameters:
+      - description: '"ID of Order to View"'
+        in: path
+        name: orderId
+        required: true
+        schema:
+          type: integer
+      responses:
+        "200":
+          content: {}
+          description: An specific order with its details.
+        "404":
+          content: {}
+          description: Order ID not found.
+      summary: Return details of a specific Order
+      tags:
+      - Order
+  /permission/:
+    get:
+      operationId: get_permission_all_resource
+      responses:
+        "200":
+          content: {}
+          description: Success
+      summary: Endpoint to get All Permissions
+      tags:
+      - Permission
+  /permission/contact:
+    post:
+      operationId: post_permission_assign_contact_resource
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Permission'
+        required: true
+      responses:
+        "200":
+          content: {}
+          description: Success
+      summary: Endpoint to assign a new Permission to a Contact
+      tags:
+      - Permission
+      x-codegen-request-body-name: payload
+  /permission/contact/{contactId}:
+    get:
+      operationId: get_permission_contact_resource
+      parameters:
+      - in: path
+        name: contactId
+        required: true
+        schema:
+          type: integer
+      responses:
+        "200":
+          content: {}
+          description: Success
+      summary: Endpoint to get Contact Permissions
+      tags:
+      - Permission
+  /permission/user:
+    get:
+      operationId: get_permission_user_resource
+      responses:
+        "200":
+          content: {}
+          description: Success
+      summary: Endpoint to get User Permissions
+      tags:
+      - Permission
+  /product/match:
+    post:
+      operationId: post_product_match_resource
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProductMatch'
+        required: true
+      responses:
+        "200":
+          content: {}
+          description: Success
+      summary: Return a list of Products matching the provided lshw output of a server
+      tags:
+      - Product
+      x-codegen-request-body-name: payload
+  /product/{productId}/operating-systems:
+    get:
+      operationId: get_product_operating_systems_resource
+      parameters:
+      - description: ID of the Product
+        in: path
+        name: productId
+        required: true
+        schema:
+          type: integer
+      responses:
+        "200":
+          content: {}
+          description: Success
+      summary: Returns List of operating systems found for a Product
+      tags:
+      - Product
+  /product/{productId}/options:
+    get:
+      operationId: get_product_option_resource
+      parameters:
+      - description: ID of the Product
+        in: path
+        name: productId
+        required: true
+        schema:
+          type: integer
+      responses:
+        "200":
+          content: {}
+          description: Success
+      summary: Returns List of Options found for a Product
+      tags:
+      - Product
+  /profile/:
+    get:
+      description: The id is optional and if it is necessary must be sent as URL param.
+      operationId: get_profile_resource
+      parameters:
+      - description: '"ID of Contact to manage Profile"'
+        in: query
+        name: contactId
+        schema:
+          type: string
+      responses:
+        "200":
+          content: {}
+          description: Success
+      summary: Get Profile of current user or a contact with id
+      tags:
+      - Profile
+    put:
+      description: The id is optional and if it is necessary must be sent as URL param.
+      operationId: put_profile_resource
+      parameters:
+      - description: '"ID of Contact to manage Profile"'
+        in: query
+        name: contactId
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProfileUpdate'
+        required: true
+      responses:
+        "200":
+          content: {}
+          description: Profile successfully updated.
+        "400":
+          content: {}
+          description: Unable to update Profile Data.
+      summary: Update Profile of current user or a contact with id
+      tags:
+      - Profile
+      x-codegen-request-body-name: payload
+  /profile/basic:
+    get:
+      description: The id is optional and if it is necessary must be sent as URL param.
+      operationId: get_basic_profile_resource
+      parameters:
+      - description: '"ID of Contact to manage Basic Profile"'
+        in: query
+        name: contactId
+        schema:
+          type: string
+      responses:
+        "200":
+          content: {}
+          description: Success
+      summary: Get Basic Profile of current user or a contact with id
+      tags:
+      - Profile
+  /service/:
+    get:
+      operationId: get_service_resource
+      parameters:
+      - description: The current status of the service
+        in: query
+        name: status
+        required: true
+        schema:
+          default: all
+          enum:
+          - all
+          - active
+          - deactivated
+          - pending
+          - suspended
+          - cancelled
+          type: string
+      responses:
+        "200":
+          content: {}
+          description: Success
+        "404":
+          content: {}
+          description: You don't own any services
+      summary: Return a list of all account services
+      tags:
+      - Service
+  /service/{serviceId}:
+    get:
+      operationId: get_service_id_resource
+      parameters:
+      - in: path
+        name: serviceId
+        required: true
+        schema:
+          type: integer
+      responses:
+        "200":
+          content: {}
+          description: Success
+        "404":
+          content: {}
+          description: Service not found
+      summary: Return a dictionary with data from a specific account service
+      tags:
+      - Service
+  /tickets/:
+    get:
+      operationId: get_ticket_resource
+      responses:
+        "200":
+          content: {}
+          description: All the tickets retrieved.
+      summary: Returns a list with all Tickets
+      tags:
+      - Ticket
+    post:
+      operationId: post_ticket_resource
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TicketCreate'
+        required: true
+      responses:
+        "201":
+          content: {}
+          description: Ticket successfully created
+        "400":
+          content: {}
+          description: Unable to create ticket
+      summary: Creates a new ticket
+      tags:
+      - Ticket
+      x-codegen-request-body-name: payload
+  /tickets/search:
+    get:
+      operationId: get_ticket_search_resource
+      parameters:
+      - description: Number of items per page.
+        in: query
+        name: perPage
+        schema:
+          default: 10
+          type: integer
+      - description: The page number of search.
+        in: query
+        name: page
+        schema:
+          default: 1
+          type: integer
+      - description: Content search.
+        in: query
+        name: q
+        schema:
+          type: string
+      responses:
+        "200":
+          content: {}
+          description: Ticket search results.
+        "400":
+          content: {}
+          description: Invalid ticket search request.
+      summary: Return results of ticket search
+      tags:
+      - Ticket
+  /tickets/{ticketId}:
+    get:
+      operationId: get_ticket_id_resource
+      parameters:
+      - description: ticket database ID
+        in: path
+        name: ticketId
+        required: true
+        schema:
+          type: integer
+      responses:
+        "200":
+          content: {}
+          description: The ticket retrieved.
+        "404":
+          content: {}
+          description: The ticket id not found.
+      summary: Returns details of a specific ticket
+      tags:
+      - Ticket
+    put:
+      operationId: put_ticket_id_resource
+      parameters:
+      - description: ticket database ID
+        in: path
+        name: ticketId
+        required: true
+        schema:
+          type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TicketPut'
+        required: true
+      responses:
+        "200":
+          content: {}
+          description: Ticket successfully updated.
+        "404":
+          content: {}
+          description: The ticket id not found.
+      summary: Updates a specific ticket
+      tags:
+      - Ticket
+      x-codegen-request-body-name: payload
+  /tickets/{ticketId}/reply:
+    get:
+      operationId: get_ticket_reply_resource
+      parameters:
+      - description: ticket database ID
+        in: path
+        name: ticketId
+        required: true
+        schema:
+          type: integer
+      responses:
+        "200":
+          content: {}
+          description: The ticket replies retrieved.
+        "404":
+          content: {}
+          description: The ticket id not found.
+      summary: Returns a reply for a specific ticket
+      tags:
+      - Ticket
+    post:
+      operationId: post_ticket_reply_resource
+      parameters:
+      - description: ticket database ID
+        in: path
+        name: ticketId
+        required: true
+        schema:
+          type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TicketCreateReply'
+        required: true
+      responses:
+        "201":
+          content: {}
+          description: Ticket reply successfully created.
+        "404":
+          content: {}
+          description: The ticket id not found.
+      summary: Creates reply for a specific Ticket
+      tags:
+      - Ticket
+      x-codegen-request-body-name: payload
+  /token/:
+    get:
+      operationId: get_token_resource
+      responses:
+        "200":
+          content: {}
+          description: Public API Tokens retrieved.
+      summary: Returns a list of Public API Tokens for the current user
+      tags:
+      - Token
+    post:
+      operationId: post_token_resource
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PublicApiToken-load'
+        required: true
+      responses:
+        "201":
+          content: {}
+          description: Public API Token created.
+        "500":
+          content: {}
+          description: Unable to create Public API Token.
+      summary: Create a new Public API Token for the current user
+      tags:
+      - Token
+      x-codegen-request-body-name: payload
+  /token/{token}:
+    delete:
+      operationId: delete_token_id_resource
+      parameters:
+      - description: Public API Token
+        in: path
+        name: token
+        required: true
+        schema:
+          type: string
+      responses:
+        "201":
+          content: {}
+          description: Public API Token successfully removed.
+        "400":
+          content: {}
+          description: Unable to remove the Public API Token.
+      summary: Deletes the Public API Token
+      tags:
+      - Token
+    get:
+      operationId: get_token_id_resource
+      parameters:
+      - description: Public API Token
+        in: path
+        name: token
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content: {}
+          description: Public API Token retrieved.
+        "400":
+          content: {}
+          description: Unable to retrieve Public API Token.
+      summary: Returns Public API Token
+      tags:
+      - Token
+    put:
+      operationId: put_token_id_resource
+      parameters:
+      - description: Public API Token
+        in: path
+        name: token
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PublicApiToken-load'
+        required: true
+      responses:
+        "200":
+          content: {}
+          description: Public API Token successfully updated.
+        "400":
+          content: {}
+          description: Unable to update the Public API Token.
+      summary: Updates the Public API Token
+      tags:
+      - Token
+      x-codegen-request-body-name: payload
+  /webhooks/:
+    get:
+      operationId: get_webhook_resource
+      responses:
+        "200":
+          content: {}
+          description: Success
+      summary: Returns your active Webhooks
+      tags:
+      - Webhook
+    post:
+      operationId: post_webhook_resource
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WebhookCreate'
+        required: true
+      responses:
+        "200":
+          content: {}
+          description: Webhook was created.
+        "400":
+          content: {}
+          description: Unable to create Webhook.
+      summary: Create a new Webhook for a Webhook Event
+      tags:
+      - Webhook
+      x-codegen-request-body-name: payload
+  /webhooks/events:
+    get:
+      operationId: get_webhook_event_resource
+      responses:
+        "200":
+          content: {}
+          description: Success
+      summary: Returns all available Webhook Events
+      tags:
+      - Webhook
+  /webhooks/trigger:
+    post:
+      operationId: post_event_script_action_trigger_resource
+      parameters:
+      - description: The name of the webhook to trigger.
+        in: query
+        name: webhookName
+        schema:
+          type: string
+      responses:
+        "202":
+          content: {}
+          description: Accepted.
+      summary: Queues a webhook for the event script action that was triggered
+      tags:
+      - Webhook
+  /webhooks/{webhookId}:
+    delete:
+      operationId: delete_id_resource
+      parameters:
+      - description: ID of Webhook to View / Update
+        in: path
+        name: webhookId
+        required: true
+        schema:
+          type: integer
+      responses:
+        "204":
+          content: {}
+          description: Webhook was deleted.
+      summary: Deletes a single webhook
+      tags:
+      - Webhook
+    get:
+      operationId: get_id_resource
+      parameters:
+      - description: ID of Webhook to View / Update
+        in: path
+        name: webhookId
+        required: true
+        schema:
+          type: integer
+      responses:
+        "200":
+          content: {}
+          description: Success
+      summary: Returns detailed information for a Single Webhook
+      tags:
+      - Webhook
+    put:
+      operationId: put_id_resource
+      parameters:
+      - description: ID of Webhook to View / Update
+        in: path
+        name: webhookId
+        required: true
+        schema:
+          type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WebhookUpdate'
+        required: true
+      responses:
+        "200":
+          content: {}
+          description: Webhook was updated.
+        "400":
+          content: {}
+          description: Unable to update Webhook.
+      summary: Updates a Single Webhook
+      tags:
+      - Webhook
+      x-codegen-request-body-name: payload
+components:
+  responses:
+    MaskError:
+      content: {}
+      description: When any error occurs on mask
+    ParseError:
+      content: {}
+      description: When a mask can't be parsed
+  schemas:
+    CancellationCreate:
+      example:
+        reason: reason
+        serviceId: 0
+        deviceId: 6
+      properties:
+        serviceId:
+          type: integer
+        reason:
+          type: string
+        deviceId:
+          type: integer
+      required:
+      - reason
+      - serviceId
+      type: object
+    Contact-load:
+      properties:
+        password:
+          default: 749f6d8048160df78512171d33cbd417
+          type: string
+        login:
+          default: SC794OV4
+          type: string
+        description:
+          type: string
+        fullName:
+          type: string
+        phone:
+          type: string
+        isClient:
+          type: boolean
+        email:
+          type: string
+        active:
+          type: integer
+      required:
+      - active
+      - description
+      - email
+      - fullName
+      - isClient
+      type: object
+    ContactUpdate:
+      example:
+        phone: phone
+        description: description
+        fullName: fullName
+        active: 0
+        isClient: true
+        email: email
+      properties:
+        description:
+          type: string
+        fullName:
+          type: string
+        phone:
+          type: string
+        isClient:
+          type: boolean
+        email:
+          type: string
+        active:
+          type: integer
+      type: object
+    Password:
+      example:
+        password: password
+        newPassword: newPassword
+      properties:
+        newPassword:
+          type: string
+        password:
+          type: string
+      required:
+      - newPassword
+      - password
+      type: object
+    PasswordRequest:
+      example:
+        email: email
+      properties:
+        email:
+          type: string
+      required:
+      - email
+      type: object
+    PasswordResponse:
+      example:
+        password: password
+        token: token
+      properties:
+        token:
+          type: string
+        password:
+          type: string
+      required:
+      - password
+      - token
+      type: object
+    CreateCredit:
+      example:
+        amount: 0.8008281904610115
+        billingInfoId: 6
+      properties:
+        amount:
+          type: number
+        billingInfoId:
+          type: integer
+      type: object
+    DeviceUpdate:
+      example:
+        hostname: server1.mydomain.com
+        name: A Descriptive Name for this Device
+      properties:
+        name:
+          example: A Descriptive Name for this Device
+          type: string
+        hostname:
+          example: server1.mydomain.com
+          type: string
+      type: object
+    DeviceInterface:
+      example:
+        private: true
+        switchName: switchName
+        name: name
+        interfaceId: 6
+        switchPort: switchPort
+        status: 0
+      properties:
+        status:
+          type: integer
+        name:
+          type: string
+        interfaceId:
+          type: integer
+        private:
+          type: boolean
+        switchName:
+          type: string
+        switchPort:
+          type: string
+      type: object
+    DeviceTag:
+      example:
+        tags:
+        - tags
+        - tags
+      properties:
+        tags:
+          items:
+            type: string
+          type: array
+      type: object
+    DeviceIPMIThresholds:
+      properties:
+        thresholds:
+          properties: {}
+          type: object
+      required:
+      - thresholds
+      type: object
+    UpdateDevicesIPMIThresholds:
+      properties:
+        thresholds:
+          properties: {}
+          type: object
+        device_ids:
+          items:
+            type: integer
+          type: array
+      required:
+      - device_ids
+      - thresholds
+      type: object
+    DeviceIPMIWhitelistIP:
+      properties:
+        custIp:
+          type: string
+      required:
+      - custIp
+      type: object
+    Permission:
+      example:
+        permissions:
+        - permissions
+        - permissions
+        userId: 0
+      properties:
+        permissions:
+          items:
+            type: string
+          type: array
+        userId:
+          type: integer
+      required:
+      - permissions
+      - userId
+      type: object
+    ProductMatch:
+      example:
+        spsOnly: true
+        lshwOutput: '{}'
+      properties:
+        lshwOutput:
+          properties: {}
+          type: object
+        spsOnly:
+          example: true
+          type: boolean
+      type: object
+    ProfileUpdate:
+      example:
+        zip: zip
+        country: country
+        address: address
+        full_name: full_name
+        last: last
+        phone: phone
+        city: city
+        company: company
+        state: state
+        first: first
+        email: email
+      properties:
+        company:
+          type: string
+        last:
+          type: string
+        state:
+          type: string
+        address:
+          type: string
+        full_name:
+          type: string
+        country:
+          type: string
+        first:
+          type: string
+        phone:
+          type: string
+        email:
+          type: string
+        zip:
+          type: string
+        city:
+          type: string
+      type: object
+    DeploymentStart:
+      example:
+        billingInfo: 0
+      properties:
+        billingInfo:
+          type: integer
+      required:
+      - billingInfo
+      type: object
+    DeploymentCustomization:
+      example:
+        quantity: 1
+        productId: 0
+        billingPeriod: monthly
+        options:
+        - 6
+        - 6
+        hostnames:
+        - hostnames
+        - hostnames
+        additionalNotes:
+        - additionalNotes
+        - additionalNotes
+        locationCode: locationCode
+        operatingSystem: operatingSystem
+      properties:
+        productId:
+          type: integer
+        operatingSystem:
+          type: string
+        billingPeriod:
+          default: monthly
+          description: must be one of ['monthly', 'quarterly', 'semi-annually', 'annually',
+            'biennial', 'triennial']
+          type: string
+        options:
+          items:
+            type: integer
+          type: array
+        additionalNotes:
+          items:
+            type: string
+          type: array
+        hostnames:
+          items:
+            type: string
+          type: array
+        locationCode:
+          default: ""
+          type: string
+        quantity:
+          type: integer
+      required:
+      - hostnames
+      - operatingSystem
+      - productId
+      type: object
+    TicketCreate:
+      example:
+        assignment: 6.027456183070403
+        subject: subject
+        source: 0.8008281904610115
+        body: body
+        priority: 1.4658129805029452
+        queue: queue
+        status: open
+      properties:
+        status:
+          example: open
+          type: string
+        source:
+          type: number
+        assignment:
+          type: number
+        body:
+          type: string
+        queue:
+          type: string
+        subject:
+          type: string
+        priority:
+          type: number
+      required:
+      - queue
+      - subject
+      type: object
+    TicketPut:
+      example:
+        status: status
+      properties:
+        status:
+          type: string
+      type: object
+    TicketCreateReply:
+      example:
+        date: 6.027456183070403
+        cc: cc
+        headers: headers
+        attachments:
+        - name: ""
+          file: ""
+        encrypted: encrypted
+        hidden: 1.4658129805029452
+        contactId: 5.962133916683182
+        subject: subject
+        replyTo: replyTo
+        recipient: recipient
+        type: 0.8008281904610115
+        body: body
+      properties:
+        subject:
+          type: string
+        encrypted:
+          type: string
+        type:
+          type: number
+        date:
+          type: number
+        replyTo:
+          type: string
+        body:
+          type: string
+        headers:
+          type: string
+        recipient:
+          type: string
+        hidden:
+          type: number
+        attachments:
+          example:
+          - name: ""
+            file: ""
+          items:
+            properties: {}
+            type: object
+          type: array
+        contactId:
+          type: number
+        cc:
+          type: string
+      required:
+      - body
+      type: object
+    PublicApiToken-load:
+      properties:
+        name:
+          type: string
+      type: object
+    WebhookCreate:
+      example:
+        headers: '{}'
+        name: My Webhook
+        event: event
+        url: url
+      properties:
+        name:
+          example: My Webhook
+          type: string
+        event:
+          type: string
+        url:
+          type: string
+        headers:
+          properties: {}
+          type: object
+      required:
+      - event
+      - url
+      type: object
+    WebhookUpdate:
+      example:
+        headers: '{}'
+        name: My Webhook
+        event: event
+        url: url
+      properties:
+        name:
+          example: My Webhook
+          type: string
+        event:
+          type: string
+        url:
+          type: string
+        headers:
+          properties: {}
+          type: object
+      type: object
+  securitySchemes:
+    apiKey:
+      in: header
+      name: X-API-KEY
+      type: apiKey

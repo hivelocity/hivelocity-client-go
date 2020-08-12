@@ -1,15 +1,16 @@
 # TicketCreate
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Queue** | **string** |  | [default to null]
-**Status** | **string** |  | [optional] [default to null]
-**Subject** | **string** |  | [default to null]
-**Priority** | **float32** |  | [optional] [default to null]
-**Source** | **float32** |  | [optional] [default to null]
-**Body** | **string** |  | [optional] [default to null]
-**Assignment** | **float32** |  | [optional] [default to null]
+**Status** | **string** |  | [optional] 
+**Source** | **float32** |  | [optional] 
+**Assignment** | **float32** |  | [optional] 
+**Body** | **string** |  | [optional] 
+**Queue** | **string** |  | 
+**Subject** | **string** |  | 
+**Priority** | **float32** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
