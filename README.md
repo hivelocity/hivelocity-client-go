@@ -15,7 +15,7 @@ If you're just looking to use this client in your project, simply run `go get -u
 
 ### Generating a fresh client with latest API changes
 
-To generate a client you need Maven `mvn`, `make`, and `wget` install. These should be available in your package manager:
+To generate a client, first you need Maven `mvn`, `make`, and `wget` install. These should be available in your package manager:
 
 ```shell
 # Debian/Ubuntu Linux or WSL
@@ -24,4 +24,16 @@ $ sudo apt-get install -y make wget maven
 # Homebrew (OSX)
 $ brew install make wget
 $ brew cask install java && brew install maven
+```
+
+After all the dependencies are installed, run the following make command to update the client code from the latest [Swagger Specification](https://core.hivelocity.net/api/v2/swagger.json):
+
+```shell
+$ make client
+```
+
+To release a version of the client using the current date (i.e: `v2020.08.12.1`), run:
+
+```shell
+$ make release
 ```
