@@ -1,4 +1,5 @@
 VERSION=v$(shell date -u +"%Y.%m.%d").1
+GENERATOR_VERSION=4.3.1
 
 .PHONY: client
 client:
@@ -9,7 +10,7 @@ client:
 	# Checkout https://github.com/OpenAPITools/openapi-generator/releases
 	@chmod +x ./openapi-generator
 	@rm -rf ./client
-	OPENAPI_GENERATOR_VERSION=4.3.1 ./openapi-generator generate --package-name client -i openapi.json -g go -o ./client
+	OPENAPI_GENERATOR_VERSION=$(GENERATOR_VERSION) ./openapi-generator generate --skip-validate-spec --package-name client -i openapi.json -g go -o ./client
 	rm -f client/go.mod client/go.sum
 	go fmt ./...
 	go build github.com/hivelocity/hivelocity-client-go/client
