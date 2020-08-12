@@ -1,6 +1,6 @@
 module "https://github.com/hivelocity/hivelocity-client-go"
 
-go 1.12
+go 1.14
 
 require (
 	github.com/antihax/optional v1.0.0
