@@ -1,4 +1,3 @@
-/*
  * Hivelocity API
  *
  * Interact with Hivelocity
