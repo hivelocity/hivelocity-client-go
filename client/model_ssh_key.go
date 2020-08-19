@@ -9,8 +9,8 @@
 
 package client
 
-// Password struct for Password
-type Password struct {
-	Password    string `json:"password"`
-	NewPassword string `json:"newPassword"`
+// SshKey struct for SshKey
+type SshKey struct {
+	PublicKey string `json:"publicKey"`
+	Name      string `json:"name"`
 }

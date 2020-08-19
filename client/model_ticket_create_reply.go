@@ -11,16 +11,16 @@ package client
 
 // TicketCreateReply struct for TicketCreateReply
 type TicketCreateReply struct {
-	Subject     string                   `json:"subject,omitempty"`
-	Encrypted   string                   `json:"encrypted,omitempty"`
-	Type        float32                  `json:"type,omitempty"`
-	Date        float32                  `json:"date,omitempty"`
-	ReplyTo     string                   `json:"replyTo,omitempty"`
-	Body        string                   `json:"body"`
-	Headers     string                   `json:"headers,omitempty"`
-	Recipient   string                   `json:"recipient,omitempty"`
-	Hidden      float32                  `json:"hidden,omitempty"`
-	Attachments []map[string]interface{} `json:"attachments,omitempty"`
-	ContactId   float32                  `json:"contactId,omitempty"`
 	Cc          string                   `json:"cc,omitempty"`
+	Body        string                   `json:"body"`
+	Date        float32                  `json:"date,omitempty"`
+	Headers     string                   `json:"headers,omitempty"`
+	Hidden      float32                  `json:"hidden,omitempty"`
+	Subject     string                   `json:"subject,omitempty"`
+	Type        float32                  `json:"type,omitempty"`
+	Encrypted   string                   `json:"encrypted,omitempty"`
+	ReplyTo     string                   `json:"replyTo,omitempty"`
+	Attachments []map[string]interface{} `json:"attachments,omitempty"`
+	Recipient   string                   `json:"recipient,omitempty"`
+	ContactId   float32                  `json:"contactId,omitempty"`
 }

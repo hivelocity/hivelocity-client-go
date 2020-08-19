@@ -142,7 +142,7 @@ Name | Type | Description  | Notes
 
 Creates Cancellation for a device/service
 
-reason options are:     'My current service is being upgraded',     'Hardware/software/network or power issues',     'I think I have found a better deal',     'I have experienced tech support problems',     'I am consolidating my Hivelocity accounts',     'I am a reseller and my customer cancelled',     'I am moving to a different technology solution: Public Cloud',     'I am moving to a different technology solution: Managed Hosting Company',     'A product difference (Example: AWS)'
+reason options are:     'My current service is being upgraded',     'Hardware/software/network or power issues',     'I think I have found a better deal',     'I have experienced tech support problems',     'I am consolidating my Hivelocity accounts',     'I am a reseller and my customer cancelled',     'I am moving to a different technology solution: Public Cloud',     'I am moving to a different technology solution: Managed Hosting Company',     'A product difference (Example: AWS)',     ''
 
 ### Required Parameters
 

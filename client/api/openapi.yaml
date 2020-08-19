@@ -36,6 +36,8 @@ tags:
   name: Deployment
 - description: Service information
   name: Service
+- description: Endpoints to manage SSH key.
+  name: SshKey
 - description: Ticket information
   name: Ticket
 - description: Endpoints to manage Public API Token
@@ -101,7 +103,7 @@ paths:
         in: query
         name: end
         schema:
-          default: 1597157095
+          default: 1597766164
           type: integer
       responses:
         "200":
@@ -158,7 +160,7 @@ paths:
         in: query
         name: end
         schema:
-          default: 1597157095
+          default: 1597766164
           type: integer
       responses:
         "200":
@@ -222,7 +224,7 @@ paths:
         in: query
         name: end
         schema:
-          default: 1597157095
+          default: 1597766164
           type: integer
       responses:
         "200":
@@ -279,7 +281,7 @@ paths:
         in: query
         name: end
         schema:
-          default: 1597157095
+          default: 1597766164
           type: integer
       responses:
         "200":
@@ -322,7 +324,8 @@ paths:
             'I am a reseller and my customer cancelled',
             'I am moving to a different technology solution: Public Cloud',
             'I am moving to a different technology solution: Managed Hosting Company',
-            'A product difference (Example: AWS)'
+            'A product difference (Example: AWS)',
+            ''
       operationId: post_cancellation_resource
       requestBody:
         content:
@@ -1489,6 +1492,92 @@ paths:
       summary: Return a dictionary with data from a specific account service
       tags:
       - Service
+  /ssh_key/:
+    get:
+      operationId: get_ssh_key_resource
+      responses:
+        "200":
+          content: {}
+          description: All Public ssh key successfully retrieved.
+        "400":
+          content: {}
+          description: Unable to get all public ssh key
+      summary: Gets all public ssh key
+      tags:
+      - SshKey
+    post:
+      operationId: post_ssh_key_resource
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SshKey'
+        required: true
+      responses:
+        "201":
+          content: {}
+          description: 'Public ssh key successfully added '
+        "400":
+          content: {}
+          description: Unable to added public ssh key
+      summary: Adds public ssh key
+      tags:
+      - SshKey
+      x-codegen-request-body-name: payload
+  /ssh_key/{clientId}: {}
+  /ssh_key/{sshKeyId}:
+    delete:
+      operationId: delete_ssh_key_id_resource
+      parameters:
+      - in: path
+        name: sshKeyId
+        required: true
+        schema:
+          type: integer
+      responses:
+        "200":
+          content: {}
+          description: Public ssh key successfully removed.
+        "403":
+          content: {}
+          description: Current user is not the owner.
+        "404":
+          content: {}
+          description: Public ssh key not found.
+      summary: Removes public ssh key
+      tags:
+      - SshKey
+    put:
+      operationId: put_ssh_key_id_resource
+      parameters:
+      - in: path
+        name: sshKeyId
+        required: true
+        schema:
+          type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SshKeyUpdate'
+        required: true
+      responses:
+        "200":
+          content: {}
+          description: Public ssh key successfully updated.
+        "400":
+          content: {}
+          description: Unable to update public ssh key.
+        "403":
+          content: {}
+          description: Current user is not the owner.
+        "404":
+          content: {}
+          description: Public ssh key not found.
+      summary: Updates public ssh key
+      tags:
+      - SshKey
+      x-codegen-request-body-name: payload
   /tickets/:
     get:
       operationId: get_ticket_resource
@@ -1861,14 +1950,14 @@ components:
     CancellationCreate:
       example:
         reason: reason
-        serviceId: 0
-        deviceId: 6
+        serviceId: 6
+        deviceId: 0
       properties:
-        serviceId:
+        deviceId:
           type: integer
         reason:
           type: string
-        deviceId:
+        serviceId:
           type: integer
       required:
       - reason
@@ -1876,24 +1965,24 @@ components:
       type: object
     Contact-load:
       properties:
-        password:
-          default: 749f6d8048160df78512171d33cbd417
-          type: string
-        login:
-          default: ZFBYKCV9
+        isClient:
+          type: boolean
+        fullName:
           type: string
         description:
           type: string
-        fullName:
+        active:
+          type: integer
+        email:
+          type: string
+        password:
+          default: e733b9251bd0314acaa68dda09a7f1db
+          type: string
+        login:
+          default: R33HEBDY
           type: string
         phone:
           type: string
-        isClient:
-          type: boolean
-        email:
-          type: string
-        active:
-          type: integer
       required:
       - active
       - description
@@ -1904,37 +1993,50 @@ components:
     ContactUpdate:
       example:
         phone: phone
-        description: description
         fullName: fullName
+        description: description
         active: 0
         isClient: true
         email: email
       properties:
-        description:
-          type: string
-        fullName:
-          type: string
-        phone:
-          type: string
         isClient:
           type: boolean
-        email:
+        fullName:
+          type: string
+        description:
           type: string
         active:
           type: integer
+        email:
+          type: string
+        phone:
+          type: string
       type: object
     Password:
       example:
         password: password
         newPassword: newPassword
       properties:
-        newPassword:
-          type: string
         password:
+          type: string
+        newPassword:
           type: string
       required:
       - newPassword
       - password
+      type: object
+    PasswordResponse:
+      example:
+        password: password
+        token: token
+      properties:
+        password:
+          type: string
+        token:
+          type: string
+      required:
+      - password
+      - token
       type: object
     PasswordRequest:
       example:
@@ -1945,28 +2047,15 @@ components:
       required:
       - email
       type: object
-    PasswordResponse:
-      example:
-        password: password
-        token: token
-      properties:
-        token:
-          type: string
-        password:
-          type: string
-      required:
-      - password
-      - token
-      type: object
     CreateCredit:
       example:
-        amount: 0.8008281904610115
-        billingInfoId: 6
+        amount: 6.027456183070403
+        billingInfoId: 0
       properties:
-        amount:
-          type: number
         billingInfoId:
           type: integer
+        amount:
+          type: number
       type: object
     DeviceUpdate:
       example:
@@ -2023,13 +2112,13 @@ components:
       type: object
     UpdateDevicesIPMIThresholds:
       properties:
-        thresholds:
-          properties: {}
-          type: object
         device_ids:
           items:
             type: integer
           type: array
+        thresholds:
+          properties: {}
+          type: object
       required:
       - device_ids
       - thresholds
@@ -2048,12 +2137,12 @@ components:
         - permissions
         userId: 0
       properties:
+        userId:
+          type: integer
         permissions:
           items:
             type: string
           type: array
-        userId:
-          type: integer
       required:
       - permissions
       - userId
@@ -2063,19 +2152,19 @@ components:
         spsOnly: true
         lshwOutput: '{}'
       properties:
-        lshwOutput:
-          properties: {}
-          type: object
         spsOnly:
           example: true
           type: boolean
+        lshwOutput:
+          properties: {}
+          type: object
       type: object
     ProfileUpdate:
       example:
         zip: zip
         country: country
-        address: address
         full_name: full_name
+        address: address
         last: last
         phone: phone
         city: city
@@ -2084,25 +2173,25 @@ components:
         first: first
         email: email
       properties:
-        company:
-          type: string
-        last:
-          type: string
-        state:
-          type: string
-        address:
-          type: string
-        full_name:
-          type: string
-        country:
+        zip:
           type: string
         first:
           type: string
-        phone:
-          type: string
         email:
           type: string
-        zip:
+        company:
+          type: string
+        full_name:
+          type: string
+        address:
+          type: string
+        phone:
+          type: string
+        last:
+          type: string
+        country:
+          type: string
+        state:
           type: string
         city:
           type: string
@@ -2118,30 +2207,34 @@ components:
       type: object
     DeploymentCustomization:
       example:
-        quantity: 1
+        quantity: 6
         productId: 0
         billingPeriod: monthly
         options:
-        - 6
-        - 6
+        - 1
+        - 1
         hostnames:
         - hostnames
         - hostnames
+        locationCode: locationCode
         additionalNotes:
         - additionalNotes
         - additionalNotes
-        locationCode: locationCode
         operatingSystem: operatingSystem
       properties:
         productId:
           type: integer
+        quantity:
+          type: integer
+        locationCode:
+          default: ""
+          type: string
         operatingSystem:
           type: string
-        billingPeriod:
-          default: monthly
-          description: must be one of ['monthly', 'quarterly', 'semi-annually', 'annually',
-            'biennial', 'triennial']
-          type: string
+        hostnames:
+          items:
+            type: string
+          type: array
         options:
           items:
             type: integer
@@ -2150,45 +2243,64 @@ components:
           items:
             type: string
           type: array
-        hostnames:
-          items:
-            type: string
-          type: array
-        locationCode:
-          default: ""
+        billingPeriod:
+          default: monthly
+          description: must be one of ['monthly', 'quarterly', 'semi-annually', 'annually',
+            'biennial', 'triennial']
           type: string
-        quantity:
-          type: integer
       required:
       - hostnames
       - operatingSystem
       - productId
       type: object
+    SshKey:
+      example:
+        name: name
+        publicKey: publicKey
+      properties:
+        publicKey:
+          type: string
+        name:
+          type: string
+      required:
+      - name
+      - publicKey
+      type: object
+    SshKeyUpdate:
+      example:
+        name: name
+        publicKey: publicKey
+      properties:
+        publicKey:
+          type: string
+        name:
+          type: string
+      type: object
     TicketCreate:
       example:
-        assignment: 6.027456183070403
+        assignment: 0.8008281904610115
         subject: subject
-        source: 0.8008281904610115
-        body: body
+        source: 6.027456183070403
         priority: 1.4658129805029452
+        body: body
         queue: queue
         status: open
       properties:
-        status:
-          example: open
-          type: string
-        source:
-          type: number
         assignment:
           type: number
-        body:
-          type: string
-        queue:
+        source:
+          type: number
+        status:
+          example: open
           type: string
         subject:
           type: string
         priority:
           type: number
+        body:
+          type: string
+        queue:
+          type: string
       required:
       - queue
       - subject
@@ -2202,39 +2314,39 @@ components:
       type: object
     TicketCreateReply:
       example:
-        date: 6.027456183070403
         cc: cc
+        date: 0.8008281904610115
         headers: headers
         attachments:
         - name: ""
           file: ""
+        hidden: 6.027456183070403
         encrypted: encrypted
-        hidden: 1.4658129805029452
         contactId: 5.962133916683182
         subject: subject
         replyTo: replyTo
         recipient: recipient
-        type: 0.8008281904610115
         body: body
+        type: 1.4658129805029452
       properties:
-        subject:
-          type: string
-        encrypted:
-          type: string
-        type:
-          type: number
-        date:
-          type: number
-        replyTo:
+        cc:
           type: string
         body:
           type: string
+        date:
+          type: number
         headers:
-          type: string
-        recipient:
           type: string
         hidden:
           type: number
+        subject:
+          type: string
+        type:
+          type: number
+        encrypted:
+          type: string
+        replyTo:
+          type: string
         attachments:
           example:
           - name: ""
@@ -2243,10 +2355,10 @@ components:
             properties: {}
             type: object
           type: array
+        recipient:
+          type: string
         contactId:
           type: number
-        cc:
-          type: string
       required:
       - body
       type: object

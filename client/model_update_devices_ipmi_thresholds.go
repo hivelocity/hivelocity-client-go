@@ -11,6 +11,6 @@ package client
 
 // UpdateDevicesIpmiThresholds struct for UpdateDevicesIpmiThresholds
 type UpdateDevicesIpmiThresholds struct {
-	Thresholds map[string]interface{} `json:"thresholds"`
 	DeviceIds  []int32                `json:"device_ids"`
+	Thresholds map[string]interface{} `json:"thresholds"`
 }

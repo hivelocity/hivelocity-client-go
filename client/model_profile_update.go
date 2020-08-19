@@ -11,15 +11,15 @@ package client
 
 // ProfileUpdate struct for ProfileUpdate
 type ProfileUpdate struct {
-	Company  string `json:"company,omitempty"`
-	Last     string `json:"last,omitempty"`
-	State    string `json:"state,omitempty"`
-	Address  string `json:"address,omitempty"`
-	FullName string `json:"full_name,omitempty"`
-	Country  string `json:"country,omitempty"`
-	First    string `json:"first,omitempty"`
-	Phone    string `json:"phone,omitempty"`
-	Email    string `json:"email,omitempty"`
 	Zip      string `json:"zip,omitempty"`
+	First    string `json:"first,omitempty"`
+	Email    string `json:"email,omitempty"`
+	Company  string `json:"company,omitempty"`
+	FullName string `json:"full_name,omitempty"`
+	Address  string `json:"address,omitempty"`
+	Phone    string `json:"phone,omitempty"`
+	Last     string `json:"last,omitempty"`
+	Country  string `json:"country,omitempty"`
+	State    string `json:"state,omitempty"`
 	City     string `json:"city,omitempty"`
 }

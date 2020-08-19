@@ -11,11 +11,11 @@ package client
 
 // TicketCreate struct for TicketCreate
 type TicketCreate struct {
-	Status     string  `json:"status,omitempty"`
-	Source     float32 `json:"source,omitempty"`
 	Assignment float32 `json:"assignment,omitempty"`
-	Body       string  `json:"body,omitempty"`
-	Queue      string  `json:"queue"`
+	Source     float32 `json:"source,omitempty"`
+	Status     string  `json:"status,omitempty"`
 	Subject    string  `json:"subject"`
 	Priority   float32 `json:"priority,omitempty"`
+	Body       string  `json:"body,omitempty"`
+	Queue      string  `json:"queue"`
 }

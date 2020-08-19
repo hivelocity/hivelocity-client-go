@@ -100,6 +100,10 @@ Class | Method | HTTP request | Description
 *ProfileApi* | [**PutProfileResource**](docs/ProfileApi.md#putprofileresource) | **Put** /profile/ | Update Profile of current user or a contact with id
 *ServiceApi* | [**GetServiceIdResource**](docs/ServiceApi.md#getserviceidresource) | **Get** /service/{serviceId} | Return a dictionary with data from a specific account service
 *ServiceApi* | [**GetServiceResource**](docs/ServiceApi.md#getserviceresource) | **Get** /service/ | Return a list of all account services
+*SshKeyApi* | [**DeleteSshKeyIdResource**](docs/SshKeyApi.md#deletesshkeyidresource) | **Delete** /ssh_key/{sshKeyId} | Removes public ssh key
+*SshKeyApi* | [**GetSshKeyResource**](docs/SshKeyApi.md#getsshkeyresource) | **Get** /ssh_key/ | Gets all public ssh key
+*SshKeyApi* | [**PostSshKeyResource**](docs/SshKeyApi.md#postsshkeyresource) | **Post** /ssh_key/ | Adds public ssh key
+*SshKeyApi* | [**PutSshKeyIdResource**](docs/SshKeyApi.md#putsshkeyidresource) | **Put** /ssh_key/{sshKeyId} | Updates public ssh key
 *TicketApi* | [**GetTicketIdResource**](docs/TicketApi.md#getticketidresource) | **Get** /tickets/{ticketId} | Returns details of a specific ticket
 *TicketApi* | [**GetTicketReplyResource**](docs/TicketApi.md#getticketreplyresource) | **Get** /tickets/{ticketId}/reply | Returns a reply for a specific ticket
 *TicketApi* | [**GetTicketResource**](docs/TicketApi.md#getticketresource) | **Get** /tickets/ | Returns a list with all Tickets
@@ -141,6 +145,8 @@ Class | Method | HTTP request | Description
  - [ProductMatch](docs/ProductMatch.md)
  - [ProfileUpdate](docs/ProfileUpdate.md)
  - [PublicApiTokenLoad](docs/PublicApiTokenLoad.md)
+ - [SshKey](docs/SshKey.md)
+ - [SshKeyUpdate](docs/SshKeyUpdate.md)
  - [TicketCreate](docs/TicketCreate.md)
  - [TicketCreateReply](docs/TicketCreateReply.md)
  - [TicketPut](docs/TicketPut.md)

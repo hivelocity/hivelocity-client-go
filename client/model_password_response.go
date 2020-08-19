@@ -11,6 +11,6 @@ package client
 
 // PasswordResponse struct for PasswordResponse
 type PasswordResponse struct {
-	Token    string `json:"token"`
 	Password string `json:"password"`
+	Token    string `json:"token"`
 }

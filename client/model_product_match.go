@@ -11,6 +11,6 @@ package client
 
 // ProductMatch struct for ProductMatch
 type ProductMatch struct {
-	LshwOutput map[string]interface{} `json:"lshwOutput,omitempty"`
 	SpsOnly    bool                   `json:"spsOnly,omitempty"`
+	LshwOutput map[string]interface{} `json:"lshwOutput,omitempty"`
 }

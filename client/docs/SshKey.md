@@ -1,11 +1,11 @@
-# ProductMatch
+# SshKey
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**SpsOnly** | **bool** |  | [optional] 
-**LshwOutput** | [**map[string]interface{}**](.md) |  | [optional] 
+**PublicKey** | **string** |  | 
+**Name** | **string** |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

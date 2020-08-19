@@ -1,3 +1,4 @@
+/*
  * Hivelocity API
  *
  * Interact with Hivelocity
@@ -75,6 +76,8 @@ type APIClient struct {
 
 	ServiceApi *ServiceApiService
 
+	SshKeyApi *SshKeyApiService
+
 	TicketApi *TicketApiService
 
 	TokenApi *TokenApiService
@@ -112,6 +115,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.ProductApi = (*ProductApiService)(&c.common)
 	c.ProfileApi = (*ProfileApiService)(&c.common)
 	c.ServiceApi = (*ServiceApiService)(&c.common)
+	c.SshKeyApi = (*SshKeyApiService)(&c.common)
 	c.TicketApi = (*TicketApiService)(&c.common)
 	c.TokenApi = (*TokenApiService)(&c.common)
 	c.WebhookApi = (*WebhookApiService)(&c.common)

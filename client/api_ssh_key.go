@@ -22,17 +22,17 @@ var (
 	_ _context.Context
 )
 
-// CancellationApiService CancellationApi service
-type CancellationApiService service
+// SshKeyApiService SshKeyApi service
+type SshKeyApiService service
 
 /*
-GetCancellationDeviceResource Return the Cancellation found for a Device
+DeleteSshKeyIdResource Removes public ssh key
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param deviceId
+ * @param sshKeyId
 */
-func (a *CancellationApiService) GetCancellationDeviceResource(ctx _context.Context, deviceId int32) (*_nethttp.Response, error) {
+func (a *SshKeyApiService) DeleteSshKeyIdResource(ctx _context.Context, sshKeyId int32) (*_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarHTTPMethod   = _nethttp.MethodDelete
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
@@ -40,8 +40,8 @@ func (a *CancellationApiService) GetCancellationDeviceResource(ctx _context.Cont
 	)
 
 	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/cancellation/device/{deviceId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"deviceId"+"}", _neturl.QueryEscape(parameterToString(deviceId, "")), -1)
+	localVarPath := a.client.cfg.BasePath + "/ssh_key/{sshKeyId}"
+	localVarPath = strings.Replace(localVarPath, "{"+"sshKeyId"+"}", _neturl.QueryEscape(parameterToString(sshKeyId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -104,11 +104,10 @@ func (a *CancellationApiService) GetCancellationDeviceResource(ctx _context.Cont
 }
 
 /*
-GetCancellationIdResource Return any cancellation by ID
+GetSshKeyResource Gets all public ssh key
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param cancellationId
 */
-func (a *CancellationApiService) GetCancellationIdResource(ctx _context.Context, cancellationId int32) (*_nethttp.Response, error) {
+func (a *SshKeyApiService) GetSshKeyResource(ctx _context.Context) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
@@ -118,9 +117,7 @@ func (a *CancellationApiService) GetCancellationIdResource(ctx _context.Context,
 	)
 
 	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/cancellation/cancellation/{cancellationId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"cancellationId"+"}", _neturl.QueryEscape(parameterToString(cancellationId, "")), -1)
-
+	localVarPath := a.client.cfg.BasePath + "/ssh_key/"
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
@@ -182,165 +179,11 @@ func (a *CancellationApiService) GetCancellationIdResource(ctx _context.Context,
 }
 
 /*
-GetCancellationResource Returns the services cancellations of a client
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-*/
-func (a *CancellationApiService) GetCancellationResource(ctx _context.Context) (*_nethttp.Response, error) {
-	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-	)
-
-	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/cancellation/cancellation"
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + auth.Key
-			} else {
-				key = auth.Key
-			}
-			localVarHeaderParams["X-API-KEY"] = key
-		}
-	}
-	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
-	if err != nil {
-		return nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(r)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarHTTPResponse, err
-	}
-
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	if err != nil {
-		return localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		return localVarHTTPResponse, newErr
-	}
-
-	return localVarHTTPResponse, nil
-}
-
-/*
-GetCancellationServiceResource Return the Cancellation found for a Service
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param serviceId
-*/
-func (a *CancellationApiService) GetCancellationServiceResource(ctx _context.Context, serviceId int32) (*_nethttp.Response, error) {
-	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-	)
-
-	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/cancellation/service/{serviceId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"serviceId"+"}", _neturl.QueryEscape(parameterToString(serviceId, "")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + auth.Key
-			} else {
-				key = auth.Key
-			}
-			localVarHeaderParams["X-API-KEY"] = key
-		}
-	}
-	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
-	if err != nil {
-		return nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(r)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarHTTPResponse, err
-	}
-
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	if err != nil {
-		return localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		return localVarHTTPResponse, newErr
-	}
-
-	return localVarHTTPResponse, nil
-}
-
-/*
-PostCancellationResource Creates Cancellation for a device/service
-reason options are:     &#39;My current service is being upgraded&#39;,     &#39;Hardware/software/network or power issues&#39;,     &#39;I think I have found a better deal&#39;,     &#39;I have experienced tech support problems&#39;,     &#39;I am consolidating my Hivelocity accounts&#39;,     &#39;I am a reseller and my customer cancelled&#39;,     &#39;I am moving to a different technology solution: Public Cloud&#39;,     &#39;I am moving to a different technology solution: Managed Hosting Company&#39;,     &#39;A product difference (Example: AWS)&#39;,     &#39;&#39;
+PostSshKeyResource Adds public ssh key
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param payload
 */
-func (a *CancellationApiService) PostCancellationResource(ctx _context.Context, payload CancellationCreate) (*_nethttp.Response, error) {
+func (a *SshKeyApiService) PostSshKeyResource(ctx _context.Context, payload SshKey) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPost
 		localVarPostBody     interface{}
@@ -350,7 +193,88 @@ func (a *CancellationApiService) PostCancellationResource(ctx _context.Context, 
 	)
 
 	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/cancellation/cancellation"
+	localVarPath := a.client.cfg.BasePath + "/ssh_key/"
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = &payload
+	if ctx != nil {
+		// API Key Authentication
+		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
+			var key string
+			if auth.Prefix != "" {
+				key = auth.Prefix + " " + auth.Key
+			} else {
+				key = auth.Key
+			}
+			localVarHeaderParams["X-API-KEY"] = key
+		}
+	}
+	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(r)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	if err != nil {
+		return localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, nil
+}
+
+/*
+PutSshKeyIdResource Updates public ssh key
+ * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param sshKeyId
+ * @param payload
+*/
+func (a *SshKeyApiService) PutSshKeyIdResource(ctx _context.Context, sshKeyId int32, payload SshKeyUpdate) (*_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod   = _nethttp.MethodPut
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+	)
+
+	// create path and map variables
+	localVarPath := a.client.cfg.BasePath + "/ssh_key/{sshKeyId}"
+	localVarPath = strings.Replace(localVarPath, "{"+"sshKeyId"+"}", _neturl.QueryEscape(parameterToString(sshKeyId, "")), -1)
+
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}

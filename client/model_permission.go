@@ -11,6 +11,6 @@ package client
 
 // Permission struct for Permission
 type Permission struct {
-	Permissions []string `json:"permissions"`
 	UserId      int32    `json:"userId"`
+	Permissions []string `json:"permissions"`
 }

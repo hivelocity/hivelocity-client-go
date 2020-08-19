@@ -11,12 +11,12 @@ package client
 
 // ContactLoad struct for ContactLoad
 type ContactLoad struct {
+	IsClient    bool   `json:"isClient"`
+	FullName    string `json:"fullName"`
+	Description string `json:"description"`
+	Active      int32  `json:"active"`
+	Email       string `json:"email"`
 	Password    string `json:"password,omitempty"`
 	Login       string `json:"login,omitempty"`
-	Description string `json:"description"`
-	FullName    string `json:"fullName"`
 	Phone       string `json:"phone,omitempty"`
-	IsClient    bool   `json:"isClient"`
-	Email       string `json:"email"`
-	Active      int32  `json:"active"`
 }

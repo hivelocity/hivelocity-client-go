@@ -11,10 +11,10 @@ package client
 
 // ContactUpdate struct for ContactUpdate
 type ContactUpdate struct {
-	Description string `json:"description,omitempty"`
-	FullName    string `json:"fullName,omitempty"`
-	Phone       string `json:"phone,omitempty"`
 	IsClient    bool   `json:"isClient,omitempty"`
-	Email       string `json:"email,omitempty"`
+	FullName    string `json:"fullName,omitempty"`
+	Description string `json:"description,omitempty"`
 	Active      int32  `json:"active,omitempty"`
+	Email       string `json:"email,omitempty"`
+	Phone       string `json:"phone,omitempty"`
 }
