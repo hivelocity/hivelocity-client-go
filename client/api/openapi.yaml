@@ -1979,7 +1979,7 @@ components:
           default: e733b9251bd0314acaa68dda09a7f1db
           type: string
         login:
-          default: R33HEBDY
+          default: 0KHE683S
           type: string
         phone:
           type: string
