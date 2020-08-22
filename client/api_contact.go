@@ -261,7 +261,7 @@ PostContactResource Create a new Contact
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param payload
 */
-func (a *ContactApiService) PostContactResource(ctx _context.Context, payload ContactLoad) (*_nethttp.Response, error) {
+func (a *ContactApiService) PostContactResource(ctx _context.Context, payload ContactCreate) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPost
 		localVarPostBody     interface{}

@@ -9,14 +9,12 @@
 
 package client
 
-// ContactLoad struct for ContactLoad
-type ContactLoad struct {
-	IsClient    bool   `json:"isClient"`
-	FullName    string `json:"fullName"`
-	Description string `json:"description"`
-	Active      int32  `json:"active"`
-	Email       string `json:"email"`
-	Password    string `json:"password,omitempty"`
-	Login       string `json:"login,omitempty"`
+// ContactCreate struct for ContactCreate
+type ContactCreate struct {
 	Phone       string `json:"phone,omitempty"`
+	Active      int32  `json:"active"`
+	FullName    string `json:"fullName"`
+	Email       string `json:"email"`
+	Description string `json:"description,omitempty"`
+	Password    string `json:"password,omitempty"`
 }

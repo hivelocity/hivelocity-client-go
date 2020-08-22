@@ -1,17 +1,15 @@
-# ContactLoad
+# ContactCreate
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**IsClient** | **bool** |  | 
-**FullName** | **string** |  | 
-**Description** | **string** |  | 
-**Active** | **int32** |  | 
-**Email** | **string** |  | 
-**Password** | **string** |  | [optional] [default to e733b9251bd0314acaa68dda09a7f1db]
-**Login** | **string** |  | [optional] [default to 0KHE683S]
 **Phone** | **string** |  | [optional] 
+**Active** | **int32** |  | 
+**FullName** | **string** |  | 
+**Email** | **string** |  | 
+**Description** | **string** |  | [optional] 
+**Password** | **string** |  | [optional] [default to 978209cea95559901eab4e29d28c1c7f]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -26,18 +26,27 @@ var (
 // InventoryApiService InventoryApi service
 type InventoryApiService service
 
+// GetStockByProductResourceOpts Optional parameters for the method 'GetStockByProductResource'
+type GetStockByProductResourceOpts struct {
+	XFields optional.String
+}
+
 /*
 GetStockByProductResource Return a structured sps stock data, grouped by city or facility code for a single product
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param productId Product database ID
+ * @param optional nil or *GetStockByProductResourceOpts - Optional Parameters:
+ * @param "XFields" (optional.String) -  An optional fields mask
+@return Stock
 */
-func (a *InventoryApiService) GetStockByProductResource(ctx _context.Context, productId int32) (*_nethttp.Response, error) {
+func (a *InventoryApiService) GetStockByProductResource(ctx _context.Context, productId int32, localVarOptionals *GetStockByProductResourceOpts) (Stock, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
+		localVarReturnValue  Stock
 	)
 
 	// create path and map variables
@@ -58,12 +67,15 @@ func (a *InventoryApiService) GetStockByProductResource(ctx _context.Context, pr
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{}
+	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if localVarOptionals != nil && localVarOptionals.XFields.IsSet() {
+		localVarHeaderParams["X-Fields"] = parameterToString(localVarOptionals.XFields.Value(), "")
 	}
 	if ctx != nil {
 		// API Key Authentication
@@ -79,18 +91,18 @@ func (a *InventoryApiService) GetStockByProductResource(ctx _context.Context, pr
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
-		return nil, err
+		return localVarReturnValue, nil, err
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(r)
 	if err != nil || localVarHTTPResponse == nil {
-		return localVarHTTPResponse, err
+		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
-		return localVarHTTPResponse, err
+		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
@@ -98,16 +110,26 @@ func (a *InventoryApiService) GetStockByProductResource(ctx _context.Context, pr
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		return localVarHTTPResponse, newErr
+		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	return localVarHTTPResponse, nil
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
 // GetStockResourceOpts Optional parameters for the method 'GetStockResource'
 type GetStockResourceOpts struct {
 	Location optional.String
 	GroupBy  optional.String
+	XFields  optional.String
 }
 
 /*
@@ -116,14 +138,17 @@ GetStockResource Return a structured sps stock data, grouped by city or facility
  * @param optional nil or *GetStockResourceOpts - Optional Parameters:
  * @param "Location" (optional.String) -  Filter products by location
  * @param "GroupBy" (optional.String) -  Get results grouped by 'city' or 'facility'
+ * @param "XFields" (optional.String) -  An optional fields mask
+@return Stock
 */
-func (a *InventoryApiService) GetStockResource(ctx _context.Context, localVarOptionals *GetStockResourceOpts) (*_nethttp.Response, error) {
+func (a *InventoryApiService) GetStockResource(ctx _context.Context, localVarOptionals *GetStockResourceOpts) (Stock, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
+		localVarReturnValue  Stock
 	)
 
 	// create path and map variables
@@ -148,12 +173,15 @@ func (a *InventoryApiService) GetStockResource(ctx _context.Context, localVarOpt
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{}
+	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if localVarOptionals != nil && localVarOptionals.XFields.IsSet() {
+		localVarHeaderParams["X-Fields"] = parameterToString(localVarOptionals.XFields.Value(), "")
 	}
 	if ctx != nil {
 		// API Key Authentication
@@ -169,18 +197,18 @@ func (a *InventoryApiService) GetStockResource(ctx _context.Context, localVarOpt
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
-		return nil, err
+		return localVarReturnValue, nil, err
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(r)
 	if err != nil || localVarHTTPResponse == nil {
-		return localVarHTTPResponse, err
+		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
-		return localVarHTTPResponse, err
+		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
@@ -188,8 +216,17 @@ func (a *InventoryApiService) GetStockResource(ctx _context.Context, localVarOpt
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		return localVarHTTPResponse, newErr
+		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	return localVarHTTPResponse, nil
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
 }

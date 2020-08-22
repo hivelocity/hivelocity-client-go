@@ -119,7 +119,7 @@ Create a new Contact
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**payload** | [**ContactLoad**](ContactLoad.md)|  | 
+**payload** | [**ContactCreate**](ContactCreate.md)|  | 
 
 ### Return type
 

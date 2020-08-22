@@ -11,6 +11,7 @@ package client
 
 import (
 	_context "context"
+	"github.com/antihax/optional"
 	_ioutil "io/ioutil"
 	_nethttp "net/http"
 	_neturl "net/url"
@@ -25,18 +26,27 @@ var (
 // ProductApiService ProductApi service
 type ProductApiService service
 
+// GetProductOperatingSystemsResourceOpts Optional parameters for the method 'GetProductOperatingSystemsResource'
+type GetProductOperatingSystemsResourceOpts struct {
+	XFields optional.String
+}
+
 /*
-GetProductOperatingSystemsResource Returns List of operating systems found for a Product
+GetProductOperatingSystemsResource Return List of operating systems found for a Product
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param productId ID of the Product
+ * @param optional nil or *GetProductOperatingSystemsResourceOpts - Optional Parameters:
+ * @param "XFields" (optional.String) -  An optional fields mask
+@return []OperatingSystem
 */
-func (a *ProductApiService) GetProductOperatingSystemsResource(ctx _context.Context, productId int32) (*_nethttp.Response, error) {
+func (a *ProductApiService) GetProductOperatingSystemsResource(ctx _context.Context, productId int32, localVarOptionals *GetProductOperatingSystemsResourceOpts) ([]OperatingSystem, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
+		localVarReturnValue  []OperatingSystem
 	)
 
 	// create path and map variables
@@ -57,12 +67,15 @@ func (a *ProductApiService) GetProductOperatingSystemsResource(ctx _context.Cont
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{}
+	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if localVarOptionals != nil && localVarOptionals.XFields.IsSet() {
+		localVarHeaderParams["X-Fields"] = parameterToString(localVarOptionals.XFields.Value(), "")
 	}
 	if ctx != nil {
 		// API Key Authentication
@@ -78,18 +91,18 @@ func (a *ProductApiService) GetProductOperatingSystemsResource(ctx _context.Cont
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
-		return nil, err
+		return localVarReturnValue, nil, err
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(r)
 	if err != nil || localVarHTTPResponse == nil {
-		return localVarHTTPResponse, err
+		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
-		return localVarHTTPResponse, err
+		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
@@ -97,24 +110,44 @@ func (a *ProductApiService) GetProductOperatingSystemsResource(ctx _context.Cont
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		return localVarHTTPResponse, newErr
+		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	return localVarHTTPResponse, nil
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+// GetProductOptionResourceOpts Optional parameters for the method 'GetProductOptionResource'
+type GetProductOptionResourceOpts struct {
+	GroupBy optional.String
+	XFields optional.String
 }
 
 /*
-GetProductOptionResource Returns List of Options found for a Product
+GetProductOptionResource Return List of Options found for a Product
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param productId ID of the Product
+ * @param optional nil or *GetProductOptionResourceOpts - Optional Parameters:
+ * @param "GroupBy" (optional.String) -  Get results grouped by 'upgrade' or without grouping.
+ * @param "XFields" (optional.String) -  An optional fields mask
+@return ProductOption
 */
-func (a *ProductApiService) GetProductOptionResource(ctx _context.Context, productId int32) (*_nethttp.Response, error) {
+func (a *ProductApiService) GetProductOptionResource(ctx _context.Context, productId int32, localVarOptionals *GetProductOptionResourceOpts) (ProductOption, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
+		localVarReturnValue  ProductOption
 	)
 
 	// create path and map variables
@@ -125,6 +158,9 @@ func (a *ProductApiService) GetProductOptionResource(ctx _context.Context, produ
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 
+	if localVarOptionals != nil && localVarOptionals.GroupBy.IsSet() {
+		localVarQueryParams.Add("groupBy", parameterToString(localVarOptionals.GroupBy.Value(), ""))
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -135,12 +171,15 @@ func (a *ProductApiService) GetProductOptionResource(ctx _context.Context, produ
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{}
+	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if localVarOptionals != nil && localVarOptionals.XFields.IsSet() {
+		localVarHeaderParams["X-Fields"] = parameterToString(localVarOptionals.XFields.Value(), "")
 	}
 	if ctx != nil {
 		// API Key Authentication
@@ -156,18 +195,18 @@ func (a *ProductApiService) GetProductOptionResource(ctx _context.Context, produ
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
-		return nil, err
+		return localVarReturnValue, nil, err
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(r)
 	if err != nil || localVarHTTPResponse == nil {
-		return localVarHTTPResponse, err
+		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
-		return localVarHTTPResponse, err
+		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
@@ -175,10 +214,19 @@ func (a *ProductApiService) GetProductOptionResource(ctx _context.Context, produ
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		return localVarHTTPResponse, newErr
+		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	return localVarHTTPResponse, nil
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
 /*

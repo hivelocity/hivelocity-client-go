@@ -103,7 +103,7 @@ paths:
         in: query
         name: end
         schema:
-          default: 1597766164
+          default: 1598036541
           type: integer
       responses:
         "200":
@@ -160,7 +160,7 @@ paths:
         in: query
         name: end
         schema:
-          default: 1597766164
+          default: 1598036541
           type: integer
       responses:
         "200":
@@ -224,7 +224,7 @@ paths:
         in: query
         name: end
         schema:
-          default: 1597766164
+          default: 1598036541
           type: integer
       responses:
         "200":
@@ -281,7 +281,7 @@ paths:
         in: query
         name: end
         schema:
-          default: 1597766164
+          default: 1598036541
           type: integer
       responses:
         "200":
@@ -417,7 +417,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Contact-load'
+              $ref: '#/components/schemas/ContactCreate'
         required: true
       responses:
         "201":
@@ -1160,10 +1160,19 @@ paths:
         schema:
           default: facility
           type: string
+      - description: An optional fields mask
+        in: header
+        name: X-Fields
+        schema:
+          format: mask
+          type: string
       responses:
         "200":
-          content: {}
-          description: Product data was found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Stock'
+          description: Success
       summary: Return a structured sps stock data, grouped by city or facility code
         for all products
       tags:
@@ -1178,13 +1187,19 @@ paths:
         required: true
         schema:
           type: integer
+      - description: An optional fields mask
+        in: header
+        name: X-Fields
+        schema:
+          format: mask
+          type: string
       responses:
         "200":
-          content: {}
-          description: Product data was found
-        "404":
-          content: {}
-          description: Product with given id not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Stock'
+          description: Success
       summary: Return a structured sps stock data, grouped by city or facility code
         for a single product
       tags:
@@ -1361,28 +1376,54 @@ paths:
         required: true
         schema:
           type: integer
+      - description: An optional fields mask
+        in: header
+        name: X-Fields
+        schema:
+          format: mask
+          type: string
       responses:
         "200":
-          content: {}
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/OperatingSystem'
+                type: array
           description: Success
-      summary: Returns List of operating systems found for a Product
+      summary: Return List of operating systems found for a Product
       tags:
       - Product
   /product/{productId}/options:
     get:
       operationId: get_product_option_resource
       parameters:
+      - description: Get results grouped by 'upgrade' or without grouping.
+        in: query
+        name: groupBy
+        schema:
+          default: upgrade
+          type: string
       - description: ID of the Product
         in: path
         name: productId
         required: true
         schema:
           type: integer
+      - description: An optional fields mask
+        in: header
+        name: X-Fields
+        schema:
+          format: mask
+          type: string
       responses:
         "200":
-          content: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductOption'
           description: Success
-      summary: Returns List of Options found for a Product
+      summary: Return List of Options found for a Product
       tags:
       - Product
   /profile/:
@@ -1963,53 +2004,50 @@ components:
       - reason
       - serviceId
       type: object
-    Contact-load:
+    ContactCreate:
+      example:
+        password: 978209cea95559901eab4e29d28c1c7f
+        phone: phone
+        active: 0
+        fullName: fullName
+        description: description
+        email: email
       properties:
-        isClient:
-          type: boolean
-        fullName:
-          type: string
-        description:
+        phone:
           type: string
         active:
           type: integer
+        fullName:
+          type: string
         email:
           type: string
+        description:
+          type: string
         password:
-          default: e733b9251bd0314acaa68dda09a7f1db
-          type: string
-        login:
-          default: 0KHE683S
-          type: string
-        phone:
+          default: 978209cea95559901eab4e29d28c1c7f
           type: string
       required:
       - active
-      - description
       - email
       - fullName
-      - isClient
       type: object
     ContactUpdate:
       example:
         phone: phone
+        active: 0
         fullName: fullName
         description: description
-        active: 0
-        isClient: true
         email: email
       properties:
-        isClient:
-          type: boolean
-        fullName:
-          type: string
-        description:
+        phone:
           type: string
         active:
           type: integer
+        fullName:
+          type: string
         email:
           type: string
-        phone:
+        description:
           type: string
       type: object
     Password:
@@ -2025,6 +2063,15 @@ components:
       - newPassword
       - password
       type: object
+    PasswordRequest:
+      example:
+        email: email
+      properties:
+        email:
+          type: string
+      required:
+      - email
+      type: object
     PasswordResponse:
       example:
         password: password
@@ -2038,24 +2085,15 @@ components:
       - password
       - token
       type: object
-    PasswordRequest:
-      example:
-        email: email
-      properties:
-        email:
-          type: string
-      required:
-      - email
-      type: object
     CreateCredit:
       example:
-        amount: 6.027456183070403
-        billingInfoId: 0
+        amount: 0.8008281904610115
+        billingInfoId: 6
       properties:
-        billingInfoId:
-          type: integer
         amount:
           type: number
+        billingInfoId:
+          type: integer
       type: object
     DeviceUpdate:
       example:
@@ -2130,6 +2168,55 @@ components:
       required:
       - custIp
       type: object
+    Stock:
+      example:
+        product_cpu: product_cpu
+        product_name: product_name
+        core: true
+        product_memory: product_memory
+        edge: true
+        product_monthly_price: 5.637376656633329
+        product_drive: product_drive
+        product_cpu_cores: product_cpu_cores
+        product_bandwidth: product_bandwidth
+        product_id: 6
+        product_on_sale: true
+        product_display_price: 1.4658129805029452
+        monthly_location_premium: 5.962133916683182
+        stock: stock
+        product_original_price: 0.8008281904610115
+      properties:
+        stock:
+          type: string
+        product_name:
+          type: string
+        product_drive:
+          type: string
+        product_original_price:
+          type: number
+        product_id:
+          type: integer
+        edge:
+          type: boolean
+        core:
+          type: boolean
+        product_cpu_cores:
+          type: string
+        product_bandwidth:
+          type: string
+        product_on_sale:
+          type: boolean
+        product_cpu:
+          type: string
+        product_display_price:
+          type: number
+        monthly_location_premium:
+          type: number
+        product_monthly_price:
+          type: number
+        product_memory:
+          type: string
+      type: object
     Permission:
       example:
         permissions:
@@ -2159,6 +2246,66 @@ components:
           properties: {}
           type: object
       type: object
+    ProductOption:
+      example:
+        name: name
+        currency: currency
+        id: 6
+        monthlyPrice: 0.8008281904610115
+        expressions:
+        - expressions
+        - expressions
+        tags:
+        - tags
+        - tags
+      properties:
+        monthlyPrice:
+          type: number
+        currency:
+          type: string
+        expressions:
+          items:
+            type: string
+          type: array
+        name:
+          type: string
+        id:
+          type: integer
+        tags:
+          items:
+            type: string
+          type: array
+      type: object
+    OperatingSystem:
+      example:
+        name: name
+        currency: currency
+        id: 6
+        monthlyPrice: 0.8008281904610115
+        expressions:
+        - expressions
+        - expressions
+        tags:
+        - tags
+        - tags
+      properties:
+        monthlyPrice:
+          type: number
+        currency:
+          type: string
+        expressions:
+          items:
+            type: string
+          type: array
+        name:
+          type: string
+        id:
+          type: integer
+        tags:
+          items:
+            type: string
+          type: array
+      type: object
     ProfileUpdate:
       example:
         zip: zip
@@ -2173,46 +2320,37 @@ components:
         first: first
         email: email
       properties:
-        zip:
-          type: string
         first:
-          type: string
-        email:
-          type: string
-        company:
-          type: string
-        full_name:
-          type: string
-        address:
           type: string
         phone:
           type: string
         last:
           type: string
+        full_name:
+          type: string
+        company:
+          type: string
         country:
           type: string
-        state:
+        email:
+          type: string
+        zip:
           type: string
         city:
           type: string
-      type: object
-    DeploymentStart:
-      example:
-        billingInfo: 0
-      properties:
-        billingInfo:
-          type: integer
-      required:
-      - billingInfo
+        address:
+          type: string
+        state:
+          type: string
       type: object
     DeploymentCustomization:
       example:
-        quantity: 6
-        productId: 0
+        quantity: 1
+        productId: 6
         billingPeriod: monthly
         options:
-        - 1
-        - 1
+        - 0
+        - 0
         hostnames:
         - hostnames
         - hostnames
@@ -2222,12 +2360,13 @@ components:
         - additionalNotes
         operatingSystem: operatingSystem
       properties:
-        productId:
-          type: integer
-        quantity:
-          type: integer
         locationCode:
           default: ""
+          type: string
+        billingPeriod:
+          default: monthly
+          description: must be one of ['monthly', 'quarterly', 'semi-annually', 'annually',
+            'biennial', 'triennial']
           type: string
         operatingSystem:
           type: string
@@ -2239,19 +2378,27 @@ components:
           items:
             type: integer
           type: array
+        productId:
+          type: integer
+        quantity:
+          type: integer
         additionalNotes:
           items:
             type: string
           type: array
-        billingPeriod:
-          default: monthly
-          description: must be one of ['monthly', 'quarterly', 'semi-annually', 'annually',
-            'biennial', 'triennial']
-          type: string
       required:
       - hostnames
       - operatingSystem
       - productId
+      type: object
+    DeploymentStart:
+      example:
+        billingInfo: 0
+      properties:
+        billingInfo:
+          type: integer
+      required:
+      - billingInfo
       type: object
     SshKey:
       example:
@@ -2280,15 +2427,13 @@ components:
       example:
         assignment: 0.8008281904610115
         subject: subject
-        source: 6.027456183070403
-        priority: 1.4658129805029452
+        source: 1.4658129805029452
+        priority: 6.027456183070403
         body: body
         queue: queue
         status: open
       properties:
         assignment:
-          type: number
-        source:
           type: number
         status:
           example: open
@@ -2296,6 +2441,8 @@ components:
         subject:
           type: string
         priority:
+          type: number
+        source:
           type: number
         body:
           type: string
@@ -2314,37 +2461,23 @@ components:
       type: object
     TicketCreateReply:
       example:
+        date: 6.027456183070403
         cc: cc
-        date: 0.8008281904610115
         headers: headers
         attachments:
         - name: ""
           file: ""
-        hidden: 6.027456183070403
+        hidden: 0.8008281904610115
         encrypted: encrypted
-        contactId: 5.962133916683182
+        contactId: 1.4658129805029452
         subject: subject
         replyTo: replyTo
         recipient: recipient
+        type: 5.962133916683182
         body: body
-        type: 1.4658129805029452
       properties:
-        cc:
-          type: string
-        body:
-          type: string
-        date:
-          type: number
-        headers:
-          type: string
         hidden:
           type: number
-        subject:
-          type: string
-        type:
-          type: number
-        encrypted:
-          type: string
         replyTo:
           type: string
         attachments:
@@ -2355,10 +2488,24 @@ components:
             properties: {}
             type: object
           type: array
+        encrypted:
+          type: string
+        date:
+          type: number
+        subject:
+          type: string
         recipient:
           type: string
         contactId:
           type: number
+        headers:
+          type: string
+        type:
+          type: number
+        cc:
+          type: string
+        body:
+          type: string
       required:
       - body
       type: object

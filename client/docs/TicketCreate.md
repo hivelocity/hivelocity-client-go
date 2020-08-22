@@ -5,10 +5,10 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Assignment** | **float32** |  | [optional] 
-**Source** | **float32** |  | [optional] 
 **Status** | **string** |  | [optional] 
 **Subject** | **string** |  | 
 **Priority** | **float32** |  | [optional] 
+**Source** | **float32** |  | [optional] 
 **Body** | **string** |  | [optional] 
 **Queue** | **string** |  | 
 

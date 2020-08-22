@@ -92,8 +92,8 @@ Class | Method | HTTP request | Description
 *PermissionApi* | [**GetPermissionContactResource**](docs/PermissionApi.md#getpermissioncontactresource) | **Get** /permission/contact/{contactId} | Endpoint to get Contact Permissions
 *PermissionApi* | [**GetPermissionUserResource**](docs/PermissionApi.md#getpermissionuserresource) | **Get** /permission/user | Endpoint to get User Permissions
 *PermissionApi* | [**PostPermissionAssignContactResource**](docs/PermissionApi.md#postpermissionassigncontactresource) | **Post** /permission/contact | Endpoint to assign a new Permission to a Contact
-*ProductApi* | [**GetProductOperatingSystemsResource**](docs/ProductApi.md#getproductoperatingsystemsresource) | **Get** /product/{productId}/operating-systems | Returns List of operating systems found for a Product
-*ProductApi* | [**GetProductOptionResource**](docs/ProductApi.md#getproductoptionresource) | **Get** /product/{productId}/options | Returns List of Options found for a Product
+*ProductApi* | [**GetProductOperatingSystemsResource**](docs/ProductApi.md#getproductoperatingsystemsresource) | **Get** /product/{productId}/operating-systems | Return List of operating systems found for a Product
+*ProductApi* | [**GetProductOptionResource**](docs/ProductApi.md#getproductoptionresource) | **Get** /product/{productId}/options | Return List of Options found for a Product
 *ProductApi* | [**PostProductMatchResource**](docs/ProductApi.md#postproductmatchresource) | **Post** /product/match | Return a list of Products matching the provided lshw output of a server
 *ProfileApi* | [**GetBasicProfileResource**](docs/ProfileApi.md#getbasicprofileresource) | **Get** /profile/basic | Get Basic Profile of current user or a contact with id
 *ProfileApi* | [**GetProfileResource**](docs/ProfileApi.md#getprofileresource) | **Get** /profile/ | Get Profile of current user or a contact with id
@@ -128,7 +128,7 @@ Class | Method | HTTP request | Description
 ## Documentation For Models
 
  - [CancellationCreate](docs/CancellationCreate.md)
- - [ContactLoad](docs/ContactLoad.md)
+ - [ContactCreate](docs/ContactCreate.md)
  - [ContactUpdate](docs/ContactUpdate.md)
  - [CreateCredit](docs/CreateCredit.md)
  - [DeploymentCustomization](docs/DeploymentCustomization.md)
@@ -138,15 +138,18 @@ Class | Method | HTTP request | Description
  - [DeviceIpmiWhitelistIp](docs/DeviceIpmiWhitelistIp.md)
  - [DeviceTag](docs/DeviceTag.md)
  - [DeviceUpdate](docs/DeviceUpdate.md)
+ - [OperatingSystem](docs/OperatingSystem.md)
  - [Password](docs/Password.md)
  - [PasswordRequest](docs/PasswordRequest.md)
  - [PasswordResponse](docs/PasswordResponse.md)
  - [Permission](docs/Permission.md)
  - [ProductMatch](docs/ProductMatch.md)
+ - [ProductOption](docs/ProductOption.md)
  - [ProfileUpdate](docs/ProfileUpdate.md)
  - [PublicApiTokenLoad](docs/PublicApiTokenLoad.md)
  - [SshKey](docs/SshKey.md)
  - [SshKeyUpdate](docs/SshKeyUpdate.md)
+ - [Stock](docs/Stock.md)
  - [TicketCreate](docs/TicketCreate.md)
  - [TicketCreateReply](docs/TicketCreateReply.md)
  - [TicketPut](docs/TicketPut.md)

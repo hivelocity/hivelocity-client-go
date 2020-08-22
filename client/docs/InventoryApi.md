@@ -11,7 +11,7 @@ Method | HTTP request | Description
 
 ## GetStockByProductResource
 
-> GetStockByProductResource(ctx, productId)
+> Stock GetStockByProductResource(ctx, productId, optional)
 
 Return a structured sps stock data, grouped by city or facility code for a single product
 
@@ -22,10 +22,21 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **productId** | **int32**| Product database ID | 
+ **optional** | ***GetStockByProductResourceOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+
+Optional parameters are passed through a pointer to a GetStockByProductResourceOpts struct
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **xFields** | **optional.String**| An optional fields mask | 
 
 ### Return type
 
- (empty response body)
+[**Stock**](Stock.md)
 
 ### Authorization
 
@@ -34,7 +45,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -43,7 +54,7 @@ Name | Type | Description  | Notes
 
 ## GetStockResource
 
-> GetStockResource(ctx, optional)
+> Stock GetStockResource(ctx, optional)
 
 Return a structured sps stock data, grouped by city or facility code for all products
 
@@ -64,10 +75,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **location** | **optional.String**| Filter products by location | [default to MAIN]
  **groupBy** | **optional.String**| Get results grouped by &#39;city&#39; or &#39;facility&#39; | [default to facility]
+ **xFields** | **optional.String**| An optional fields mask | 
 
 ### Return type
 
- (empty response body)
+[**Stock**](Stock.md)
 
 ### Authorization
 
@@ -76,7 +88,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
