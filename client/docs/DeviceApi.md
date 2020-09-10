@@ -8,10 +8,11 @@ Method | HTTP request | Description
 [**GetClientDeviceTagOrderResource**](DeviceApi.md#GetClientDeviceTagOrderResource) | **Get** /device/tags-order | Get device tags order for current user
 [**GetClientDeviceTagResource**](DeviceApi.md#GetClientDeviceTagResource) | **Get** /device/tags | Get all device tags for current client
 [**GetDeviceIdEventResource**](DeviceApi.md#GetDeviceIdEventResource) | **Get** /device/{deviceId}/events | Returns all Events found for a single device
-[**GetDeviceIpmiWhitelistActionResource**](DeviceApi.md#GetDeviceIpmiWhitelistActionResource) | **Get** /device/{deviceId}/ipmi/whitelist/{actionId} | Retrieve the state of the action to put the IP into White List
+[**GetDeviceIdResource**](DeviceApi.md#GetDeviceIdResource) | **Get** /device/{deviceId} | Returns detailed information for a Single Device
+[**GetDeviceIpmiWhitelistActionResource**](DeviceApi.md#GetDeviceIpmiWhitelistActionResource) | **Get** /device/{deviceId}/ipmi/whitelist/{actionId} | Retrieve the state of the action to add the IP into Whitelist
+[**GetDeviceIpmiWhitelistPublicIp**](DeviceApi.md#GetDeviceIpmiWhitelistPublicIp) | **Get** /device/{deviceId}/ipmi/whitelist/{actionId}/public-ip | Retrieve the Public IP using the Device ID and the Action ID that was used to add it to Whitelist
 [**GetDeviceResource**](DeviceApi.md#GetDeviceResource) | **Get** /device/ | Returns Active Devices and basic MetaData
 [**GetDeviceTagIdResource**](DeviceApi.md#GetDeviceTagIdResource) | **Get** /device/{deviceId}/tags | Get device tags
-[**GetIdResource**](DeviceApi.md#GetIdResource) | **Get** /device/{deviceId} | Returns detailed information for a Single Device
 [**GetInitialPasswordIdResource**](DeviceApi.md#GetInitialPasswordIdResource) | **Get** /device/{deviceId}/initial-password | Returns initial password for the device
 [**GetIpmiInfoIdResource**](DeviceApi.md#GetIpmiInfoIdResource) | **Get** /device/{deviceId}/ipmi | Returns IPMI info data
 [**GetIpmiThresholdsIdResource**](DeviceApi.md#GetIpmiThresholdsIdResource) | **Get** /device/{deviceId}/ipmi/thresholds | Returns IPMI thresholds data
@@ -21,8 +22,8 @@ Method | HTTP request | Description
 [**PostDeviceIpmiWhitelistResource**](DeviceApi.md#PostDeviceIpmiWhitelistResource) | **Post** /device/{deviceId}/ipmi/whitelist/ | Include the custip (custom IP) on IPMI WhiteList
 [**PostPowerResource**](DeviceApi.md#PostPowerResource) | **Post** /device/{deviceId}/power | Apply action to device power
 [**PutClientDeviceTagOrderResource**](DeviceApi.md#PutClientDeviceTagOrderResource) | **Put** /device/tags-order | Update device tags order for current user
+[**PutDeviceIdResource**](DeviceApi.md#PutDeviceIdResource) | **Put** /device/{deviceId} | Updates Device MetaData for a Single Device
 [**PutDeviceTagIdResource**](DeviceApi.md#PutDeviceTagIdResource) | **Put** /device/{deviceId}/tags | Update device tags
-[**PutIdResource**](DeviceApi.md#PutIdResource) | **Put** /device/{deviceId} | Updates Device MetaData for a Single Device
 [**PutIpmiDevicesThresholdsIdResource**](DeviceApi.md#PutIpmiDevicesThresholdsIdResource) | **Put** /device/ipmi/thresholds | Updates IPMI thresholds for device list
 [**PutIpmiThresholdsIdResource**](DeviceApi.md#PutIpmiThresholdsIdResource) | **Put** /device/{deviceId}/ipmi/thresholds | Updates IPMI thresholds data
 
@@ -144,11 +145,11 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## GetDeviceIpmiWhitelistActionResource
+## GetDeviceIdResource
 
-> GetDeviceIpmiWhitelistActionResource(ctx, deviceId, actionId)
+> GetDeviceIdResource(ctx, deviceId)
 
-Retrieve the state of the action to put the IP into White List
+Returns detailed information for a Single Device
 
 ### Required Parameters
 
@@ -156,8 +157,73 @@ Retrieve the state of the action to put the IP into White List
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**deviceId** | **int32**| ID of the Device to put IP in Whitelist | 
+**deviceId** | **int32**| ID of Device to View / Update | 
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[apiKey](../README.md#apiKey)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: Not defined
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetDeviceIpmiWhitelistActionResource
+
+> GetDeviceIpmiWhitelistActionResource(ctx, deviceId, actionId)
+
+Retrieve the state of the action to add the IP into Whitelist
+
+### Required Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**deviceId** | **int32**| ID of the Device to add IP in Whitelist | 
 **actionId** | **string**|  | 
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[apiKey](../README.md#apiKey)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: Not defined
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetDeviceIpmiWhitelistPublicIp
+
+> GetDeviceIpmiWhitelistPublicIp(ctx, actionId, deviceId)
+
+Retrieve the Public IP using the Device ID and the Action ID that was used to add it to Whitelist
+
+### Required Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**actionId** | **string**| ID of the action to add IP in Whitelist | 
+**deviceId** | **int32**| ID of the Device to add IP in Whitelist | 
 
 ### Return type
 
@@ -210,38 +276,6 @@ This endpoint does not need any parameter.
 > GetDeviceTagIdResource(ctx, deviceId)
 
 Get device tags
-
-### Required Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**deviceId** | **int32**| ID of Device to View / Update | 
-
-### Return type
-
- (empty response body)
-
-### Authorization
-
-[apiKey](../README.md#apiKey)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: Not defined
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## GetIdResource
-
-> GetIdResource(ctx, deviceId)
-
-Returns detailed information for a Single Device
 
 ### Required Parameters
 
@@ -570,11 +604,11 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## PutDeviceTagIdResource
+## PutDeviceIdResource
 
-> PutDeviceTagIdResource(ctx, deviceId, payload)
+> PutDeviceIdResource(ctx, deviceId, payload)
 
-Update device tags
+Updates Device MetaData for a Single Device
 
 ### Required Parameters
 
@@ -583,7 +617,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **deviceId** | **int32**| ID of Device to View / Update | 
-**payload** | [**DeviceTag**](DeviceTag.md)|  | 
+**payload** | [**DeviceUpdate**](DeviceUpdate.md)|  | 
 
 ### Return type
 
@@ -603,11 +637,11 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## PutIdResource
+## PutDeviceTagIdResource
 
-> PutIdResource(ctx, deviceId, payload)
+> PutDeviceTagIdResource(ctx, deviceId, payload)
 
-Updates Device MetaData for a Single Device
+Update device tags
 
 ### Required Parameters
 
@@ -616,7 +650,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **deviceId** | **int32**| ID of Device to View / Update | 
-**payload** | [**DeviceUpdate**](DeviceUpdate.md)|  | 
+**payload** | [**DeviceTag**](DeviceTag.md)|  | 
 
 ### Return type
 

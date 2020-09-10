@@ -11,6 +11,6 @@ package client
 
 // Password struct for Password
 type Password struct {
-	Password    string `json:"password"`
 	NewPassword string `json:"newPassword"`
+	Password    string `json:"password"`
 }

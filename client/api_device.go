@@ -330,9 +330,87 @@ func (a *DeviceApiService) GetDeviceIdEventResource(ctx _context.Context, device
 }
 
 /*
-GetDeviceIpmiWhitelistActionResource Retrieve the state of the action to put the IP into White List
+GetDeviceIdResource Returns detailed information for a Single Device
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param deviceId ID of the Device to put IP in Whitelist
+ * @param deviceId ID of Device to View / Update
+*/
+func (a *DeviceApiService) GetDeviceIdResource(ctx _context.Context, deviceId int32) (*_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+	)
+
+	// create path and map variables
+	localVarPath := a.client.cfg.BasePath + "/device/{deviceId}"
+	localVarPath = strings.Replace(localVarPath, "{"+"deviceId"+"}", _neturl.QueryEscape(parameterToString(deviceId, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if ctx != nil {
+		// API Key Authentication
+		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
+			var key string
+			if auth.Prefix != "" {
+				key = auth.Prefix + " " + auth.Key
+			} else {
+				key = auth.Key
+			}
+			localVarHeaderParams["X-API-KEY"] = key
+		}
+	}
+	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(r)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	if err != nil {
+		return localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, nil
+}
+
+/*
+GetDeviceIpmiWhitelistActionResource Retrieve the state of the action to add the IP into Whitelist
+ * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param deviceId ID of the Device to add IP in Whitelist
  * @param actionId
 */
 func (a *DeviceApiService) GetDeviceIpmiWhitelistActionResource(ctx _context.Context, deviceId int32, actionId string) (*_nethttp.Response, error) {
@@ -349,6 +427,87 @@ func (a *DeviceApiService) GetDeviceIpmiWhitelistActionResource(ctx _context.Con
 	localVarPath = strings.Replace(localVarPath, "{"+"deviceId"+"}", _neturl.QueryEscape(parameterToString(deviceId, "")), -1)
 
 	localVarPath = strings.Replace(localVarPath, "{"+"actionId"+"}", _neturl.QueryEscape(parameterToString(actionId, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if ctx != nil {
+		// API Key Authentication
+		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
+			var key string
+			if auth.Prefix != "" {
+				key = auth.Prefix + " " + auth.Key
+			} else {
+				key = auth.Key
+			}
+			localVarHeaderParams["X-API-KEY"] = key
+		}
+	}
+	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(r)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	if err != nil {
+		return localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, nil
+}
+
+/*
+GetDeviceIpmiWhitelistPublicIp Retrieve the Public IP using the Device ID and the Action ID that was used to add it to Whitelist
+ * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param actionId ID of the action to add IP in Whitelist
+ * @param deviceId ID of the Device to add IP in Whitelist
+*/
+func (a *DeviceApiService) GetDeviceIpmiWhitelistPublicIp(ctx _context.Context, actionId string, deviceId int32) (*_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+	)
+
+	// create path and map variables
+	localVarPath := a.client.cfg.BasePath + "/device/{deviceId}/ipmi/whitelist/{actionId}/public-ip"
+	localVarPath = strings.Replace(localVarPath, "{"+"actionId"+"}", _neturl.QueryEscape(parameterToString(actionId, "")), -1)
+
+	localVarPath = strings.Replace(localVarPath, "{"+"deviceId"+"}", _neturl.QueryEscape(parameterToString(deviceId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -501,84 +660,6 @@ func (a *DeviceApiService) GetDeviceTagIdResource(ctx _context.Context, deviceId
 
 	// create path and map variables
 	localVarPath := a.client.cfg.BasePath + "/device/{deviceId}/tags"
-	localVarPath = strings.Replace(localVarPath, "{"+"deviceId"+"}", _neturl.QueryEscape(parameterToString(deviceId, "")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + auth.Key
-			} else {
-				key = auth.Key
-			}
-			localVarHeaderParams["X-API-KEY"] = key
-		}
-	}
-	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
-	if err != nil {
-		return nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(r)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarHTTPResponse, err
-	}
-
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	if err != nil {
-		return localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		return localVarHTTPResponse, newErr
-	}
-
-	return localVarHTTPResponse, nil
-}
-
-/*
-GetIdResource Returns detailed information for a Single Device
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param deviceId ID of Device to View / Update
-*/
-func (a *DeviceApiService) GetIdResource(ctx _context.Context, deviceId int32) (*_nethttp.Response, error) {
-	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-	)
-
-	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/device/{deviceId}"
 	localVarPath = strings.Replace(localVarPath, "{"+"deviceId"+"}", _neturl.QueryEscape(parameterToString(deviceId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -1370,12 +1451,12 @@ func (a *DeviceApiService) PutClientDeviceTagOrderResource(ctx _context.Context,
 }
 
 /*
-PutDeviceTagIdResource Update device tags
+PutDeviceIdResource Updates Device MetaData for a Single Device
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param deviceId ID of Device to View / Update
  * @param payload
 */
-func (a *DeviceApiService) PutDeviceTagIdResource(ctx _context.Context, deviceId int32, payload DeviceTag) (*_nethttp.Response, error) {
+func (a *DeviceApiService) PutDeviceIdResource(ctx _context.Context, deviceId int32, payload DeviceUpdate) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPut
 		localVarPostBody     interface{}
@@ -1385,7 +1466,7 @@ func (a *DeviceApiService) PutDeviceTagIdResource(ctx _context.Context, deviceId
 	)
 
 	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/device/{deviceId}/tags"
+	localVarPath := a.client.cfg.BasePath + "/device/{deviceId}"
 	localVarPath = strings.Replace(localVarPath, "{"+"deviceId"+"}", _neturl.QueryEscape(parameterToString(deviceId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -1451,12 +1532,12 @@ func (a *DeviceApiService) PutDeviceTagIdResource(ctx _context.Context, deviceId
 }
 
 /*
-PutIdResource Updates Device MetaData for a Single Device
+PutDeviceTagIdResource Update device tags
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param deviceId ID of Device to View / Update
  * @param payload
 */
-func (a *DeviceApiService) PutIdResource(ctx _context.Context, deviceId int32, payload DeviceUpdate) (*_nethttp.Response, error) {
+func (a *DeviceApiService) PutDeviceTagIdResource(ctx _context.Context, deviceId int32, payload DeviceTag) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPut
 		localVarPostBody     interface{}
@@ -1466,7 +1547,7 @@ func (a *DeviceApiService) PutIdResource(ctx _context.Context, deviceId int32, p
 	)
 
 	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/device/{deviceId}"
+	localVarPath := a.client.cfg.BasePath + "/device/{deviceId}/tags"
 	localVarPath = strings.Replace(localVarPath, "{"+"deviceId"+"}", _neturl.QueryEscape(parameterToString(deviceId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)

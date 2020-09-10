@@ -11,13 +11,13 @@ package client
 
 // DeploymentCustomization struct for DeploymentCustomization
 type DeploymentCustomization struct {
-	LocationCode string `json:"locationCode,omitempty"`
 	// must be one of ['monthly', 'quarterly', 'semi-annually', 'annually', 'biennial', 'triennial']
 	BillingPeriod   string   `json:"billingPeriod,omitempty"`
-	OperatingSystem string   `json:"operatingSystem"`
-	Hostnames       []string `json:"hostnames"`
-	Options         []int32  `json:"options,omitempty"`
-	ProductId       int32    `json:"productId"`
 	Quantity        int32    `json:"quantity,omitempty"`
+	Hostnames       []string `json:"hostnames"`
 	AdditionalNotes []string `json:"additionalNotes,omitempty"`
+	OperatingSystem string   `json:"operatingSystem"`
+	LocationCode    string   `json:"locationCode,omitempty"`
+	ProductId       int32    `json:"productId"`
+	Options         []int32  `json:"options,omitempty"`
 }

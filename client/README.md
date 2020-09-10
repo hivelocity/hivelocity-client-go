@@ -42,12 +42,12 @@ Class | Method | HTTP request | Description
 *CancellationApi* | [**GetCancellationResource**](docs/CancellationApi.md#getcancellationresource) | **Get** /cancellation/cancellation | Returns the services cancellations of a client
 *CancellationApi* | [**GetCancellationServiceResource**](docs/CancellationApi.md#getcancellationserviceresource) | **Get** /cancellation/service/{serviceId} | Return the Cancellation found for a Service
 *CancellationApi* | [**PostCancellationResource**](docs/CancellationApi.md#postcancellationresource) | **Post** /cancellation/cancellation | Creates Cancellation for a device/service
-*ContactApi* | [**DeleteIdResource**](docs/ContactApi.md#deleteidresource) | **Delete** /contact/{contactId} | Delete a Contact
+*ContactApi* | [**DeleteContactIdResource**](docs/ContactApi.md#deletecontactidresource) | **Delete** /contact/{contactId} | Delete a Contact
+*ContactApi* | [**GetContactIdResource**](docs/ContactApi.md#getcontactidresource) | **Get** /contact/{contactId} | Return details of a specific Contact
 *ContactApi* | [**GetContactResource**](docs/ContactApi.md#getcontactresource) | **Get** /contact/ | Return a list with all Contacts
-*ContactApi* | [**GetIdResource**](docs/ContactApi.md#getidresource) | **Get** /contact/{contactId} | Return details of a specific Contact
 *ContactApi* | [**PostContactResource**](docs/ContactApi.md#postcontactresource) | **Post** /contact/ | Create a new Contact
 *ContactApi* | [**PostPasswordReset**](docs/ContactApi.md#postpasswordreset) | **Post** /contact/password | Recieve a request to reset password, and send a link by email with token
-*ContactApi* | [**PutIdResource**](docs/ContactApi.md#putidresource) | **Put** /contact/{contactId} | Edit a Contact
+*ContactApi* | [**PutContactIdResource**](docs/ContactApi.md#putcontactidresource) | **Put** /contact/{contactId} | Edit a Contact
 *ContactApi* | [**PutPasswordReset**](docs/ContactApi.md#putpasswordreset) | **Put** /contact/password | Recieve a token and password, verify the user and reset your password
 *ContactApi* | [**PutPasswordResource**](docs/ContactApi.md#putpasswordresource) | **Put** /contact/{contactId}/password | Change password for a Contact
 *CreditApi* | [**GetCreditResource**](docs/CreditApi.md#getcreditresource) | **Get** /credit/ | Return a list with all Credits
@@ -63,10 +63,11 @@ Class | Method | HTTP request | Description
 *DeviceApi* | [**GetClientDeviceTagOrderResource**](docs/DeviceApi.md#getclientdevicetagorderresource) | **Get** /device/tags-order | Get device tags order for current user
 *DeviceApi* | [**GetClientDeviceTagResource**](docs/DeviceApi.md#getclientdevicetagresource) | **Get** /device/tags | Get all device tags for current client
 *DeviceApi* | [**GetDeviceIdEventResource**](docs/DeviceApi.md#getdeviceideventresource) | **Get** /device/{deviceId}/events | Returns all Events found for a single device
-*DeviceApi* | [**GetDeviceIpmiWhitelistActionResource**](docs/DeviceApi.md#getdeviceipmiwhitelistactionresource) | **Get** /device/{deviceId}/ipmi/whitelist/{actionId} | Retrieve the state of the action to put the IP into White List
+*DeviceApi* | [**GetDeviceIdResource**](docs/DeviceApi.md#getdeviceidresource) | **Get** /device/{deviceId} | Returns detailed information for a Single Device
+*DeviceApi* | [**GetDeviceIpmiWhitelistActionResource**](docs/DeviceApi.md#getdeviceipmiwhitelistactionresource) | **Get** /device/{deviceId}/ipmi/whitelist/{actionId} | Retrieve the state of the action to add the IP into Whitelist
+*DeviceApi* | [**GetDeviceIpmiWhitelistPublicIp**](docs/DeviceApi.md#getdeviceipmiwhitelistpublicip) | **Get** /device/{deviceId}/ipmi/whitelist/{actionId}/public-ip | Retrieve the Public IP using the Device ID and the Action ID that was used to add it to Whitelist
 *DeviceApi* | [**GetDeviceResource**](docs/DeviceApi.md#getdeviceresource) | **Get** /device/ | Returns Active Devices and basic MetaData
 *DeviceApi* | [**GetDeviceTagIdResource**](docs/DeviceApi.md#getdevicetagidresource) | **Get** /device/{deviceId}/tags | Get device tags
-*DeviceApi* | [**GetIdResource**](docs/DeviceApi.md#getidresource) | **Get** /device/{deviceId} | Returns detailed information for a Single Device
 *DeviceApi* | [**GetInitialPasswordIdResource**](docs/DeviceApi.md#getinitialpasswordidresource) | **Get** /device/{deviceId}/initial-password | Returns initial password for the device
 *DeviceApi* | [**GetIpmiInfoIdResource**](docs/DeviceApi.md#getipmiinfoidresource) | **Get** /device/{deviceId}/ipmi | Returns IPMI info data
 *DeviceApi* | [**GetIpmiThresholdsIdResource**](docs/DeviceApi.md#getipmithresholdsidresource) | **Get** /device/{deviceId}/ipmi/thresholds | Returns IPMI thresholds data
@@ -76,8 +77,8 @@ Class | Method | HTTP request | Description
 *DeviceApi* | [**PostDeviceIpmiWhitelistResource**](docs/DeviceApi.md#postdeviceipmiwhitelistresource) | **Post** /device/{deviceId}/ipmi/whitelist/ | Include the custip (custom IP) on IPMI WhiteList
 *DeviceApi* | [**PostPowerResource**](docs/DeviceApi.md#postpowerresource) | **Post** /device/{deviceId}/power | Apply action to device power
 *DeviceApi* | [**PutClientDeviceTagOrderResource**](docs/DeviceApi.md#putclientdevicetagorderresource) | **Put** /device/tags-order | Update device tags order for current user
+*DeviceApi* | [**PutDeviceIdResource**](docs/DeviceApi.md#putdeviceidresource) | **Put** /device/{deviceId} | Updates Device MetaData for a Single Device
 *DeviceApi* | [**PutDeviceTagIdResource**](docs/DeviceApi.md#putdevicetagidresource) | **Put** /device/{deviceId}/tags | Update device tags
-*DeviceApi* | [**PutIdResource**](docs/DeviceApi.md#putidresource) | **Put** /device/{deviceId} | Updates Device MetaData for a Single Device
 *DeviceApi* | [**PutIpmiDevicesThresholdsIdResource**](docs/DeviceApi.md#putipmidevicesthresholdsidresource) | **Put** /device/ipmi/thresholds | Updates IPMI thresholds for device list
 *DeviceApi* | [**PutIpmiThresholdsIdResource**](docs/DeviceApi.md#putipmithresholdsidresource) | **Put** /device/{deviceId}/ipmi/thresholds | Updates IPMI thresholds data
 *InventoryApi* | [**GetStockByProductResource**](docs/InventoryApi.md#getstockbyproductresource) | **Get** /inventory/product/{productId} | Return a structured sps stock data, grouped by city or facility code for a single product
@@ -116,13 +117,13 @@ Class | Method | HTTP request | Description
 *TokenApi* | [**GetTokenResource**](docs/TokenApi.md#gettokenresource) | **Get** /token/ | Returns a list of Public API Tokens for the current user
 *TokenApi* | [**PostTokenResource**](docs/TokenApi.md#posttokenresource) | **Post** /token/ | Create a new Public API Token for the current user
 *TokenApi* | [**PutTokenIdResource**](docs/TokenApi.md#puttokenidresource) | **Put** /token/{token} | Updates the Public API Token
-*WebhookApi* | [**DeleteIdResource**](docs/WebhookApi.md#deleteidresource) | **Delete** /webhooks/{webhookId} | Deletes a single webhook
-*WebhookApi* | [**GetIdResource**](docs/WebhookApi.md#getidresource) | **Get** /webhooks/{webhookId} | Returns detailed information for a Single Webhook
+*WebhookApi* | [**DeleteWebhookIdResource**](docs/WebhookApi.md#deletewebhookidresource) | **Delete** /webhooks/{webhookId} | Deletes a single webhook
 *WebhookApi* | [**GetWebhookEventResource**](docs/WebhookApi.md#getwebhookeventresource) | **Get** /webhooks/events | Returns all available Webhook Events
+*WebhookApi* | [**GetWebhookIdResource**](docs/WebhookApi.md#getwebhookidresource) | **Get** /webhooks/{webhookId} | Returns detailed information for a Single Webhook
 *WebhookApi* | [**GetWebhookResource**](docs/WebhookApi.md#getwebhookresource) | **Get** /webhooks/ | Returns your active Webhooks
 *WebhookApi* | [**PostEventScriptActionTriggerResource**](docs/WebhookApi.md#posteventscriptactiontriggerresource) | **Post** /webhooks/trigger | Queues a webhook for the event script action that was triggered
 *WebhookApi* | [**PostWebhookResource**](docs/WebhookApi.md#postwebhookresource) | **Post** /webhooks/ | Create a new Webhook for a Webhook Event
-*WebhookApi* | [**PutIdResource**](docs/WebhookApi.md#putidresource) | **Put** /webhooks/{webhookId} | Updates a Single Webhook
+*WebhookApi* | [**PutWebhookIdResource**](docs/WebhookApi.md#putwebhookidresource) | **Put** /webhooks/{webhookId} | Updates a Single Webhook
 
 
 ## Documentation For Models

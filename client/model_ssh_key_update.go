@@ -11,6 +11,6 @@ package client
 
 // SshKeyUpdate struct for SshKeyUpdate
 type SshKeyUpdate struct {
-	PublicKey string `json:"publicKey,omitempty"`
 	Name      string `json:"name,omitempty"`
+	PublicKey string `json:"publicKey,omitempty"`
 }

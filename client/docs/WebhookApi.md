@@ -4,53 +4,21 @@ All URIs are relative to *http://localhost/api/v2*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**DeleteIdResource**](WebhookApi.md#DeleteIdResource) | **Delete** /webhooks/{webhookId} | Deletes a single webhook
-[**GetIdResource**](WebhookApi.md#GetIdResource) | **Get** /webhooks/{webhookId} | Returns detailed information for a Single Webhook
+[**DeleteWebhookIdResource**](WebhookApi.md#DeleteWebhookIdResource) | **Delete** /webhooks/{webhookId} | Deletes a single webhook
 [**GetWebhookEventResource**](WebhookApi.md#GetWebhookEventResource) | **Get** /webhooks/events | Returns all available Webhook Events
+[**GetWebhookIdResource**](WebhookApi.md#GetWebhookIdResource) | **Get** /webhooks/{webhookId} | Returns detailed information for a Single Webhook
 [**GetWebhookResource**](WebhookApi.md#GetWebhookResource) | **Get** /webhooks/ | Returns your active Webhooks
 [**PostEventScriptActionTriggerResource**](WebhookApi.md#PostEventScriptActionTriggerResource) | **Post** /webhooks/trigger | Queues a webhook for the event script action that was triggered
 [**PostWebhookResource**](WebhookApi.md#PostWebhookResource) | **Post** /webhooks/ | Create a new Webhook for a Webhook Event
-[**PutIdResource**](WebhookApi.md#PutIdResource) | **Put** /webhooks/{webhookId} | Updates a Single Webhook
+[**PutWebhookIdResource**](WebhookApi.md#PutWebhookIdResource) | **Put** /webhooks/{webhookId} | Updates a Single Webhook
 
 
 
-## DeleteIdResource
+## DeleteWebhookIdResource
 
-> DeleteIdResource(ctx, webhookId)
+> DeleteWebhookIdResource(ctx, webhookId)
 
 Deletes a single webhook
-
-### Required Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**webhookId** | **int32**| ID of Webhook to View / Update | 
-
-### Return type
-
- (empty response body)
-
-### Authorization
-
-[apiKey](../README.md#apiKey)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: Not defined
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## GetIdResource
-
-> GetIdResource(ctx, webhookId)
-
-Returns detailed information for a Single Webhook
 
 ### Required Parameters
 
@@ -87,6 +55,38 @@ Returns all available Webhook Events
 ### Required Parameters
 
 This endpoint does not need any parameter.
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[apiKey](../README.md#apiKey)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: Not defined
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetWebhookIdResource
+
+> GetWebhookIdResource(ctx, webhookId)
+
+Returns detailed information for a Single Webhook
+
+### Required Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**webhookId** | **int32**| ID of Webhook to View / Update | 
 
 ### Return type
 
@@ -207,9 +207,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## PutIdResource
+## PutWebhookIdResource
 
-> PutIdResource(ctx, webhookId, payload)
+> PutWebhookIdResource(ctx, webhookId, payload)
 
 Updates a Single Webhook
 
