@@ -9,17 +9,19 @@ Method | HTTP request | Description
 [**GetClientDeviceTagResource**](DeviceApi.md#GetClientDeviceTagResource) | **Get** /device/tags | Get all device tags for current client
 [**GetDeviceIdEventResource**](DeviceApi.md#GetDeviceIdEventResource) | **Get** /device/{deviceId}/events | Returns all Events found for a single device
 [**GetDeviceIdResource**](DeviceApi.md#GetDeviceIdResource) | **Get** /device/{deviceId} | Returns detailed information for a Single Device
-[**GetDeviceIpmiWhitelistActionResource**](DeviceApi.md#GetDeviceIpmiWhitelistActionResource) | **Get** /device/{deviceId}/ipmi/whitelist/{actionId} | Retrieve the state of the action to add the IP into Whitelist
-[**GetDeviceIpmiWhitelistPublicIp**](DeviceApi.md#GetDeviceIpmiWhitelistPublicIp) | **Get** /device/{deviceId}/ipmi/whitelist/{actionId}/public-ip | Retrieve the Public IP using the Device ID and the Action ID that was used to add it to Whitelist
-[**GetDeviceResource**](DeviceApi.md#GetDeviceResource) | **Get** /device/ | Returns Active Devices and basic MetaData
+[**GetDeviceIpminatRuleResource**](DeviceApi.md#GetDeviceIpminatRuleResource) | **Get** /device/{deviceId}/ipmi/nat | Clear NAT rules based on the device client id
+[**GetDeviceResource**](DeviceApi.md#GetDeviceResource) | **Get** /device/ | Return Active Devices and basic MetaData
 [**GetDeviceTagIdResource**](DeviceApi.md#GetDeviceTagIdResource) | **Get** /device/{deviceId}/tags | Get device tags
+[**GetInitialCredsIdResource**](DeviceApi.md#GetInitialCredsIdResource) | **Get** /device/{deviceId}/initial-creds | Returns initial password for the device
 [**GetInitialPasswordIdResource**](DeviceApi.md#GetInitialPasswordIdResource) | **Get** /device/{deviceId}/initial-password | Returns initial password for the device
 [**GetIpmiInfoIdResource**](DeviceApi.md#GetIpmiInfoIdResource) | **Get** /device/{deviceId}/ipmi | Returns IPMI info data
+[**GetIpmiInfoLoginDataResource**](DeviceApi.md#GetIpmiInfoLoginDataResource) | **Get** /device/{deviceId}/ipmi/login-data | Returns IPMI login credentials
 [**GetIpmiThresholdsIdResource**](DeviceApi.md#GetIpmiThresholdsIdResource) | **Get** /device/{deviceId}/ipmi/thresholds | Returns IPMI thresholds data
 [**GetIpmiValidLoginIdResource**](DeviceApi.md#GetIpmiValidLoginIdResource) | **Get** /device/{deviceId}/ipmi/valid-login | Returns if device have valid credentials for IPMI login
 [**GetNetworkInterfaceResource**](DeviceApi.md#GetNetworkInterfaceResource) | **Get** /device/{deviceId}/interfaces | Returns a list of all Network Interfaces bound to a Device
 [**GetPowerResource**](DeviceApi.md#GetPowerResource) | **Get** /device/{deviceId}/power | Get device&#39;s current power status
-[**PostDeviceIpmiWhitelistResource**](DeviceApi.md#PostDeviceIpmiWhitelistResource) | **Post** /device/{deviceId}/ipmi/whitelist/ | Include the custip (custom IP) on IPMI WhiteList
+[**PostDeviceIpmiWhitelistResource**](DeviceApi.md#PostDeviceIpmiWhitelistResource) | **Post** /device/{deviceId}/ipmi/whitelist/ | Add a public IP on IPMI whitelist
+[**PostDeviceReloadResource**](DeviceApi.md#PostDeviceReloadResource) | **Post** /device/{deviceId}/reload | Reload any SPS Device with any available OS
 [**PostPowerResource**](DeviceApi.md#PostPowerResource) | **Post** /device/{deviceId}/power | Apply action to device power
 [**PutClientDeviceTagOrderResource**](DeviceApi.md#PutClientDeviceTagOrderResource) | **Put** /device/tags-order | Update device tags order for current user
 [**PutDeviceIdResource**](DeviceApi.md#PutDeviceIdResource) | **Put** /device/{deviceId} | Updates Device MetaData for a Single Device
@@ -31,17 +33,30 @@ Method | HTTP request | Description
 
 ## GetAllDeviceTagOrderResource
 
-> GetAllDeviceTagOrderResource(ctx, )
+> DeviceTag GetAllDeviceTagOrderResource(ctx, optional)
 
 Get all device tags order
 
 ### Required Parameters
 
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+ **optional** | ***GetAllDeviceTagOrderResourceOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+
+Optional parameters are passed through a pointer to a GetAllDeviceTagOrderResourceOpts struct
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **xFields** | **optional.String**| An optional fields mask | 
 
 ### Return type
 
- (empty response body)
+[**DeviceTag**](DeviceTag.md)
 
 ### Authorization
 
@@ -50,7 +65,7 @@ This endpoint does not need any parameter.
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -59,17 +74,30 @@ This endpoint does not need any parameter.
 
 ## GetClientDeviceTagOrderResource
 
-> GetClientDeviceTagOrderResource(ctx, )
+> DeviceTag GetClientDeviceTagOrderResource(ctx, optional)
 
 Get device tags order for current user
 
 ### Required Parameters
 
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+ **optional** | ***GetClientDeviceTagOrderResourceOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+
+Optional parameters are passed through a pointer to a GetClientDeviceTagOrderResourceOpts struct
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **xFields** | **optional.String**| An optional fields mask | 
 
 ### Return type
 
- (empty response body)
+[**DeviceTag**](DeviceTag.md)
 
 ### Authorization
 
@@ -78,7 +106,7 @@ This endpoint does not need any parameter.
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -87,17 +115,30 @@ This endpoint does not need any parameter.
 
 ## GetClientDeviceTagResource
 
-> GetClientDeviceTagResource(ctx, )
+> DeviceTag GetClientDeviceTagResource(ctx, optional)
 
 Get all device tags for current client
 
 ### Required Parameters
 
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+ **optional** | ***GetClientDeviceTagResourceOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+
+Optional parameters are passed through a pointer to a GetClientDeviceTagResourceOpts struct
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **xFields** | **optional.String**| An optional fields mask | 
 
 ### Return type
 
- (empty response body)
+[**DeviceTag**](DeviceTag.md)
 
 ### Authorization
 
@@ -106,7 +147,7 @@ This endpoint does not need any parameter.
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -115,7 +156,7 @@ This endpoint does not need any parameter.
 
 ## GetDeviceIdEventResource
 
-> GetDeviceIdEventResource(ctx, deviceId)
+> []DeviceEvent GetDeviceIdEventResource(ctx, deviceId, optional)
 
 Returns all Events found for a single device
 
@@ -126,10 +167,21 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **deviceId** | **string**|  | 
+ **optional** | ***GetDeviceIdEventResourceOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+
+Optional parameters are passed through a pointer to a GetDeviceIdEventResourceOpts struct
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **xFields** | **optional.String**| An optional fields mask | 
 
 ### Return type
 
- (empty response body)
+[**[]DeviceEvent**](DeviceEvent.md)
 
 ### Authorization
 
@@ -138,7 +190,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -147,7 +199,7 @@ Name | Type | Description  | Notes
 
 ## GetDeviceIdResource
 
-> GetDeviceIdResource(ctx, deviceId)
+> DeviceDump GetDeviceIdResource(ctx, deviceId, optional)
 
 Returns detailed information for a Single Device
 
@@ -158,10 +210,21 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **deviceId** | **int32**| ID of Device to View / Update | 
+ **optional** | ***GetDeviceIdResourceOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+
+Optional parameters are passed through a pointer to a GetDeviceIdResourceOpts struct
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **xFields** | **optional.String**| An optional fields mask | 
 
 ### Return type
 
- (empty response body)
+[**DeviceDump**](Device-dump.md)
 
 ### Authorization
 
@@ -170,18 +233,20 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
 
 
-## GetDeviceIpmiWhitelistActionResource
+## GetDeviceIpminatRuleResource
 
-> GetDeviceIpmiWhitelistActionResource(ctx, deviceId, actionId)
+> GetDeviceIpminatRuleResource(ctx, deviceId)
 
-Retrieve the state of the action to add the IP into Whitelist
+Clear NAT rules based on the device client id
+
+Returns success or error
 
 ### Required Parameters
 
@@ -189,41 +254,7 @@ Retrieve the state of the action to add the IP into Whitelist
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**deviceId** | **int32**| ID of the Device to add IP in Whitelist | 
-**actionId** | **string**|  | 
-
-### Return type
-
- (empty response body)
-
-### Authorization
-
-[apiKey](../README.md#apiKey)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: Not defined
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## GetDeviceIpmiWhitelistPublicIp
-
-> GetDeviceIpmiWhitelistPublicIp(ctx, actionId, deviceId)
-
-Retrieve the Public IP using the Device ID and the Action ID that was used to add it to Whitelist
-
-### Required Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**actionId** | **string**| ID of the action to add IP in Whitelist | 
-**deviceId** | **int32**| ID of the Device to add IP in Whitelist | 
+**deviceId** | **int32**| ID of a client Device | 
 
 ### Return type
 
@@ -245,17 +276,30 @@ Name | Type | Description  | Notes
 
 ## GetDeviceResource
 
-> GetDeviceResource(ctx, )
+> []DeviceDump GetDeviceResource(ctx, optional)
 
-Returns Active Devices and basic MetaData
+Return Active Devices and basic MetaData
 
 ### Required Parameters
 
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+ **optional** | ***GetDeviceResourceOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+
+Optional parameters are passed through a pointer to a GetDeviceResourceOpts struct
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **xFields** | **optional.String**| An optional fields mask | 
 
 ### Return type
 
- (empty response body)
+[**[]DeviceDump**](Device-dump.md)
 
 ### Authorization
 
@@ -264,7 +308,7 @@ This endpoint does not need any parameter.
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -273,7 +317,7 @@ This endpoint does not need any parameter.
 
 ## GetDeviceTagIdResource
 
-> GetDeviceTagIdResource(ctx, deviceId)
+> DeviceTag GetDeviceTagIdResource(ctx, deviceId, optional)
 
 Get device tags
 
@@ -284,10 +328,21 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **deviceId** | **int32**| ID of Device to View / Update | 
+ **optional** | ***GetDeviceTagIdResourceOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+
+Optional parameters are passed through a pointer to a GetDeviceTagIdResourceOpts struct
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **xFields** | **optional.String**| An optional fields mask | 
 
 ### Return type
 
- (empty response body)
+[**DeviceTag**](DeviceTag.md)
 
 ### Authorization
 
@@ -296,7 +351,50 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetInitialCredsIdResource
+
+> DeviceInitialCreds GetInitialCredsIdResource(ctx, deviceId, optional)
+
+Returns initial password for the device
+
+### Required Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**deviceId** | **int32**| ID of Device to retrieve initial authentication credentials for | 
+ **optional** | ***GetInitialCredsIdResourceOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+
+Optional parameters are passed through a pointer to a GetInitialCredsIdResourceOpts struct
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **xFields** | **optional.String**| An optional fields mask | 
+
+### Return type
+
+[**DeviceInitialCreds**](DeviceInitialCreds.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -305,7 +403,7 @@ Name | Type | Description  | Notes
 
 ## GetInitialPasswordIdResource
 
-> GetInitialPasswordIdResource(ctx, deviceId)
+> DevicePassword GetInitialPasswordIdResource(ctx, deviceId, optional)
 
 Returns initial password for the device
 
@@ -316,10 +414,21 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **deviceId** | **int32**| ID of Device to retrieve initial password | 
+ **optional** | ***GetInitialPasswordIdResourceOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+
+Optional parameters are passed through a pointer to a GetInitialPasswordIdResourceOpts struct
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **xFields** | **optional.String**| An optional fields mask | 
 
 ### Return type
 
- (empty response body)
+[**DevicePassword**](DevicePassword.md)
 
 ### Authorization
 
@@ -328,7 +437,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -337,7 +446,7 @@ Name | Type | Description  | Notes
 
 ## GetIpmiInfoIdResource
 
-> GetIpmiInfoIdResource(ctx, deviceId)
+> DeviceIpmiInfo GetIpmiInfoIdResource(ctx, deviceId, optional)
 
 Returns IPMI info data
 
@@ -348,10 +457,21 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **deviceId** | **int32**| ID of Device to retrieve IPMI info. | 
+ **optional** | ***GetIpmiInfoIdResourceOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+
+Optional parameters are passed through a pointer to a GetIpmiInfoIdResourceOpts struct
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **xFields** | **optional.String**| An optional fields mask | 
 
 ### Return type
 
- (empty response body)
+[**DeviceIpmiInfo**](DeviceIPMIInfo.md)
 
 ### Authorization
 
@@ -360,7 +480,50 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetIpmiInfoLoginDataResource
+
+> IpmiLoginData GetIpmiInfoLoginDataResource(ctx, deviceId, optional)
+
+Returns IPMI login credentials
+
+### Required Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**deviceId** | **int32**| ID of Device to retrieve IPMI Login data. | 
+ **optional** | ***GetIpmiInfoLoginDataResourceOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+
+Optional parameters are passed through a pointer to a GetIpmiInfoLoginDataResourceOpts struct
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **xFields** | **optional.String**| An optional fields mask | 
+
+### Return type
+
+[**IpmiLoginData**](IPMILoginData.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -369,7 +532,7 @@ Name | Type | Description  | Notes
 
 ## GetIpmiThresholdsIdResource
 
-> GetIpmiThresholdsIdResource(ctx, deviceId)
+> DeviceIpmiThresholds GetIpmiThresholdsIdResource(ctx, deviceId, optional)
 
 Returns IPMI thresholds data
 
@@ -380,10 +543,21 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **deviceId** | **int32**| ID of Device to View | 
+ **optional** | ***GetIpmiThresholdsIdResourceOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+
+Optional parameters are passed through a pointer to a GetIpmiThresholdsIdResourceOpts struct
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **xFields** | **optional.String**| An optional fields mask | 
 
 ### Return type
 
- (empty response body)
+[**DeviceIpmiThresholds**](DeviceIPMIThresholds.md)
 
 ### Authorization
 
@@ -392,7 +566,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -401,7 +575,7 @@ Name | Type | Description  | Notes
 
 ## GetIpmiValidLoginIdResource
 
-> GetIpmiValidLoginIdResource(ctx, deviceId)
+> IpmiValidLogin GetIpmiValidLoginIdResource(ctx, deviceId, optional)
 
 Returns if device have valid credentials for IPMI login
 
@@ -412,10 +586,21 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **deviceId** | **int32**| ID of Device to check IPMI credentials | 
+ **optional** | ***GetIpmiValidLoginIdResourceOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+
+Optional parameters are passed through a pointer to a GetIpmiValidLoginIdResourceOpts struct
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **xFields** | **optional.String**| An optional fields mask | 
 
 ### Return type
 
- (empty response body)
+[**IpmiValidLogin**](IPMIValidLogin.md)
 
 ### Authorization
 
@@ -424,7 +609,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -476,7 +661,7 @@ Name | Type | Description  | Notes
 
 ## GetPowerResource
 
-> GetPowerResource(ctx, deviceId)
+> DevicePowerDump GetPowerResource(ctx, deviceId, optional)
 
 Get device's current power status
 
@@ -487,10 +672,21 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **deviceId** | **int32**| ID of Device to View / Update | 
+ **optional** | ***GetPowerResourceOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+
+Optional parameters are passed through a pointer to a GetPowerResourceOpts struct
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **xFields** | **optional.String**| An optional fields mask | 
 
 ### Return type
 
- (empty response body)
+[**DevicePowerDump**](DevicePower-dump.md)
 
 ### Authorization
 
@@ -499,7 +695,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -510,7 +706,9 @@ Name | Type | Description  | Notes
 
 > PostDeviceIpmiWhitelistResource(ctx, deviceId, payload)
 
-Include the custip (custom IP) on IPMI WhiteList
+Add a public IP on IPMI whitelist
+
+Returns IPMI public IP
 
 ### Required Parameters
 
@@ -539,9 +737,54 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## PostDeviceReloadResource
+
+> ServiceOption PostDeviceReloadResource(ctx, deviceId, payload, optional)
+
+Reload any SPS Device with any available OS
+
+### Required Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**deviceId** | **int32**|  | 
+**payload** | [**DeviceReload**](DeviceReload.md)|  | 
+ **optional** | ***PostDeviceReloadResourceOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+
+Optional parameters are passed through a pointer to a PostDeviceReloadResourceOpts struct
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+ **xFields** | **optional.String**| An optional fields mask | 
+
+### Return type
+
+[**ServiceOption**](ServiceOption.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## PostPowerResource
 
-> PostPowerResource(ctx, deviceId, action)
+> DevicePowerDump PostPowerResource(ctx, deviceId, action, optional)
 
 Apply action to device power
 
@@ -553,10 +796,22 @@ Name | Type | Description  | Notes
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **deviceId** | **int32**| ID of Device to View / Update | 
 **action** | **string**| Must be one of boot|reboot|shutdown | 
+ **optional** | ***PostPowerResourceOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+
+Optional parameters are passed through a pointer to a PostPowerResourceOpts struct
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+ **xFields** | **optional.String**| An optional fields mask | 
 
 ### Return type
 
- (empty response body)
+[**DevicePowerDump**](DevicePower-dump.md)
 
 ### Authorization
 
@@ -565,7 +820,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -574,7 +829,7 @@ Name | Type | Description  | Notes
 
 ## PutClientDeviceTagOrderResource
 
-> PutClientDeviceTagOrderResource(ctx, payload)
+> DeviceTag PutClientDeviceTagOrderResource(ctx, payload, optional)
 
 Update device tags order for current user
 
@@ -585,10 +840,21 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **payload** | [**DeviceTag**](DeviceTag.md)|  | 
+ **optional** | ***PutClientDeviceTagOrderResourceOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+
+Optional parameters are passed through a pointer to a PutClientDeviceTagOrderResourceOpts struct
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **xFields** | **optional.String**| An optional fields mask | 
 
 ### Return type
 
- (empty response body)
+[**DeviceTag**](DeviceTag.md)
 
 ### Authorization
 
@@ -597,7 +863,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: application/json
-- **Accept**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -606,7 +872,7 @@ Name | Type | Description  | Notes
 
 ## PutDeviceIdResource
 
-> PutDeviceIdResource(ctx, deviceId, payload)
+> DeviceDump PutDeviceIdResource(ctx, deviceId, payload, optional)
 
 Updates Device MetaData for a Single Device
 
@@ -618,10 +884,22 @@ Name | Type | Description  | Notes
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **deviceId** | **int32**| ID of Device to View / Update | 
 **payload** | [**DeviceUpdate**](DeviceUpdate.md)|  | 
+ **optional** | ***PutDeviceIdResourceOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+
+Optional parameters are passed through a pointer to a PutDeviceIdResourceOpts struct
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+ **xFields** | **optional.String**| An optional fields mask | 
 
 ### Return type
 
- (empty response body)
+[**DeviceDump**](Device-dump.md)
 
 ### Authorization
 
@@ -630,7 +908,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: application/json
-- **Accept**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -639,7 +917,7 @@ Name | Type | Description  | Notes
 
 ## PutDeviceTagIdResource
 
-> PutDeviceTagIdResource(ctx, deviceId, payload)
+> DeviceTag PutDeviceTagIdResource(ctx, deviceId, payload, optional)
 
 Update device tags
 
@@ -651,10 +929,22 @@ Name | Type | Description  | Notes
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **deviceId** | **int32**| ID of Device to View / Update | 
 **payload** | [**DeviceTag**](DeviceTag.md)|  | 
+ **optional** | ***PutDeviceTagIdResourceOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+
+Optional parameters are passed through a pointer to a PutDeviceTagIdResourceOpts struct
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+ **xFields** | **optional.String**| An optional fields mask | 
 
 ### Return type
 
- (empty response body)
+[**DeviceTag**](DeviceTag.md)
 
 ### Authorization
 
@@ -663,7 +953,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: application/json
-- **Accept**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -672,7 +962,7 @@ Name | Type | Description  | Notes
 
 ## PutIpmiDevicesThresholdsIdResource
 
-> PutIpmiDevicesThresholdsIdResource(ctx, payload)
+> DevicesIpmiThresholds PutIpmiDevicesThresholdsIdResource(ctx, payload, optional)
 
 Updates IPMI thresholds for device list
 
@@ -683,10 +973,21 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **payload** | [**UpdateDevicesIpmiThresholds**](UpdateDevicesIpmiThresholds.md)|  | 
+ **optional** | ***PutIpmiDevicesThresholdsIdResourceOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+
+Optional parameters are passed through a pointer to a PutIpmiDevicesThresholdsIdResourceOpts struct
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **xFields** | **optional.String**| An optional fields mask | 
 
 ### Return type
 
- (empty response body)
+[**DevicesIpmiThresholds**](DevicesIPMIThresholds.md)
 
 ### Authorization
 
@@ -695,7 +996,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: application/json
-- **Accept**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -704,7 +1005,7 @@ Name | Type | Description  | Notes
 
 ## PutIpmiThresholdsIdResource
 
-> PutIpmiThresholdsIdResource(ctx, deviceId, payload)
+> DeviceIpmiThresholds PutIpmiThresholdsIdResource(ctx, deviceId, payload, optional)
 
 Updates IPMI thresholds data
 
@@ -716,10 +1017,22 @@ Name | Type | Description  | Notes
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **deviceId** | **int32**| ID of Device to View | 
 **payload** | [**DeviceIpmiThresholds**](DeviceIpmiThresholds.md)|  | 
+ **optional** | ***PutIpmiThresholdsIdResourceOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+
+Optional parameters are passed through a pointer to a PutIpmiThresholdsIdResourceOpts struct
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+ **xFields** | **optional.String**| An optional fields mask | 
 
 ### Return type
 
- (empty response body)
+[**DeviceIpmiThresholds**](DeviceIPMIThresholds.md)
 
 ### Authorization
 
@@ -728,7 +1041,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: application/json
-- **Accept**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)

@@ -13,7 +13,7 @@ Method | HTTP request | Description
 
 ## PostDeviceIdBandwidthImageResource
 
-> PostDeviceIdBandwidthImageResource(ctx, deviceId, period, interface_, optional)
+> []BandwidthImage PostDeviceIdBandwidthImageResource(ctx, deviceId, period, interface_, optional)
 
 Returns RRDTool Graph based bandwidth in PNG format
 
@@ -39,11 +39,12 @@ Name | Type | Description  | Notes
 
 
  **start** | **optional.Int32**| Start Time of Custom Time Period. (Unix Epoch Time) | [default to 0]
- **end** | **optional.Int32**| End Time of Custom Time Period (Unix Epoch Time) | [default to 1599590085]
+ **end** | **optional.Int32**| End Time of Custom Time Period (Unix Epoch Time) | [default to 1644416134]
+ **xFields** | **optional.String**| An optional fields mask | 
 
 ### Return type
 
- (empty response body)
+[**[]BandwidthImage**](BandwidthImage.md)
 
 ### Authorization
 
@@ -52,7 +53,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -61,7 +62,7 @@ Name | Type | Description  | Notes
 
 ## PostDeviceIdBandwidthResource
 
-> PostDeviceIdBandwidthResource(ctx, deviceId, period, interface_, step, optional)
+> []Bandwidth PostDeviceIdBandwidthResource(ctx, deviceId, period, interface_, step, optional)
 
 Returns RRDTool Xport based bandwidth data in JSON format
 
@@ -90,11 +91,12 @@ Name | Type | Description  | Notes
 
  **historical** | **optional.Bool**| Include Historical Interface Data for Device for Resellers | [default to false]
  **start** | **optional.Int32**| Start Time of Custom Time Period. (Unix Epoch Time) | [default to 0]
- **end** | **optional.Int32**| End Time of Custom Time Period (Unix Epoch Time) | [default to 1599590085]
+ **end** | **optional.Int32**| End Time of Custom Time Period (Unix Epoch Time) | [default to 1644416134]
+ **xFields** | **optional.String**| An optional fields mask | 
 
 ### Return type
 
- (empty response body)
+[**[]Bandwidth**](Bandwidth.md)
 
 ### Authorization
 
@@ -103,7 +105,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -112,7 +114,7 @@ Name | Type | Description  | Notes
 
 ## PostServiceIdBandwidthImageResource
 
-> PostServiceIdBandwidthImageResource(ctx, serviceId, period, interface_, optional)
+> []BandwidthImage PostServiceIdBandwidthImageResource(ctx, serviceId, period, interface_, optional)
 
 Returns RRDTool Graph based bandwidth in PNG format
 
@@ -138,11 +140,12 @@ Name | Type | Description  | Notes
 
 
  **start** | **optional.Int32**| Start Time of Custom Time Period. (Unix Epoch Time) | [default to 0]
- **end** | **optional.Int32**| End Time of Custom Time Period (Unix Epoch Time) | [default to 1599590085]
+ **end** | **optional.Int32**| End Time of Custom Time Period (Unix Epoch Time) | [default to 1644416134]
+ **xFields** | **optional.String**| An optional fields mask | 
 
 ### Return type
 
- (empty response body)
+[**[]BandwidthImage**](BandwidthImage.md)
 
 ### Authorization
 
@@ -151,7 +154,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -160,7 +163,7 @@ Name | Type | Description  | Notes
 
 ## PostServiceIdBandwidthResource
 
-> PostServiceIdBandwidthResource(ctx, serviceId, period, interface_, step, optional)
+> []Bandwidth PostServiceIdBandwidthResource(ctx, serviceId, period, interface_, step, optional)
 
 Returns RRDTool Xport based bandwidth data in JSON format
 
@@ -188,11 +191,12 @@ Name | Type | Description  | Notes
 
 
  **start** | **optional.Int32**| Start Time of Custom Time Period. (Unix Epoch Time) | [default to 0]
- **end** | **optional.Int32**| End Time of Custom Time Period (Unix Epoch Time) | [default to 1599590085]
+ **end** | **optional.Int32**| End Time of Custom Time Period (Unix Epoch Time) | [default to 1644416134]
+ **xFields** | **optional.String**| An optional fields mask | 
 
 ### Return type
 
- (empty response body)
+[**[]Bandwidth**](Bandwidth.md)
 
 ### Authorization
 
@@ -201,7 +205,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)

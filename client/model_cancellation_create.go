@@ -11,7 +11,8 @@ package client
 
 // CancellationCreate struct for CancellationCreate
 type CancellationCreate struct {
-	ServiceId int32  `json:"serviceId"`
-	DeviceId  int32  `json:"deviceId,omitempty"`
 	Reason    string `json:"reason"`
+	DeviceId  int32  `json:"deviceId"`
+	Comments  string `json:"comments,omitempty"`
+	ServiceId int32  `json:"serviceId"`
 }

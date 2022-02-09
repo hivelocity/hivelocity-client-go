@@ -101,7 +101,7 @@ This endpoint does not need any parameter.
 
 ## PostPermissionAssignContactResource
 
-> PostPermissionAssignContactResource(ctx, payload)
+> []PermissionReturn PostPermissionAssignContactResource(ctx, payload, optional)
 
 Endpoint to assign a new Permission to a Contact
 
@@ -112,10 +112,21 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **payload** | [**Permission**](Permission.md)|  | 
+ **optional** | ***PostPermissionAssignContactResourceOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+
+Optional parameters are passed through a pointer to a PostPermissionAssignContactResourceOpts struct
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **xFields** | **optional.String**| An optional fields mask | 
 
 ### Return type
 
- (empty response body)
+[**[]PermissionReturn**](PermissionReturn.md)
 
 ### Authorization
 
@@ -124,7 +135,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: application/json
-- **Accept**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)

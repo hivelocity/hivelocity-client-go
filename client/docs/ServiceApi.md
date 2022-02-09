@@ -11,7 +11,7 @@ Method | HTTP request | Description
 
 ## GetServiceIdResource
 
-> GetServiceIdResource(ctx, serviceId)
+> ServiceDump GetServiceIdResource(ctx, serviceId, optional)
 
 Return a dictionary with data from a specific account service
 
@@ -22,10 +22,21 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **serviceId** | **int32**|  | 
+ **optional** | ***GetServiceIdResourceOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+
+Optional parameters are passed through a pointer to a GetServiceIdResourceOpts struct
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **xFields** | **optional.String**| An optional fields mask | 
 
 ### Return type
 
- (empty response body)
+[**ServiceDump**](Service-dump.md)
 
 ### Authorization
 
@@ -34,7 +45,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -43,7 +54,7 @@ Name | Type | Description  | Notes
 
 ## GetServiceResource
 
-> GetServiceResource(ctx, status)
+> []ServiceDump GetServiceResource(ctx, status, optional)
 
 Return a list of all account services
 
@@ -54,10 +65,21 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **status** | **string**| The current status of the service | [default to all]
+ **optional** | ***GetServiceResourceOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+
+Optional parameters are passed through a pointer to a GetServiceResourceOpts struct
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **xFields** | **optional.String**| An optional fields mask | 
 
 ### Return type
 
- (empty response body)
+[**[]ServiceDump**](Service-dump.md)
 
 ### Authorization
 
@@ -66,7 +88,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)

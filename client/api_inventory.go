@@ -26,6 +26,102 @@ var (
 // InventoryApiService InventoryApi service
 type InventoryApiService service
 
+// GetLocationResourceOpts Optional parameters for the method 'GetLocationResource'
+type GetLocationResourceOpts struct {
+	XFields optional.String
+}
+
+/*
+GetLocationResource Return sps facilities and locations
+ * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param optional nil or *GetLocationResourceOpts - Optional Parameters:
+ * @param "XFields" (optional.String) -  An optional fields mask
+@return []Location
+*/
+func (a *InventoryApiService) GetLocationResource(ctx _context.Context, localVarOptionals *GetLocationResourceOpts) ([]Location, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  []Location
+	)
+
+	// create path and map variables
+	localVarPath := a.client.cfg.BasePath + "/inventory/locations"
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if localVarOptionals != nil && localVarOptionals.XFields.IsSet() {
+		localVarHeaderParams["X-Fields"] = parameterToString(localVarOptionals.XFields.Value(), "")
+	}
+	if ctx != nil {
+		// API Key Authentication
+		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
+			var key string
+			if auth.Prefix != "" {
+				key = auth.Prefix + " " + auth.Key
+			} else {
+				key = auth.Key
+			}
+			localVarHeaderParams["X-API-KEY"] = key
+		}
+	}
+	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(r)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 // GetStockByProductResourceOpts Optional parameters for the method 'GetStockByProductResource'
 type GetStockByProductResourceOpts struct {
 	XFields optional.String
@@ -129,26 +225,24 @@ func (a *InventoryApiService) GetStockByProductResource(ctx _context.Context, pr
 type GetStockResourceOpts struct {
 	Location optional.String
 	GroupBy  optional.String
-	XFields  optional.String
 }
 
 /*
-GetStockResource Return a structured sps stock data, grouped by city or facility code for all products
+GetStockResource Return structured sps stock data, grouped by city or facility code for all products
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param optional nil or *GetStockResourceOpts - Optional Parameters:
  * @param "Location" (optional.String) -  Filter products by location
- * @param "GroupBy" (optional.String) -  Get results grouped by 'city' or 'facility'
- * @param "XFields" (optional.String) -  An optional fields mask
-@return Stock
+ * @param "GroupBy" (optional.String) -  Get results grouped by 'city', 'facility', or 'flat'
+@return map[string][]Stock
 */
-func (a *InventoryApiService) GetStockResource(ctx _context.Context, localVarOptionals *GetStockResourceOpts) (Stock, *_nethttp.Response, error) {
+func (a *InventoryApiService) GetStockResource(ctx _context.Context, localVarOptionals *GetStockResourceOpts) (map[string][]Stock, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  Stock
+		localVarReturnValue  map[string][]Stock
 	)
 
 	// create path and map variables
@@ -179,9 +273,6 @@ func (a *InventoryApiService) GetStockResource(ctx _context.Context, localVarOpt
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if localVarOptionals != nil && localVarOptionals.XFields.IsSet() {
-		localVarHeaderParams["X-Fields"] = parameterToString(localVarOptionals.XFields.Value(), "")
 	}
 	if ctx != nil {
 		// API Key Authentication

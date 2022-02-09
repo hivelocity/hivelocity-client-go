@@ -11,5 +11,6 @@ package client
 
 // DeploymentStart struct for DeploymentStart
 type DeploymentStart struct {
-	BillingInfo int32 `json:"billingInfo"`
+	Script      string `json:"script,omitempty"`
+	BillingInfo int32  `json:"billingInfo"`
 }

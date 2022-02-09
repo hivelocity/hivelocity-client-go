@@ -12,9 +12,9 @@ package client
 // ContactCreate struct for ContactCreate
 type ContactCreate struct {
 	Description string `json:"description,omitempty"`
-	Password    string `json:"password,omitempty"`
-	Active      int32  `json:"active"`
 	Phone       string `json:"phone,omitempty"`
 	FullName    string `json:"fullName"`
+	Active      int32  `json:"active"`
+	Password    string `json:"password,omitempty"`
 	Email       string `json:"email"`
 }

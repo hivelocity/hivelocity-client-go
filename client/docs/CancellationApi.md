@@ -5,8 +5,8 @@ All URIs are relative to *http://localhost/api/v2*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**GetCancellationDeviceResource**](CancellationApi.md#GetCancellationDeviceResource) | **Get** /cancellation/device/{deviceId} | Return the Cancellation found for a Device
-[**GetCancellationIdResource**](CancellationApi.md#GetCancellationIdResource) | **Get** /cancellation/cancellation/{cancellationId} | Return any cancellation by ID
-[**GetCancellationResource**](CancellationApi.md#GetCancellationResource) | **Get** /cancellation/cancellation | Returns the services cancellations of a client
+[**GetCancellationIdClientResource**](CancellationApi.md#GetCancellationIdClientResource) | **Get** /cancellation/cancellation/{cancellationId} | Return any cancellation by ID
+[**GetCancellationResource**](CancellationApi.md#GetCancellationResource) | **Get** /cancellation/cancellation | Return the services cancellations of a client
 [**GetCancellationServiceResource**](CancellationApi.md#GetCancellationServiceResource) | **Get** /cancellation/service/{serviceId} | Return the Cancellation found for a Service
 [**PostCancellationResource**](CancellationApi.md#PostCancellationResource) | **Post** /cancellation/cancellation | Creates Cancellation for a device/service
 
@@ -14,7 +14,7 @@ Method | HTTP request | Description
 
 ## GetCancellationDeviceResource
 
-> GetCancellationDeviceResource(ctx, deviceId)
+> Cancellation GetCancellationDeviceResource(ctx, deviceId, optional)
 
 Return the Cancellation found for a Device
 
@@ -25,10 +25,21 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **deviceId** | **int32**|  | 
+ **optional** | ***GetCancellationDeviceResourceOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+
+Optional parameters are passed through a pointer to a GetCancellationDeviceResourceOpts struct
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **xFields** | **optional.String**| An optional fields mask | 
 
 ### Return type
 
- (empty response body)
+[**Cancellation**](Cancellation.md)
 
 ### Authorization
 
@@ -37,16 +48,16 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
 
 
-## GetCancellationIdResource
+## GetCancellationIdClientResource
 
-> GetCancellationIdResource(ctx, cancellationId)
+> Cancellation GetCancellationIdClientResource(ctx, cancellationId, optional)
 
 Return any cancellation by ID
 
@@ -57,10 +68,21 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **cancellationId** | **int32**|  | 
+ **optional** | ***GetCancellationIdClientResourceOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+
+Optional parameters are passed through a pointer to a GetCancellationIdClientResourceOpts struct
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **xFields** | **optional.String**| An optional fields mask | 
 
 ### Return type
 
- (empty response body)
+[**Cancellation**](Cancellation.md)
 
 ### Authorization
 
@@ -69,7 +91,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -78,17 +100,30 @@ Name | Type | Description  | Notes
 
 ## GetCancellationResource
 
-> GetCancellationResource(ctx, )
+> []Cancellation GetCancellationResource(ctx, optional)
 
-Returns the services cancellations of a client
+Return the services cancellations of a client
 
 ### Required Parameters
 
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+ **optional** | ***GetCancellationResourceOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+
+Optional parameters are passed through a pointer to a GetCancellationResourceOpts struct
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **xFields** | **optional.String**| An optional fields mask | 
 
 ### Return type
 
- (empty response body)
+[**[]Cancellation**](Cancellation.md)
 
 ### Authorization
 
@@ -97,7 +132,7 @@ This endpoint does not need any parameter.
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -106,7 +141,7 @@ This endpoint does not need any parameter.
 
 ## GetCancellationServiceResource
 
-> GetCancellationServiceResource(ctx, serviceId)
+> Cancellation GetCancellationServiceResource(ctx, serviceId, optional)
 
 Return the Cancellation found for a Service
 
@@ -117,10 +152,21 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **serviceId** | **int32**|  | 
+ **optional** | ***GetCancellationServiceResourceOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+
+Optional parameters are passed through a pointer to a GetCancellationServiceResourceOpts struct
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **xFields** | **optional.String**| An optional fields mask | 
 
 ### Return type
 
- (empty response body)
+[**Cancellation**](Cancellation.md)
 
 ### Authorization
 
@@ -129,7 +175,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -138,7 +184,7 @@ Name | Type | Description  | Notes
 
 ## PostCancellationResource
 
-> PostCancellationResource(ctx, payload)
+> Cancellation PostCancellationResource(ctx, payload, optional)
 
 Creates Cancellation for a device/service
 
@@ -151,10 +197,21 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **payload** | [**CancellationCreate**](CancellationCreate.md)|  | 
+ **optional** | ***PostCancellationResourceOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+
+Optional parameters are passed through a pointer to a PostCancellationResourceOpts struct
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **xFields** | **optional.String**| An optional fields mask | 
 
 ### Return type
 
- (empty response body)
+[**Cancellation**](Cancellation.md)
 
 ### Authorization
 
@@ -163,7 +220,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: application/json
-- **Accept**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)

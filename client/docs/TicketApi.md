@@ -16,7 +16,7 @@ Method | HTTP request | Description
 
 ## GetTicketIdResource
 
-> GetTicketIdResource(ctx, ticketId)
+> Ticket GetTicketIdResource(ctx, ticketId, optional)
 
 Returns details of a specific ticket
 
@@ -27,10 +27,21 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **ticketId** | **int32**| ticket database ID | 
+ **optional** | ***GetTicketIdResourceOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+
+Optional parameters are passed through a pointer to a GetTicketIdResourceOpts struct
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **xFields** | **optional.String**| An optional fields mask | 
 
 ### Return type
 
- (empty response body)
+[**Ticket**](Ticket.md)
 
 ### Authorization
 
@@ -39,7 +50,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -48,7 +59,7 @@ Name | Type | Description  | Notes
 
 ## GetTicketReplyResource
 
-> GetTicketReplyResource(ctx, ticketId)
+> []TicketPost GetTicketReplyResource(ctx, ticketId, optional)
 
 Returns a reply for a specific ticket
 
@@ -59,10 +70,21 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **ticketId** | **int32**| ticket database ID | 
+ **optional** | ***GetTicketReplyResourceOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+
+Optional parameters are passed through a pointer to a GetTicketReplyResourceOpts struct
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **xFields** | **optional.String**| An optional fields mask | 
 
 ### Return type
 
- (empty response body)
+[**[]TicketPost**](TicketPost.md)
 
 ### Authorization
 
@@ -71,7 +93,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -80,17 +102,30 @@ Name | Type | Description  | Notes
 
 ## GetTicketResource
 
-> GetTicketResource(ctx, )
+> []Ticket GetTicketResource(ctx, optional)
 
 Returns a list with all Tickets
 
 ### Required Parameters
 
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+ **optional** | ***GetTicketResourceOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+
+Optional parameters are passed through a pointer to a GetTicketResourceOpts struct
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **xFields** | **optional.String**| An optional fields mask | 
 
 ### Return type
 
- (empty response body)
+[**[]Ticket**](Ticket.md)
 
 ### Authorization
 
@@ -99,7 +134,7 @@ This endpoint does not need any parameter.
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -108,7 +143,7 @@ This endpoint does not need any parameter.
 
 ## GetTicketSearchResource
 
-> GetTicketSearchResource(ctx, optional)
+> TicketSeachResult GetTicketSearchResource(ctx, optional)
 
 Return results of ticket search
 
@@ -130,10 +165,11 @@ Name | Type | Description  | Notes
  **perPage** | **optional.Int32**| Number of items per page. | [default to 10]
  **page** | **optional.Int32**| The page number of search. | [default to 1]
  **q** | **optional.String**| Content search. | 
+ **xFields** | **optional.String**| An optional fields mask | 
 
 ### Return type
 
- (empty response body)
+[**TicketSeachResult**](TicketSeachResult.md)
 
 ### Authorization
 
@@ -142,7 +178,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -151,7 +187,7 @@ Name | Type | Description  | Notes
 
 ## PostTicketReplyResource
 
-> PostTicketReplyResource(ctx, ticketId, payload)
+> TicketPost PostTicketReplyResource(ctx, ticketId, payload, optional)
 
 Creates reply for a specific Ticket
 
@@ -163,10 +199,22 @@ Name | Type | Description  | Notes
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **ticketId** | **int32**| ticket database ID | 
 **payload** | [**TicketCreateReply**](TicketCreateReply.md)|  | 
+ **optional** | ***PostTicketReplyResourceOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+
+Optional parameters are passed through a pointer to a PostTicketReplyResourceOpts struct
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+ **xFields** | **optional.String**| An optional fields mask | 
 
 ### Return type
 
- (empty response body)
+[**TicketPost**](TicketPost.md)
 
 ### Authorization
 
@@ -175,7 +223,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: application/json
-- **Accept**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -184,7 +232,7 @@ Name | Type | Description  | Notes
 
 ## PostTicketResource
 
-> PostTicketResource(ctx, payload)
+> Ticket PostTicketResource(ctx, payload, optional)
 
 Creates a new ticket
 
@@ -195,10 +243,21 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **payload** | [**TicketCreate**](TicketCreate.md)|  | 
+ **optional** | ***PostTicketResourceOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+
+Optional parameters are passed through a pointer to a PostTicketResourceOpts struct
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **xFields** | **optional.String**| An optional fields mask | 
 
 ### Return type
 
- (empty response body)
+[**Ticket**](Ticket.md)
 
 ### Authorization
 
@@ -207,7 +266,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: application/json
-- **Accept**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -216,7 +275,7 @@ Name | Type | Description  | Notes
 
 ## PutTicketIdResource
 
-> PutTicketIdResource(ctx, ticketId, payload)
+> Ticket PutTicketIdResource(ctx, ticketId, payload, optional)
 
 Updates a specific ticket
 
@@ -228,10 +287,22 @@ Name | Type | Description  | Notes
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **ticketId** | **int32**| ticket database ID | 
 **payload** | [**TicketPut**](TicketPut.md)|  | 
+ **optional** | ***PutTicketIdResourceOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+
+Optional parameters are passed through a pointer to a PutTicketIdResourceOpts struct
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+ **xFields** | **optional.String**| An optional fields mask | 
 
 ### Return type
 
- (empty response body)
+[**Ticket**](Ticket.md)
 
 ### Authorization
 
@@ -240,7 +311,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: application/json
-- **Accept**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)

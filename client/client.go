@@ -50,6 +50,8 @@ type APIClient struct {
 
 	BandwidthApi *BandwidthApiService
 
+	BareMetalDevicesApi *BareMetalDevicesApiService
+
 	BillingInfoApi *BillingInfoApiService
 
 	CancellationApi *CancellationApiService
@@ -62,11 +64,19 @@ type APIClient struct {
 
 	DeviceApi *DeviceApiService
 
+	DomainsApi *DomainsApiService
+
+	IPAssignmentApi *IPAssignmentApiService
+
 	InventoryApi *InventoryApiService
 
 	InvoiceApi *InvoiceApiService
 
+	NetworkApi *NetworkApiService
+
 	OrderApi *OrderApiService
+
+	OrderGroupsApi *OrderGroupsApiService
 
 	PermissionApi *PermissionApiService
 
@@ -81,6 +91,8 @@ type APIClient struct {
 	TicketApi *TicketApiService
 
 	TokenApi *TokenApiService
+
+	VLANApi *VLANApiService
 
 	WebhookApi *WebhookApiService
 }
@@ -102,15 +114,20 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 
 	// API Services
 	c.BandwidthApi = (*BandwidthApiService)(&c.common)
+	c.BareMetalDevicesApi = (*BareMetalDevicesApiService)(&c.common)
 	c.BillingInfoApi = (*BillingInfoApiService)(&c.common)
 	c.CancellationApi = (*CancellationApiService)(&c.common)
 	c.ContactApi = (*ContactApiService)(&c.common)
 	c.CreditApi = (*CreditApiService)(&c.common)
 	c.DeploymentApi = (*DeploymentApiService)(&c.common)
 	c.DeviceApi = (*DeviceApiService)(&c.common)
+	c.DomainsApi = (*DomainsApiService)(&c.common)
+	c.IPAssignmentApi = (*IPAssignmentApiService)(&c.common)
 	c.InventoryApi = (*InventoryApiService)(&c.common)
 	c.InvoiceApi = (*InvoiceApiService)(&c.common)
+	c.NetworkApi = (*NetworkApiService)(&c.common)
 	c.OrderApi = (*OrderApiService)(&c.common)
+	c.OrderGroupsApi = (*OrderGroupsApiService)(&c.common)
 	c.PermissionApi = (*PermissionApiService)(&c.common)
 	c.ProductApi = (*ProductApiService)(&c.common)
 	c.ProfileApi = (*ProfileApiService)(&c.common)
@@ -118,6 +135,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.SshKeyApi = (*SshKeyApiService)(&c.common)
 	c.TicketApi = (*TicketApiService)(&c.common)
 	c.TokenApi = (*TokenApiService)(&c.common)
+	c.VLANApi = (*VLANApiService)(&c.common)
 	c.WebhookApi = (*WebhookApiService)(&c.common)
 
 	return c

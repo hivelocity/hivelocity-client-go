@@ -11,10 +11,7 @@ package client
 
 // ProductOption struct for ProductOption
 type ProductOption struct {
-	Currency     string   `json:"currency,omitempty"`
-	Tags         []string `json:"tags,omitempty"`
-	Expressions  []string `json:"expressions,omitempty"`
-	MonthlyPrice float32  `json:"monthlyPrice,omitempty"`
-	Name         string   `json:"name,omitempty"`
-	Id           int32    `json:"id,omitempty"`
+	ProductId int32                  `json:"productId,omitempty"`
+	Options   map[string]interface{} `json:"options,omitempty"`
+	Pricing   map[string]interface{} `json:"pricing,omitempty"`
 }

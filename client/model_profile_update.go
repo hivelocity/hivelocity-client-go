@@ -11,15 +11,18 @@ package client
 
 // ProfileUpdate struct for ProfileUpdate
 type ProfileUpdate struct {
-	Company  string `json:"company,omitempty"`
-	Country  string `json:"country,omitempty"`
-	Last     string `json:"last,omitempty"`
-	Zip      string `json:"zip,omitempty"`
-	Phone    string `json:"phone,omitempty"`
-	Address  string `json:"address,omitempty"`
-	First    string `json:"first,omitempty"`
-	State    string `json:"state,omitempty"`
-	FullName string `json:"full_name,omitempty"`
-	City     string `json:"city,omitempty"`
-	Email    string `json:"email,omitempty"`
+	Password                string `json:"password,omitempty"`
+	RequireOauthLogin       string `json:"requireOauthLogin,omitempty"`
+	Phone                   string `json:"phone,omitempty"`
+	Last                    string `json:"last,omitempty"`
+	State                   string `json:"state,omitempty"`
+	First                   string `json:"first,omitempty"`
+	Address                 string `json:"address,omitempty"`
+	Country                 string `json:"country,omitempty"`
+	Company                 string `json:"company,omitempty"`
+	Zip                     string `json:"zip,omitempty"`
+	FullName                string `json:"fullName,omitempty"`
+	Email                   string `json:"email,omitempty"`
+	City                    string `json:"city,omitempty"`
+	RequirePayPalOauthLogin string `json:"requirePayPalOauthLogin,omitempty"`
 }
