@@ -12,17 +12,30 @@ Method | HTTP request | Description
 
 ## GetCreditResource
 
-> GetCreditResource(ctx, )
+> []Credit GetCreditResource(ctx, optional)
 
 Return a list with all Credits
 
 ### Required Parameters
 
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+ **optional** | ***GetCreditResourceOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+
+Optional parameters are passed through a pointer to a GetCreditResourceOpts struct
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **xFields** | **optional.String**| An optional fields mask | 
 
 ### Return type
 
- (empty response body)
+[**[]Credit**](Credit.md)
 
 ### Authorization
 
@@ -31,7 +44,7 @@ This endpoint does not need any parameter.
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -40,17 +53,30 @@ This endpoint does not need any parameter.
 
 ## GetTotalActiveCreditResource
 
-> GetTotalActiveCreditResource(ctx, )
+> TotalActiveCredit GetTotalActiveCreditResource(ctx, optional)
 
 Return the client's total active credit amount
 
 ### Required Parameters
 
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+ **optional** | ***GetTotalActiveCreditResourceOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+
+Optional parameters are passed through a pointer to a GetTotalActiveCreditResourceOpts struct
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **xFields** | **optional.String**| An optional fields mask | 
 
 ### Return type
 
- (empty response body)
+[**TotalActiveCredit**](TotalActiveCredit.md)
 
 ### Authorization
 
@@ -59,7 +85,7 @@ This endpoint does not need any parameter.
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -68,7 +94,7 @@ This endpoint does not need any parameter.
 
 ## PostCreditResource
 
-> PostCreditResource(ctx, payload)
+> Credit PostCreditResource(ctx, payload, optional)
 
 Receive billing method id and amount and return the created Credit
 
@@ -79,10 +105,21 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **payload** | [**CreateCredit**](CreateCredit.md)|  | 
+ **optional** | ***PostCreditResourceOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+
+Optional parameters are passed through a pointer to a PostCreditResourceOpts struct
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **xFields** | **optional.String**| An optional fields mask | 
 
 ### Return type
 
- (empty response body)
+[**Credit**](Credit.md)
 
 ### Authorization
 
@@ -91,7 +128,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: application/json
-- **Accept**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)

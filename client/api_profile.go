@@ -28,6 +28,7 @@ type ProfileApiService service
 // GetBasicProfileResourceOpts Optional parameters for the method 'GetBasicProfileResource'
 type GetBasicProfileResourceOpts struct {
 	ContactId optional.String
+	XFields   optional.String
 }
 
 /*
@@ -36,14 +37,17 @@ The id is optional and if it is necessary must be sent as URL param.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param optional nil or *GetBasicProfileResourceOpts - Optional Parameters:
  * @param "ContactId" (optional.String) -  \"ID of Contact to manage Basic Profile\"
+ * @param "XFields" (optional.String) -  An optional fields mask
+@return BasicProfile
 */
-func (a *ProfileApiService) GetBasicProfileResource(ctx _context.Context, localVarOptionals *GetBasicProfileResourceOpts) (*_nethttp.Response, error) {
+func (a *ProfileApiService) GetBasicProfileResource(ctx _context.Context, localVarOptionals *GetBasicProfileResourceOpts) (BasicProfile, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
+		localVarReturnValue  BasicProfile
 	)
 
 	// create path and map variables
@@ -65,12 +69,15 @@ func (a *ProfileApiService) GetBasicProfileResource(ctx _context.Context, localV
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{}
+	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if localVarOptionals != nil && localVarOptionals.XFields.IsSet() {
+		localVarHeaderParams["X-Fields"] = parameterToString(localVarOptionals.XFields.Value(), "")
 	}
 	if ctx != nil {
 		// API Key Authentication
@@ -86,18 +93,18 @@ func (a *ProfileApiService) GetBasicProfileResource(ctx _context.Context, localV
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
-		return nil, err
+		return localVarReturnValue, nil, err
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(r)
 	if err != nil || localVarHTTPResponse == nil {
-		return localVarHTTPResponse, err
+		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
-		return localVarHTTPResponse, err
+		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
@@ -105,15 +112,25 @@ func (a *ProfileApiService) GetBasicProfileResource(ctx _context.Context, localV
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		return localVarHTTPResponse, newErr
+		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	return localVarHTTPResponse, nil
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
 // GetProfileResourceOpts Optional parameters for the method 'GetProfileResource'
 type GetProfileResourceOpts struct {
 	ContactId optional.String
+	XFields   optional.String
 }
 
 /*
@@ -122,14 +139,17 @@ The id is optional and if it is necessary must be sent as URL param.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param optional nil or *GetProfileResourceOpts - Optional Parameters:
  * @param "ContactId" (optional.String) -  \"ID of Contact to manage Profile\"
+ * @param "XFields" (optional.String) -  An optional fields mask
+@return Profile
 */
-func (a *ProfileApiService) GetProfileResource(ctx _context.Context, localVarOptionals *GetProfileResourceOpts) (*_nethttp.Response, error) {
+func (a *ProfileApiService) GetProfileResource(ctx _context.Context, localVarOptionals *GetProfileResourceOpts) (Profile, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
+		localVarReturnValue  Profile
 	)
 
 	// create path and map variables
@@ -151,12 +171,15 @@ func (a *ProfileApiService) GetProfileResource(ctx _context.Context, localVarOpt
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{}
+	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if localVarOptionals != nil && localVarOptionals.XFields.IsSet() {
+		localVarHeaderParams["X-Fields"] = parameterToString(localVarOptionals.XFields.Value(), "")
 	}
 	if ctx != nil {
 		// API Key Authentication
@@ -172,18 +195,18 @@ func (a *ProfileApiService) GetProfileResource(ctx _context.Context, localVarOpt
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
-		return nil, err
+		return localVarReturnValue, nil, err
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(r)
 	if err != nil || localVarHTTPResponse == nil {
-		return localVarHTTPResponse, err
+		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
-		return localVarHTTPResponse, err
+		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
@@ -191,15 +214,25 @@ func (a *ProfileApiService) GetProfileResource(ctx _context.Context, localVarOpt
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		return localVarHTTPResponse, newErr
+		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	return localVarHTTPResponse, nil
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
 // PutProfileResourceOpts Optional parameters for the method 'PutProfileResource'
 type PutProfileResourceOpts struct {
 	ContactId optional.String
+	XFields   optional.String
 }
 
 /*
@@ -209,14 +242,17 @@ The id is optional and if it is necessary must be sent as URL param.
  * @param payload
  * @param optional nil or *PutProfileResourceOpts - Optional Parameters:
  * @param "ContactId" (optional.String) -  \"ID of Contact to manage Profile\"
+ * @param "XFields" (optional.String) -  An optional fields mask
+@return Profile
 */
-func (a *ProfileApiService) PutProfileResource(ctx _context.Context, payload ProfileUpdate, localVarOptionals *PutProfileResourceOpts) (*_nethttp.Response, error) {
+func (a *ProfileApiService) PutProfileResource(ctx _context.Context, payload ProfileUpdate, localVarOptionals *PutProfileResourceOpts) (Profile, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPut
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
+		localVarReturnValue  Profile
 	)
 
 	// create path and map variables
@@ -238,12 +274,15 @@ func (a *ProfileApiService) PutProfileResource(ctx _context.Context, payload Pro
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{}
+	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if localVarOptionals != nil && localVarOptionals.XFields.IsSet() {
+		localVarHeaderParams["X-Fields"] = parameterToString(localVarOptionals.XFields.Value(), "")
 	}
 	// body params
 	localVarPostBody = &payload
@@ -261,18 +300,18 @@ func (a *ProfileApiService) PutProfileResource(ctx _context.Context, payload Pro
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
-		return nil, err
+		return localVarReturnValue, nil, err
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(r)
 	if err != nil || localVarHTTPResponse == nil {
-		return localVarHTTPResponse, err
+		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
-		return localVarHTTPResponse, err
+		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
@@ -280,8 +319,17 @@ func (a *ProfileApiService) PutProfileResource(ctx _context.Context, payload Pro
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		return localVarHTTPResponse, newErr
+		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	return localVarHTTPResponse, nil
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
 }

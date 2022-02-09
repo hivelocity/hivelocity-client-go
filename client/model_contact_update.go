@@ -12,8 +12,8 @@ package client
 // ContactUpdate struct for ContactUpdate
 type ContactUpdate struct {
 	Description string `json:"description,omitempty"`
-	Active      int32  `json:"active,omitempty"`
 	Phone       string `json:"phone,omitempty"`
 	FullName    string `json:"fullName,omitempty"`
 	Email       string `json:"email,omitempty"`
+	Active      int32  `json:"active,omitempty"`
 }

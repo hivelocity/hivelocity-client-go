@@ -26,6 +26,102 @@ var (
 // ProductApiService ProductApi service
 type ProductApiService service
 
+// GetProductListResourceOpts Optional parameters for the method 'GetProductListResource'
+type GetProductListResourceOpts struct {
+	XFields optional.String
+}
+
+/*
+GetProductListResource Return structured sps stock data in a list
+ * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param optional nil or *GetProductListResourceOpts - Optional Parameters:
+ * @param "XFields" (optional.String) -  An optional fields mask
+@return []ProductInfo
+*/
+func (a *ProductApiService) GetProductListResource(ctx _context.Context, localVarOptionals *GetProductListResourceOpts) ([]ProductInfo, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  []ProductInfo
+	)
+
+	// create path and map variables
+	localVarPath := a.client.cfg.BasePath + "/product/list"
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if localVarOptionals != nil && localVarOptionals.XFields.IsSet() {
+		localVarHeaderParams["X-Fields"] = parameterToString(localVarOptionals.XFields.Value(), "")
+	}
+	if ctx != nil {
+		// API Key Authentication
+		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
+			var key string
+			if auth.Prefix != "" {
+				key = auth.Prefix + " " + auth.Key
+			} else {
+				key = auth.Key
+			}
+			localVarHeaderParams["X-API-KEY"] = key
+		}
+	}
+	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(r)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 // GetProductOperatingSystemsResourceOpts Optional parameters for the method 'GetProductOperatingSystemsResource'
 type GetProductOperatingSystemsResourceOpts struct {
 	XFields optional.String
@@ -37,16 +133,16 @@ GetProductOperatingSystemsResource Return List of operating systems found for a 
  * @param productId ID of the Product
  * @param optional nil or *GetProductOperatingSystemsResourceOpts - Optional Parameters:
  * @param "XFields" (optional.String) -  An optional fields mask
-@return []OperatingSystem
+@return []Option
 */
-func (a *ProductApiService) GetProductOperatingSystemsResource(ctx _context.Context, productId int32, localVarOptionals *GetProductOperatingSystemsResourceOpts) ([]OperatingSystem, *_nethttp.Response, error) {
+func (a *ProductApiService) GetProductOperatingSystemsResource(ctx _context.Context, productId int32, localVarOptionals *GetProductOperatingSystemsResourceOpts) ([]Option, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  []OperatingSystem
+		localVarReturnValue  []Option
 	)
 
 	// create path and map variables
@@ -128,7 +224,6 @@ func (a *ProductApiService) GetProductOperatingSystemsResource(ctx _context.Cont
 // GetProductOptionResourceOpts Optional parameters for the method 'GetProductOptionResource'
 type GetProductOptionResourceOpts struct {
 	GroupBy optional.String
-	XFields optional.String
 }
 
 /*
@@ -137,17 +232,16 @@ GetProductOptionResource Return List of Options found for a Product
  * @param productId ID of the Product
  * @param optional nil or *GetProductOptionResourceOpts - Optional Parameters:
  * @param "GroupBy" (optional.String) -  Get results grouped by 'upgrade' or without grouping.
- * @param "XFields" (optional.String) -  An optional fields mask
-@return ProductOption
+@return map[string][]Option
 */
-func (a *ProductApiService) GetProductOptionResource(ctx _context.Context, productId int32, localVarOptionals *GetProductOptionResourceOpts) (ProductOption, *_nethttp.Response, error) {
+func (a *ProductApiService) GetProductOptionResource(ctx _context.Context, productId int32, localVarOptionals *GetProductOptionResourceOpts) (map[string][]Option, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  ProductOption
+		localVarReturnValue  map[string][]Option
 	)
 
 	// create path and map variables
@@ -161,6 +255,99 @@ func (a *ProductApiService) GetProductOptionResource(ctx _context.Context, produ
 	if localVarOptionals != nil && localVarOptionals.GroupBy.IsSet() {
 		localVarQueryParams.Add("groupBy", parameterToString(localVarOptionals.GroupBy.Value(), ""))
 	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if ctx != nil {
+		// API Key Authentication
+		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
+			var key string
+			if auth.Prefix != "" {
+				key = auth.Prefix + " " + auth.Key
+			} else {
+				key = auth.Key
+			}
+			localVarHeaderParams["X-API-KEY"] = key
+		}
+	}
+	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(r)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+// GetProductsAndOptionsResourceOpts Optional parameters for the method 'GetProductsAndOptionsResource'
+type GetProductsAndOptionsResourceOpts struct {
+	XFields optional.String
+}
+
+/*
+GetProductsAndOptionsResource Return a mapping of Products and Options with pricing per-period
+ * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param optional nil or *GetProductsAndOptionsResourceOpts - Optional Parameters:
+ * @param "XFields" (optional.String) -  An optional fields mask
+@return []ProductOption
+*/
+func (a *ProductApiService) GetProductsAndOptionsResource(ctx _context.Context, localVarOptionals *GetProductsAndOptionsResourceOpts) ([]ProductOption, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  []ProductOption
+	)
+
+	// create path and map variables
+	localVarPath := a.client.cfg.BasePath + "/product/options"
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -227,82 +414,4 @@ func (a *ProductApiService) GetProductOptionResource(ctx _context.Context, produ
 	}
 
 	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-/*
-PostProductMatchResource Return a list of Products matching the provided lshw output of a server
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param payload
-*/
-func (a *ProductApiService) PostProductMatchResource(ctx _context.Context, payload ProductMatch) (*_nethttp.Response, error) {
-	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-	)
-
-	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/product/match"
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	// body params
-	localVarPostBody = &payload
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + auth.Key
-			} else {
-				key = auth.Key
-			}
-			localVarHeaderParams["X-API-KEY"] = key
-		}
-	}
-	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
-	if err != nil {
-		return nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(r)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarHTTPResponse, err
-	}
-
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	if err != nil {
-		return localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		return localVarHTTPResponse, newErr
-	}
-
-	return localVarHTTPResponse, nil
 }

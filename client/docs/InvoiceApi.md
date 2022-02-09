@@ -8,12 +8,14 @@ Method | HTTP request | Description
 [**GetInvoiceIdResource**](InvoiceApi.md#GetInvoiceIdResource) | **Get** /invoice/{invoiceId} | Return serialized data on a single invoice
 [**GetInvoicePdfResource**](InvoiceApi.md#GetInvoicePdfResource) | **Get** /invoice/{invoiceId}/pdf-download | Return an Invoice PDF file in Base64 Encoded Format
 [**GetInvoiceResource**](InvoiceApi.md#GetInvoiceResource) | **Get** /invoice/ | Return serialized data on all invoices
+[**GetInvoiceSearchResource**](InvoiceApi.md#GetInvoiceSearchResource) | **Get** /invoice/search | Return results of invoice search
+[**GetInvoiceUnpaidResource**](InvoiceApi.md#GetInvoiceUnpaidResource) | **Get** /invoice/unpaid | Return total balance of all unpaid invoices
 
 
 
 ## GetInvoiceIdDetails
 
-> GetInvoiceIdDetails(ctx, invoiceId)
+> InvoiceDetails GetInvoiceIdDetails(ctx, invoiceId, optional)
 
 Return detailed information for an invoice
 
@@ -26,10 +28,21 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **invoiceId** | **int32**| Invoice database ID | 
+ **optional** | ***GetInvoiceIdDetailsOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+
+Optional parameters are passed through a pointer to a GetInvoiceIdDetailsOpts struct
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **xFields** | **optional.String**| An optional fields mask | 
 
 ### Return type
 
- (empty response body)
+[**InvoiceDetails**](InvoiceDetails.md)
 
 ### Authorization
 
@@ -38,7 +51,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -47,7 +60,7 @@ Name | Type | Description  | Notes
 
 ## GetInvoiceIdResource
 
-> GetInvoiceIdResource(ctx, invoiceId)
+> Invoice GetInvoiceIdResource(ctx, invoiceId, optional)
 
 Return serialized data on a single invoice
 
@@ -58,10 +71,21 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **invoiceId** | **int32**| Invoice database ID | 
+ **optional** | ***GetInvoiceIdResourceOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+
+Optional parameters are passed through a pointer to a GetInvoiceIdResourceOpts struct
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **xFields** | **optional.String**| An optional fields mask | 
 
 ### Return type
 
- (empty response body)
+[**Invoice**](Invoice.md)
 
 ### Authorization
 
@@ -70,7 +94,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -79,7 +103,7 @@ Name | Type | Description  | Notes
 
 ## GetInvoicePdfResource
 
-> GetInvoicePdfResource(ctx, invoiceId)
+> InvoicePdf GetInvoicePdfResource(ctx, invoiceId, optional)
 
 Return an Invoice PDF file in Base64 Encoded Format
 
@@ -90,10 +114,21 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **invoiceId** | **int32**| Invoice database ID | 
+ **optional** | ***GetInvoicePdfResourceOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+
+Optional parameters are passed through a pointer to a GetInvoicePdfResourceOpts struct
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **xFields** | **optional.String**| An optional fields mask | 
 
 ### Return type
 
- (empty response body)
+[**InvoicePdf**](InvoicePDF.md)
 
 ### Authorization
 
@@ -102,7 +137,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -111,17 +146,30 @@ Name | Type | Description  | Notes
 
 ## GetInvoiceResource
 
-> GetInvoiceResource(ctx, )
+> []Invoice GetInvoiceResource(ctx, optional)
 
 Return serialized data on all invoices
 
 ### Required Parameters
 
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+ **optional** | ***GetInvoiceResourceOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+
+Optional parameters are passed through a pointer to a GetInvoiceResourceOpts struct
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **xFields** | **optional.String**| An optional fields mask | 
 
 ### Return type
 
- (empty response body)
+[**[]Invoice**](Invoice.md)
 
 ### Authorization
 
@@ -130,7 +178,94 @@ This endpoint does not need any parameter.
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetInvoiceSearchResource
+
+> InvoiceSeachResult GetInvoiceSearchResource(ctx, optional)
+
+Return results of invoice search
+
+### Required Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+ **optional** | ***GetInvoiceSearchResourceOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+
+Optional parameters are passed through a pointer to a GetInvoiceSearchResourceOpts struct
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **endDate** | **optional.Int32**| The end date range | 
+ **startDate** | **optional.Int32**| The start date range | 
+ **perPage** | **optional.Int32**| Number of items per page. | [default to 10]
+ **page** | **optional.Int32**| The page number of search. | [default to 1]
+ **q** | **optional.String**| Content search. | 
+ **xFields** | **optional.String**| An optional fields mask | 
+
+### Return type
+
+[**InvoiceSeachResult**](InvoiceSeachResult.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetInvoiceUnpaidResource
+
+> InvoiceUnpaid GetInvoiceUnpaidResource(ctx, optional)
+
+Return total balance of all unpaid invoices
+
+### Required Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+ **optional** | ***GetInvoiceUnpaidResourceOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+
+Optional parameters are passed through a pointer to a GetInvoiceUnpaidResourceOpts struct
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **xFields** | **optional.String**| An optional fields mask | 
+
+### Return type
+
+[**InvoiceUnpaid**](InvoiceUnpaid.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)

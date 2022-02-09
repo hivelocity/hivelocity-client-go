@@ -49,7 +49,7 @@ Name | Type | Description  | Notes
 
 ## GetContactIdResource
 
-> GetContactIdResource(ctx, contactId)
+> ContactDump GetContactIdResource(ctx, contactId, optional)
 
 Return details of a specific Contact
 
@@ -60,10 +60,21 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **contactId** | **int32**| ID of Contact to View / Update | 
+ **optional** | ***GetContactIdResourceOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+
+Optional parameters are passed through a pointer to a GetContactIdResourceOpts struct
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **xFields** | **optional.String**| An optional fields mask | 
 
 ### Return type
 
- (empty response body)
+[**ContactDump**](Contact-dump.md)
 
 ### Authorization
 
@@ -72,7 +83,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -81,17 +92,30 @@ Name | Type | Description  | Notes
 
 ## GetContactResource
 
-> GetContactResource(ctx, )
+> []ContactDump GetContactResource(ctx, optional)
 
 Return a list with all Contacts
 
 ### Required Parameters
 
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+ **optional** | ***GetContactResourceOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+
+Optional parameters are passed through a pointer to a GetContactResourceOpts struct
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **xFields** | **optional.String**| An optional fields mask | 
 
 ### Return type
 
- (empty response body)
+[**[]ContactDump**](Contact-dump.md)
 
 ### Authorization
 
@@ -100,7 +124,7 @@ This endpoint does not need any parameter.
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -109,7 +133,7 @@ This endpoint does not need any parameter.
 
 ## PostContactResource
 
-> PostContactResource(ctx, payload)
+> ContactDump PostContactResource(ctx, payload, optional)
 
 Create a new Contact
 
@@ -120,10 +144,21 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **payload** | [**ContactCreate**](ContactCreate.md)|  | 
+ **optional** | ***PostContactResourceOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+
+Optional parameters are passed through a pointer to a PostContactResourceOpts struct
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **xFields** | **optional.String**| An optional fields mask | 
 
 ### Return type
 
- (empty response body)
+[**ContactDump**](Contact-dump.md)
 
 ### Authorization
 
@@ -132,7 +167,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: application/json
-- **Accept**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -173,7 +208,7 @@ Name | Type | Description  | Notes
 
 ## PutContactIdResource
 
-> PutContactIdResource(ctx, contactId, payload)
+> ContactDump PutContactIdResource(ctx, contactId, payload, optional)
 
 Edit a Contact
 
@@ -185,10 +220,22 @@ Name | Type | Description  | Notes
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **contactId** | **int32**| ID of Contact to View / Update | 
 **payload** | [**ContactUpdate**](ContactUpdate.md)|  | 
+ **optional** | ***PutContactIdResourceOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+
+Optional parameters are passed through a pointer to a PutContactIdResourceOpts struct
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+ **xFields** | **optional.String**| An optional fields mask | 
 
 ### Return type
 
- (empty response body)
+[**ContactDump**](Contact-dump.md)
 
 ### Authorization
 
@@ -197,7 +244,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: application/json
-- **Accept**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)

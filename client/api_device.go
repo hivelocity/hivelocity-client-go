@@ -26,17 +26,26 @@ var (
 // DeviceApiService DeviceApi service
 type DeviceApiService service
 
+// GetAllDeviceTagOrderResourceOpts Optional parameters for the method 'GetAllDeviceTagOrderResource'
+type GetAllDeviceTagOrderResourceOpts struct {
+	XFields optional.String
+}
+
 /*
 GetAllDeviceTagOrderResource Get all device tags order
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param optional nil or *GetAllDeviceTagOrderResourceOpts - Optional Parameters:
+ * @param "XFields" (optional.String) -  An optional fields mask
+@return DeviceTag
 */
-func (a *DeviceApiService) GetAllDeviceTagOrderResource(ctx _context.Context) (*_nethttp.Response, error) {
+func (a *DeviceApiService) GetAllDeviceTagOrderResource(ctx _context.Context, localVarOptionals *GetAllDeviceTagOrderResourceOpts) (DeviceTag, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
+		localVarReturnValue  DeviceTag
 	)
 
 	// create path and map variables
@@ -55,12 +64,15 @@ func (a *DeviceApiService) GetAllDeviceTagOrderResource(ctx _context.Context) (*
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{}
+	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if localVarOptionals != nil && localVarOptionals.XFields.IsSet() {
+		localVarHeaderParams["X-Fields"] = parameterToString(localVarOptionals.XFields.Value(), "")
 	}
 	if ctx != nil {
 		// API Key Authentication
@@ -76,18 +88,18 @@ func (a *DeviceApiService) GetAllDeviceTagOrderResource(ctx _context.Context) (*
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
-		return nil, err
+		return localVarReturnValue, nil, err
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(r)
 	if err != nil || localVarHTTPResponse == nil {
-		return localVarHTTPResponse, err
+		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
-		return localVarHTTPResponse, err
+		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
@@ -95,23 +107,41 @@ func (a *DeviceApiService) GetAllDeviceTagOrderResource(ctx _context.Context) (*
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		return localVarHTTPResponse, newErr
+		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	return localVarHTTPResponse, nil
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+// GetClientDeviceTagOrderResourceOpts Optional parameters for the method 'GetClientDeviceTagOrderResource'
+type GetClientDeviceTagOrderResourceOpts struct {
+	XFields optional.String
 }
 
 /*
 GetClientDeviceTagOrderResource Get device tags order for current user
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param optional nil or *GetClientDeviceTagOrderResourceOpts - Optional Parameters:
+ * @param "XFields" (optional.String) -  An optional fields mask
+@return DeviceTag
 */
-func (a *DeviceApiService) GetClientDeviceTagOrderResource(ctx _context.Context) (*_nethttp.Response, error) {
+func (a *DeviceApiService) GetClientDeviceTagOrderResource(ctx _context.Context, localVarOptionals *GetClientDeviceTagOrderResourceOpts) (DeviceTag, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
+		localVarReturnValue  DeviceTag
 	)
 
 	// create path and map variables
@@ -130,12 +160,15 @@ func (a *DeviceApiService) GetClientDeviceTagOrderResource(ctx _context.Context)
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{}
+	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if localVarOptionals != nil && localVarOptionals.XFields.IsSet() {
+		localVarHeaderParams["X-Fields"] = parameterToString(localVarOptionals.XFields.Value(), "")
 	}
 	if ctx != nil {
 		// API Key Authentication
@@ -151,18 +184,18 @@ func (a *DeviceApiService) GetClientDeviceTagOrderResource(ctx _context.Context)
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
-		return nil, err
+		return localVarReturnValue, nil, err
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(r)
 	if err != nil || localVarHTTPResponse == nil {
-		return localVarHTTPResponse, err
+		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
-		return localVarHTTPResponse, err
+		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
@@ -170,23 +203,41 @@ func (a *DeviceApiService) GetClientDeviceTagOrderResource(ctx _context.Context)
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		return localVarHTTPResponse, newErr
+		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	return localVarHTTPResponse, nil
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+// GetClientDeviceTagResourceOpts Optional parameters for the method 'GetClientDeviceTagResource'
+type GetClientDeviceTagResourceOpts struct {
+	XFields optional.String
 }
 
 /*
 GetClientDeviceTagResource Get all device tags for current client
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param optional nil or *GetClientDeviceTagResourceOpts - Optional Parameters:
+ * @param "XFields" (optional.String) -  An optional fields mask
+@return DeviceTag
 */
-func (a *DeviceApiService) GetClientDeviceTagResource(ctx _context.Context) (*_nethttp.Response, error) {
+func (a *DeviceApiService) GetClientDeviceTagResource(ctx _context.Context, localVarOptionals *GetClientDeviceTagResourceOpts) (DeviceTag, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
+		localVarReturnValue  DeviceTag
 	)
 
 	// create path and map variables
@@ -205,12 +256,15 @@ func (a *DeviceApiService) GetClientDeviceTagResource(ctx _context.Context) (*_n
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{}
+	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if localVarOptionals != nil && localVarOptionals.XFields.IsSet() {
+		localVarHeaderParams["X-Fields"] = parameterToString(localVarOptionals.XFields.Value(), "")
 	}
 	if ctx != nil {
 		// API Key Authentication
@@ -226,18 +280,18 @@ func (a *DeviceApiService) GetClientDeviceTagResource(ctx _context.Context) (*_n
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
-		return nil, err
+		return localVarReturnValue, nil, err
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(r)
 	if err != nil || localVarHTTPResponse == nil {
-		return localVarHTTPResponse, err
+		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
-		return localVarHTTPResponse, err
+		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
@@ -245,24 +299,42 @@ func (a *DeviceApiService) GetClientDeviceTagResource(ctx _context.Context) (*_n
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		return localVarHTTPResponse, newErr
+		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	return localVarHTTPResponse, nil
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+// GetDeviceIdEventResourceOpts Optional parameters for the method 'GetDeviceIdEventResource'
+type GetDeviceIdEventResourceOpts struct {
+	XFields optional.String
 }
 
 /*
 GetDeviceIdEventResource Returns all Events found for a single device
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param deviceId
+ * @param optional nil or *GetDeviceIdEventResourceOpts - Optional Parameters:
+ * @param "XFields" (optional.String) -  An optional fields mask
+@return []DeviceEvent
 */
-func (a *DeviceApiService) GetDeviceIdEventResource(ctx _context.Context, deviceId string) (*_nethttp.Response, error) {
+func (a *DeviceApiService) GetDeviceIdEventResource(ctx _context.Context, deviceId string, localVarOptionals *GetDeviceIdEventResourceOpts) ([]DeviceEvent, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
+		localVarReturnValue  []DeviceEvent
 	)
 
 	// create path and map variables
@@ -283,12 +355,15 @@ func (a *DeviceApiService) GetDeviceIdEventResource(ctx _context.Context, device
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{}
+	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if localVarOptionals != nil && localVarOptionals.XFields.IsSet() {
+		localVarHeaderParams["X-Fields"] = parameterToString(localVarOptionals.XFields.Value(), "")
 	}
 	if ctx != nil {
 		// API Key Authentication
@@ -304,18 +379,18 @@ func (a *DeviceApiService) GetDeviceIdEventResource(ctx _context.Context, device
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
-		return nil, err
+		return localVarReturnValue, nil, err
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(r)
 	if err != nil || localVarHTTPResponse == nil {
-		return localVarHTTPResponse, err
+		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
-		return localVarHTTPResponse, err
+		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
@@ -323,24 +398,42 @@ func (a *DeviceApiService) GetDeviceIdEventResource(ctx _context.Context, device
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		return localVarHTTPResponse, newErr
+		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	return localVarHTTPResponse, nil
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+// GetDeviceIdResourceOpts Optional parameters for the method 'GetDeviceIdResource'
+type GetDeviceIdResourceOpts struct {
+	XFields optional.String
 }
 
 /*
 GetDeviceIdResource Returns detailed information for a Single Device
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param deviceId ID of Device to View / Update
+ * @param optional nil or *GetDeviceIdResourceOpts - Optional Parameters:
+ * @param "XFields" (optional.String) -  An optional fields mask
+@return DeviceDump
 */
-func (a *DeviceApiService) GetDeviceIdResource(ctx _context.Context, deviceId int32) (*_nethttp.Response, error) {
+func (a *DeviceApiService) GetDeviceIdResource(ctx _context.Context, deviceId int32, localVarOptionals *GetDeviceIdResourceOpts) (DeviceDump, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
+		localVarReturnValue  DeviceDump
 	)
 
 	// create path and map variables
@@ -361,12 +454,15 @@ func (a *DeviceApiService) GetDeviceIdResource(ctx _context.Context, deviceId in
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{}
+	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if localVarOptionals != nil && localVarOptionals.XFields.IsSet() {
+		localVarHeaderParams["X-Fields"] = parameterToString(localVarOptionals.XFields.Value(), "")
 	}
 	if ctx != nil {
 		// API Key Authentication
@@ -382,18 +478,18 @@ func (a *DeviceApiService) GetDeviceIdResource(ctx _context.Context, deviceId in
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
-		return nil, err
+		return localVarReturnValue, nil, err
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(r)
 	if err != nil || localVarHTTPResponse == nil {
-		return localVarHTTPResponse, err
+		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
-		return localVarHTTPResponse, err
+		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
@@ -401,19 +497,28 @@ func (a *DeviceApiService) GetDeviceIdResource(ctx _context.Context, deviceId in
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		return localVarHTTPResponse, newErr
+		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	return localVarHTTPResponse, nil
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
 /*
-GetDeviceIpmiWhitelistActionResource Retrieve the state of the action to add the IP into Whitelist
+GetDeviceIpminatRuleResource Clear NAT rules based on the device client id
+Returns success or error
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param deviceId ID of the Device to add IP in Whitelist
- * @param actionId
+ * @param deviceId ID of a client Device
 */
-func (a *DeviceApiService) GetDeviceIpmiWhitelistActionResource(ctx _context.Context, deviceId int32, actionId string) (*_nethttp.Response, error) {
+func (a *DeviceApiService) GetDeviceIpminatRuleResource(ctx _context.Context, deviceId int32) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
@@ -423,90 +528,7 @@ func (a *DeviceApiService) GetDeviceIpmiWhitelistActionResource(ctx _context.Con
 	)
 
 	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/device/{deviceId}/ipmi/whitelist/{actionId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"deviceId"+"}", _neturl.QueryEscape(parameterToString(deviceId, "")), -1)
-
-	localVarPath = strings.Replace(localVarPath, "{"+"actionId"+"}", _neturl.QueryEscape(parameterToString(actionId, "")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + auth.Key
-			} else {
-				key = auth.Key
-			}
-			localVarHeaderParams["X-API-KEY"] = key
-		}
-	}
-	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
-	if err != nil {
-		return nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(r)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarHTTPResponse, err
-	}
-
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	if err != nil {
-		return localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		return localVarHTTPResponse, newErr
-	}
-
-	return localVarHTTPResponse, nil
-}
-
-/*
-GetDeviceIpmiWhitelistPublicIp Retrieve the Public IP using the Device ID and the Action ID that was used to add it to Whitelist
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param actionId ID of the action to add IP in Whitelist
- * @param deviceId ID of the Device to add IP in Whitelist
-*/
-func (a *DeviceApiService) GetDeviceIpmiWhitelistPublicIp(ctx _context.Context, actionId string, deviceId int32) (*_nethttp.Response, error) {
-	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-	)
-
-	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/device/{deviceId}/ipmi/whitelist/{actionId}/public-ip"
-	localVarPath = strings.Replace(localVarPath, "{"+"actionId"+"}", _neturl.QueryEscape(parameterToString(actionId, "")), -1)
-
+	localVarPath := a.client.cfg.BasePath + "/device/{deviceId}/ipmi/nat"
 	localVarPath = strings.Replace(localVarPath, "{"+"deviceId"+"}", _neturl.QueryEscape(parameterToString(deviceId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -569,17 +591,26 @@ func (a *DeviceApiService) GetDeviceIpmiWhitelistPublicIp(ctx _context.Context, 
 	return localVarHTTPResponse, nil
 }
 
+// GetDeviceResourceOpts Optional parameters for the method 'GetDeviceResource'
+type GetDeviceResourceOpts struct {
+	XFields optional.String
+}
+
 /*
-GetDeviceResource Returns Active Devices and basic MetaData
+GetDeviceResource Return Active Devices and basic MetaData
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param optional nil or *GetDeviceResourceOpts - Optional Parameters:
+ * @param "XFields" (optional.String) -  An optional fields mask
+@return []DeviceDump
 */
-func (a *DeviceApiService) GetDeviceResource(ctx _context.Context) (*_nethttp.Response, error) {
+func (a *DeviceApiService) GetDeviceResource(ctx _context.Context, localVarOptionals *GetDeviceResourceOpts) ([]DeviceDump, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
+		localVarReturnValue  []DeviceDump
 	)
 
 	// create path and map variables
@@ -598,12 +629,15 @@ func (a *DeviceApiService) GetDeviceResource(ctx _context.Context) (*_nethttp.Re
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{}
+	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if localVarOptionals != nil && localVarOptionals.XFields.IsSet() {
+		localVarHeaderParams["X-Fields"] = parameterToString(localVarOptionals.XFields.Value(), "")
 	}
 	if ctx != nil {
 		// API Key Authentication
@@ -619,18 +653,18 @@ func (a *DeviceApiService) GetDeviceResource(ctx _context.Context) (*_nethttp.Re
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
-		return nil, err
+		return localVarReturnValue, nil, err
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(r)
 	if err != nil || localVarHTTPResponse == nil {
-		return localVarHTTPResponse, err
+		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
-		return localVarHTTPResponse, err
+		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
@@ -638,24 +672,42 @@ func (a *DeviceApiService) GetDeviceResource(ctx _context.Context) (*_nethttp.Re
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		return localVarHTTPResponse, newErr
+		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	return localVarHTTPResponse, nil
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+// GetDeviceTagIdResourceOpts Optional parameters for the method 'GetDeviceTagIdResource'
+type GetDeviceTagIdResourceOpts struct {
+	XFields optional.String
 }
 
 /*
 GetDeviceTagIdResource Get device tags
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param deviceId ID of Device to View / Update
+ * @param optional nil or *GetDeviceTagIdResourceOpts - Optional Parameters:
+ * @param "XFields" (optional.String) -  An optional fields mask
+@return DeviceTag
 */
-func (a *DeviceApiService) GetDeviceTagIdResource(ctx _context.Context, deviceId int32) (*_nethttp.Response, error) {
+func (a *DeviceApiService) GetDeviceTagIdResource(ctx _context.Context, deviceId int32, localVarOptionals *GetDeviceTagIdResourceOpts) (DeviceTag, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
+		localVarReturnValue  DeviceTag
 	)
 
 	// create path and map variables
@@ -676,12 +728,15 @@ func (a *DeviceApiService) GetDeviceTagIdResource(ctx _context.Context, deviceId
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{}
+	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if localVarOptionals != nil && localVarOptionals.XFields.IsSet() {
+		localVarHeaderParams["X-Fields"] = parameterToString(localVarOptionals.XFields.Value(), "")
 	}
 	if ctx != nil {
 		// API Key Authentication
@@ -697,18 +752,18 @@ func (a *DeviceApiService) GetDeviceTagIdResource(ctx _context.Context, deviceId
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
-		return nil, err
+		return localVarReturnValue, nil, err
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(r)
 	if err != nil || localVarHTTPResponse == nil {
-		return localVarHTTPResponse, err
+		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
-		return localVarHTTPResponse, err
+		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
@@ -716,24 +771,141 @@ func (a *DeviceApiService) GetDeviceTagIdResource(ctx _context.Context, deviceId
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		return localVarHTTPResponse, newErr
+		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	return localVarHTTPResponse, nil
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+// GetInitialCredsIdResourceOpts Optional parameters for the method 'GetInitialCredsIdResource'
+type GetInitialCredsIdResourceOpts struct {
+	XFields optional.String
 }
 
 /*
-GetInitialPasswordIdResource Returns initial password for the device
+GetInitialCredsIdResource Returns initial password for the device
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param deviceId ID of Device to retrieve initial password
+ * @param deviceId ID of Device to retrieve initial authentication credentials for
+ * @param optional nil or *GetInitialCredsIdResourceOpts - Optional Parameters:
+ * @param "XFields" (optional.String) -  An optional fields mask
+@return DeviceInitialCreds
 */
-func (a *DeviceApiService) GetInitialPasswordIdResource(ctx _context.Context, deviceId int32) (*_nethttp.Response, error) {
+func (a *DeviceApiService) GetInitialCredsIdResource(ctx _context.Context, deviceId int32, localVarOptionals *GetInitialCredsIdResourceOpts) (DeviceInitialCreds, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
+		localVarReturnValue  DeviceInitialCreds
+	)
+
+	// create path and map variables
+	localVarPath := a.client.cfg.BasePath + "/device/{deviceId}/initial-creds"
+	localVarPath = strings.Replace(localVarPath, "{"+"deviceId"+"}", _neturl.QueryEscape(parameterToString(deviceId, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if localVarOptionals != nil && localVarOptionals.XFields.IsSet() {
+		localVarHeaderParams["X-Fields"] = parameterToString(localVarOptionals.XFields.Value(), "")
+	}
+	if ctx != nil {
+		// API Key Authentication
+		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
+			var key string
+			if auth.Prefix != "" {
+				key = auth.Prefix + " " + auth.Key
+			} else {
+				key = auth.Key
+			}
+			localVarHeaderParams["X-API-KEY"] = key
+		}
+	}
+	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(r)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+// GetInitialPasswordIdResourceOpts Optional parameters for the method 'GetInitialPasswordIdResource'
+type GetInitialPasswordIdResourceOpts struct {
+	XFields optional.String
+}
+
+/*
+GetInitialPasswordIdResource Returns initial password for the device
+ * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param deviceId ID of Device to retrieve initial password
+ * @param optional nil or *GetInitialPasswordIdResourceOpts - Optional Parameters:
+ * @param "XFields" (optional.String) -  An optional fields mask
+@return DevicePassword
+*/
+func (a *DeviceApiService) GetInitialPasswordIdResource(ctx _context.Context, deviceId int32, localVarOptionals *GetInitialPasswordIdResourceOpts) (DevicePassword, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  DevicePassword
 	)
 
 	// create path and map variables
@@ -754,12 +926,15 @@ func (a *DeviceApiService) GetInitialPasswordIdResource(ctx _context.Context, de
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{}
+	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if localVarOptionals != nil && localVarOptionals.XFields.IsSet() {
+		localVarHeaderParams["X-Fields"] = parameterToString(localVarOptionals.XFields.Value(), "")
 	}
 	if ctx != nil {
 		// API Key Authentication
@@ -775,18 +950,18 @@ func (a *DeviceApiService) GetInitialPasswordIdResource(ctx _context.Context, de
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
-		return nil, err
+		return localVarReturnValue, nil, err
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(r)
 	if err != nil || localVarHTTPResponse == nil {
-		return localVarHTTPResponse, err
+		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
-		return localVarHTTPResponse, err
+		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
@@ -794,24 +969,42 @@ func (a *DeviceApiService) GetInitialPasswordIdResource(ctx _context.Context, de
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		return localVarHTTPResponse, newErr
+		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	return localVarHTTPResponse, nil
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+// GetIpmiInfoIdResourceOpts Optional parameters for the method 'GetIpmiInfoIdResource'
+type GetIpmiInfoIdResourceOpts struct {
+	XFields optional.String
 }
 
 /*
 GetIpmiInfoIdResource Returns IPMI info data
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param deviceId ID of Device to retrieve IPMI info.
+ * @param optional nil or *GetIpmiInfoIdResourceOpts - Optional Parameters:
+ * @param "XFields" (optional.String) -  An optional fields mask
+@return DeviceIpmiInfo
 */
-func (a *DeviceApiService) GetIpmiInfoIdResource(ctx _context.Context, deviceId int32) (*_nethttp.Response, error) {
+func (a *DeviceApiService) GetIpmiInfoIdResource(ctx _context.Context, deviceId int32, localVarOptionals *GetIpmiInfoIdResourceOpts) (DeviceIpmiInfo, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
+		localVarReturnValue  DeviceIpmiInfo
 	)
 
 	// create path and map variables
@@ -832,12 +1025,15 @@ func (a *DeviceApiService) GetIpmiInfoIdResource(ctx _context.Context, deviceId 
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{}
+	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if localVarOptionals != nil && localVarOptionals.XFields.IsSet() {
+		localVarHeaderParams["X-Fields"] = parameterToString(localVarOptionals.XFields.Value(), "")
 	}
 	if ctx != nil {
 		// API Key Authentication
@@ -853,18 +1049,18 @@ func (a *DeviceApiService) GetIpmiInfoIdResource(ctx _context.Context, deviceId 
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
-		return nil, err
+		return localVarReturnValue, nil, err
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(r)
 	if err != nil || localVarHTTPResponse == nil {
-		return localVarHTTPResponse, err
+		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
-		return localVarHTTPResponse, err
+		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
@@ -872,24 +1068,141 @@ func (a *DeviceApiService) GetIpmiInfoIdResource(ctx _context.Context, deviceId 
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		return localVarHTTPResponse, newErr
+		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	return localVarHTTPResponse, nil
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+// GetIpmiInfoLoginDataResourceOpts Optional parameters for the method 'GetIpmiInfoLoginDataResource'
+type GetIpmiInfoLoginDataResourceOpts struct {
+	XFields optional.String
 }
 
 /*
-GetIpmiThresholdsIdResource Returns IPMI thresholds data
+GetIpmiInfoLoginDataResource Returns IPMI login credentials
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param deviceId ID of Device to View
+ * @param deviceId ID of Device to retrieve IPMI Login data.
+ * @param optional nil or *GetIpmiInfoLoginDataResourceOpts - Optional Parameters:
+ * @param "XFields" (optional.String) -  An optional fields mask
+@return IpmiLoginData
 */
-func (a *DeviceApiService) GetIpmiThresholdsIdResource(ctx _context.Context, deviceId int32) (*_nethttp.Response, error) {
+func (a *DeviceApiService) GetIpmiInfoLoginDataResource(ctx _context.Context, deviceId int32, localVarOptionals *GetIpmiInfoLoginDataResourceOpts) (IpmiLoginData, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
+		localVarReturnValue  IpmiLoginData
+	)
+
+	// create path and map variables
+	localVarPath := a.client.cfg.BasePath + "/device/{deviceId}/ipmi/login-data"
+	localVarPath = strings.Replace(localVarPath, "{"+"deviceId"+"}", _neturl.QueryEscape(parameterToString(deviceId, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if localVarOptionals != nil && localVarOptionals.XFields.IsSet() {
+		localVarHeaderParams["X-Fields"] = parameterToString(localVarOptionals.XFields.Value(), "")
+	}
+	if ctx != nil {
+		// API Key Authentication
+		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
+			var key string
+			if auth.Prefix != "" {
+				key = auth.Prefix + " " + auth.Key
+			} else {
+				key = auth.Key
+			}
+			localVarHeaderParams["X-API-KEY"] = key
+		}
+	}
+	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(r)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+// GetIpmiThresholdsIdResourceOpts Optional parameters for the method 'GetIpmiThresholdsIdResource'
+type GetIpmiThresholdsIdResourceOpts struct {
+	XFields optional.String
+}
+
+/*
+GetIpmiThresholdsIdResource Returns IPMI thresholds data
+ * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param deviceId ID of Device to View
+ * @param optional nil or *GetIpmiThresholdsIdResourceOpts - Optional Parameters:
+ * @param "XFields" (optional.String) -  An optional fields mask
+@return DeviceIpmiThresholds
+*/
+func (a *DeviceApiService) GetIpmiThresholdsIdResource(ctx _context.Context, deviceId int32, localVarOptionals *GetIpmiThresholdsIdResourceOpts) (DeviceIpmiThresholds, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  DeviceIpmiThresholds
 	)
 
 	// create path and map variables
@@ -910,12 +1223,15 @@ func (a *DeviceApiService) GetIpmiThresholdsIdResource(ctx _context.Context, dev
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{}
+	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if localVarOptionals != nil && localVarOptionals.XFields.IsSet() {
+		localVarHeaderParams["X-Fields"] = parameterToString(localVarOptionals.XFields.Value(), "")
 	}
 	if ctx != nil {
 		// API Key Authentication
@@ -931,18 +1247,18 @@ func (a *DeviceApiService) GetIpmiThresholdsIdResource(ctx _context.Context, dev
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
-		return nil, err
+		return localVarReturnValue, nil, err
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(r)
 	if err != nil || localVarHTTPResponse == nil {
-		return localVarHTTPResponse, err
+		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
-		return localVarHTTPResponse, err
+		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
@@ -950,24 +1266,42 @@ func (a *DeviceApiService) GetIpmiThresholdsIdResource(ctx _context.Context, dev
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		return localVarHTTPResponse, newErr
+		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	return localVarHTTPResponse, nil
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+// GetIpmiValidLoginIdResourceOpts Optional parameters for the method 'GetIpmiValidLoginIdResource'
+type GetIpmiValidLoginIdResourceOpts struct {
+	XFields optional.String
 }
 
 /*
 GetIpmiValidLoginIdResource Returns if device have valid credentials for IPMI login
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param deviceId ID of Device to check IPMI credentials
+ * @param optional nil or *GetIpmiValidLoginIdResourceOpts - Optional Parameters:
+ * @param "XFields" (optional.String) -  An optional fields mask
+@return IpmiValidLogin
 */
-func (a *DeviceApiService) GetIpmiValidLoginIdResource(ctx _context.Context, deviceId int32) (*_nethttp.Response, error) {
+func (a *DeviceApiService) GetIpmiValidLoginIdResource(ctx _context.Context, deviceId int32, localVarOptionals *GetIpmiValidLoginIdResourceOpts) (IpmiValidLogin, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
+		localVarReturnValue  IpmiValidLogin
 	)
 
 	// create path and map variables
@@ -988,12 +1322,15 @@ func (a *DeviceApiService) GetIpmiValidLoginIdResource(ctx _context.Context, dev
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{}
+	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if localVarOptionals != nil && localVarOptionals.XFields.IsSet() {
+		localVarHeaderParams["X-Fields"] = parameterToString(localVarOptionals.XFields.Value(), "")
 	}
 	if ctx != nil {
 		// API Key Authentication
@@ -1009,18 +1346,18 @@ func (a *DeviceApiService) GetIpmiValidLoginIdResource(ctx _context.Context, dev
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
-		return nil, err
+		return localVarReturnValue, nil, err
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(r)
 	if err != nil || localVarHTTPResponse == nil {
-		return localVarHTTPResponse, err
+		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
-		return localVarHTTPResponse, err
+		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
@@ -1028,10 +1365,19 @@ func (a *DeviceApiService) GetIpmiValidLoginIdResource(ctx _context.Context, dev
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		return localVarHTTPResponse, newErr
+		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	return localVarHTTPResponse, nil
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
 // GetNetworkInterfaceResourceOpts Optional parameters for the method 'GetNetworkInterfaceResource'
@@ -1133,18 +1479,27 @@ func (a *DeviceApiService) GetNetworkInterfaceResource(ctx _context.Context, dev
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+// GetPowerResourceOpts Optional parameters for the method 'GetPowerResource'
+type GetPowerResourceOpts struct {
+	XFields optional.String
+}
+
 /*
 GetPowerResource Get device's current power status
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param deviceId ID of Device to View / Update
+ * @param optional nil or *GetPowerResourceOpts - Optional Parameters:
+ * @param "XFields" (optional.String) -  An optional fields mask
+@return DevicePowerDump
 */
-func (a *DeviceApiService) GetPowerResource(ctx _context.Context, deviceId int32) (*_nethttp.Response, error) {
+func (a *DeviceApiService) GetPowerResource(ctx _context.Context, deviceId int32, localVarOptionals *GetPowerResourceOpts) (DevicePowerDump, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
+		localVarReturnValue  DevicePowerDump
 	)
 
 	// create path and map variables
@@ -1165,12 +1520,15 @@ func (a *DeviceApiService) GetPowerResource(ctx _context.Context, deviceId int32
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{}
+	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if localVarOptionals != nil && localVarOptionals.XFields.IsSet() {
+		localVarHeaderParams["X-Fields"] = parameterToString(localVarOptionals.XFields.Value(), "")
 	}
 	if ctx != nil {
 		// API Key Authentication
@@ -1186,18 +1544,18 @@ func (a *DeviceApiService) GetPowerResource(ctx _context.Context, deviceId int32
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
-		return nil, err
+		return localVarReturnValue, nil, err
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(r)
 	if err != nil || localVarHTTPResponse == nil {
-		return localVarHTTPResponse, err
+		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
-		return localVarHTTPResponse, err
+		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
@@ -1205,14 +1563,24 @@ func (a *DeviceApiService) GetPowerResource(ctx _context.Context, deviceId int32
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		return localVarHTTPResponse, newErr
+		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	return localVarHTTPResponse, nil
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
 /*
-PostDeviceIpmiWhitelistResource Include the custip (custom IP) on IPMI WhiteList
+PostDeviceIpmiWhitelistResource Add a public IP on IPMI whitelist
+Returns IPMI public IP
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param deviceId ID of the Device to put IP in Whitelist
  * @param payload
@@ -1292,19 +1660,130 @@ func (a *DeviceApiService) PostDeviceIpmiWhitelistResource(ctx _context.Context,
 	return localVarHTTPResponse, nil
 }
 
+// PostDeviceReloadResourceOpts Optional parameters for the method 'PostDeviceReloadResource'
+type PostDeviceReloadResourceOpts struct {
+	XFields optional.String
+}
+
 /*
-PostPowerResource Apply action to device power
+PostDeviceReloadResource Reload any SPS Device with any available OS
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param deviceId ID of Device to View / Update
- * @param action Must be one of boot|reboot|shutdown
+ * @param deviceId
+ * @param payload
+ * @param optional nil or *PostDeviceReloadResourceOpts - Optional Parameters:
+ * @param "XFields" (optional.String) -  An optional fields mask
+@return ServiceOption
 */
-func (a *DeviceApiService) PostPowerResource(ctx _context.Context, deviceId int32, action string) (*_nethttp.Response, error) {
+func (a *DeviceApiService) PostDeviceReloadResource(ctx _context.Context, deviceId int32, payload DeviceReload, localVarOptionals *PostDeviceReloadResourceOpts) (ServiceOption, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPost
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
+		localVarReturnValue  ServiceOption
+	)
+
+	// create path and map variables
+	localVarPath := a.client.cfg.BasePath + "/device/{deviceId}/reload"
+	localVarPath = strings.Replace(localVarPath, "{"+"deviceId"+"}", _neturl.QueryEscape(parameterToString(deviceId, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if localVarOptionals != nil && localVarOptionals.XFields.IsSet() {
+		localVarHeaderParams["X-Fields"] = parameterToString(localVarOptionals.XFields.Value(), "")
+	}
+	// body params
+	localVarPostBody = &payload
+	if ctx != nil {
+		// API Key Authentication
+		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
+			var key string
+			if auth.Prefix != "" {
+				key = auth.Prefix + " " + auth.Key
+			} else {
+				key = auth.Key
+			}
+			localVarHeaderParams["X-API-KEY"] = key
+		}
+	}
+	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(r)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+// PostPowerResourceOpts Optional parameters for the method 'PostPowerResource'
+type PostPowerResourceOpts struct {
+	XFields optional.String
+}
+
+/*
+PostPowerResource Apply action to device power
+ * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param deviceId ID of Device to View / Update
+ * @param action Must be one of boot|reboot|shutdown
+ * @param optional nil or *PostPowerResourceOpts - Optional Parameters:
+ * @param "XFields" (optional.String) -  An optional fields mask
+@return DevicePowerDump
+*/
+func (a *DeviceApiService) PostPowerResource(ctx _context.Context, deviceId int32, action string, localVarOptionals *PostPowerResourceOpts) (DevicePowerDump, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  DevicePowerDump
 	)
 
 	// create path and map variables
@@ -1326,12 +1805,15 @@ func (a *DeviceApiService) PostPowerResource(ctx _context.Context, deviceId int3
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{}
+	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if localVarOptionals != nil && localVarOptionals.XFields.IsSet() {
+		localVarHeaderParams["X-Fields"] = parameterToString(localVarOptionals.XFields.Value(), "")
 	}
 	if ctx != nil {
 		// API Key Authentication
@@ -1347,18 +1829,18 @@ func (a *DeviceApiService) PostPowerResource(ctx _context.Context, deviceId int3
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
-		return nil, err
+		return localVarReturnValue, nil, err
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(r)
 	if err != nil || localVarHTTPResponse == nil {
-		return localVarHTTPResponse, err
+		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
-		return localVarHTTPResponse, err
+		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
@@ -1366,24 +1848,42 @@ func (a *DeviceApiService) PostPowerResource(ctx _context.Context, deviceId int3
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		return localVarHTTPResponse, newErr
+		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	return localVarHTTPResponse, nil
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+// PutClientDeviceTagOrderResourceOpts Optional parameters for the method 'PutClientDeviceTagOrderResource'
+type PutClientDeviceTagOrderResourceOpts struct {
+	XFields optional.String
 }
 
 /*
 PutClientDeviceTagOrderResource Update device tags order for current user
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param payload
+ * @param optional nil or *PutClientDeviceTagOrderResourceOpts - Optional Parameters:
+ * @param "XFields" (optional.String) -  An optional fields mask
+@return DeviceTag
 */
-func (a *DeviceApiService) PutClientDeviceTagOrderResource(ctx _context.Context, payload DeviceTag) (*_nethttp.Response, error) {
+func (a *DeviceApiService) PutClientDeviceTagOrderResource(ctx _context.Context, payload DeviceTag, localVarOptionals *PutClientDeviceTagOrderResourceOpts) (DeviceTag, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPut
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
+		localVarReturnValue  DeviceTag
 	)
 
 	// create path and map variables
@@ -1402,12 +1902,15 @@ func (a *DeviceApiService) PutClientDeviceTagOrderResource(ctx _context.Context,
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{}
+	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if localVarOptionals != nil && localVarOptionals.XFields.IsSet() {
+		localVarHeaderParams["X-Fields"] = parameterToString(localVarOptionals.XFields.Value(), "")
 	}
 	// body params
 	localVarPostBody = &payload
@@ -1425,18 +1928,18 @@ func (a *DeviceApiService) PutClientDeviceTagOrderResource(ctx _context.Context,
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
-		return nil, err
+		return localVarReturnValue, nil, err
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(r)
 	if err != nil || localVarHTTPResponse == nil {
-		return localVarHTTPResponse, err
+		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
-		return localVarHTTPResponse, err
+		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
@@ -1444,10 +1947,24 @@ func (a *DeviceApiService) PutClientDeviceTagOrderResource(ctx _context.Context,
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		return localVarHTTPResponse, newErr
+		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	return localVarHTTPResponse, nil
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+// PutDeviceIdResourceOpts Optional parameters for the method 'PutDeviceIdResource'
+type PutDeviceIdResourceOpts struct {
+	XFields optional.String
 }
 
 /*
@@ -1455,14 +1972,18 @@ PutDeviceIdResource Updates Device MetaData for a Single Device
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param deviceId ID of Device to View / Update
  * @param payload
+ * @param optional nil or *PutDeviceIdResourceOpts - Optional Parameters:
+ * @param "XFields" (optional.String) -  An optional fields mask
+@return DeviceDump
 */
-func (a *DeviceApiService) PutDeviceIdResource(ctx _context.Context, deviceId int32, payload DeviceUpdate) (*_nethttp.Response, error) {
+func (a *DeviceApiService) PutDeviceIdResource(ctx _context.Context, deviceId int32, payload DeviceUpdate, localVarOptionals *PutDeviceIdResourceOpts) (DeviceDump, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPut
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
+		localVarReturnValue  DeviceDump
 	)
 
 	// create path and map variables
@@ -1483,12 +2004,15 @@ func (a *DeviceApiService) PutDeviceIdResource(ctx _context.Context, deviceId in
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{}
+	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if localVarOptionals != nil && localVarOptionals.XFields.IsSet() {
+		localVarHeaderParams["X-Fields"] = parameterToString(localVarOptionals.XFields.Value(), "")
 	}
 	// body params
 	localVarPostBody = &payload
@@ -1506,18 +2030,18 @@ func (a *DeviceApiService) PutDeviceIdResource(ctx _context.Context, deviceId in
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
-		return nil, err
+		return localVarReturnValue, nil, err
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(r)
 	if err != nil || localVarHTTPResponse == nil {
-		return localVarHTTPResponse, err
+		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
-		return localVarHTTPResponse, err
+		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
@@ -1525,10 +2049,24 @@ func (a *DeviceApiService) PutDeviceIdResource(ctx _context.Context, deviceId in
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		return localVarHTTPResponse, newErr
+		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	return localVarHTTPResponse, nil
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+// PutDeviceTagIdResourceOpts Optional parameters for the method 'PutDeviceTagIdResource'
+type PutDeviceTagIdResourceOpts struct {
+	XFields optional.String
 }
 
 /*
@@ -1536,14 +2074,18 @@ PutDeviceTagIdResource Update device tags
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param deviceId ID of Device to View / Update
  * @param payload
+ * @param optional nil or *PutDeviceTagIdResourceOpts - Optional Parameters:
+ * @param "XFields" (optional.String) -  An optional fields mask
+@return DeviceTag
 */
-func (a *DeviceApiService) PutDeviceTagIdResource(ctx _context.Context, deviceId int32, payload DeviceTag) (*_nethttp.Response, error) {
+func (a *DeviceApiService) PutDeviceTagIdResource(ctx _context.Context, deviceId int32, payload DeviceTag, localVarOptionals *PutDeviceTagIdResourceOpts) (DeviceTag, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPut
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
+		localVarReturnValue  DeviceTag
 	)
 
 	// create path and map variables
@@ -1564,12 +2106,15 @@ func (a *DeviceApiService) PutDeviceTagIdResource(ctx _context.Context, deviceId
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{}
+	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if localVarOptionals != nil && localVarOptionals.XFields.IsSet() {
+		localVarHeaderParams["X-Fields"] = parameterToString(localVarOptionals.XFields.Value(), "")
 	}
 	// body params
 	localVarPostBody = &payload
@@ -1587,18 +2132,18 @@ func (a *DeviceApiService) PutDeviceTagIdResource(ctx _context.Context, deviceId
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
-		return nil, err
+		return localVarReturnValue, nil, err
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(r)
 	if err != nil || localVarHTTPResponse == nil {
-		return localVarHTTPResponse, err
+		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
-		return localVarHTTPResponse, err
+		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
@@ -1606,24 +2151,42 @@ func (a *DeviceApiService) PutDeviceTagIdResource(ctx _context.Context, deviceId
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		return localVarHTTPResponse, newErr
+		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	return localVarHTTPResponse, nil
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+// PutIpmiDevicesThresholdsIdResourceOpts Optional parameters for the method 'PutIpmiDevicesThresholdsIdResource'
+type PutIpmiDevicesThresholdsIdResourceOpts struct {
+	XFields optional.String
 }
 
 /*
 PutIpmiDevicesThresholdsIdResource Updates IPMI thresholds for device list
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param payload
+ * @param optional nil or *PutIpmiDevicesThresholdsIdResourceOpts - Optional Parameters:
+ * @param "XFields" (optional.String) -  An optional fields mask
+@return DevicesIpmiThresholds
 */
-func (a *DeviceApiService) PutIpmiDevicesThresholdsIdResource(ctx _context.Context, payload UpdateDevicesIpmiThresholds) (*_nethttp.Response, error) {
+func (a *DeviceApiService) PutIpmiDevicesThresholdsIdResource(ctx _context.Context, payload UpdateDevicesIpmiThresholds, localVarOptionals *PutIpmiDevicesThresholdsIdResourceOpts) (DevicesIpmiThresholds, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPut
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
+		localVarReturnValue  DevicesIpmiThresholds
 	)
 
 	// create path and map variables
@@ -1642,12 +2205,15 @@ func (a *DeviceApiService) PutIpmiDevicesThresholdsIdResource(ctx _context.Conte
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{}
+	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if localVarOptionals != nil && localVarOptionals.XFields.IsSet() {
+		localVarHeaderParams["X-Fields"] = parameterToString(localVarOptionals.XFields.Value(), "")
 	}
 	// body params
 	localVarPostBody = &payload
@@ -1665,18 +2231,18 @@ func (a *DeviceApiService) PutIpmiDevicesThresholdsIdResource(ctx _context.Conte
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
-		return nil, err
+		return localVarReturnValue, nil, err
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(r)
 	if err != nil || localVarHTTPResponse == nil {
-		return localVarHTTPResponse, err
+		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
-		return localVarHTTPResponse, err
+		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
@@ -1684,10 +2250,24 @@ func (a *DeviceApiService) PutIpmiDevicesThresholdsIdResource(ctx _context.Conte
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		return localVarHTTPResponse, newErr
+		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	return localVarHTTPResponse, nil
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+// PutIpmiThresholdsIdResourceOpts Optional parameters for the method 'PutIpmiThresholdsIdResource'
+type PutIpmiThresholdsIdResourceOpts struct {
+	XFields optional.String
 }
 
 /*
@@ -1695,14 +2275,18 @@ PutIpmiThresholdsIdResource Updates IPMI thresholds data
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param deviceId ID of Device to View
  * @param payload
+ * @param optional nil or *PutIpmiThresholdsIdResourceOpts - Optional Parameters:
+ * @param "XFields" (optional.String) -  An optional fields mask
+@return DeviceIpmiThresholds
 */
-func (a *DeviceApiService) PutIpmiThresholdsIdResource(ctx _context.Context, deviceId int32, payload DeviceIpmiThresholds) (*_nethttp.Response, error) {
+func (a *DeviceApiService) PutIpmiThresholdsIdResource(ctx _context.Context, deviceId int32, payload DeviceIpmiThresholds, localVarOptionals *PutIpmiThresholdsIdResourceOpts) (DeviceIpmiThresholds, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPut
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
+		localVarReturnValue  DeviceIpmiThresholds
 	)
 
 	// create path and map variables
@@ -1723,12 +2307,15 @@ func (a *DeviceApiService) PutIpmiThresholdsIdResource(ctx _context.Context, dev
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{}
+	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if localVarOptionals != nil && localVarOptionals.XFields.IsSet() {
+		localVarHeaderParams["X-Fields"] = parameterToString(localVarOptionals.XFields.Value(), "")
 	}
 	// body params
 	localVarPostBody = &payload
@@ -1746,18 +2333,18 @@ func (a *DeviceApiService) PutIpmiThresholdsIdResource(ctx _context.Context, dev
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
-		return nil, err
+		return localVarReturnValue, nil, err
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(r)
 	if err != nil || localVarHTTPResponse == nil {
-		return localVarHTTPResponse, err
+		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
-		return localVarHTTPResponse, err
+		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
@@ -1765,8 +2352,17 @@ func (a *DeviceApiService) PutIpmiThresholdsIdResource(ctx _context.Context, dev
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		return localVarHTTPResponse, newErr
+		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	return localVarHTTPResponse, nil
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
 }

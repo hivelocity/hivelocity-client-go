@@ -12,7 +12,7 @@ Method | HTTP request | Description
 
 ## GetBasicProfileResource
 
-> GetBasicProfileResource(ctx, optional)
+> BasicProfile GetBasicProfileResource(ctx, optional)
 
 Get Basic Profile of current user or a contact with id
 
@@ -34,10 +34,11 @@ Optional parameters are passed through a pointer to a GetBasicProfileResourceOpt
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **contactId** | **optional.String**| \&quot;ID of Contact to manage Basic Profile\&quot; | 
+ **xFields** | **optional.String**| An optional fields mask | 
 
 ### Return type
 
- (empty response body)
+[**BasicProfile**](BasicProfile.md)
 
 ### Authorization
 
@@ -46,7 +47,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -55,7 +56,7 @@ Name | Type | Description  | Notes
 
 ## GetProfileResource
 
-> GetProfileResource(ctx, optional)
+> Profile GetProfileResource(ctx, optional)
 
 Get Profile of current user or a contact with id
 
@@ -77,10 +78,11 @@ Optional parameters are passed through a pointer to a GetProfileResourceOpts str
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **contactId** | **optional.String**| \&quot;ID of Contact to manage Profile\&quot; | 
+ **xFields** | **optional.String**| An optional fields mask | 
 
 ### Return type
 
- (empty response body)
+[**Profile**](Profile.md)
 
 ### Authorization
 
@@ -89,7 +91,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -98,7 +100,7 @@ Name | Type | Description  | Notes
 
 ## PutProfileResource
 
-> PutProfileResource(ctx, payload, optional)
+> Profile PutProfileResource(ctx, payload, optional)
 
 Update Profile of current user or a contact with id
 
@@ -122,10 +124,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **contactId** | **optional.String**| \&quot;ID of Contact to manage Profile\&quot; | 
+ **xFields** | **optional.String**| An optional fields mask | 
 
 ### Return type
 
- (empty response body)
+[**Profile**](Profile.md)
 
 ### Authorization
 
@@ -134,7 +137,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: application/json
-- **Accept**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)

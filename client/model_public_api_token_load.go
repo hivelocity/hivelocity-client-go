@@ -11,5 +11,6 @@ package client
 
 // PublicApiTokenLoad struct for PublicApiTokenLoad
 type PublicApiTokenLoad struct {
-	Name string `json:"name,omitempty"`
+	Name        string           `json:"name,omitempty"`
+	IpAddresses PublicApiTokenIp `json:"ipAddresses,omitempty"`
 }

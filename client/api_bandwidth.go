@@ -28,8 +28,9 @@ type BandwidthApiService service
 
 // PostDeviceIdBandwidthImageResourceOpts Optional parameters for the method 'PostDeviceIdBandwidthImageResource'
 type PostDeviceIdBandwidthImageResourceOpts struct {
-	Start optional.Int32
-	End   optional.Int32
+	Start   optional.Int32
+	End     optional.Int32
+	XFields optional.String
 }
 
 /*
@@ -41,14 +42,17 @@ PostDeviceIdBandwidthImageResource Returns RRDTool Graph based bandwidth in PNG 
  * @param optional nil or *PostDeviceIdBandwidthImageResourceOpts - Optional Parameters:
  * @param "Start" (optional.Int32) -  Start Time of Custom Time Period. (Unix Epoch Time)
  * @param "End" (optional.Int32) -  End Time of Custom Time Period (Unix Epoch Time)
+ * @param "XFields" (optional.String) -  An optional fields mask
+@return []BandwidthImage
 */
-func (a *BandwidthApiService) PostDeviceIdBandwidthImageResource(ctx _context.Context, deviceId int32, period string, interface_ string, localVarOptionals *PostDeviceIdBandwidthImageResourceOpts) (*_nethttp.Response, error) {
+func (a *BandwidthApiService) PostDeviceIdBandwidthImageResource(ctx _context.Context, deviceId int32, period string, interface_ string, localVarOptionals *PostDeviceIdBandwidthImageResourceOpts) ([]BandwidthImage, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPost
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
+		localVarReturnValue  []BandwidthImage
 	)
 
 	// create path and map variables
@@ -77,12 +81,15 @@ func (a *BandwidthApiService) PostDeviceIdBandwidthImageResource(ctx _context.Co
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{}
+	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if localVarOptionals != nil && localVarOptionals.XFields.IsSet() {
+		localVarHeaderParams["X-Fields"] = parameterToString(localVarOptionals.XFields.Value(), "")
 	}
 	if ctx != nil {
 		// API Key Authentication
@@ -98,18 +105,18 @@ func (a *BandwidthApiService) PostDeviceIdBandwidthImageResource(ctx _context.Co
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
-		return nil, err
+		return localVarReturnValue, nil, err
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(r)
 	if err != nil || localVarHTTPResponse == nil {
-		return localVarHTTPResponse, err
+		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
-		return localVarHTTPResponse, err
+		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
@@ -117,10 +124,19 @@ func (a *BandwidthApiService) PostDeviceIdBandwidthImageResource(ctx _context.Co
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		return localVarHTTPResponse, newErr
+		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	return localVarHTTPResponse, nil
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
 // PostDeviceIdBandwidthResourceOpts Optional parameters for the method 'PostDeviceIdBandwidthResource'
@@ -128,6 +144,7 @@ type PostDeviceIdBandwidthResourceOpts struct {
 	Historical optional.Bool
 	Start      optional.Int32
 	End        optional.Int32
+	XFields    optional.String
 }
 
 /*
@@ -141,14 +158,17 @@ PostDeviceIdBandwidthResource Returns RRDTool Xport based bandwidth data in JSON
  * @param "Historical" (optional.Bool) -  Include Historical Interface Data for Device for Resellers
  * @param "Start" (optional.Int32) -  Start Time of Custom Time Period. (Unix Epoch Time)
  * @param "End" (optional.Int32) -  End Time of Custom Time Period (Unix Epoch Time)
+ * @param "XFields" (optional.String) -  An optional fields mask
+@return []Bandwidth
 */
-func (a *BandwidthApiService) PostDeviceIdBandwidthResource(ctx _context.Context, deviceId int32, period string, interface_ string, step int32, localVarOptionals *PostDeviceIdBandwidthResourceOpts) (*_nethttp.Response, error) {
+func (a *BandwidthApiService) PostDeviceIdBandwidthResource(ctx _context.Context, deviceId int32, period string, interface_ string, step int32, localVarOptionals *PostDeviceIdBandwidthResourceOpts) ([]Bandwidth, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPost
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
+		localVarReturnValue  []Bandwidth
 	)
 
 	// create path and map variables
@@ -181,12 +201,15 @@ func (a *BandwidthApiService) PostDeviceIdBandwidthResource(ctx _context.Context
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{}
+	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if localVarOptionals != nil && localVarOptionals.XFields.IsSet() {
+		localVarHeaderParams["X-Fields"] = parameterToString(localVarOptionals.XFields.Value(), "")
 	}
 	if ctx != nil {
 		// API Key Authentication
@@ -202,18 +225,18 @@ func (a *BandwidthApiService) PostDeviceIdBandwidthResource(ctx _context.Context
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
-		return nil, err
+		return localVarReturnValue, nil, err
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(r)
 	if err != nil || localVarHTTPResponse == nil {
-		return localVarHTTPResponse, err
+		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
-		return localVarHTTPResponse, err
+		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
@@ -221,16 +244,26 @@ func (a *BandwidthApiService) PostDeviceIdBandwidthResource(ctx _context.Context
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		return localVarHTTPResponse, newErr
+		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	return localVarHTTPResponse, nil
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
 // PostServiceIdBandwidthImageResourceOpts Optional parameters for the method 'PostServiceIdBandwidthImageResource'
 type PostServiceIdBandwidthImageResourceOpts struct {
-	Start optional.Int32
-	End   optional.Int32
+	Start   optional.Int32
+	End     optional.Int32
+	XFields optional.String
 }
 
 /*
@@ -242,14 +275,17 @@ PostServiceIdBandwidthImageResource Returns RRDTool Graph based bandwidth in PNG
  * @param optional nil or *PostServiceIdBandwidthImageResourceOpts - Optional Parameters:
  * @param "Start" (optional.Int32) -  Start Time of Custom Time Period. (Unix Epoch Time)
  * @param "End" (optional.Int32) -  End Time of Custom Time Period (Unix Epoch Time)
+ * @param "XFields" (optional.String) -  An optional fields mask
+@return []BandwidthImage
 */
-func (a *BandwidthApiService) PostServiceIdBandwidthImageResource(ctx _context.Context, serviceId int32, period string, interface_ string, localVarOptionals *PostServiceIdBandwidthImageResourceOpts) (*_nethttp.Response, error) {
+func (a *BandwidthApiService) PostServiceIdBandwidthImageResource(ctx _context.Context, serviceId int32, period string, interface_ string, localVarOptionals *PostServiceIdBandwidthImageResourceOpts) ([]BandwidthImage, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPost
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
+		localVarReturnValue  []BandwidthImage
 	)
 
 	// create path and map variables
@@ -278,12 +314,15 @@ func (a *BandwidthApiService) PostServiceIdBandwidthImageResource(ctx _context.C
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{}
+	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if localVarOptionals != nil && localVarOptionals.XFields.IsSet() {
+		localVarHeaderParams["X-Fields"] = parameterToString(localVarOptionals.XFields.Value(), "")
 	}
 	if ctx != nil {
 		// API Key Authentication
@@ -299,18 +338,18 @@ func (a *BandwidthApiService) PostServiceIdBandwidthImageResource(ctx _context.C
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
-		return nil, err
+		return localVarReturnValue, nil, err
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(r)
 	if err != nil || localVarHTTPResponse == nil {
-		return localVarHTTPResponse, err
+		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
-		return localVarHTTPResponse, err
+		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
@@ -318,16 +357,26 @@ func (a *BandwidthApiService) PostServiceIdBandwidthImageResource(ctx _context.C
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		return localVarHTTPResponse, newErr
+		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	return localVarHTTPResponse, nil
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
 // PostServiceIdBandwidthResourceOpts Optional parameters for the method 'PostServiceIdBandwidthResource'
 type PostServiceIdBandwidthResourceOpts struct {
-	Start optional.Int32
-	End   optional.Int32
+	Start   optional.Int32
+	End     optional.Int32
+	XFields optional.String
 }
 
 /*
@@ -340,14 +389,17 @@ PostServiceIdBandwidthResource Returns RRDTool Xport based bandwidth data in JSO
  * @param optional nil or *PostServiceIdBandwidthResourceOpts - Optional Parameters:
  * @param "Start" (optional.Int32) -  Start Time of Custom Time Period. (Unix Epoch Time)
  * @param "End" (optional.Int32) -  End Time of Custom Time Period (Unix Epoch Time)
+ * @param "XFields" (optional.String) -  An optional fields mask
+@return []Bandwidth
 */
-func (a *BandwidthApiService) PostServiceIdBandwidthResource(ctx _context.Context, serviceId int32, period string, interface_ string, step int32, localVarOptionals *PostServiceIdBandwidthResourceOpts) (*_nethttp.Response, error) {
+func (a *BandwidthApiService) PostServiceIdBandwidthResource(ctx _context.Context, serviceId int32, period string, interface_ string, step int32, localVarOptionals *PostServiceIdBandwidthResourceOpts) ([]Bandwidth, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPost
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
+		localVarReturnValue  []Bandwidth
 	)
 
 	// create path and map variables
@@ -377,12 +429,15 @@ func (a *BandwidthApiService) PostServiceIdBandwidthResource(ctx _context.Contex
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{}
+	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if localVarOptionals != nil && localVarOptionals.XFields.IsSet() {
+		localVarHeaderParams["X-Fields"] = parameterToString(localVarOptionals.XFields.Value(), "")
 	}
 	if ctx != nil {
 		// API Key Authentication
@@ -398,18 +453,18 @@ func (a *BandwidthApiService) PostServiceIdBandwidthResource(ctx _context.Contex
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
-		return nil, err
+		return localVarReturnValue, nil, err
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(r)
 	if err != nil || localVarHTTPResponse == nil {
-		return localVarHTTPResponse, err
+		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
-		return localVarHTTPResponse, err
+		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
@@ -417,8 +472,17 @@ func (a *BandwidthApiService) PostServiceIdBandwidthResource(ctx _context.Contex
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-		return localVarHTTPResponse, newErr
+		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	return localVarHTTPResponse, nil
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
 }

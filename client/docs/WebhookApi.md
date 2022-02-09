@@ -48,17 +48,30 @@ Name | Type | Description  | Notes
 
 ## GetWebhookEventResource
 
-> GetWebhookEventResource(ctx, )
+> []WebhookEvent GetWebhookEventResource(ctx, optional)
 
 Returns all available Webhook Events
 
 ### Required Parameters
 
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+ **optional** | ***GetWebhookEventResourceOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+
+Optional parameters are passed through a pointer to a GetWebhookEventResourceOpts struct
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **xFields** | **optional.String**| An optional fields mask | 
 
 ### Return type
 
- (empty response body)
+[**[]WebhookEvent**](WebhookEvent.md)
 
 ### Authorization
 
@@ -67,7 +80,7 @@ This endpoint does not need any parameter.
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -76,7 +89,7 @@ This endpoint does not need any parameter.
 
 ## GetWebhookIdResource
 
-> GetWebhookIdResource(ctx, webhookId)
+> Webhook GetWebhookIdResource(ctx, webhookId, optional)
 
 Returns detailed information for a Single Webhook
 
@@ -87,10 +100,21 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **webhookId** | **int32**| ID of Webhook to View / Update | 
+ **optional** | ***GetWebhookIdResourceOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+
+Optional parameters are passed through a pointer to a GetWebhookIdResourceOpts struct
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **xFields** | **optional.String**| An optional fields mask | 
 
 ### Return type
 
- (empty response body)
+[**Webhook**](Webhook.md)
 
 ### Authorization
 
@@ -99,7 +123,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -108,17 +132,30 @@ Name | Type | Description  | Notes
 
 ## GetWebhookResource
 
-> GetWebhookResource(ctx, )
+> []Webhook GetWebhookResource(ctx, optional)
 
 Returns your active Webhooks
 
 ### Required Parameters
 
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+ **optional** | ***GetWebhookResourceOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+
+Optional parameters are passed through a pointer to a GetWebhookResourceOpts struct
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **xFields** | **optional.String**| An optional fields mask | 
 
 ### Return type
 
- (empty response body)
+[**[]Webhook**](Webhook.md)
 
 ### Authorization
 
@@ -127,7 +164,7 @@ This endpoint does not need any parameter.
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -177,7 +214,7 @@ Name | Type | Description  | Notes
 
 ## PostWebhookResource
 
-> PostWebhookResource(ctx, payload)
+> Webhook PostWebhookResource(ctx, payload, optional)
 
 Create a new Webhook for a Webhook Event
 
@@ -188,10 +225,21 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **payload** | [**WebhookCreate**](WebhookCreate.md)|  | 
+ **optional** | ***PostWebhookResourceOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+
+Optional parameters are passed through a pointer to a PostWebhookResourceOpts struct
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **xFields** | **optional.String**| An optional fields mask | 
 
 ### Return type
 
- (empty response body)
+[**Webhook**](Webhook.md)
 
 ### Authorization
 
@@ -200,7 +248,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: application/json
-- **Accept**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -209,7 +257,7 @@ Name | Type | Description  | Notes
 
 ## PutWebhookIdResource
 
-> PutWebhookIdResource(ctx, webhookId, payload)
+> Webhook PutWebhookIdResource(ctx, webhookId, payload, optional)
 
 Updates a Single Webhook
 
@@ -221,10 +269,22 @@ Name | Type | Description  | Notes
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **webhookId** | **int32**| ID of Webhook to View / Update | 
 **payload** | [**WebhookUpdate**](WebhookUpdate.md)|  | 
+ **optional** | ***PutWebhookIdResourceOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+
+Optional parameters are passed through a pointer to a PutWebhookIdResourceOpts struct
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+ **xFields** | **optional.String**| An optional fields mask | 
 
 ### Return type
 
- (empty response body)
+[**Webhook**](Webhook.md)
 
 ### Authorization
 
@@ -233,7 +293,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: application/json
-- **Accept**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)

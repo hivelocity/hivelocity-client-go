@@ -46,7 +46,7 @@ Name | Type | Description  | Notes
 
 ## GetTokenIdResource
 
-> GetTokenIdResource(ctx, token)
+> PublicApiTokenDump GetTokenIdResource(ctx, token, optional)
 
 Returns Public API Token
 
@@ -57,10 +57,21 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **token** | **string**| Public API Token | 
+ **optional** | ***GetTokenIdResourceOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+
+Optional parameters are passed through a pointer to a GetTokenIdResourceOpts struct
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **xFields** | **optional.String**| An optional fields mask | 
 
 ### Return type
 
- (empty response body)
+[**PublicApiTokenDump**](PublicApiToken-dump.md)
 
 ### Authorization
 
@@ -69,7 +80,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -78,17 +89,30 @@ Name | Type | Description  | Notes
 
 ## GetTokenResource
 
-> GetTokenResource(ctx, )
+> []PublicApiTokenDump GetTokenResource(ctx, optional)
 
 Returns a list of Public API Tokens for the current user
 
 ### Required Parameters
 
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+ **optional** | ***GetTokenResourceOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+
+Optional parameters are passed through a pointer to a GetTokenResourceOpts struct
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **xFields** | **optional.String**| An optional fields mask | 
 
 ### Return type
 
- (empty response body)
+[**[]PublicApiTokenDump**](PublicApiToken-dump.md)
 
 ### Authorization
 
@@ -97,7 +121,7 @@ This endpoint does not need any parameter.
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -106,7 +130,7 @@ This endpoint does not need any parameter.
 
 ## PostTokenResource
 
-> PostTokenResource(ctx, payload)
+> PublicApiTokenDump PostTokenResource(ctx, payload, optional)
 
 Create a new Public API Token for the current user
 
@@ -117,10 +141,21 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **payload** | [**PublicApiTokenLoad**](PublicApiTokenLoad.md)|  | 
+ **optional** | ***PostTokenResourceOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+
+Optional parameters are passed through a pointer to a PostTokenResourceOpts struct
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **xFields** | **optional.String**| An optional fields mask | 
 
 ### Return type
 
- (empty response body)
+[**PublicApiTokenDump**](PublicApiToken-dump.md)
 
 ### Authorization
 
@@ -129,7 +164,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: application/json
-- **Accept**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -138,7 +173,7 @@ Name | Type | Description  | Notes
 
 ## PutTokenIdResource
 
-> PutTokenIdResource(ctx, token, payload)
+> PublicApiTokenDump PutTokenIdResource(ctx, token, payload, optional)
 
 Updates the Public API Token
 
@@ -150,10 +185,22 @@ Name | Type | Description  | Notes
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **token** | **string**| Public API Token | 
 **payload** | [**PublicApiTokenLoad**](PublicApiTokenLoad.md)|  | 
+ **optional** | ***PutTokenIdResourceOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+
+Optional parameters are passed through a pointer to a PutTokenIdResourceOpts struct
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+ **xFields** | **optional.String**| An optional fields mask | 
 
 ### Return type
 
- (empty response body)
+[**PublicApiTokenDump**](PublicApiToken-dump.md)
 
 ### Authorization
 
@@ -162,7 +209,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: application/json
-- **Accept**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)

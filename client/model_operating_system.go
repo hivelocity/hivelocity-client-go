@@ -11,10 +11,7 @@ package client
 
 // OperatingSystem struct for OperatingSystem
 type OperatingSystem struct {
-	Currency     string   `json:"currency,omitempty"`
-	Tags         []string `json:"tags,omitempty"`
-	Expressions  []string `json:"expressions,omitempty"`
-	MonthlyPrice float32  `json:"monthlyPrice,omitempty"`
-	Name         string   `json:"name,omitempty"`
-	Id           int32    `json:"id,omitempty"`
+	SshKey      bool `json:"sshKey,omitempty"`
+	CloudInit   bool `json:"cloudInit,omitempty"`
+	PostInstall bool `json:"postInstall,omitempty"`
 }
