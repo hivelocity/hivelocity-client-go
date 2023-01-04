@@ -36,3 +36,5 @@ _testmain.go
 .tmp/
 openapi.json
 openapi-generator*jar
+swagger-codegen-cli*jar
+.envrc

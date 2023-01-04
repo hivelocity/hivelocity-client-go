@@ -1,6 +1,6 @@
 # \InvoiceApi
 
-All URIs are relative to *http://localhost/api/v2*
+All URIs are relative to *https://core.hivelocity.net/api/v2*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -8,28 +8,35 @@ Method | HTTP request | Description
 [**GetInvoiceIdResource**](InvoiceApi.md#GetInvoiceIdResource) | **Get** /invoice/{invoiceId} | Return serialized data on a single invoice
 [**GetInvoicePdfResource**](InvoiceApi.md#GetInvoicePdfResource) | **Get** /invoice/{invoiceId}/pdf-download | Return an Invoice PDF file in Base64 Encoded Format
 [**GetInvoiceResource**](InvoiceApi.md#GetInvoiceResource) | **Get** /invoice/ | Return serialized data on all invoices
+[**GetInvoiceSearchResource**](InvoiceApi.md#GetInvoiceSearchResource) | **Get** /invoice/search | Return results of invoice search
+[**GetInvoiceUnpaidResource**](InvoiceApi.md#GetInvoiceUnpaidResource) | **Get** /invoice/unpaid | Return total balance of all unpaid invoices
 
 
-
-## GetInvoiceIdDetails
-
-> GetInvoiceIdDetails(ctx, invoiceId)
-
+# **GetInvoiceIdDetails**
+> InvoiceDetails GetInvoiceIdDetails(ctx, invoiceId, optional)
 Return detailed information for an invoice
 
 Same data as the PDF file but serialized
 
 ### Required Parameters
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+  **invoiceId** | **int32**| Invoice database ID | 
+ **optional** | ***InvoiceApiGetInvoiceIdDetailsOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+Optional parameters are passed through a pointer to a InvoiceApiGetInvoiceIdDetailsOpts struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**invoiceId** | **int32**| Invoice database ID | 
+
+ **xFields** | **optional.String**| An optional fields mask | 
 
 ### Return type
 
- (empty response body)
+[**InvoiceDetails**](InvoiceDetails.md)
 
 ### Authorization
 
@@ -37,31 +44,34 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: Not defined
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-
-## GetInvoiceIdResource
-
-> GetInvoiceIdResource(ctx, invoiceId)
-
+# **GetInvoiceIdResource**
+> Invoice GetInvoiceIdResource(ctx, invoiceId, optional)
 Return serialized data on a single invoice
 
 ### Required Parameters
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+  **invoiceId** | **int32**| Invoice database ID | 
+ **optional** | ***InvoiceApiGetInvoiceIdResourceOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+Optional parameters are passed through a pointer to a InvoiceApiGetInvoiceIdResourceOpts struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**invoiceId** | **int32**| Invoice database ID | 
+
+ **xFields** | **optional.String**| An optional fields mask | 
 
 ### Return type
 
- (empty response body)
+[**Invoice**](Invoice.md)
 
 ### Authorization
 
@@ -69,31 +79,34 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: Not defined
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-
-## GetInvoicePdfResource
-
-> GetInvoicePdfResource(ctx, invoiceId)
-
+# **GetInvoicePdfResource**
+> InvoicePdf GetInvoicePdfResource(ctx, invoiceId, optional)
 Return an Invoice PDF file in Base64 Encoded Format
 
 ### Required Parameters
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+  **invoiceId** | **int32**| Invoice database ID | 
+ **optional** | ***InvoiceApiGetInvoicePdfResourceOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+Optional parameters are passed through a pointer to a InvoiceApiGetInvoicePdfResourceOpts struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**invoiceId** | **int32**| Invoice database ID | 
+
+ **xFields** | **optional.String**| An optional fields mask | 
 
 ### Return type
 
- (empty response body)
+[**InvoicePdf**](InvoicePDF.md)
 
 ### Authorization
 
@@ -101,27 +114,32 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: Not defined
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-
-## GetInvoiceResource
-
-> GetInvoiceResource(ctx, )
-
+# **GetInvoiceResource**
+> []Invoice GetInvoiceResource(ctx, optional)
 Return serialized data on all invoices
 
 ### Required Parameters
 
-This endpoint does not need any parameter.
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+ **optional** | ***InvoiceApiGetInvoiceResourceOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+Optional parameters are passed through a pointer to a InvoiceApiGetInvoiceResourceOpts struct
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **xFields** | **optional.String**| An optional fields mask | 
 
 ### Return type
 
- (empty response body)
+[**[]Invoice**](Invoice.md)
 
 ### Authorization
 
@@ -129,10 +147,79 @@ This endpoint does not need any parameter.
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: Not defined
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **GetInvoiceSearchResource**
+> InvoiceSeachResult GetInvoiceSearchResource(ctx, optional)
+Return results of invoice search
+
+### Required Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+ **optional** | ***InvoiceApiGetInvoiceSearchResourceOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+Optional parameters are passed through a pointer to a InvoiceApiGetInvoiceSearchResourceOpts struct
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **endDate** | **optional.Int32**| The end date range | 
+ **startDate** | **optional.Int32**| The start date range | 
+ **perPage** | **optional.Int32**| Number of items per page. | [default to 10]
+ **page** | **optional.Int32**| The page number of search. | [default to 1]
+ **q** | **optional.String**| Content search. | 
+ **xFields** | **optional.String**| An optional fields mask | 
+
+### Return type
+
+[**InvoiceSeachResult**](InvoiceSeachResult.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **GetInvoiceUnpaidResource**
+> InvoiceUnpaid GetInvoiceUnpaidResource(ctx, optional)
+Return total balance of all unpaid invoices
+
+### Required Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+ **optional** | ***InvoiceApiGetInvoiceUnpaidResourceOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+Optional parameters are passed through a pointer to a InvoiceApiGetInvoiceUnpaidResourceOpts struct
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **xFields** | **optional.String**| An optional fields mask | 
+
+### Return type
+
+[**InvoiceUnpaid**](InvoiceUnpaid.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

@@ -1,6 +1,6 @@
 # \WebhookApi
 
-All URIs are relative to *http://localhost/api/v2*
+All URIs are relative to *https://core.hivelocity.net/api/v2*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -13,20 +13,16 @@ Method | HTTP request | Description
 [**PutWebhookIdResource**](WebhookApi.md#PutWebhookIdResource) | **Put** /webhooks/{webhookId} | Updates a Single Webhook
 
 
-
-## DeleteWebhookIdResource
-
+# **DeleteWebhookIdResource**
 > DeleteWebhookIdResource(ctx, webhookId)
-
 Deletes a single webhook
 
 ### Required Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**webhookId** | **int32**| ID of Webhook to View / Update | 
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+  **webhookId** | **int32**| ID of Webhook to View / Update | 
 
 ### Return type
 
@@ -38,27 +34,32 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: Not defined
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-
-## GetWebhookEventResource
-
-> GetWebhookEventResource(ctx, )
-
+# **GetWebhookEventResource**
+> []WebhookEvent GetWebhookEventResource(ctx, optional)
 Returns all available Webhook Events
 
 ### Required Parameters
 
-This endpoint does not need any parameter.
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+ **optional** | ***WebhookApiGetWebhookEventResourceOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+Optional parameters are passed through a pointer to a WebhookApiGetWebhookEventResourceOpts struct
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **xFields** | **optional.String**| An optional fields mask | 
 
 ### Return type
 
- (empty response body)
+[**[]WebhookEvent**](WebhookEvent.md)
 
 ### Authorization
 
@@ -66,31 +67,34 @@ This endpoint does not need any parameter.
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: Not defined
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-
-## GetWebhookIdResource
-
-> GetWebhookIdResource(ctx, webhookId)
-
+# **GetWebhookIdResource**
+> Webhook GetWebhookIdResource(ctx, webhookId, optional)
 Returns detailed information for a Single Webhook
 
 ### Required Parameters
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+  **webhookId** | **int32**| ID of Webhook to View / Update | 
+ **optional** | ***WebhookApiGetWebhookIdResourceOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+Optional parameters are passed through a pointer to a WebhookApiGetWebhookIdResourceOpts struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**webhookId** | **int32**| ID of Webhook to View / Update | 
+
+ **xFields** | **optional.String**| An optional fields mask | 
 
 ### Return type
 
- (empty response body)
+[**Webhook**](Webhook.md)
 
 ### Authorization
 
@@ -98,27 +102,32 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: Not defined
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-
-## GetWebhookResource
-
-> GetWebhookResource(ctx, )
-
+# **GetWebhookResource**
+> []Webhook GetWebhookResource(ctx, optional)
 Returns your active Webhooks
 
 ### Required Parameters
 
-This endpoint does not need any parameter.
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+ **optional** | ***WebhookApiGetWebhookResourceOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+Optional parameters are passed through a pointer to a WebhookApiGetWebhookResourceOpts struct
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **xFields** | **optional.String**| An optional fields mask | 
 
 ### Return type
 
- (empty response body)
+[**[]Webhook**](Webhook.md)
 
 ### Authorization
 
@@ -126,32 +135,24 @@ This endpoint does not need any parameter.
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: Not defined
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-
-## PostEventScriptActionTriggerResource
-
+# **PostEventScriptActionTriggerResource**
 > PostEventScriptActionTriggerResource(ctx, optional)
-
 Queues a webhook for the event script action that was triggered
 
 ### Required Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
- **optional** | ***PostEventScriptActionTriggerResourceOpts** | optional parameters | nil if no parameters
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+ **optional** | ***WebhookApiPostEventScriptActionTriggerResourceOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
-
-Optional parameters are passed through a pointer to a PostEventScriptActionTriggerResourceOpts struct
-
+Optional parameters are passed through a pointer to a WebhookApiPostEventScriptActionTriggerResourceOpts struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -167,31 +168,34 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: Not defined
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-
-## PostWebhookResource
-
-> PostWebhookResource(ctx, payload)
-
+# **PostWebhookResource**
+> Webhook PostWebhookResource(ctx, payload, optional)
 Create a new Webhook for a Webhook Event
 
 ### Required Parameters
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+  **payload** | [**WebhookCreate**](WebhookCreate.md)|  | 
+ **optional** | ***WebhookApiPostWebhookResourceOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+Optional parameters are passed through a pointer to a WebhookApiPostWebhookResourceOpts struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**payload** | [**WebhookCreate**](WebhookCreate.md)|  | 
+
+ **xFields** | **optional.String**| An optional fields mask | 
 
 ### Return type
 
- (empty response body)
+[**Webhook**](Webhook.md)
 
 ### Authorization
 
@@ -199,32 +203,36 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: Not defined
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-
-## PutWebhookIdResource
-
-> PutWebhookIdResource(ctx, webhookId, payload)
-
+# **PutWebhookIdResource**
+> Webhook PutWebhookIdResource(ctx, webhookId, payload, optional)
 Updates a Single Webhook
 
 ### Required Parameters
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+  **webhookId** | **int32**| ID of Webhook to View / Update | 
+  **payload** | [**WebhookUpdate**](WebhookUpdate.md)|  | 
+ **optional** | ***WebhookApiPutWebhookIdResourceOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+Optional parameters are passed through a pointer to a WebhookApiPutWebhookIdResourceOpts struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**webhookId** | **int32**| ID of Webhook to View / Update | 
-**payload** | [**WebhookUpdate**](WebhookUpdate.md)|  | 
+
+
+ **xFields** | **optional.String**| An optional fields mask | 
 
 ### Return type
 
- (empty response body)
+[**Webhook**](Webhook.md)
 
 ### Authorization
 
@@ -232,10 +240,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: Not defined
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

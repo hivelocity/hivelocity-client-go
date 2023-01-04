@@ -1,6 +1,6 @@
 # \TokenApi
 
-All URIs are relative to *http://localhost/api/v2*
+All URIs are relative to *https://core.hivelocity.net/api/v2*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -11,20 +11,16 @@ Method | HTTP request | Description
 [**PutTokenIdResource**](TokenApi.md#PutTokenIdResource) | **Put** /token/{token} | Updates the Public API Token
 
 
-
-## DeleteTokenIdResource
-
+# **DeleteTokenIdResource**
 > DeleteTokenIdResource(ctx, token)
-
 Deletes the Public API Token
 
 ### Required Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**token** | **string**| Public API Token | 
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+  **token** | **string**| Public API Token | 
 
 ### Return type
 
@@ -36,31 +32,34 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: Not defined
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-
-## GetTokenIdResource
-
-> GetTokenIdResource(ctx, token)
-
+# **GetTokenIdResource**
+> PublicApiTokenDump GetTokenIdResource(ctx, token, optional)
 Returns Public API Token
 
 ### Required Parameters
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+  **token** | **string**| Public API Token | 
+ **optional** | ***TokenApiGetTokenIdResourceOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+Optional parameters are passed through a pointer to a TokenApiGetTokenIdResourceOpts struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**token** | **string**| Public API Token | 
+
+ **xFields** | **optional.String**| An optional fields mask | 
 
 ### Return type
 
- (empty response body)
+[**PublicApiTokenDump**](PublicApiToken-dump.md)
 
 ### Authorization
 
@@ -68,27 +67,32 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: Not defined
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-
-## GetTokenResource
-
-> GetTokenResource(ctx, )
-
+# **GetTokenResource**
+> []PublicApiTokenDump GetTokenResource(ctx, optional)
 Returns a list of Public API Tokens for the current user
 
 ### Required Parameters
 
-This endpoint does not need any parameter.
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+ **optional** | ***TokenApiGetTokenResourceOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+Optional parameters are passed through a pointer to a TokenApiGetTokenResourceOpts struct
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **xFields** | **optional.String**| An optional fields mask | 
 
 ### Return type
 
- (empty response body)
+[**[]PublicApiTokenDump**](PublicApiToken-dump.md)
 
 ### Authorization
 
@@ -96,31 +100,34 @@ This endpoint does not need any parameter.
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: Not defined
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-
-## PostTokenResource
-
-> PostTokenResource(ctx, payload)
-
+# **PostTokenResource**
+> PublicApiTokenDump PostTokenResource(ctx, payload, optional)
 Create a new Public API Token for the current user
 
 ### Required Parameters
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+  **payload** | [**PublicApiTokenLoad**](PublicApiTokenLoad.md)|  | 
+ **optional** | ***TokenApiPostTokenResourceOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+Optional parameters are passed through a pointer to a TokenApiPostTokenResourceOpts struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**payload** | [**PublicApiTokenLoad**](PublicApiTokenLoad.md)|  | 
+
+ **xFields** | **optional.String**| An optional fields mask | 
 
 ### Return type
 
- (empty response body)
+[**PublicApiTokenDump**](PublicApiToken-dump.md)
 
 ### Authorization
 
@@ -128,32 +135,36 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: Not defined
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-
-## PutTokenIdResource
-
-> PutTokenIdResource(ctx, token, payload)
-
+# **PutTokenIdResource**
+> PublicApiTokenDump PutTokenIdResource(ctx, token, payload, optional)
 Updates the Public API Token
 
 ### Required Parameters
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+  **token** | **string**| Public API Token | 
+  **payload** | [**PublicApiTokenLoad**](PublicApiTokenLoad.md)|  | 
+ **optional** | ***TokenApiPutTokenIdResourceOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+Optional parameters are passed through a pointer to a TokenApiPutTokenIdResourceOpts struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**token** | **string**| Public API Token | 
-**payload** | [**PublicApiTokenLoad**](PublicApiTokenLoad.md)|  | 
+
+
+ **xFields** | **optional.String**| An optional fields mask | 
 
 ### Return type
 
- (empty response body)
+[**PublicApiTokenDump**](PublicApiToken-dump.md)
 
 ### Authorization
 
@@ -161,10 +172,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: Not defined
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

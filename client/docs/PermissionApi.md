@@ -1,6 +1,6 @@
 # \PermissionApi
 
-All URIs are relative to *http://localhost/api/v2*
+All URIs are relative to *https://core.hivelocity.net/api/v2*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -10,15 +10,11 @@ Method | HTTP request | Description
 [**PostPermissionAssignContactResource**](PermissionApi.md#PostPermissionAssignContactResource) | **Post** /permission/contact | Endpoint to assign a new Permission to a Contact
 
 
-
-## GetPermissionAllResource
-
+# **GetPermissionAllResource**
 > GetPermissionAllResource(ctx, )
-
 Endpoint to get All Permissions
 
 ### Required Parameters
-
 This endpoint does not need any parameter.
 
 ### Return type
@@ -31,27 +27,21 @@ This endpoint does not need any parameter.
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: Not defined
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-
-## GetPermissionContactResource
-
+# **GetPermissionContactResource**
 > GetPermissionContactResource(ctx, contactId)
-
 Endpoint to get Contact Permissions
 
 ### Required Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**contactId** | **int32**|  | 
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+  **contactId** | **int32**|  | 
 
 ### Return type
 
@@ -63,22 +53,16 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: Not defined
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-
-## GetPermissionUserResource
-
+# **GetPermissionUserResource**
 > GetPermissionUserResource(ctx, )
-
 Endpoint to get User Permissions
 
 ### Required Parameters
-
 This endpoint does not need any parameter.
 
 ### Return type
@@ -91,31 +75,34 @@ This endpoint does not need any parameter.
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: Not defined
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-
-## PostPermissionAssignContactResource
-
-> PostPermissionAssignContactResource(ctx, payload)
-
+# **PostPermissionAssignContactResource**
+> []PermissionReturn PostPermissionAssignContactResource(ctx, payload, optional)
 Endpoint to assign a new Permission to a Contact
 
 ### Required Parameters
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+  **payload** | [**Permission**](Permission.md)|  | 
+ **optional** | ***PermissionApiPostPermissionAssignContactResourceOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+Optional parameters are passed through a pointer to a PermissionApiPostPermissionAssignContactResourceOpts struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**payload** | [**Permission**](Permission.md)|  | 
+
+ **xFields** | **optional.String**| An optional fields mask | 
 
 ### Return type
 
- (empty response body)
+[**[]PermissionReturn**](PermissionReturn.md)
 
 ### Authorization
 
@@ -123,10 +110,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: Not defined
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

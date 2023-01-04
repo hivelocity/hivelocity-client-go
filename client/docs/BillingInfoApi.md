@@ -1,26 +1,35 @@
 # \BillingInfoApi
 
-All URIs are relative to *http://localhost/api/v2*
+All URIs are relative to *https://core.hivelocity.net/api/v2*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**GetBillingInfoResource**](BillingInfoApi.md#GetBillingInfoResource) | **Get** /billing-info/ | Return a list with all Billing Info
+[**PostBillingInfoResource**](BillingInfoApi.md#PostBillingInfoResource) | **Post** /billing-info/ | Create verification for credit card with all Billing Info
+[**PutBillingInfoResource**](BillingInfoApi.md#PutBillingInfoResource) | **Put** /billing-info/ | Verify credit card with all Billing Info
 
 
-
-## GetBillingInfoResource
-
-> GetBillingInfoResource(ctx, )
-
+# **GetBillingInfoResource**
+> []BillingInfo GetBillingInfoResource(ctx, optional)
 Return a list with all Billing Info
 
 ### Required Parameters
 
-This endpoint does not need any parameter.
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+ **optional** | ***BillingInfoApiGetBillingInfoResourceOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+Optional parameters are passed through a pointer to a BillingInfoApiGetBillingInfoResourceOpts struct
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **xFields** | **optional.String**| An optional fields mask | 
 
 ### Return type
 
- (empty response body)
+[**[]BillingInfo**](BillingInfo.md)
 
 ### Authorization
 
@@ -28,10 +37,78 @@ This endpoint does not need any parameter.
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: Not defined
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **PostBillingInfoResource**
+> BillingInfo PostBillingInfoResource(ctx, payload, optional)
+Create verification for credit card with all Billing Info
+
+### Required Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+  **payload** | [**BillingInfoVerification**](BillingInfoVerification.md)|  | 
+ **optional** | ***BillingInfoApiPostBillingInfoResourceOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+Optional parameters are passed through a pointer to a BillingInfoApiPostBillingInfoResourceOpts struct
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **xFields** | **optional.String**| An optional fields mask | 
+
+### Return type
+
+[**BillingInfo**](BillingInfo.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **PutBillingInfoResource**
+> Credit PutBillingInfoResource(ctx, payload, optional)
+Verify credit card with all Billing Info
+
+### Required Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+  **payload** | [**BillingInfoVerification**](BillingInfoVerification.md)|  | 
+ **optional** | ***BillingInfoApiPutBillingInfoResourceOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+Optional parameters are passed through a pointer to a BillingInfoApiPutBillingInfoResourceOpts struct
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **xFields** | **optional.String**| An optional fields mask | 
+
+### Return type
+
+[**Credit**](Credit.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
