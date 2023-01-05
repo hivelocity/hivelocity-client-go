@@ -1,25 +1,27 @@
 VERSION=v$(shell date -u +"%Y.%m.%d").1
-GENERATOR_VERSION=4.3.1
+CODEGEN_VERSION=2.4.29
+CODEGEN_JAR=swagger-codegen-cli-$(CODEGEN_VERSION).jar
+
 
 .PHONY: client
-client:
-	# Download [latest] OpenAPI spec
-	rm -rf openapi.json
-	wget -q -O openapi.json https://core.hivelocity.net/api/v2/swagger.json
+client: $(CODEGEN_JAR)
 	# Generate client
-	# Checkout https://github.com/OpenAPITools/openapi-generator/releases
-	@chmod +x ./openapi-generator
 	@rm -rf ./client
-	OPENAPI_GENERATOR_VERSION=$(GENERATOR_VERSION) ./openapi-generator generate --skip-validate-spec --package-name client -i openapi.json -g go -o ./client
-	rm -f client/go.mod client/go.sum
+	java -jar $(CODEGEN_JAR) generate \
+		-i  https://core.hivelocity.net/api/v2/swagger.json \
+		-l go \
+		-o ./client
 	go fmt ./...
 	go build github.com/hivelocity/hivelocity-client-go/client
 	go test ./...
 
+$(CODEGEN_JAR):
+	wget https://repo1.maven.org/maven2/io/swagger/swagger-codegen-cli/$(CODEGEN_VERSION)/$(CODEGEN_JAR)
+
 .PHONY: clean
 clean:
 	@rm -rf client/
-	@rm -f openapi-generator-cli-*.jar
+	@rm -f swagger-codegen-cli*jar
 
 .PHONY: tag
 release:
