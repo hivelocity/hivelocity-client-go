@@ -178,11 +178,10 @@ Class | Method | HTTP request | Description
 *TicketApi* | [**PostTicketReplyResource**](docs/TicketApi.md#postticketreplyresource) | **Post** /tickets/{ticketId}/reply | Creates reply for a specific Ticket
 *TicketApi* | [**PostTicketResource**](docs/TicketApi.md#postticketresource) | **Post** /tickets/ | Creates a new ticket
 *TicketApi* | [**PutTicketIdResource**](docs/TicketApi.md#putticketidresource) | **Put** /tickets/{ticketId} | Updates a specific ticket
-*TokenApi* | [**DeleteTokenIdResource**](docs/TokenApi.md#deletetokenidresource) | **Delete** /token/{token} | Deletes the Public API Token
-*TokenApi* | [**GetTokenIdResource**](docs/TokenApi.md#gettokenidresource) | **Get** /token/{token} | Returns Public API Token
-*TokenApi* | [**GetTokenResource**](docs/TokenApi.md#gettokenresource) | **Get** /token/ | Returns a list of Public API Tokens for the current user
+*TokenApi* | [**DeleteTokenResource**](docs/TokenApi.md#deletetokenresource) | **Delete** /token/ | Deletes the Public API Token with apiTokenId
+*TokenApi* | [**GetTokenResource**](docs/TokenApi.md#gettokenresource) | **Get** /token/ | Returns a list of Public API Tokens for the current user (last 4 characters only)
 *TokenApi* | [**PostTokenResource**](docs/TokenApi.md#posttokenresource) | **Post** /token/ | Create a new Public API Token for the current user
-*TokenApi* | [**PutTokenIdResource**](docs/TokenApi.md#puttokenidresource) | **Put** /token/{token} | Updates the Public API Token
+*TokenApi* | [**PutTokenResource**](docs/TokenApi.md#puttokenresource) | **Put** /token/ | Updates the Public API Token with apiTokenId
 *VLANApi* | [**DeleteVlanIdResource**](docs/VLANApi.md#deletevlanidresource) | **Delete** /vlan/{vlanId} | Delete VLAN
 *VLANApi* | [**GetVlanIdResource**](docs/VLANApi.md#getvlanidresource) | **Get** /vlan/{vlanId} | Get VLAN
 *VLANApi* | [**GetVlanResource**](docs/VLANApi.md#getvlanresource) | **Get** /vlan/ | Get all VLANs
@@ -218,14 +217,17 @@ Class | Method | HTTP request | Description
  - [CancellationCreate](docs/CancellationCreate.md)
  - [CityStateCountry](docs/CityStateCountry.md)
  - [Client](docs/Client.md)
+ - [ClientCreateDump](docs/ClientCreateDump.md)
  - [ContactCreate](docs/ContactCreate.md)
  - [ContactDump](docs/ContactDump.md)
  - [ContactUpdate](docs/ContactUpdate.md)
+ - [ControlledClientDump](docs/ControlledClientDump.md)
  - [CreateCredit](docs/CreateCredit.md)
  - [CreateEnterpriseControlledClient](docs/CreateEnterpriseControlledClient.md)
  - [CreateIgnition](docs/CreateIgnition.md)
  - [Credit](docs/Credit.md)
  - [DeactivateEnterpriseControlledClient](docs/DeactivateEnterpriseControlledClient.md)
+ - [DeleteApiTokenLoad](docs/DeleteApiTokenLoad.md)
  - [Deployment](docs/Deployment.md)
  - [DeploymentCustomization](docs/DeploymentCustomization.md)
  - [DeploymentStart](docs/DeploymentStart.md)
@@ -292,10 +294,13 @@ Class | Method | HTTP request | Description
  - [ProfileUpdate](docs/ProfileUpdate.md)
  - [PtrRecordReturn](docs/PtrRecordReturn.md)
  - [PtrRecordUpdate](docs/PtrRecordUpdate.md)
+ - [PublicApiHideTokenDump](docs/PublicApiHideTokenDump.md)
+ - [PublicApiToken](docs/PublicApiToken.md)
  - [PublicApiTokenDump](docs/PublicApiTokenDump.md)
  - [PublicApiTokenIp](docs/PublicApiTokenIp.md)
  - [PublicApiTokenLoad](docs/PublicApiTokenLoad.md)
  - [Service](docs/Service.md)
+ - [ServiceBandwidthBilling](docs/ServiceBandwidthBilling.md)
  - [ServiceManageable](docs/ServiceManageable.md)
  - [ServiceManagedReq](docs/ServiceManagedReq.md)
  - [ServiceOption](docs/ServiceOption.md)

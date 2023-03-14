@@ -10,11 +10,13 @@
 package swagger
 
 type IpAssignment struct {
+	// IP version of this assignment (ipv4 or ipv6)
+	Version int32 `json:"version"`
 	// Unique ID of this assignment
 	AssignmentId int32 `json:"assignmentId,omitempty"`
 	// Unique ID of the assignment owner
 	ClientId int32 `json:"clientId,omitempty"`
-	// CIDR representado of this assignment.
+	// CIDR representation of this assignment.
 	Subnet string `json:"subnet,omitempty"`
 	// Netmask for this assignment.
 	Netmask string `json:"netmask,omitempty"`

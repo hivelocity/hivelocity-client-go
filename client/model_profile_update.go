@@ -10,19 +10,19 @@
 package swagger
 
 type ProfileUpdate struct {
-	State                   string `json:"state,omitempty"`
-	City                    string `json:"city,omitempty"`
-	FullName                string `json:"fullName,omitempty"`
+	Address                 string `json:"address,omitempty"`
 	Email                   string `json:"email,omitempty"`
 	Password                string `json:"password,omitempty"`
-	Company                 string `json:"company,omitempty"`
 	Zip                     string `json:"zip,omitempty"`
-	Last                    string `json:"last,omitempty"`
 	RequirePayPalOauthLogin string `json:"requirePayPalOauthLogin,omitempty"`
 	DirectToZendesk         string `json:"directToZendesk,omitempty"`
-	Address                 string `json:"address,omitempty"`
-	RequireOauthLogin       string `json:"requireOauthLogin,omitempty"`
 	First                   string `json:"first,omitempty"`
-	Phone                   string `json:"phone,omitempty"`
+	FullName                string `json:"fullName,omitempty"`
+	City                    string `json:"city,omitempty"`
 	Country                 string `json:"country,omitempty"`
+	Last                    string `json:"last,omitempty"`
+	Phone                   string `json:"phone,omitempty"`
+	State                   string `json:"state,omitempty"`
+	Company                 string `json:"company,omitempty"`
+	RequireOauthLogin       string `json:"requireOauthLogin,omitempty"`
 }

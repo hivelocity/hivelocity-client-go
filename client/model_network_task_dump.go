@@ -12,12 +12,12 @@ package swagger
 type NetworkTaskDump struct {
 	// Timestamp of task creation date.
 	TaskCreated interface{} `json:"taskCreated,omitempty"`
+	// Key value arguments used to trigger the task.
+	MetaData string `json:"metaData,omitempty"`
 	// Unique ID of the client triggering the task.
 	ClientId int32 `json:"clientId,omitempty"`
 	// Success|Pending|Failed. Null value also means Pending.
 	Result string `json:"result,omitempty"`
-	// Key value arguments used to trigger the task.
-	MetaData string `json:"metaData,omitempty"`
 	// Unique ID of the network task.
 	TaskId string `json:"taskId,omitempty"`
 	// Unique ID of the target device.

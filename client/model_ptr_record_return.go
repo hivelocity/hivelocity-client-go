@@ -12,9 +12,9 @@ package swagger
 type PtrRecordReturn struct {
 	DomainId int32  `json:"domainId,omitempty"`
 	Id       int32  `json:"id,omitempty"`
-	Address  string `json:"address,omitempty"`
 	Type_    string `json:"type,omitempty"`
-	Name     string `json:"name,omitempty"`
-	Disabled bool   `json:"disabled,omitempty"`
 	Ttl      int32  `json:"ttl,omitempty"`
+	Disabled bool   `json:"disabled,omitempty"`
+	Name     string `json:"name,omitempty"`
+	Address  string `json:"address,omitempty"`
 }

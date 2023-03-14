@@ -137,13 +137,15 @@ func (a *NetworkApiService) GetDeviceNetworkPortResource(ctx context.Context, lo
 NetworkApiService Get network task status
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param optional nil or *NetworkApiGetNetworkTaskClientResourceOpts - Optional Parameters:
+     * @param "CreatedInLast" (optional.Int32) -  Filter to retrieve tasks created in the last timedelta hours.
      * @param "XFields" (optional.String) -  An optional fields mask
 
 @return []NetworkTaskDump
 */
 
 type NetworkApiGetNetworkTaskClientResourceOpts struct {
-	XFields optional.String
+	CreatedInLast optional.Int32
+	XFields       optional.String
 }
 
 func (a *NetworkApiService) GetNetworkTaskClientResource(ctx context.Context, localVarOptionals *NetworkApiGetNetworkTaskClientResourceOpts) ([]NetworkTaskDump, *http.Response, error) {
@@ -162,6 +164,9 @@ func (a *NetworkApiService) GetNetworkTaskClientResource(ctx context.Context, lo
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if localVarOptionals != nil && localVarOptionals.CreatedInLast.IsSet() {
+		localVarQueryParams.Add("createdInLast", parameterToString(localVarOptionals.CreatedInLast.Value(), ""))
+	}
 	// to determine the Content-Type header
 	localVarHttpContentTypes := []string{"application/json"}
 

@@ -390,6 +390,7 @@ Optional parameters are passed through a pointer to a DeviceApiGetDeviceResource
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **rackId** | **optional.Int32**| Filter Devices only in this Rack ID | 
  **xFields** | **optional.String**| An optional fields mask | 
 
 ### Return type

@@ -10,23 +10,23 @@
 package swagger
 
 type IpmiInfo struct {
-	FirmwareRevision    string `json:"firmwareRevision,omitempty"`
-	DeviceAvailable     string `json:"deviceAvailable,omitempty"`
-	SensorDevice        string `json:"sensorDevice,omitempty"`
-	ManufacturerId      string `json:"manufacturerId,omitempty"`
-	IpmbEventGenerator  string `json:"ipmbEventGenerator,omitempty"`
-	ManufacturerName    string `json:"manufacturerName,omitempty"`
+	AuxFirmwareRevInfo string `json:"auxFirmwareRevInfo,omitempty"`
+	SensorDevice       string `json:"sensorDevice,omitempty"`
+	DeviceAvailable    string `json:"deviceAvailable,omitempty"`
+	IpmbEventGenerator string `json:"ipmbEventGenerator,omitempty"`
+	FirmwareRevision   string `json:"firmwareRevision,omitempty"`
+	ChassisDevice      string `json:"chassisDevice,omitempty"`
+	ManufacturerName   string `json:"manufacturerName,omitempty"`
+	Bridge             string `json:"bridge,omitempty"`
+	// The IPMI ID of the device.
+	DeviceId            string `json:"deviceId,omitempty"`
+	SelDevice           string `json:"selDevice,omitempty"`
 	FruInventoryDevice  string `json:"fruInventoryDevice,omitempty"`
-	AuxFirmwareRevInfo  string `json:"auxFirmwareRevInfo,omitempty"`
-	SdrRepositoryDevice string `json:"sdrRepositoryDevice,omitempty"`
+	ManufacturerId      string `json:"manufacturerId,omitempty"`
 	IpmbEventReceiver   string `json:"ipmbEventReceiver,omitempty"`
 	ProductId           string `json:"productId,omitempty"`
+	IpmiVersion         string `json:"ipmiVersion,omitempty"`
 	DeviceSDRs          string `json:"deviceSDRs,omitempty"`
-	Bridge              string `json:"bridge,omitempty"`
-	// The IPMI ID of the device.
-	DeviceId       string `json:"deviceId,omitempty"`
-	SelDevice      string `json:"selDevice,omitempty"`
-	ChassisDevice  string `json:"chassisDevice,omitempty"`
-	IpmiVersion    string `json:"ipmiVersion,omitempty"`
-	DeviceRevision string `json:"deviceRevision,omitempty"`
+	DeviceRevision      string `json:"deviceRevision,omitempty"`
+	SdrRepositoryDevice string `json:"sdrRepositoryDevice,omitempty"`
 }

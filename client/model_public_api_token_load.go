@@ -10,6 +10,6 @@
 package swagger
 
 type PublicApiTokenLoad struct {
-	IpAddresses *PublicApiTokenIp `json:"ipAddresses,omitempty"`
-	Name        string            `json:"name,omitempty"`
+	Name       string `json:"name,omitempty"`
+	ApiTokenId string `json:"apiTokenId,omitempty"`
 }

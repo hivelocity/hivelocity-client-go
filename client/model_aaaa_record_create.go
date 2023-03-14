@@ -10,7 +10,7 @@
 package swagger
 
 type AaaaRecordCreate struct {
-	Address string `json:"address"`
 	Name    string `json:"name"`
+	Address string `json:"address"`
 	Ttl     int32  `json:"ttl"`
 }

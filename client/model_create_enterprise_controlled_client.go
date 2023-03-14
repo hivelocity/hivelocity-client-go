@@ -10,6 +10,7 @@
 package swagger
 
 type CreateEnterpriseControlledClient struct {
-	Email   string `json:"email"`
-	Company string `json:"company"`
+	Company  string `json:"company"`
+	Email    string `json:"email"`
+	Password string `json:"password,omitempty"`
 }

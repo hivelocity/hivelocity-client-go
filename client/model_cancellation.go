@@ -14,28 +14,28 @@ import (
 )
 
 type Cancellation struct {
-	// The number of months the target device has been active.
-	ActiveMonths int32 `json:"activeMonths,omitempty"`
-	// The monthly cost of the cancelled device.
-	MonthlyPayment int32 `json:"monthlyPayment,omitempty"`
+	// True if cancel completed.
+	Cancelled bool `json:"cancelled,omitempty"`
+	// Deprecated.
+	PlanId int32 `json:"planId,omitempty"`
 	// Unique ID of a client.
 	ClientId int32 `json:"clientId,omitempty"`
 	// Date of cancellation completion.
 	DeletedAt time.Time `json:"deletedAt,omitempty"`
-	// Unique ID of the cancellation request.
-	Id int32 `json:"id,omitempty"`
-	// Unique ID of a service.
-	ServiceId int32 `json:"serviceId,omitempty"`
-	// Date of cancel request submission.
-	StartDate time.Time `json:"startDate,omitempty"`
-	// True if cancel completed.
-	Cancelled bool `json:"cancelled,omitempty"`
-	// Name of user who submitted the request
-	Name string `json:"name,omitempty"`
+	// The monthly cost of the cancelled device.
+	MonthlyPayment int32 `json:"monthlyPayment,omitempty"`
 	// Unique ID of a device.
 	DeviceId int32 `json:"deviceId,omitempty"`
+	// Unique ID of the cancellation request.
+	Id int32 `json:"id,omitempty"`
 	// The requested cancellation date, if specified.
 	RequestDate time.Time `json:"requestDate,omitempty"`
-	// Deprecated.
-	PlanId int32 `json:"planId,omitempty"`
+	// The number of months the target device has been active.
+	ActiveMonths int32 `json:"activeMonths,omitempty"`
+	// Name of user who submitted the request
+	Name string `json:"name,omitempty"`
+	// Date of cancel request submission.
+	StartDate time.Time `json:"startDate,omitempty"`
+	// Unique ID of a service.
+	ServiceId int32 `json:"serviceId,omitempty"`
 }

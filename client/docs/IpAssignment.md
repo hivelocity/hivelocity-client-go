@@ -3,9 +3,10 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Version** | **int32** | IP version of this assignment (ipv4 or ipv6) | [default to null]
 **AssignmentId** | **int32** | Unique ID of this assignment | [optional] [default to null]
 **ClientId** | **int32** | Unique ID of the assignment owner | [optional] [default to null]
-**Subnet** | **string** | CIDR representado of this assignment. | [optional] [default to null]
+**Subnet** | **string** | CIDR representation of this assignment. | [optional] [default to null]
 **Netmask** | **string** | Netmask for this assignment. | [optional] [default to null]
 **BroadcastIp** | **string** | Broadcast address for this subnet. | [optional] [default to null]
 **GatewayIp** | **string** | Gateway address for this subnet. | [optional] [default to null]

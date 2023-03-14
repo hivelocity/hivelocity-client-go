@@ -62,6 +62,7 @@ Optional parameters are passed through a pointer to a NetworkApiGetNetworkTaskCl
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **createdInLast** | **optional.Int32**| Filter to retrieve tasks created in the last timedelta hours. | 
  **xFields** | **optional.String**| An optional fields mask | 
 
 ### Return type
