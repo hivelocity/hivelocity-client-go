@@ -10,27 +10,27 @@
 package swagger
 
 type BillingInfo struct {
-	State               string `json:"state,omitempty"`
-	PaymentType         string `json:"paymentType,omitempty"`
-	Id                  int32  `json:"id,omitempty"`
-	Address             string `json:"address,omitempty"`
-	AchAccount          string `json:"achAccount,omitempty"`
-	Phone               string `json:"phone,omitempty"`
-	Country             string `json:"country,omitempty"`
 	Email               string `json:"email,omitempty"`
-	CcNum               string `json:"ccNum,omitempty"`
-	AchType             string `json:"achType,omitempty"`
-	Status              int32  `json:"status,omitempty"`
-	PendingVerification bool   `json:"pendingVerification,omitempty"`
-	IsCCVerified        bool   `json:"isCCVerified,omitempty"`
-	First               string `json:"first,omitempty"`
 	AchAba              string `json:"achAba,omitempty"`
-	City                string `json:"city,omitempty"`
-	Company             string `json:"company,omitempty"`
-	CcType              string `json:"ccType,omitempty"`
-	AchBank             string `json:"achBank,omitempty"`
-	ClientId            int32  `json:"clientId,omitempty"`
+	PaymentType         string `json:"paymentType,omitempty"`
+	IsCCVerified        bool   `json:"isCCVerified,omitempty"`
+	Phone               string `json:"phone,omitempty"`
+	AchType             string `json:"achType,omitempty"`
 	Zip                 string `json:"zip,omitempty"`
+	First               string `json:"first,omitempty"`
+	PendingVerification bool   `json:"pendingVerification,omitempty"`
+	AchBank             string `json:"achBank,omitempty"`
+	Id                  int32  `json:"id,omitempty"`
+	City                string `json:"city,omitempty"`
+	State               string `json:"state,omitempty"`
 	Last                string `json:"last,omitempty"`
+	Company             string `json:"company,omitempty"`
+	Address             string `json:"address,omitempty"`
 	CcExpire            string `json:"ccExpire,omitempty"`
+	CcNum               string `json:"ccNum,omitempty"`
+	ClientId            int32  `json:"clientId,omitempty"`
+	Status              int32  `json:"status,omitempty"`
+	AchAccount          string `json:"achAccount,omitempty"`
+	CcType              string `json:"ccType,omitempty"`
+	Country             string `json:"country,omitempty"`
 }

@@ -31,20 +31,20 @@ AccountApiService Get all controlled clients for enterprise owner
  * @param optional nil or *AccountApiGetAccountCreateOpts - Optional Parameters:
      * @param "XFields" (optional.String) -  An optional fields mask
 
-@return []Client
+@return []ControlledClientDump
 */
 
 type AccountApiGetAccountCreateOpts struct {
 	XFields optional.String
 }
 
-func (a *AccountApiService) GetAccountCreate(ctx context.Context, localVarOptionals *AccountApiGetAccountCreateOpts) ([]Client, *http.Response, error) {
+func (a *AccountApiService) GetAccountCreate(ctx context.Context, localVarOptionals *AccountApiGetAccountCreateOpts) ([]ControlledClientDump, *http.Response, error) {
 	var (
 		localVarHttpMethod  = strings.ToUpper("Get")
 		localVarPostBody    interface{}
 		localVarFileName    string
 		localVarFileBytes   []byte
-		localVarReturnValue []Client
+		localVarReturnValue []ControlledClientDump
 	)
 
 	// create path and map variables
@@ -116,7 +116,7 @@ func (a *AccountApiService) GetAccountCreate(ctx context.Context, localVarOption
 		}
 
 		if localVarHttpResponse.StatusCode == 200 {
-			var v []Client
+			var v []ControlledClientDump
 			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -139,20 +139,20 @@ AccountApiService Create controlled client for enterprise owner
  * @param optional nil or *AccountApiPostAccountCreateOpts - Optional Parameters:
      * @param "XFields" (optional.String) -  An optional fields mask
 
-@return Client
+@return ClientCreateDump
 */
 
 type AccountApiPostAccountCreateOpts struct {
 	XFields optional.String
 }
 
-func (a *AccountApiService) PostAccountCreate(ctx context.Context, payload CreateEnterpriseControlledClient, localVarOptionals *AccountApiPostAccountCreateOpts) (Client, *http.Response, error) {
+func (a *AccountApiService) PostAccountCreate(ctx context.Context, payload CreateEnterpriseControlledClient, localVarOptionals *AccountApiPostAccountCreateOpts) (ClientCreateDump, *http.Response, error) {
 	var (
 		localVarHttpMethod  = strings.ToUpper("Post")
 		localVarPostBody    interface{}
 		localVarFileName    string
 		localVarFileBytes   []byte
-		localVarReturnValue Client
+		localVarReturnValue ClientCreateDump
 	)
 
 	// create path and map variables
@@ -226,7 +226,7 @@ func (a *AccountApiService) PostAccountCreate(ctx context.Context, payload Creat
 		}
 
 		if localVarHttpResponse.StatusCode == 201 {
-			var v Client
+			var v ClientCreateDump
 			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -249,20 +249,20 @@ AccountApiService Deactivate client
  * @param optional nil or *AccountApiPutAccountCreateOpts - Optional Parameters:
      * @param "XFields" (optional.String) -  An optional fields mask
 
-@return Client
+@return ControlledClientDump
 */
 
 type AccountApiPutAccountCreateOpts struct {
 	XFields optional.String
 }
 
-func (a *AccountApiService) PutAccountCreate(ctx context.Context, payload DeactivateEnterpriseControlledClient, localVarOptionals *AccountApiPutAccountCreateOpts) (Client, *http.Response, error) {
+func (a *AccountApiService) PutAccountCreate(ctx context.Context, payload DeactivateEnterpriseControlledClient, localVarOptionals *AccountApiPutAccountCreateOpts) (ControlledClientDump, *http.Response, error) {
 	var (
 		localVarHttpMethod  = strings.ToUpper("Put")
 		localVarPostBody    interface{}
 		localVarFileName    string
 		localVarFileBytes   []byte
-		localVarReturnValue Client
+		localVarReturnValue ControlledClientDump
 	)
 
 	// create path and map variables
@@ -336,7 +336,7 @@ func (a *AccountApiService) PutAccountCreate(ctx context.Context, payload Deacti
 		}
 
 		if localVarHttpResponse.StatusCode == 200 {
-			var v Client
+			var v ControlledClientDump
 			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

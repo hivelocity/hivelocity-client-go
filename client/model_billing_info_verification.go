@@ -10,7 +10,7 @@
 package swagger
 
 type BillingInfoVerification struct {
-	ProvisionOrderId   int32   `json:"provisionOrderId,omitempty"`
-	VerificationAmount float32 `json:"verificationAmount,omitempty"`
 	Id                 int32   `json:"id"`
+	VerificationAmount float32 `json:"verificationAmount,omitempty"`
+	ProvisionOrderId   int32   `json:"provisionOrderId,omitempty"`
 }

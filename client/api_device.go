@@ -1089,12 +1089,14 @@ func (a *DeviceApiService) GetDevicePortResource(ctx context.Context, deviceId i
 DeviceApiService Get all devices
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param optional nil or *DeviceApiGetDeviceResourceOpts - Optional Parameters:
+     * @param "RackId" (optional.Int32) -  Filter Devices only in this Rack ID
      * @param "XFields" (optional.String) -  An optional fields mask
 
 @return []DeviceDump
 */
 
 type DeviceApiGetDeviceResourceOpts struct {
+	RackId  optional.Int32
 	XFields optional.String
 }
 
@@ -1114,6 +1116,9 @@ func (a *DeviceApiService) GetDeviceResource(ctx context.Context, localVarOption
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if localVarOptionals != nil && localVarOptionals.RackId.IsSet() {
+		localVarQueryParams.Add("rack_id", parameterToString(localVarOptionals.RackId.Value(), ""))
+	}
 	// to determine the Content-Type header
 	localVarHttpContentTypes := []string{"application/json"}
 

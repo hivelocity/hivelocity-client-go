@@ -3,8 +3,8 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**OptionId** | **int32** |  | [optional] [default to null]
 **UpgradeName** | **string** | Upgrade name of hardware option | [optional] [default to null]
+**OptionId** | **int32** |  | [optional] [default to null]
 **OptionName** | **string** | Option name of hardware option | [optional] [default to null]
 **UpgradeId** | **int32** | Upgrade ID of hardware option | [optional] [default to null]
 

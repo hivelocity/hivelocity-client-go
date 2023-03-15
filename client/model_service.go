@@ -45,5 +45,6 @@ type Service struct {
 	ResellerBmaasCharge      float32         `json:"resellerBmaasCharge,omitempty"`
 	FacilityName             string          `json:"facilityName,omitempty"`
 	// The service type code. The list of service types can be accessed on https://core.hivelocity.net/api/v2/service/types .
-	TypeCode string `json:"typeCode,omitempty"`
+	TypeCode         string                   `json:"typeCode,omitempty"`
+	BandwidthBilling *ServiceBandwidthBilling `json:"bandwidthBilling,omitempty"`
 }

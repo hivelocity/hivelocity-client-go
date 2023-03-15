@@ -10,17 +10,17 @@
 package swagger
 
 type Option struct {
+	OperatingSystemFeatures *OperatingSystem `json:"operatingSystemFeatures,omitempty"`
 	// Monthly price of the option.
 	MonthlyPrice float32 `json:"monthlyPrice,omitempty"`
-	// Used with `expressions` to determine option compatibility. See product docs.
-	Tags                    []string         `json:"tags,omitempty"`
-	OperatingSystemFeatures *OperatingSystem `json:"operatingSystemFeatures,omitempty"`
-	// Unique ID of the option. Stays the same across products.
-	Id int32 `json:"id,omitempty"`
-	// Unique option name.
-	Name string `json:"name,omitempty"`
 	// Used with `tags` to determine option compatibility. See product docs.
 	Expressions []string `json:"expressions,omitempty"`
+	// Used with `expressions` to determine option compatibility. See product docs.
+	Tags []string `json:"tags,omitempty"`
+	// Unique ID of the option. Stays the same across products.
+	Id int32 `json:"id,omitempty"`
 	// USD|other
 	Currency string `json:"currency,omitempty"`
+	// Unique option name.
+	Name string `json:"name,omitempty"`
 }

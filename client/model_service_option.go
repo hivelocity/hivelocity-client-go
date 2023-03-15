@@ -10,9 +10,9 @@
 package swagger
 
 type ServiceOption struct {
-	OptionId int32 `json:"optionId,omitempty"`
 	// Upgrade name of hardware option
 	UpgradeName string `json:"upgradeName,omitempty"`
+	OptionId    int32  `json:"optionId,omitempty"`
 	// Option name of hardware option
 	OptionName string `json:"optionName,omitempty"`
 	// Upgrade ID of hardware option

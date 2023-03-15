@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 
 # **GetAccountCreate**
-> []Client GetAccountCreate(ctx, optional)
+> []ControlledClientDump GetAccountCreate(ctx, optional)
 Get all controlled clients for enterprise owner
 
 ### Required Parameters
@@ -29,7 +29,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]Client**](Client.md)
+[**[]ControlledClientDump**](ControlledClient-dump.md)
 
 ### Authorization
 
@@ -43,7 +43,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **PostAccountCreate**
-> Client PostAccountCreate(ctx, payload, optional)
+> ClientCreateDump PostAccountCreate(ctx, payload, optional)
 Create controlled client for enterprise owner
 
 ### Required Parameters
@@ -64,7 +64,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Client**](Client.md)
+[**ClientCreateDump**](ClientCreate-dump.md)
 
 ### Authorization
 
@@ -78,7 +78,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **PutAccountCreate**
-> Client PutAccountCreate(ctx, payload, optional)
+> ControlledClientDump PutAccountCreate(ctx, payload, optional)
 Deactivate client
 
 ### Required Parameters
@@ -99,7 +99,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Client**](Client.md)
+[**ControlledClientDump**](ControlledClient-dump.md)
 
 ### Authorization
 

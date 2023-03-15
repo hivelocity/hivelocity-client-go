@@ -89,7 +89,7 @@ paths:
           schema:
             type: "array"
             items:
-              $ref: "#/definitions/Client"
+              $ref: "#/definitions/ControlledClient-dump"
         "403":
           description: "You have not been granted permission to complete this action.\
             \ Please contact your account manager to grant the proper permission."
@@ -117,7 +117,7 @@ paths:
         "201":
           description: "Success"
           schema:
-            $ref: "#/definitions/Client"
+            $ref: "#/definitions/ClientCreate-dump"
         "403":
           description: "You have not been granted permission to complete this action.\
             \ Please contact your account manager to grant the proper permission."
@@ -145,7 +145,7 @@ paths:
         "200":
           description: "Success"
           schema:
-            $ref: "#/definitions/Client"
+            $ref: "#/definitions/ControlledClient-dump"
         "403":
           description: "You have not been granted permission to complete this action.\
             \ Please contact your account manager to grant the proper permission."
@@ -221,7 +221,7 @@ paths:
         description: "End time of custom time period (Unix Epoch Time)"
         required: false
         type: "integer"
-        default: 1672840541
+        default: 1678795545
         x-exportParamName: "End"
         x-optionalDataType: "Int32"
       - name: "X-Fields"
@@ -298,7 +298,7 @@ paths:
         description: "End Time of Custom Time Period (Unix Epoch Time)"
         required: false
         type: "integer"
-        default: 1672840541
+        default: 1678795545
         x-exportParamName: "End"
         x-optionalDataType: "Int32"
       - name: "X-Fields"
@@ -384,7 +384,7 @@ paths:
         description: "End Time of Custom Time Period (Unix Epoch Time)"
         required: false
         type: "integer"
-        default: 1672840541
+        default: 1678795545
         x-exportParamName: "End"
         x-optionalDataType: "Int32"
       - name: "X-Fields"
@@ -461,7 +461,7 @@ paths:
         description: "End Time of Custom Time Period (Unix Epoch Time)"
         required: false
         type: "integer"
-        default: 1672840541
+        default: 1678795545
         x-exportParamName: "End"
         x-optionalDataType: "Int32"
       - name: "X-Fields"
@@ -1396,6 +1396,14 @@ paths:
       summary: "Get all devices"
       operationId: "get_device_resource"
       parameters:
+      - name: "rack_id"
+        in: "query"
+        description: "Filter Devices only in this Rack ID"
+        required: false
+        type: "integer"
+        default: "null"
+        x-exportParamName: "RackId"
+        x-optionalDataType: "Int32"
       - name: "X-Fields"
         in: "header"
         description: "An optional fields mask"
@@ -3992,6 +4000,13 @@ paths:
       summary: "Get network task status"
       operationId: "get_network_task_client_resource"
       parameters:
+      - name: "createdInLast"
+        in: "query"
+        description: "Filter to retrieve tasks created in the last timedelta hours."
+        required: false
+        type: "integer"
+        x-exportParamName: "CreatedInLast"
+        x-optionalDataType: "Int32"
       - name: "X-Fields"
         in: "header"
         description: "An optional fields mask"
@@ -4010,6 +4025,8 @@ paths:
         "403":
           description: "You have not been granted permission to complete this action.\
             \ Please contact your account manager to grant the proper permission."
+        "400":
+          description: "Bad Request."
   /network/status/{deviceId}:
     get:
       tags:
@@ -5149,7 +5166,8 @@ paths:
     get:
       tags:
       - "Token"
-      summary: "Returns a list of Public API Tokens for the current user"
+      summary: "Returns a list of Public API Tokens for the current user (last 4 characters\
+        \ only)"
       operationId: "get_token_resource"
       parameters:
       - name: "X-Fields"
@@ -5166,7 +5184,7 @@ paths:
           schema:
             type: "array"
             items:
-              $ref: "#/definitions/PublicApiToken-dump"
+              $ref: "#/definitions/PublicApiHideToken-dump"
         "403":
           description: "You have not been granted permission to complete this action.\
             \ Please contact your account manager to grant the proper permission."
@@ -5180,7 +5198,7 @@ paths:
         name: "payload"
         required: true
         schema:
-          $ref: "#/definitions/PublicApiToken-load"
+          $ref: "#/definitions/PublicApiToken"
         x-exportParamName: "Payload"
       - name: "X-Fields"
         in: "header"
@@ -5195,56 +5213,17 @@ paths:
           description: "Success"
           schema:
             $ref: "#/definitions/PublicApiToken-dump"
-        "500":
-          description: "Unable to create Public API Token."
+        "403":
+          description: "You have not been granted permission to complete this action.\
+            \ Please contact your account manager to grant the proper permission."
         "201":
           description: "Public API Token created."
-        "403":
-          description: "You have not been granted permission to complete this action.\
-            \ Please contact your account manager to grant the proper permission."
-  /token/{token}:
-    get:
-      tags:
-      - "Token"
-      summary: "Returns Public API Token"
-      operationId: "get_token_id_resource"
-      parameters:
-      - name: "token"
-        in: "path"
-        description: "Public API Token"
-        required: true
-        type: "string"
-        x-exportParamName: "Token"
-      - name: "X-Fields"
-        in: "header"
-        description: "An optional fields mask"
-        required: false
-        type: "string"
-        format: "mask"
-        x-exportParamName: "XFields"
-        x-optionalDataType: "String"
-      responses:
-        "200":
-          description: "Public API Token retrieved."
-          schema:
-            $ref: "#/definitions/PublicApiToken-dump"
-        "400":
-          description: "Unable to retrieve Public API Token."
-        "403":
-          description: "You have not been granted permission to complete this action.\
-            \ Please contact your account manager to grant the proper permission."
     put:
       tags:
       - "Token"
-      summary: "Updates the Public API Token"
-      operationId: "put_token_id_resource"
+      summary: "Updates the Public API Token with apiTokenId"
+      operationId: "put_token_resource"
       parameters:
-      - name: "token"
-        in: "path"
-        description: "Public API Token"
-        required: true
-        type: "string"
-        x-exportParamName: "Token"
       - in: "body"
         name: "payload"
         required: true
@@ -5263,32 +5242,28 @@ paths:
         "200":
           description: "Public API Token successfully updated."
           schema:
-            $ref: "#/definitions/PublicApiToken-dump"
-        "400":
-          description: "Unable to update the Public API Token."
+            $ref: "#/definitions/PublicApiHideToken-dump"
         "403":
           description: "You have not been granted permission to complete this action.\
             \ Please contact your account manager to grant the proper permission."
     delete:
       tags:
       - "Token"
-      summary: "Deletes the Public API Token"
-      operationId: "delete_token_id_resource"
+      summary: "Deletes the Public API Token with apiTokenId"
+      operationId: "delete_token_resource"
       parameters:
-      - name: "token"
-        in: "path"
-        description: "Public API Token"
+      - in: "body"
+        name: "payload"
         required: true
-        type: "string"
-        x-exportParamName: "Token"
+        schema:
+          $ref: "#/definitions/DeleteApiToken-load"
+        x-exportParamName: "Payload"
       responses:
-        "400":
-          description: "Unable to remove the Public API Token."
-        "201":
-          description: "Public API Token successfully removed."
         "403":
           description: "You have not been granted permission to complete this action.\
             \ Please contact your account manager to grant the proper permission."
+        "201":
+          description: "Public API Token successfully removed."
   /vlan/:
     get:
       tags:
@@ -5676,11 +5651,14 @@ definitions:
     - "company"
     - "email"
     properties:
-      email:
-        type: "string"
       company:
         type: "string"
+      email:
+        type: "string"
+      password:
+        type: "string"
     example:
+      password: "password"
       company: "company"
       email: "email"
   DeactivateEnterpriseControlledClient:
@@ -5692,49 +5670,99 @@ definitions:
         type: "integer"
     example:
       clientId: 0
-  Client:
+  ClientCreate-dump:
     type: "object"
     properties:
-      state:
+      email:
+        type: "string"
+      password:
+        type: "string"
+      fax:
+        type: "string"
+      id:
+        type: "integer"
+      phone:
         type: "string"
       city:
         type: "string"
-      email:
+      active:
+        type: "boolean"
+      last:
         type: "string"
-      first:
+      state:
+        type: "string"
+      address:
         type: "string"
       company:
         type: "string"
+      created:
+        type: "integer"
       zip:
         type: "string"
-      last:
-        type: "string"
-      id:
-        type: "number"
-      metaData:
-        type: "object"
-        example: {}
-        properties: {}
-      isClient:
-        type: "boolean"
-      fullName:
-        type: "string"
-      login:
+      first:
         type: "string"
       country:
         type: "string"
     example:
       zip: "zip"
       country: "country"
+      address: "address"
       last: "last"
       city: "city"
-      fullName: "fullName"
-      isClient: true
-      login: "login"
-      metaData: {}
+      created: 6
+      active: true
+      password: "password"
+      phone: "phone"
       company: "company"
+      id: 0
       state: "state"
-      id: 0.80082819046101150206595775671303272247314453125
+      fax: "fax"
+      email: "email"
+      first: "first"
+  ControlledClient-dump:
+    type: "object"
+    properties:
+      email:
+        type: "string"
+      fax:
+        type: "string"
+      id:
+        type: "integer"
+      phone:
+        type: "string"
+      city:
+        type: "string"
+      active:
+        type: "boolean"
+      last:
+        type: "string"
+      state:
+        type: "string"
+      address:
+        type: "string"
+      company:
+        type: "string"
+      created:
+        type: "integer"
+      zip:
+        type: "string"
+      first:
+        type: "string"
+      country:
+        type: "string"
+    example:
+      zip: "zip"
+      country: "country"
+      address: "address"
+      last: "last"
+      city: "city"
+      created: 6
+      active: true
+      phone: "phone"
+      company: "company"
+      id: 0
+      state: "state"
+      fax: "fax"
       email: "email"
       first: "first"
   Bandwidth:
@@ -5796,63 +5824,63 @@ definitions:
     - "osName"
     - "productId"
     properties:
-      hostname:
+      period:
         type: "string"
-        description: "A FQDN for the device. For example: `example.hivelocity.net`"
+        example: "hourly"
+        description: "hourly|monthly|quarterly|semi-annually|annually|biennial|triennial"
+        default: "hourly"
+      ignitionId:
+        type: "integer"
+        description: "The unique ID of an Ignition File for FlatcarOS provisions."
+      productId:
+        type: "integer"
+        description: "The unique ID of the desired product to provision."
       bondingSupport:
         type: "boolean"
         description: "If true, ensures the provisioned device supports port bonding.\
           \ If false, ensures no bonding support."
-      ignitionId:
-        type: "integer"
-        description: "The unique ID of an Ignition File for FlatcarOS provisions."
-      forceDeviceId:
-        type: "integer"
-        description: "For users with reserved devices. The unique ID of the target\
-          \ device to provision."
       tags:
         type: "array"
         example: []
         description: "User specified values."
         items:
           type: "string"
+      vlanId:
+        type: "integer"
+      forceDeviceId:
+        type: "integer"
+        description: "For users with reserved devices. The unique ID of the target\
+          \ device to provision."
       customIPXEScriptURL:
         type: "string"
         description: "URL to download custom iPXE script if not supplying script in\
           \ entirety"
-      locationName:
-        type: "string"
-        description: "A facility code. For example `NYC1`."
-      vlanId:
-        type: "integer"
-      publicSshKeyId:
-        type: "integer"
-      period:
-        type: "string"
-        example: "hourly"
-        description: "hourly|monthly|quarterly|semi-annually|annually|biennial|triennial"
-        default: "hourly"
-      script:
-        type: "string"
-        description: "A Cloud-Init script or a post-install script (Bash for Linux\
-          \ or Powershell for Windows)."
       customIPXEScriptContents:
         type: "string"
         description: "Contents of iPXE script if not supplying URL"
+      publicSshKeyId:
+        type: "integer"
+      hostname:
+        type: "string"
+        description: "A FQDN for the device. For example: `example.hivelocity.net`"
+      locationName:
+        type: "string"
+        description: "A facility code. For example `NYC1`."
       osName:
         type: "string"
         description: "The name of the Operating System to provision on this device.\
           \ Must match name of an operating system product option."
-      productId:
-        type: "integer"
-        description: "The unique ID of the desired product to provision."
+      script:
+        type: "string"
+        description: "A Cloud-Init script or a post-install script (Bash for Linux\
+          \ or Powershell for Windows)."
     example:
       period: "hourly"
       locationName: "locationName"
-      productId: 5
+      productId: 6
       vlanId: 1
       customIPXEScriptContents: "customIPXEScriptContents"
-      forceDeviceId: 6
+      forceDeviceId: 5
       osName: "osName"
       ignitionId: 0
       script: "script"
@@ -5864,80 +5892,80 @@ definitions:
   BareMetalDevice:
     type: "object"
     properties:
-      hostname:
+      period:
         type: "string"
-        description: "The user specified hostname for the device. Note: If the hostname\
-          \ is changed in the portal or on the device itself this value may not reflect\
-          \ the actual hostname on the device."
-      primaryIp:
+        example: "hourly"
+        description: "This device's service's billing period."
+      serviceId:
+        type: "integer"
+        description: "The unique ID of the service associated with this device."
+      powerStatus:
         type: "string"
-        description: "The first assigned public IP for accessing this device."
+        description: "ON|OFF"
+      script:
+        type: "string"
+        description: "The post-install/cloud-init script used during this device's\
+          \ last provisioning."
+      productId:
+        type: "integer"
+        description: "The unique ID of the product associated with this device."
+      publicSshKeyId:
+        type: "integer"
       tags:
         type: "array"
         description: "User specified values."
         items:
           type: "string"
+      vlanId:
+        type: "integer"
+      customIPXEScriptContents:
+        type: "string"
+        description: "Contents of custom iPXE used to provision device"
       customIPXEScriptURL:
         type: "string"
         description: "URL of custom iPXE script used to provision device"
       locationName:
         type: "string"
         description: "A facility code. For example `NYC1`."
-      serviceId:
-        type: "integer"
-        description: "The unique ID of the service associated with this device."
-      deviceId:
-        type: "integer"
-        description: "The unique ID of the device."
-      productName:
-        type: "string"
-        description: "The name of the product associated with this device."
-      vlanId:
-        type: "integer"
-      period:
-        type: "string"
-        example: "hourly"
-        description: "This device's service's billing period."
-      publicSshKeyId:
-        type: "integer"
-      script:
-        type: "string"
-        description: "The post-install/cloud-init script used during this device's\
-          \ last provisioning."
-      powerStatus:
-        type: "string"
-        description: "ON|OFF"
-      customIPXEScriptContents:
-        type: "string"
-        description: "Contents of custom iPXE used to provision device"
       orderId:
         type: "integer"
         description: "The unique ID of the order for this device."
+      deviceId:
+        type: "integer"
+        description: "The unique ID of the device."
+      hostname:
+        type: "string"
+        description: "The user specified hostname for the device. Note: If the hostname\
+          \ is changed in the portal or on the device itself this value may not reflect\
+          \ the actual hostname on the device."
+      productName:
+        type: "string"
+        description: "The name of the product associated with this device."
       osName:
         type: "string"
         description: "The name of the operating system currently installed on this\
           \ device. Note: If you manually reload your own OS over IPMI this value\
           \ may not reflect the OS currently on your device."
-      productId:
-        type: "integer"
-        description: "The unique ID of the product associated with this device."
+      primaryIp:
+        type: "string"
+        description: "The first assigned public IP for accessing this device."
     example:
       period: "hourly"
       locationName: "locationName"
-      productId: 2
-      vlanId: 1
+      productId: 6
+      vlanId: 5
       orderId: 5
       customIPXEScriptContents: "customIPXEScriptContents"
       osName: "osName"
-      deviceId: 6
-      productName: "productName"
+      deviceId: 2
       script: "script"
+      productName: "productName"
+      publicSshKeyId: 1
       tags:
       - "tags"
       - "tags"
-      publicSshKeyId: 5
-      hostname: "hostname"
       powerStatus: "powerStatus"
+      hostname: "hostname"
       customIPXEScriptURL: "customIPXEScriptURL"
       primaryIp: "primaryIp"
       serviceId: 0
@@ -5947,9 +5975,6 @@ definitions:
     - "hostname"
     - "osName"
     properties:
-      hostname:
-        type: "string"
-        description: "A FQDN for the device. For example: `example.hivelocity.net`"
       ignitionId:
         type: "integer"
         description: "The unique ID of an Ignition File for FlatcarOS provisions."
@@ -5957,32 +5982,41 @@ definitions:
         type: "array"
         items:
           type: "string"
-      customIPXEScriptURL:
-        type: "string"
-        description: "URL to download custom iPXE script if not specifying contents\
-          \ in entirety. If both script URL and contents are not specified, the last\
-          \ iPXE script contents are used if OS selection requires an  iPXE script."
-      publicSshKeyId:
-        type: "integer"
-      script:
-        type: "string"
-        description: "A Cloud-Init script or a post-install script (Bash for Linux\
-          \ or Powershell for Windows)."
       customIPXEScriptContents:
         type: "string"
         description: "Contents of iPXE script if not specifying URL. If both script\
           \ URL and contents are not specified, the last iPXE script contents are\
           \ used if OS selection requires an iPXE script."
+      customIPXEScriptURL:
+        type: "string"
+        description: "URL to download custom iPXE script if not specifying contents\
+          \ in entirety. If both script URL and contents are not specified, the last\
+          \ iPXE script contents are used if OS selection requires an  iPXE script."
+      forceReload:
+        type: "boolean"
+        example: false
+        description: "Whether to force a reload even if fields have not changed"
+        default: false
+      publicSshKeyId:
+        type: "integer"
+      hostname:
+        type: "string"
+        description: "A FQDN for the device. For example: `example.hivelocity.net`"
       osName:
         type: "string"
         description: "The name of the Operating System to provision on this device.\
           \ Must match name of an operating system product option."
+      script:
+        type: "string"
+        description: "A Cloud-Init script or a post-install script (Bash for Linux\
+          \ or Powershell for Windows)."
     example:
       hostname: "hostname"
       customIPXEScriptURL: "customIPXEScriptURL"
       customIPXEScriptContents: "customIPXEScriptContents"
       osName: "osName"
       ignitionId: 0
+      forceReload: false
       script: "script"
       tags:
       - "tags"
@@ -6003,10 +6037,10 @@ definitions:
       devices:
       - period: "hourly"
         locationName: "locationName"
-        productId: 5
+        productId: 6
         vlanId: 1
         customIPXEScriptContents: "customIPXEScriptContents"
-        forceDeviceId: 6
+        forceDeviceId: 5
         osName: "osName"
         ignitionId: 0
         script: "script"
@@ -6017,10 +6051,10 @@ definitions:
         bondingSupport: true
       - period: "hourly"
         locationName: "locationName"
-        productId: 5
+        productId: 6
         vlanId: 1
         customIPXEScriptContents: "customIPXEScriptContents"
-        forceDeviceId: 6
+        forceDeviceId: 5
         osName: "osName"
         ignitionId: 0
         script: "script"
@@ -6045,39 +6079,39 @@ definitions:
       devices:
       - period: "hourly"
         locationName: "locationName"
-        productId: 2
-        vlanId: 1
+        productId: 6
+        vlanId: 5
         orderId: 5
         customIPXEScriptContents: "customIPXEScriptContents"
         osName: "osName"
-        deviceId: 6
-        productName: "productName"
+        deviceId: 2
         script: "script"
+        productName: "productName"
+        publicSshKeyId: 1
         tags:
         - "tags"
         - "tags"
-        publicSshKeyId: 5
-        hostname: "hostname"
         powerStatus: "powerStatus"
+        hostname: "hostname"
         customIPXEScriptURL: "customIPXEScriptURL"
         primaryIp: "primaryIp"
         serviceId: 0
       - period: "hourly"
         locationName: "locationName"
-        productId: 2
-        vlanId: 1
+        productId: 6
+        vlanId: 5
         orderId: 5
         customIPXEScriptContents: "customIPXEScriptContents"
         osName: "osName"
-        deviceId: 6
-        productName: "productName"
+        deviceId: 2
         script: "script"
+        productName: "productName"
+        publicSshKeyId: 1
         tags:
         - "tags"
         - "tags"
-        publicSshKeyId: 5
-        hostname: "hostname"
         powerStatus: "powerStatus"
+        hostname: "hostname"
         customIPXEScriptURL: "customIPXEScriptURL"
         primaryIp: "primaryIp"
         serviceId: 0
@@ -6087,75 +6121,75 @@ definitions:
     required:
     - "id"
     properties:
-      provisionOrderId:
+      id:
         type: "integer"
       verificationAmount:
         type: "number"
-      id:
+      provisionOrderId:
         type: "integer"
     example:
-      provisionOrderId: 0
+      provisionOrderId: 1
       verificationAmount: 6.02745618307040320615897144307382404804229736328125
-      id: 1
+      id: 0
   BillingInfo:
     type: "object"
     properties:
-      state:
-        type: "string"
-      paymentType:
-        type: "string"
-      id:
-        type: "integer"
-      address:
-        type: "string"
-      achAccount:
-        type: "string"
-      phone:
-        type: "string"
-      country:
-        type: "string"
       email:
-        type: "string"
-      ccNum:
-        type: "string"
-      achType:
-        type: "string"
-      status:
-        type: "integer"
-      pendingVerification:
-        type: "boolean"
-      isCCVerified:
-        type: "boolean"
-      first:
         type: "string"
       achAba:
         type: "string"
-      city:
+      paymentType:
         type: "string"
-      company:
+      isCCVerified:
+        type: "boolean"
+      phone:
         type: "string"
-      ccType:
+      achType:
         type: "string"
+      zip:
+        type: "string"
+      first:
+        type: "string"
+      pendingVerification:
+        type: "boolean"
       achBank:
         type: "string"
-      clientId:
+      id:
         type: "integer"
-      zip:
+      city:
+        type: "string"
+      state:
         type: "string"
       last:
         type: "string"
+      company:
+        type: "string"
+      address:
+        type: "string"
       ccExpire:
+        type: "string"
+      ccNum:
+        type: "string"
+      clientId:
+        type: "integer"
+      status:
+        type: "integer"
+      achAccount:
+        type: "string"
+      ccType:
+        type: "string"
+      country:
         type: "string"
     example:
       zip: "zip"
       country: "country"
       address: "address"
-      clientId: 1
+      clientId: 6
       last: "last"
       city: "city"
-      ccNum: "ccNum"
       isCCVerified: true
       achBank: "achBank"
+      ccNum: "ccNum"
       achType: "achType"
       paymentType: "paymentType"
       ccType: "ccType"
@@ -6165,11 +6199,11 @@ definitions:
       achAccount: "achAccount"
       pendingVerification: true
       company: "company"
-      state: "state"
       id: 0
+      state: "state"
       email: "email"
       first: "first"
-      status: 6
+      status: 1
   Credit:
     type: "object"
     properties:
@@ -6208,15 +6242,6 @@ definitions:
     - "reason"
     - "serviceId"
     properties:
-      serviceId:
-        type: "integer"
-        description: "Unique ID of a service. Must be related to `device_id`."
-      deviceId:
-        type: "integer"
-        description: "Unique ID of a device. Must be related to `service_id`."
-      comments:
-        type: "string"
-        description: "Details why the device is being cancelled"
       reason:
         type: "string"
         description: "My current service is being upgraded|Hardware/software/network\
@@ -6225,6 +6250,15 @@ definitions:
           \ reseller and my customer cancelled|I am moving to a different technology\
           \ solution: Public Cloud|I am moving to a different technology solution:\
           \ Managed Hosting Company|A product difference (Example: AWS)"
+      comments:
+        type: "string"
+        description: "Details why the device is being cancelled"
+      serviceId:
+        type: "integer"
+        description: "Unique ID of a service. Must be related to `device_id`."
+      deviceId:
+        type: "integer"
+        description: "Unique ID of a device. Must be related to `service_id`."
     example:
       reason: "reason"
       comments: "comments"
@@ -6233,12 +6267,12 @@ definitions:
   Cancellation:
     type: "object"
     properties:
-      activeMonths:
+      cancelled:
+        type: "boolean"
+        description: "True if cancel completed."
+      planId:
         type: "integer"
-        description: "The number of months the target device has been active."
-      monthlyPayment:
-        type: "integer"
-        description: "The monthly cost of the cancelled device."
+        description: "Deprecated."
       clientId:
         type: "integer"
         description: "Unique ID of a client."
@@ -6246,44 +6280,44 @@ definitions:
         type: "string"
         format: "date-time"
         description: "Date of cancellation completion."
-      id:
+      monthlyPayment:
         type: "integer"
-        description: "Unique ID of the cancellation request."
-      serviceId:
-        type: "integer"
-        description: "Unique ID of a service."
-      startDate:
-        type: "string"
-        format: "date-time"
-        description: "Date of cancel request submission."
-      cancelled:
-        type: "boolean"
-        description: "True if cancel completed."
-      name:
-        type: "string"
-        description: "Name of user who submitted the request"
+        description: "The monthly cost of the cancelled device."
       deviceId:
         type: "integer"
         description: "Unique ID of a device."
+      id:
+        type: "integer"
+        description: "Unique ID of the cancellation request."
       requestDate:
         type: "string"
         format: "date-time"
         description: "The requested cancellation date, if specified."
-      planId:
+      activeMonths:
         type: "integer"
-        description: "Deprecated."
+        description: "The number of months the target device has been active."
+      name:
+        type: "string"
+        description: "Name of user who submitted the request"
+      startDate:
+        type: "string"
+        format: "date-time"
+        description: "Date of cancel request submission."
+      serviceId:
+        type: "integer"
+        description: "Unique ID of a service."
     example:
       deletedAt: "2000-01-23T04:56:07.000+00:00"
-      clientId: 1
-      monthlyPayment: 6
-      activeMonths: 0
-      name: "name"
+      clientId: 6
+      monthlyPayment: 1
+      activeMonths: 2
       requestDate: "2000-01-23T04:56:07.000+00:00"
+      name: "name"
       cancelled: true
-      planId: 7
+      planId: 0
       id: 5
-      serviceId: 5
-      deviceId: 2
+      serviceId: 7
+      deviceId: 5
       startDate: "2000-01-23T04:56:07.000+00:00"
   ContactCreate:
     type: "object"
@@ -6292,25 +6326,25 @@ definitions:
     - "email"
     - "fullName"
     properties:
-      description:
+      fullName:
         type: "string"
       email:
         type: "string"
       password:
         type: "string"
-        default: "d3f74736635dc8a7101a3adbaccda3d6"
-      active:
-        type: "integer"
-      fullName:
+        default: "1c98195b277891ebe993cf2cce7ad434"
+      description:
         type: "string"
       phone:
         type: "string"
+      active:
+        type: "integer"
     example:
-      password: "d3f74736635dc8a7101a3adbaccda3d6"
+      password: "1c98195b277891ebe993cf2cce7ad434"
       phone: "phone"
+      fullName: "fullName"
       description: "description"
       active: 0
-      fullName: "fullName"
       email: "email"
   Contact-dump:
     type: "object"
@@ -6319,49 +6353,52 @@ definitions:
     - "email"
     - "fullName"
     properties:
-      description:
+      fullName:
+        type: "string"
+      email:
+        type: "string"
+      referralCode:
         type: "string"
       clientId:
         type: "integer"
-      email:
-        type: "string"
       contactId:
         type: "integer"
+      description:
+        type: "string"
       isClient:
         type: "boolean"
-      active:
-        type: "integer"
-      fullName:
-        type: "string"
       phone:
         type: "string"
+      active:
+        type: "integer"
     example:
       clientId: 0
       contactId: 6
       phone: "phone"
+      referralCode: "referralCode"
+      fullName: "fullName"
       description: "description"
       active: 1
-      fullName: "fullName"
       isClient: true
       email: "email"
   ContactUpdate:
     type: "object"
     properties:
-      description:
+      fullName:
         type: "string"
       email:
         type: "string"
-      active:
-        type: "integer"
-      fullName:
+      description:
         type: "string"
       phone:
         type: "string"
+      active:
+        type: "integer"
     example:
       phone: "phone"
+      fullName: "fullName"
       description: "description"
       active: 0
-      fullName: "fullName"
       email: "email"
   Password:
     type: "object"
@@ -6369,9 +6406,9 @@ definitions:
     - "newPassword"
     - "password"
     properties:
-      password:
-        type: "string"
       newPassword:
+        type: "string"
+      password:
         type: "string"
     example:
       password: "password"
@@ -6391,9 +6428,9 @@ definitions:
     - "password"
     - "token"
     properties:
-      token:
-        type: "string"
       password:
+        type: "string"
+      token:
         type: "string"
     example:
       password: "password"
@@ -6401,13 +6438,13 @@ definitions:
   CreateCredit:
     type: "object"
     properties:
-      billingInfoId:
-        type: "integer"
       amount:
         type: "number"
+      billingInfoId:
+        type: "integer"
     example:
-      amount: 6.02745618307040320615897144307382404804229736328125
-      billingInfoId: 0
+      amount: 0.80082819046101150206595775671303272247314453125
+      billingInfoId: 6
   TotalActiveCredit:
     type: "object"
     properties:
@@ -6674,29 +6711,19 @@ definitions:
   IPMIInfo:
     type: "object"
     properties:
-      firmwareRevision:
-        type: "string"
-      deviceAvailable:
+      auxFirmwareRevInfo:
         type: "string"
       sensorDevice:
         type: "string"
-      manufacturerId:
+      deviceAvailable:
         type: "string"
       ipmbEventGenerator:
         type: "string"
+      firmwareRevision:
+        type: "string"
+      chassisDevice:
+        type: "string"
       manufacturerName:
-        type: "string"
-      fruInventoryDevice:
-        type: "string"
-      auxFirmwareRevInfo:
-        type: "string"
-      sdrRepositoryDevice:
-        type: "string"
-      ipmbEventReceiver:
-        type: "string"
-      productId:
-        type: "string"
-      deviceSDRs:
         type: "string"
       bridge:
         type: "string"
@@ -6705,11 +6732,21 @@ definitions:
         description: "The IPMI ID of the device."
       selDevice:
         type: "string"
-      chassisDevice:
+      fruInventoryDevice:
+        type: "string"
+      manufacturerId:
+        type: "string"
+      ipmbEventReceiver:
+        type: "string"
+      productId:
         type: "string"
       ipmiVersion:
         type: "string"
+      deviceSDRs:
+        type: "string"
       deviceRevision:
+        type: "string"
+      sdrRepositoryDevice:
         type: "string"
     example:
       fruInventoryDevice: "fruInventoryDevice"
@@ -6755,22 +6792,22 @@ definitions:
   IPMILoginData:
     type: "object"
     properties:
-      drivertype:
-        type: "string"
-      username:
-        type: "string"
-        description: "Username for IPMI console."
       host:
         type: "string"
         description: "IP for IPMI access. Requires your current IP to be whitelisted\
           \ or the IPMI VPN."
+      username:
+        type: "string"
+        description: "Username for IPMI console."
+      drivertype:
+        type: "string"
       password:
         type: "string"
         description: "Password for IPMI console."
     example:
       password: "password"
-      drivertype: "drivertype"
       host: "host"
+      drivertype: "drivertype"
       username: "username"
   IPMIValidLogin:
     type: "object"
@@ -6840,52 +6877,52 @@ definitions:
     required:
     - "operatingSystemId"
     properties:
-      publicSshKeyIds:
-        type: "array"
-        description: "List of public ssh keys"
-        items:
-          type: "integer"
+      ignitionId:
+        type: "integer"
+        description: "The unique ID of an Ignition File for FlatcarOS provisions."
       customIPXEScriptUrl:
         type: "string"
         description: "Custom IPXE script URL. If device was provisioned was one before\
           \ and this field is omitted, the original custom iPXE script is used. Otherwise\
           \ specifying the script will override."
+      body:
+        type: "string"
+        description: "Describe any special requests for custom devices."
       controlPanelId:
         type: "integer"
         description: "The unique ID of the control panel product option to provision\
-          \ on this device."
-      body:
-        type: "string"
-        description: "Describe any special requests for non instant devices."
-      operatingSystemId:
-        type: "integer"
-        description: "The unique ID of the operating system product option to provision\
-          \ on this device."
-      ignitionId:
-        type: "integer"
-        description: "The unique ID of an Ignition File for FlatcarOS provisions."
+          \ on this device. This is used only for custom devices."
+      publicSshKeyIds:
+        type: "array"
+        description: "List of public ssh keys"
+        items:
+          type: "integer"
       script:
         type: "string"
         description: "A Cloud-Init script or a post-install script (Bash for Linux\
           \ or Powershell for Windows)."
+      operatingSystemId:
+        type: "integer"
+        description: "The unique ID of the operating system product option to provision\
+          \ on this device."
     example:
       controlPanelId: 6
-      operatingSystemId: 1
+      operatingSystemId: 5
       publicSshKeyIds:
-      - 0
-      - 0
+      - 1
+      - 1
       customIPXEScriptUrl: "customIPXEScriptUrl"
       body: "body"
-      ignitionId: 5
+      ignitionId: 0
       script: "script"
   ServiceOption:
     type: "object"
     properties:
-      optionId:
-        type: "integer"
       upgradeName:
         type: "string"
         description: "Upgrade name of hardware option"
+      optionId:
+        type: "integer"
       optionName:
         type: "string"
         description: "Option name of hardware option"
@@ -6899,7 +6936,12 @@ definitions:
       upgradeId: 6
   IPAssignment:
     type: "object"
+    required:
+    - "version"
     properties:
+      version:
+        type: "integer"
+        description: "IP version of this assignment (ipv4 or ipv6)"
       assignmentId:
         type: "integer"
         description: "Unique ID of this assignment"
@@ -6909,7 +6951,7 @@ definitions:
         description: "Unique ID of the assignment owner"
       subnet:
         type: "string"
-        description: "CIDR representado of this assignment."
+        description: "CIDR representation of this assignment."
       netmask:
         type: "string"
         description: "Netmask for this assignment."
@@ -6958,9 +7000,10 @@ definitions:
       vlanId: 5
       description: "description"
       gatewayIp: "gatewayIp"
-      portId: 1
-      assignmentId: 0
-      deviceId: 6
+      portId: 5
+      version: 0
+      assignmentId: 6
+      deviceId: 1
       lastUsableIp: "lastUsableIp"
       usableIps: []
       netmask: "netmask"
@@ -7020,48 +7063,49 @@ definitions:
     required:
     - "private"
     properties:
+      private:
+        type: "boolean"
+      mtu:
+        type: "integer"
+      nativeVlanTag:
+        type: "integer"
+        description: "The vlan tag of the port's native vlan, if applicable."
+      clientId:
+        type: "integer"
+        example: 0
+        description: "Your client account's unique ID."
+      portId:
+        type: "integer"
+        description: "The unique ID of the port."
+      deviceId:
+        type: "integer"
+        description: "The unique ID of the port's device."
+      status:
+        type: "string"
+        description: "ENABLED|DISABLED|UNKOWN"
+      nativeVlanId:
+        type: "integer"
+        description: "The unique ID of the native VLAN, if applicable."
+      type:
+        type: "string"
+        description: "Indicates if is a bond interface. If not, indicates the Mbps\
+          \ rate of the port."
+      name:
+        type: "string"
       ips:
         type: "array"
         description: "IPs applied to this port."
         items:
           $ref: "#/definitions/IPAssignment"
-      portId:
-        type: "integer"
-        description: "The unique ID of the port."
-      clientId:
-        type: "integer"
-        example: 0
-        description: "Your client account's unique ID."
-      nativeVlanId:
-        type: "integer"
-        description: "The unique ID of the native VLAN, if applicable."
-      status:
-        type: "string"
-        description: "ENABLED|DISABLED|UNKOWN"
-      type:
-        type: "string"
-        description: "Indicates if is a bond interface. If not, indicates the Mbps\
-          \ rate of the port."
-      nativeVlanTag:
-        type: "integer"
-        description: "The vlan tag of the port's native vlan, if applicable."
-      name:
-        type: "string"
-      mtu:
-        type: "integer"
-      private:
-        type: "boolean"
-      deviceId:
-        type: "integer"
-        description: "The unique ID of the port's device."
     example:
       private: true
       clientId: 0
-      nativeVlanId: 6
+      nativeVlanId: 5
       name: "name"
-      portId: 0
+      nativeVlanTag: 6
+      portId: 1
       type: "type"
-      nativeVlanTag: 1
+      deviceId: 5
       ips:
       - facilityCode: "facilityCode"
         subnet: "subnet"
@@ -7070,9 +7114,10 @@ definitions:
         vlanId: 5
         description: "description"
         gatewayIp: "gatewayIp"
-        portId: 1
-        assignmentId: 0
-        deviceId: 6
+        portId: 5
+        version: 0
+        assignmentId: 6
+        deviceId: 1
         lastUsableIp: "lastUsableIp"
         usableIps: []
         netmask: "netmask"
@@ -7085,17 +7130,17 @@ definitions:
         vlanId: 5
         description: "description"
         gatewayIp: "gatewayIp"
-        portId: 1
-        assignmentId: 0
-        deviceId: 6
+        portId: 5
+        version: 0
+        assignmentId: 6
+        deviceId: 1
         lastUsableIp: "lastUsableIp"
         usableIps: []
         netmask: "netmask"
         firstUsableIp: "firstUsableIp"
         nextHopIp: "nextHopIp"
-      deviceId: 5
+      mtu: 0
       status: "status"
-      mtu: 5
   NetworkTask-dump:
     type: "object"
     properties:
@@ -7103,15 +7148,15 @@ definitions:
         type: "object"
         description: "Timestamp of task creation date."
         properties: {}
+      metaData:
+        type: "string"
+        description: "Key value arguments used to trigger the task."
       clientId:
         type: "integer"
         description: "Unique ID of the client triggering the task."
       result:
         type: "string"
         description: "Success|Pending|Failed. Null value also means Pending."
-      metaData:
-        type: "string"
-        description: "Key value arguments used to trigger the task."
       taskId:
         type: "string"
         description: "Unique ID of the network task."
@@ -7145,11 +7190,15 @@ definitions:
     required:
     - "ignition"
     properties:
-      hostname:
+      password:
         type: "string"
       ignition:
         type: "object"
         properties: {}
+      bonded:
+        type: "boolean"
+        example: false
+        default: false
       publicKeys:
         type: "array"
         example: []
@@ -7157,16 +7206,12 @@ definitions:
           type: "string"
       primaryInterface:
         $ref: "#/definitions/PrimaryInterface"
-      password:
+      hostname:
         type: "string"
-      bonded:
-        type: "boolean"
-        example: false
-        default: false
     example:
-      hostname: "hostname"
-      publicKeys: []
       password: "password"
+      publicKeys: []
+      hostname: "hostname"
       bonded: false
       primaryInterface:
         subnet: "subnet"
@@ -7177,6 +7222,10 @@ definitions:
   PrimaryInterface:
     type: "object"
     properties:
+      ip:
+        type: "string"
+      subnet:
+        type: "string"
       gateway:
         type: "string"
       dnsServers:
@@ -7184,10 +7233,6 @@ definitions:
         example: []
         items:
           type: "string"
-      ip:
-        type: "string"
-      subnet:
-        type: "string"
     example:
       subnet: "subnet"
       ip: "ip"
@@ -7196,14 +7241,14 @@ definitions:
   PreviewEffectiveIgnitionResponse:
     type: "object"
     properties:
-      original:
-        type: "object"
-        properties: {}
       modifications:
         type: "array"
         items:
           $ref: "#/definitions/Modification"
       result:
+        type: "object"
+        properties: {}
+      original:
         type: "object"
         properties: {}
     example:
@@ -7221,11 +7266,11 @@ definitions:
     properties:
       reason:
         type: "string"
-      path:
-        type: "string"
       contents:
         type: "object"
         properties: {}
+      path:
+        type: "string"
     example:
       reason: "reason"
       path: "path"
@@ -7252,15 +7297,15 @@ definitions:
     - "domainId"
     - "name"
     properties:
-      directsTo:
-        type: "string"
-      summary:
-        type: "object"
-        properties: {}
       name:
         type: "string"
       domainId:
         type: "integer"
+      summary:
+        type: "object"
+        properties: {}
+      directsTo:
+        type: "string"
     example:
       summary: "{}"
       directsTo: "directsTo"
@@ -7272,14 +7317,14 @@ definitions:
     - "name"
     - "ttl"
     properties:
-      addresses:
-        type: "array"
-        items:
-          type: "string"
       name:
         type: "string"
       ttl:
         type: "integer"
+      addresses:
+        type: "array"
+        items:
+          type: "string"
     example:
       addresses:
       - "addresses"
@@ -7293,9 +7338,9 @@ definitions:
     - "name"
     - "ttl"
     properties:
-      address:
-        type: "string"
       name:
+        type: "string"
+      address:
         type: "string"
       ttl:
         type: "integer"
@@ -7311,14 +7356,14 @@ definitions:
         type: "integer"
       id:
         type: "integer"
-      address:
-        type: "string"
       type:
-        type: "string"
-      name:
         type: "string"
       ttl:
         type: "integer"
+      name:
+        type: "string"
+      address:
+        type: "string"
     example:
       address: "address"
       name: "name"
@@ -7329,9 +7374,9 @@ definitions:
   AAAARecordUpdate:
     type: "object"
     properties:
-      address:
-        type: "string"
       name:
+        type: "string"
+      address:
         type: "string"
       ttl:
         type: "integer"
@@ -7345,11 +7390,11 @@ definitions:
     properties:
       exchange:
         type: "string"
-      preference:
-        type: "integer"
       name:
         type: "string"
       ttl:
+        type: "integer"
+      preference:
         type: "integer"
   MXRecordReturn:
     type: "object"
@@ -7362,9 +7407,9 @@ definitions:
     - "ttl"
     - "type"
     properties:
-      domainId:
-        type: "integer"
       preference:
+        type: "integer"
+      domainId:
         type: "integer"
       exchange:
         type: "string"
@@ -7372,18 +7417,18 @@ definitions:
         type: "integer"
       type:
         type: "string"
-      name:
-        type: "string"
       ttl:
         type: "integer"
+      name:
+        type: "string"
     example:
-      preference: 6
+      preference: 0
       name: "name"
       exchange: "exchange"
       id: 1
       type: "type"
       ttl: 5
-      domainId: 0
+      domainId: 6
   MXRecordUpdate:
     type: "object"
     required:
@@ -7392,11 +7437,11 @@ definitions:
     properties:
       exchange:
         type: "string"
-      preference:
-        type: "integer"
       name:
         type: "string"
       ttl:
+        type: "integer"
+      preference:
         type: "integer"
   PTRRecordReturn:
     type: "object"
@@ -7405,16 +7450,16 @@ definitions:
         type: "integer"
       id:
         type: "integer"
-      address:
-        type: "string"
       type:
         type: "string"
-      name:
-        type: "string"
-      disabled:
-        type: "boolean"
       ttl:
         type: "integer"
+      disabled:
+        type: "boolean"
+      name:
+        type: "string"
+      address:
+        type: "string"
     example:
       address: "address"
       name: "name"
@@ -7435,9 +7480,9 @@ definitions:
   CreateIgnition:
     type: "object"
     properties:
-      contents:
-        type: "string"
       name:
+        type: "string"
+      contents:
         type: "string"
     example:
       contents: "contents"
@@ -7445,12 +7490,12 @@ definitions:
   IgnitionResponse:
     type: "object"
     properties:
-      contents:
-        type: "string"
       name:
         type: "string"
       id:
         type: "integer"
+      contents:
+        type: "string"
     example:
       contents: "contents"
       name: "name"
@@ -7473,138 +7518,138 @@ definitions:
   Stock:
     type: "object"
     properties:
-      product_quarterly_price:
-        type: "number"
-        description: "Price per quarter (3 months)."
-      product_display_price:
-        type: "number"
-        description: "*DEPRECATED*."
-      product_semi_annually_price:
-        type: "number"
-        description: "Price per half year (6 months)."
-      monthly_location_premium:
-        type: "number"
-        description: "Additional monthly fee for this `product_id` in this `data_center`."
-      product_monthly_price:
-        type: "number"
-        description: "Price per month."
-      product_name:
-        type: "string"
-        description: "The unique name of this product."
-      triennial_location_premium:
-        type: "number"
-        description: "Additional triennial fee for this `product_id` in this `data_center`."
-      product_biennial_price:
-        type: "number"
-        description: "Price per 2 year period (24 months)."
-      data_center:
-        type: "string"
-        description: "A facility code. For example `NYC1`."
-      product_on_sale:
-        type: "boolean"
-        description: "true|false. Use with `product_original_price`."
-      product_disabled_billing_periods:
-        type: "array"
-        description: "Orders for the periods in the array will fail. Possible values:\
-          \ hourly|monthly|quarterly|semi-annually|biennial|triennial"
-        items:
-          type: "string"
-      core:
-        type: "boolean"
-        description: "true|false if core site."
-      processor_info:
-        type: "object"
-        description: "JSON CPU info for cores, threads, sockets, and vCPUs."
-        properties: {}
-      product_gpu:
-        type: "string"
-        description: "Human readable GPU specs."
-      product_hourly_price:
-        type: "number"
-        description: "Price per hour."
-      product_annually_price:
-        type: "number"
-        description: "Price per year (12 months)."
-      annually_location_premium:
-        type: "number"
-        description: "Additional annual fee for this `product_id` in this `data_center`."
-      biennial_location_premium:
-        type: "number"
-        description: "Additional biennial fee for this `product_id` in this `data_center`."
-      semi_annually_location_premium:
-        type: "number"
-        description: "Additional semi-annual fee for this `product_id` in this `data_center`."
-      product_triennial_price:
-        type: "number"
-        description: "Price per 3 year period (36 months)."
-      product_cpu_cores:
-        type: "string"
-        description: "Human readable CPU core and thread info in HTML format."
-      quarterly_location_premium:
-        type: "number"
-        description: "Additional quarterly fee for this `product_id` in this `data_center`."
-      edge:
-        type: "boolean"
-        description: "true|false if edge site."
-      product_original_price:
-        type: "number"
-        description: "Retail price of product. Use with `product_on_sale`."
       product_memory:
         type: "string"
         description: "Human readable memory specs."
       hourly_location_premium:
         type: "number"
         description: "Additional hourly fee for this `product_id` in this `data_center`."
-      product_drive:
-        type: "string"
-        description: "Human readable drive specs. Can include multiple drives."
-      stock:
-        type: "string"
-        description: "available|limited|unavailable. Limited denotes minimal stock."
-      product_cpu:
-        type: "string"
-        description: "Human readable CPU specs."
+      edge:
+        type: "boolean"
+        description: "true|false if edge site."
       product_id:
         type: "integer"
         description: "The unique ID of this product."
+      product_display_price:
+        type: "number"
+        description: "*DEPRECATED*."
+      stock:
+        type: "string"
+        description: "available|limited|unavailable. Limited denotes minimal stock."
+      product_drive:
+        type: "string"
+        description: "Human readable drive specs. Can include multiple drives."
+      monthly_location_premium:
+        type: "number"
+        description: "Additional monthly fee for this `product_id` in this `data_center`."
+      product_cpu:
+        type: "string"
+        description: "Human readable CPU specs."
+      annually_location_premium:
+        type: "number"
+        description: "Additional annual fee for this `product_id` in this `data_center`."
+      processor_info:
+        type: "object"
+        description: "JSON CPU info for cores, threads, sockets, and vCPUs."
+        properties: {}
+      product_monthly_price:
+        type: "number"
+        description: "Price per month."
+      product_hourly_price:
+        type: "number"
+        description: "Price per hour."
+      product_name:
+        type: "string"
+        description: "The unique name of this product."
+      product_triennial_price:
+        type: "number"
+        description: "Price per 3 year period (36 months)."
+      product_cpu_cores:
+        type: "string"
+        description: "Human readable CPU core and thread info in HTML format."
+      product_semi_annually_price:
+        type: "number"
+        description: "Price per half year (6 months)."
       product_bandwidth:
         type: "string"
         description: "Human readable networking specs in the format: Free Outbound\
           \ Transfer / NIC Size"
+      product_gpu:
+        type: "string"
+        description: "Human readable GPU specs."
+      data_center:
+        type: "string"
+        description: "A facility code. For example `NYC1`."
+      product_quarterly_price:
+        type: "number"
+        description: "Price per quarter (3 months)."
+      product_original_price:
+        type: "number"
+        description: "Retail price of product. Use with `product_on_sale`."
+      product_disabled_billing_periods:
+        type: "array"
+        description: "Orders for the periods in the array will fail. Possible values:\
+          \ hourly|monthly|quarterly|semi-annually|biennial|triennial"
+        items:
+          type: "string"
+      product_on_sale:
+        type: "boolean"
+        description: "true|false. Use with `product_original_price`."
+      semi_annually_location_premium:
+        type: "number"
+        description: "Additional semi-annual fee for this `product_id` in this `data_center`."
+      biennial_location_premium:
+        type: "number"
+        description: "Additional biennial fee for this `product_id` in this `data_center`."
+      quarterly_location_premium:
+        type: "number"
+        description: "Additional quarterly fee for this `product_id` in this `data_center`."
+      product_annually_price:
+        type: "number"
+        description: "Price per year (12 months)."
+      core:
+        type: "boolean"
+        description: "true|false if core site."
+      product_biennial_price:
+        type: "number"
+        description: "Price per 2 year period (24 months)."
+      triennial_location_premium:
+        type: "number"
+        description: "Additional triennial fee for this `product_id` in this `data_center`."
     example:
       product_gpu: "product_gpu"
-      processor_info: "{}"
       product_cpu: "product_cpu"
-      biennial_location_premium: 4.1456080298839363962315474054776132106781005859375
+      processor_info: "{}"
+      biennial_location_premium: 1.231513536777255612975068288506008684635162353515625
       product_memory: "product_memory"
-      product_monthly_price: 5.63737665663332876420099637471139430999755859375
       edge: true
-      product_hourly_price: 9.301444243932575517419536481611430644989013671875
+      product_monthly_price: 2.3021358869347654518833223846741020679473876953125
+      product_hourly_price: 7.061401241503109105224211816675961017608642578125
       quarterly_location_premium: 1.024645700144157789424070870154537260532379150390625
-      product_id: 7
+      product_id: 6
       semi_annually_location_premium: 7.3862819483858839220147274318151175975799560546875
       stock: "stock"
+      hourly_location_premium: 0.80082819046101150206595775671303272247314453125
       data_center: "data_center"
-      hourly_location_premium: 6.8468526983526398765889098285697400569915771484375
       product_name: "product_name"
-      product_annually_price: 3.61607674925191080461672754609026014804840087890625
-      triennial_location_premium: 2.3021358869347654518833223846741020679473876953125
+      product_annually_price: 1.489415909854170383397331534069962799549102783203125
+      triennial_location_premium: 7.4577447736837658709418974467553198337554931640625
+      product_triennial_price: 9.301444243932575517419536481611430644989013671875
       product_disabled_billing_periods:
       - "product_disabled_billing_periods"
       - "product_disabled_billing_periods"
       core: true
-      product_triennial_price: 1.231513536777255612975068288506008684635162353515625
       product_drive: "product_drive"
       product_cpu_cores: "product_cpu_cores"
-      product_quarterly_price: 0.80082819046101150206595775671303272247314453125
+      product_quarterly_price: 2.027123023002321833274663731572218239307403564453125
       product_bandwidth: "product_bandwidth"
-      annually_location_premium: 2.027123023002321833274663731572218239307403564453125
+      annually_location_premium: 5.63737665663332876420099637471139430999755859375
       product_on_sale: true
-      product_display_price: 6.02745618307040320615897144307382404804229736328125
+      product_display_price: 1.46581298050294517310021547018550336360931396484375
       monthly_location_premium: 5.962133916683182377482808078639209270477294921875
-      product_biennial_price: 7.061401241503109105224211816675961017608642578125
-      product_original_price: 1.489415909854170383397331534069962799549102783203125
-      product_semi_annually_price: 1.46581298050294517310021547018550336360931396484375
+      product_biennial_price: 6.8468526983526398765889098285697400569915771484375
+      product_original_price: 4.1456080298839363962315474054776132106781005859375
+      product_semi_annually_price: 3.61607674925191080461672754609026014804840087890625
   Location:
     type: "object"
     properties:
@@ -7631,11 +7676,11 @@ definitions:
   CityStateCountry:
     type: "object"
     properties:
-      state:
+      country:
         type: "string"
       city:
         type: "string"
-      country:
+      state:
         type: "string"
   Invoice:
     type: "object"
@@ -7678,10 +7723,10 @@ definitions:
   InvoicePDF:
     type: "object"
     properties:
-      invoiceId:
-        type: "integer"
       pdfData:
         type: "string"
+      invoiceId:
+        type: "integer"
     example:
       pdfData: "pdfData"
       invoiceId: 0
@@ -7746,13 +7791,13 @@ definitions:
       - "{}"
       - "{}"
       serviceItems:
-      - unitPrice: 6.02745618307040320615897144307382404804229736328125
-        quantity: 5
+      - unitPrice: 5.962133916683182377482808078639209270477294921875
+        quantity: 6
         dateRange: "{}"
         description: "description"
         serviceId: 1
-      - unitPrice: 6.02745618307040320615897144307382404804229736328125
-        quantity: 5
+      - unitPrice: 5.962133916683182377482808078639209270477294921875
+        quantity: 6
         dateRange: "{}"
         description: "description"
         serviceId: 1
@@ -7766,53 +7811,53 @@ definitions:
   InvoiceDetailsServiceItems:
     type: "object"
     properties:
+      quantity:
+        type: "integer"
       description:
         type: "string"
-      unitPrice:
-        type: "number"
       serviceId:
         type: "integer"
       dateRange:
         type: "object"
         properties: {}
-      quantity:
-        type: "integer"
+      unitPrice:
+        type: "number"
     example:
-      unitPrice: 6.02745618307040320615897144307382404804229736328125
-      quantity: 5
+      unitPrice: 5.962133916683182377482808078639209270477294921875
+      quantity: 6
       dateRange: "{}"
       description: "description"
       serviceId: 1
   InvoiceSeachResult:
     type: "object"
     properties:
+      page:
+        type: "integer"
       prevPage:
         type: "integer"
       total:
         type: "integer"
-      nextPage:
-        type: "integer"
-      hasPrev:
-        type: "boolean"
-      pages:
-        type: "integer"
       hasNext:
         type: "boolean"
-      page:
+      perPage:
         type: "integer"
       items:
         $ref: "#/definitions/Invoice"
-      perPage:
+      hasPrev:
+        type: "boolean"
+      nextPage:
+        type: "integer"
+      pages:
         type: "integer"
     example:
-      total: 6
-      pages: 5
-      perPage: 2
+      total: 1
+      perPage: 5
+      pages: 2
       hasPrev: true
-      nextPage: 1
-      prevPage: 0
+      nextPage: 5
+      prevPage: 6
       hasNext: true
-      page: 5
+      page: 0
       items:
         amount: 6.02745618307040320615897144307382404804229736328125
         clientId: 5
@@ -7876,21 +7921,21 @@ definitions:
   Order-dump:
     type: "object"
     properties:
-      orderId:
-        type: "integer"
       info:
         type: "object"
         properties: {}
       total:
         type: "number"
-      status:
-        type: "string"
       owner:
+        type: "string"
+      orderId:
+        type: "integer"
+      status:
         type: "string"
     example:
       owner: "owner"
-      total: 6.02745618307040320615897144307382404804229736328125
-      orderId: 0
+      total: 0.80082819046101150206595775671303272247314453125
+      orderId: 6
       info: "{}"
       status: "status"
   OrderGroupCreate:
@@ -7898,34 +7943,34 @@ definitions:
     required:
     - "name"
     properties:
+      name:
+        type: "string"
       same_rack:
         type: "boolean"
         default: false
-      name:
-        type: "string"
     example:
       same_rack: false
       name: "name"
   OrderGroup:
     type: "object"
     properties:
-      device_ids:
-        type: "array"
-        items:
-          type: "integer"
-      same_rack:
-        type: "boolean"
       name:
         type: "string"
       id:
         type: "integer"
+      same_rack:
+        type: "boolean"
+      device_ids:
+        type: "array"
+        items:
+          type: "integer"
     example:
       same_rack: true
       name: "name"
+      id: 0
       device_ids:
-      - 0
-      - 0
-      id: 6
+      - 6
+      - 6
   OrderGroupUpdate:
     type: "object"
     required:
@@ -7941,12 +7986,12 @@ definitions:
     - "permissions"
     - "userId"
     properties:
-      userId:
-        type: "integer"
       permissions:
         type: "array"
         items:
           type: "string"
+      userId:
+        type: "integer"
     example:
       permissions:
       - "permissions"
@@ -7968,32 +8013,32 @@ definitions:
   Option:
     type: "object"
     properties:
+      operatingSystemFeatures:
+        $ref: "#/definitions/OperatingSystem"
       monthlyPrice:
         type: "number"
         description: "Monthly price of the option."
-      tags:
-        type: "array"
-        description: "Used with `expressions` to determine option compatibility. See\
-          \ product docs."
-        items:
-          type: "string"
-      operatingSystemFeatures:
-        $ref: "#/definitions/OperatingSystem"
-      id:
-        type: "integer"
-        description: "Unique ID of the option. Stays the same across products."
-      name:
-        type: "string"
-        description: "Unique option name."
       expressions:
         type: "array"
         description: "Used with `tags` to determine option compatibility. See product\
           \ docs."
         items:
           type: "string"
+      tags:
+        type: "array"
+        description: "Used with `expressions` to determine option compatibility. See\
+          \ product docs."
+        items:
+          type: "string"
+      id:
+        type: "integer"
+        description: "Unique ID of the option. Stays the same across products."
       currency:
         type: "string"
         description: "USD|other"
+      name:
+        type: "string"
+        description: "Unique option name."
     example:
       name: "name"
       currency: "currency"
@@ -8043,35 +8088,35 @@ definitions:
   ProfileUpdate:
     type: "object"
     properties:
-      state:
-        type: "string"
-      city:
-        type: "string"
-      fullName:
+      address:
         type: "string"
       email:
         type: "string"
       password:
         type: "string"
-      company:
-        type: "string"
       zip:
-        type: "string"
-      last:
         type: "string"
       requirePayPalOauthLogin:
         type: "string"
       directToZendesk:
         type: "string"
-      address:
-        type: "string"
-      requireOauthLogin:
-        type: "string"
       first:
+        type: "string"
+      fullName:
+        type: "string"
+      city:
+        type: "string"
+      country:
+        type: "string"
+      last:
         type: "string"
       phone:
         type: "string"
-      country:
+      state:
+        type: "string"
+      company:
+        type: "string"
+      requireOauthLogin:
         type: "string"
     example:
       zip: "zip"
@@ -8092,48 +8137,48 @@ definitions:
   Profile:
     type: "object"
     properties:
-      state:
+      address:
         type: "object"
         properties: {}
-      city:
-        type: "object"
-        properties: {}
-      fullName:
-        type: "object"
-        properties: {}
-      isClient:
-        type: "boolean"
       email:
         type: "string"
-      created:
-        type: "object"
-        properties: {}
-      company:
-        type: "object"
-        properties: {}
       zip:
-        type: "object"
-        properties: {}
-      last:
-        type: "string"
-      id:
-        type: "integer"
-      fax:
-        type: "object"
-        properties: {}
-      address:
         type: "object"
         properties: {}
       metaData:
         type: "object"
         properties: {}
+      fax:
+        type: "object"
+        properties: {}
+      id:
+        type: "integer"
       first:
+        type: "string"
+      fullName:
+        type: "object"
+        properties: {}
+      city:
+        type: "object"
+        properties: {}
+      country:
+        type: "object"
+        properties: {}
+      last:
         type: "string"
       phone:
         type: "string"
+      state:
+        type: "object"
+        properties: {}
+      company:
+        type: "object"
+        properties: {}
       login:
         type: "string"
-      country:
+      isClient:
+        type: "boolean"
+      created:
         type: "object"
         properties: {}
     example:
@@ -8149,47 +8194,47 @@ definitions:
       metaData: "{}"
       phone: "phone"
       company: "{}"
-      state: "{}"
       id: 0
+      state: "{}"
       fax: "{}"
       email: "email"
       first: "first"
   BasicProfile:
     type: "object"
     properties:
-      state:
+      email:
+        type: "string"
+      zip:
+        type: "object"
+        properties: {}
+      metaData:
+        type: "object"
+        properties: {}
+      id:
+        type: "integer"
+      first:
+        type: "string"
+      fullName:
         type: "object"
         properties: {}
       city:
         type: "object"
         properties: {}
-      fullName:
-        type: "object"
-        properties: {}
-      isClient:
-        type: "boolean"
-      email:
-        type: "string"
-      company:
-        type: "object"
-        properties: {}
-      zip:
+      country:
         type: "object"
         properties: {}
       last:
         type: "string"
-      id:
-        type: "integer"
-      metaData:
+      state:
         type: "object"
         properties: {}
-      first:
-        type: "string"
+      company:
+        type: "object"
+        properties: {}
       login:
         type: "string"
-      country:
-        type: "object"
-        properties: {}
+      isClient:
+        type: "boolean"
     example:
       zip: "{}"
       country: "{}"
@@ -8200,31 +8245,31 @@ definitions:
       login: "login"
       metaData: "{}"
       company: "{}"
-      state: "{}"
       id: 0
+      state: "{}"
       email: "email"
       first: "first"
   Deployment:
     type: "object"
     properties:
-      empty:
-        type: "boolean"
-      deploymentName:
-        type: "string"
-      startedProvisioning:
-        type: "boolean"
-      deploymentId:
-        type: "integer"
       orderNumber:
         type: "string"
         example: ""
-      price:
-        type: "number"
+      deploymentName:
+        type: "string"
       deploymentConfiguration:
         type: "array"
         items:
           type: "object"
           properties: {}
+      startedProvisioning:
+        type: "boolean"
+      deploymentId:
+        type: "integer"
+      price:
+        type: "number"
+      empty:
+        type: "boolean"
     example:
       orderNumber: ""
       deploymentConfiguration:
@@ -8254,38 +8299,9 @@ definitions:
     - "operatingSystem"
     - "productId"
     properties:
-      customIPXEScriptContents:
-        type: "string"
-        description: "Contents of iPXE script if not supplying URL"
       locationCode:
         type: "string"
         default: ""
-      hostnames:
-        type: "array"
-        items:
-          type: "string"
-      ignitionIds:
-        type: "array"
-        example: []
-        description: "Specify Ignition file ID for CoreOS/Flatcar provisions"
-        items:
-          type: "integer"
-      customIPXEScriptURL:
-        type: "string"
-        description: "URL to download custom iPXE script if not supplying script in\
-          \ entirety"
-      forceDeviceIds:
-        type: "array"
-        example: []
-        description: "Either deploy these Device IDs or fail"
-        items:
-          type: "integer"
-      productId:
-        type: "integer"
-      options:
-        type: "array"
-        items:
-          type: "integer"
       billingPeriod:
         type: "string"
         description: "must be one of ['monthly', 'quarterly', 'semi-annually', 'annually',\
@@ -8293,25 +8309,54 @@ definitions:
         default: "monthly"
       quantity:
         type: "integer"
-      publicSshKeyId:
-        type: "integer"
-        description: "ID of SSH Key to use for deployment"
+      options:
+        type: "array"
+        items:
+          type: "integer"
+      hostnames:
+        type: "array"
+        items:
+          type: "string"
       operatingSystem:
         type: "string"
         description: "Operating System's Name or ID"
+      ignitionIds:
+        type: "array"
+        example: []
+        description: "Specify Ignition file ID for CoreOS/Flatcar provisions"
+        items:
+          type: "integer"
       additionalNotes:
         type: "array"
         items:
           type: "string"
+      customIPXEScriptContents:
+        type: "string"
+        description: "Contents of iPXE script if not supplying URL"
+      productId:
+        type: "integer"
+      customIPXEScriptURL:
+        type: "string"
+        description: "URL to download custom iPXE script if not supplying script in\
+          \ entirety"
+      publicSshKeyId:
+        type: "integer"
+        description: "ID of SSH Key to use for deployment"
+      forceDeviceIds:
+        type: "array"
+        example: []
+        description: "Either deploy these Device IDs or fail"
+        items:
+          type: "integer"
     example:
       ignitionIds: []
-      quantity: 1
-      productId: 0
+      quantity: 0
+      productId: 1
       billingPeriod: "monthly"
-      customIPXEScriptContents: "customIPXEScriptContents"
       hostnames:
       - "hostnames"
       - "hostnames"
+      customIPXEScriptContents: "customIPXEScriptContents"
       operatingSystem: "operatingSystem"
       publicSshKeyId: 5
       forceDeviceIds: []
@@ -8407,6 +8452,8 @@ definitions:
         type: "string"
         description: "The service type code. The list of service types can be accessed\
           \ on https://core.hivelocity.net/api/v2/service/types ."
+      bandwidthBilling:
+        $ref: "#/definitions/ServiceBandwidthBilling"
     example:
       serviceType: "serviceType"
       discountedCost: 4.1456080298839363962315474054776132106781005859375
@@ -8456,6 +8503,11 @@ definitions:
       serviceDiscount: 7.3862819483858839220147274318151175975799560546875
       resellerBmaasCharge: 6.683562403749608193948006373830139636993408203125
       contractTerm: 5
+      bandwidthBilling:
+        notification: "notification"
+        billingMethod: "billingMethod"
+        includedTransferUnit: "includedTransferUnit"
+        overageUnit: "overageUnit"
       startDate: 1
       billedPricePerPeriod: 5.962133916683182377482808078639209270477294921875
       status: "status"
@@ -8481,6 +8533,22 @@ definitions:
       name: "name"
       optionId: 1
       upgradeName: "upgradeName"
+  ServiceBandwidthBilling:
+    type: "object"
+    properties:
+      billingMethod:
+        type: "string"
+      includedTransferUnit:
+        type: "string"
+      notification:
+        type: "string"
+      overageUnit:
+        type: "string"
+    example:
+      notification: "notification"
+      billingMethod: "billingMethod"
+      includedTransferUnit: "includedTransferUnit"
+      overageUnit: "overageUnit"
   Service:
     type: "object"
     properties:
@@ -8565,6 +8633,8 @@ definitions:
         type: "string"
         description: "The service type code. The list of service types can be accessed\
           \ on https://core.hivelocity.net/api/v2/service/types ."
+      bandwidthBilling:
+        $ref: "#/definitions/ServiceBandwidthBilling"
     example:
       serviceType: "serviceType"
       discountedCost: 4.1456080298839363962315474054776132106781005859375
@@ -8610,6 +8680,11 @@ definitions:
       serviceDiscount: 7.3862819483858839220147274318151175975799560546875
       resellerBmaasCharge: 9.965781217890562260208753286860883235931396484375
       contractTerm: 1
+      bandwidthBilling:
+        notification: "notification"
+        billingMethod: "billingMethod"
+        includedTransferUnit: "includedTransferUnit"
+        overageUnit: "overageUnit"
       startDate: 1
       billedPricePerPeriod: 5.962133916683182377482808078639209270477294921875
       status: "status"
@@ -8656,9 +8731,9 @@ definitions:
     - "name"
     - "publicKey"
     properties:
-      publicKey:
-        type: "string"
       name:
+        type: "string"
+      publicKey:
         type: "string"
     example:
       name: "name"
@@ -8666,11 +8741,11 @@ definitions:
   SshKeyResponse:
     type: "object"
     properties:
-      publicKey:
+      name:
         type: "string"
       sshKeyId:
         type: "integer"
-      name:
+      publicKey:
         type: "string"
     example:
       name: "name"
@@ -8679,9 +8754,9 @@ definitions:
   SshKeyUpdate:
     type: "object"
     properties:
-      publicKey:
-        type: "string"
       name:
+        type: "string"
+      publicKey:
         type: "string"
     example:
       name: "name"
@@ -8692,31 +8767,31 @@ definitions:
     - "queue"
     - "subject"
     properties:
+      source:
+        type: "number"
+        example: 0.0
+      queue:
+        type: "string"
+      priority:
+        type: "number"
+        example: 0.0
       status:
         type: "string"
         example: "open"
       body:
         type: "string"
         example: ""
-      queue:
-        type: "string"
-      source:
+      assignment:
         type: "number"
         example: 0.0
       subject:
         type: "string"
-      priority:
-        type: "number"
-        example: 0.0
-      assignment:
-        type: "number"
-        example: 0.0
     example:
-      subject: "subject"
       assignment: 0.0
+      subject: "subject"
       source: 0.0
-      body: ""
       priority: 0.0
+      body: ""
       queue: "queue"
       status: "open"
   Ticket:
@@ -8736,7 +8811,7 @@ definitions:
         example: 0.0
       opened:
         type: "number"
-        example: 1.672840542E9
+        example: 1.678795547E9
       serviceId:
         type: "number"
         example: 0.0
@@ -8772,21 +8847,21 @@ definitions:
       internalTicket:
         type: "number"
     example:
-      clientId: 7.3862819483858839220147274318151175975799560546875
-      contactId: 1.231513536777255612975068288506008684635162353515625
+      clientId: 1.231513536777255612975068288506008684635162353515625
+      contactId: 1.024645700144157789424070870154537260532379150390625
       subject: ""
-      opened: 1.672840542E9
+      opened: 1.678795547E9
       priority: ""
       body: ""
-      posts: 6.02745618307040320615897144307382404804229736328125
+      posts: 1.46581298050294517310021547018550336360931396484375
       newReply: true
-      duration: 1.024645700144157789424070870154537260532379150390625
+      duration: 1.489415909854170383397331534069962799549102783203125
       metaData: "{}"
-      internalTicket: 1.489415909854170383397331534069962799549102783203125
+      internalTicket: 6.8468526983526398765889098285697400569915771484375
       replies:
-      - date: 5.63737665663332876420099637471139430999755859375
-        clientId: 1.46581298050294517310021547018550336360931396484375
-        attachments: 9.301444243932575517419536481611430644989013671875
+      - date: 4.1456080298839363962315474054776132106781005859375
+        clientId: 2.3021358869347654518833223846741020679473876953125
+        attachments: 7.3862819483858839220147274318151175975799560546875
         fromAdmin: true
         hidden: 3.61607674925191080461672754609026014804840087890625
         contactId: 7.061401241503109105224211816675961017608642578125
@@ -8794,16 +8869,16 @@ definitions:
         body: ""
         ubersmith_attached_files:
         - name: ""
-          id: 2.027123023002321833274663731572218239307403564453125
+          id: 5.962133916683182377482808078639209270477294921875
         - name: ""
-          id: 2.027123023002321833274663731572218239307403564453125
-        adminId: 4.1456080298839363962315474054776132106781005859375
+          id: 5.962133916683182377482808078639209270477294921875
+        adminId: 2.027123023002321833274663731572218239307403564453125
         from: {}
-        id: 5.962133916683182377482808078639209270477294921875
-        ticketId: 2.3021358869347654518833223846741020679473876953125
-      - date: 5.63737665663332876420099637471139430999755859375
-        clientId: 1.46581298050294517310021547018550336360931396484375
-        attachments: 9.301444243932575517419536481611430644989013671875
+        id: 9.301444243932575517419536481611430644989013671875
+        ticketId: 5.63737665663332876420099637471139430999755859375
+      - date: 4.1456080298839363962315474054776132106781005859375
+        clientId: 2.3021358869347654518833223846741020679473876953125
+        attachments: 7.3862819483858839220147274318151175975799560546875
         fromAdmin: true
         hidden: 3.61607674925191080461672754609026014804840087890625
         contactId: 7.061401241503109105224211816675961017608642578125
@@ -8811,20 +8886,21 @@ definitions:
         body: ""
         ubersmith_attached_files:
         - name: ""
-          id: 2.027123023002321833274663731572218239307403564453125
+          id: 5.962133916683182377482808078639209270477294921875
         - name: ""
-          id: 2.027123023002321833274663731572218239307403564453125
-        adminId: 4.1456080298839363962315474054776132106781005859375
+          id: 5.962133916683182377482808078639209270477294921875
+        adminId: 2.027123023002321833274663731572218239307403564453125
         from: {}
-        id: 5.962133916683182377482808078639209270477294921875
-        ticketId: 2.3021358869347654518833223846741020679473876953125
+        id: 9.301444243932575517419536481611430644989013671875
+        ticketId: 5.63737665663332876420099637471139430999755859375
       contact:
         clientId: 0
         contactId: 6
         phone: "phone"
+        referralCode: "referralCode"
+        fullName: "fullName"
         description: "description"
         active: 1
-        fullName: "fullName"
         isClient: true
         email: "email"
       client:
@@ -8837,54 +8913,99 @@ definitions:
         login: "login"
         metaData: {}
         company: "company"
-        state: "state"
         id: 0.80082819046101150206595775671303272247314453125
+        state: "state"
         email: "email"
         first: "first"
-      id: 0.80082819046101150206595775671303272247314453125
+      id: 6.02745618307040320615897144307382404804229736328125
       serviceId: 0.0
       updated: 0.0
       queue: ""
       status: ""
+  Client:
+    type: "object"
+    properties:
+      fullName:
+        type: "string"
+      country:
+        type: "string"
+      email:
+        type: "string"
+      zip:
+        type: "string"
+      metaData:
+        type: "object"
+        example: {}
+        properties: {}
+      id:
+        type: "number"
+      first:
+        type: "string"
+      isClient:
+        type: "boolean"
+      city:
+        type: "string"
+      state:
+        type: "string"
+      last:
+        type: "string"
+      company:
+        type: "string"
+      login:
+        type: "string"
+    example:
+      zip: "zip"
+      country: "country"
+      last: "last"
+      city: "city"
+      fullName: "fullName"
+      isClient: true
+      login: "login"
+      metaData: {}
+      company: "company"
+      id: 0.80082819046101150206595775671303272247314453125
+      state: "state"
+      email: "email"
+      first: "first"
   TicketPost:
     type: "object"
     properties:
-      clientId:
-        type: "number"
-      fromAdmin:
-        type: "boolean"
-      id:
-        type: "number"
-      body:
-        type: "string"
-        example: ""
-      date:
-        type: "number"
-      ticketId:
-        type: "number"
-      contactId:
-        type: "number"
-      subject:
-        type: "string"
-        example: ""
-      attachments:
-        type: "number"
-      hidden:
-        type: "number"
       ubersmith_attached_files:
         type: "array"
         items:
           $ref: "#/definitions/TicketAttach"
-      adminId:
+      ticketId:
         type: "number"
+      clientId:
+        type: "number"
+      fromAdmin:
+        type: "boolean"
+      contactId:
+        type: "number"
+      body:
+        type: "string"
+        example: ""
       from:
         type: "object"
         example: {}
         properties: {}
+      id:
+        type: "number"
+      hidden:
+        type: "number"
+      subject:
+        type: "string"
+        example: ""
+      adminId:
+        type: "number"
+      date:
+        type: "number"
+      attachments:
+        type: "number"
     example:
-      date: 5.63737665663332876420099637471139430999755859375
-      clientId: 1.46581298050294517310021547018550336360931396484375
-      attachments: 9.301444243932575517419536481611430644989013671875
+      date: 4.1456080298839363962315474054776132106781005859375
+      clientId: 2.3021358869347654518833223846741020679473876953125
+      attachments: 7.3862819483858839220147274318151175975799560546875
       fromAdmin: true
       hidden: 3.61607674925191080461672754609026014804840087890625
       contactId: 7.061401241503109105224211816675961017608642578125
@@ -8892,13 +9013,13 @@ definitions:
       body: ""
       ubersmith_attached_files:
       - name: ""
-        id: 2.027123023002321833274663731572218239307403564453125
+        id: 5.962133916683182377482808078639209270477294921875
       - name: ""
-        id: 2.027123023002321833274663731572218239307403564453125
-      adminId: 4.1456080298839363962315474054776132106781005859375
+        id: 5.962133916683182377482808078639209270477294921875
+      adminId: 2.027123023002321833274663731572218239307403564453125
       from: {}
-      id: 5.962133916683182377482808078639209270477294921875
-      ticketId: 2.3021358869347654518833223846741020679473876953125
+      id: 9.301444243932575517419536481611430644989013671875
+      ticketId: 5.63737665663332876420099637471139430999755859375
   TicketAttach:
     type: "object"
     properties:
@@ -8909,41 +9030,41 @@ definitions:
         type: "number"
     example:
       name: ""
-      id: 2.027123023002321833274663731572218239307403564453125
+      id: 5.962133916683182377482808078639209270477294921875
   TicketSeachResult:
     type: "object"
     properties:
+      page:
+        type: "integer"
       prevPage:
         type: "integer"
       total:
         type: "integer"
-      nextPage:
-        type: "integer"
-      hasPrev:
-        type: "boolean"
-      pages:
-        type: "integer"
       hasNext:
         type: "boolean"
-      page:
+      perPage:
         type: "integer"
       items:
         $ref: "#/definitions/TicketPost"
-      perPage:
+      hasPrev:
+        type: "boolean"
+      nextPage:
+        type: "integer"
+      pages:
         type: "integer"
     example:
-      total: 6
-      pages: 5
-      perPage: 2
+      total: 1
+      perPage: 5
+      pages: 2
       hasPrev: true
-      nextPage: 1
-      prevPage: 0
+      nextPage: 5
+      prevPage: 6
       hasNext: true
-      page: 5
+      page: 0
       items:
-        date: 5.63737665663332876420099637471139430999755859375
-        clientId: 1.46581298050294517310021547018550336360931396484375
-        attachments: 9.301444243932575517419536481611430644989013671875
+        date: 4.1456080298839363962315474054776132106781005859375
+        clientId: 2.3021358869347654518833223846741020679473876953125
+        attachments: 7.3862819483858839220147274318151175975799560546875
         fromAdmin: true
         hidden: 3.61607674925191080461672754609026014804840087890625
         contactId: 7.061401241503109105224211816675961017608642578125
@@ -8951,13 +9072,13 @@ definitions:
         body: ""
         ubersmith_attached_files:
         - name: ""
-          id: 2.027123023002321833274663731572218239307403564453125
+          id: 5.962133916683182377482808078639209270477294921875
         - name: ""
-          id: 2.027123023002321833274663731572218239307403564453125
-        adminId: 4.1456080298839363962315474054776132106781005859375
+          id: 5.962133916683182377482808078639209270477294921875
+        adminId: 2.027123023002321833274663731572218239307403564453125
         from: {}
-        id: 5.962133916683182377482808078639209270477294921875
-        ticketId: 2.3021358869347654518833223846741020679473876953125
+        id: 9.301444243932575517419536481611430644989013671875
+        ticketId: 5.63737665663332876420099637471139430999755859375
   TicketPut:
     type: "object"
     properties:
@@ -8971,7 +9092,23 @@ definitions:
     required:
     - "body"
     properties:
+      subject:
+        type: "string"
       replyTo:
+        type: "string"
+      contactId:
+        type: "number"
+      cc:
+        type: "string"
+      body:
+        type: "string"
+      type:
+        type: "number"
+      encrypted:
+        type: "string"
+      recipient:
+        type: "string"
+      headers:
         type: "string"
       attachments:
         type: "array"
@@ -8981,29 +9118,13 @@ definitions:
         items:
           type: "object"
           properties: {}
-      body:
-        type: "string"
-      encrypted:
-        type: "string"
-      contactId:
-        type: "number"
       date:
-        type: "number"
-      subject:
-        type: "string"
-      headers:
-        type: "string"
-      type:
         type: "number"
       hidden:
         type: "number"
-      cc:
-        type: "string"
-      recipient:
-        type: "string"
     example:
-      date: 6.02745618307040320615897144307382404804229736328125
       cc: "cc"
+      date: 1.46581298050294517310021547018550336360931396484375
       headers: "headers"
       attachments:
       - name: ""
@@ -9015,42 +9136,86 @@ definitions:
       replyTo: "replyTo"
       recipient: "recipient"
       body: "body"
-      type: 1.46581298050294517310021547018550336360931396484375
-  PublicApiToken-load:
+      type: 6.02745618307040320615897144307382404804229736328125
+  PublicApiToken:
     type: "object"
     properties:
-      ipAddresses:
-        $ref: "#/definitions/PublicApiTokenIp"
       name:
         type: "string"
+      ipAddresses:
+        $ref: "#/definitions/PublicApiTokenIp"
+    example:
+      name: "name"
+      ipAddresses:
+        name: "name"
+        ips:
+        - "ips"
+        - "ips"
   PublicApiTokenIp:
     type: "object"
     required:
     - "ips"
     properties:
+      name:
+        type: "string"
       ips:
         type: "array"
         items:
           type: "string"
-      name:
-        type: "string"
     example:
       name: "name"
       ips:
       - "ips"
       - "ips"
+  PublicApiToken-load:
+    type: "object"
+    properties:
+      name:
+        type: "string"
+      apiTokenId:
+        type: "string"
+  DeleteApiToken-load:
+    type: "object"
+    properties:
+      apiTokenId:
+        type: "string"
   PublicApiToken-dump:
     type: "object"
     required:
     - "token"
     properties:
-      token:
+      name:
+        type: "string"
+      apiTokenId:
         type: "string"
       ipAddresses:
         $ref: "#/definitions/PublicApiTokenIp"
-      name:
+      token:
         type: "string"
     example:
+      apiTokenId: "apiTokenId"
+      name: "name"
+      ipAddresses:
+        name: "name"
+        ips:
+        - "ips"
+        - "ips"
+      token: "token"
+  PublicApiHideToken-dump:
+    type: "object"
+    required:
+    - "token"
+    properties:
+      name:
+        type: "string"
+      apiTokenId:
+        type: "string"
+      ipAddresses:
+        $ref: "#/definitions/PublicApiTokenIp"
+      token:
+        type: "string"
+    example:
+      apiTokenId: "apiTokenId"
       name: "name"
       ipAddresses:
         name: "name"
@@ -9085,21 +9250,25 @@ definitions:
   Vlan:
     type: "object"
     properties:
+      facilityCode:
+        type: "string"
+        description: "For example: `NYC1`."
       vlanId:
         type: "integer"
         description: "Unique ID of the VLAN."
-      portIds:
-        type: "array"
-        description: "Unique IDs of ports or bonds."
-        items:
-          type: "integer"
+      automated:
+        type: "boolean"
+        description: "If true, VLAN can be automated via API. If false, contact support\
+          \ to enable automation."
       qInQ:
         type: "boolean"
         description: "If true, VLAN is configured in Q-in-Q Mode. Automation is not\
           \ currently supported on Q-in-Q VLANs."
-      facilityCode:
-        type: "string"
-        description: "For example: `NYC1`."
+      ipIds:
+        type: "array"
+        description: "Unique IDs of IP Assignments."
+        items:
+          type: "integer"
       type:
         type: "string"
         description: "If `public`, this VLAN can have IPs assigned to become reachable\
@@ -9107,15 +9276,11 @@ definitions:
           \ will never be reachabled from the internet. All VLANs are subject to traffic\
           \ billing and overages, with the exception of private VLAN traffic on unbonded\
           \ Devices."
-      ipIds:
+      portIds:
         type: "array"
-        description: "Unique IDs of IP Assignments."
+        description: "Unique IDs of ports or bonds."
         items:
           type: "integer"
-      automated:
-        type: "boolean"
-        description: "If true, VLAN can be automated via API. If false, contact support\
-          \ to enable automation."
       vlanTag:
         type: "integer"
         description: "The VLAN Tag id from the switch. Use this value when configuring\
@@ -9126,11 +9291,11 @@ definitions:
       vlanTag: 5
       vlanId: 0
       portIds:
-      - 6
-      - 6
+      - 1
+      - 1
       ipIds:
-      - 1
-      - 1
+      - 6
+      - 6
       type: "type"
       qInQ: true
   VlanUpdate:
@@ -9138,23 +9303,23 @@ definitions:
     required:
     - "portIds"
     properties:
-      portIds:
-        type: "array"
-        description: "Unique IDs of ports or bonds."
-        items:
-          type: "integer"
       ipIds:
         type: "array"
         description: "Unique IDs of IP Assignments."
         items:
           type: "integer"
+      portIds:
+        type: "array"
+        description: "Unique IDs of ports or bonds."
+        items:
+          type: "integer"
     example:
       portIds:
-      - 0
-      - 0
+      - 6
+      - 6
       ipIds:
-      - 6
-      - 6
+      - 0
+      - 0
   WebhookEvent:
     type: "object"
     required:
