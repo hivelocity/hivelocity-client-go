@@ -16,7 +16,7 @@ Method | HTTP request | Description
 [**GetDomainResource**](DomainsApi.md#GetDomainResource) | **Get** /domains/ | Return the domains of a client
 [**GetMxRecordIdResource**](DomainsApi.md#GetMxRecordIdResource) | **Get** /domains/{domainID}/mx-record/{recordId} | Return Single MX Records found for given id
 [**GetMxRecordResource**](DomainsApi.md#GetMxRecordResource) | **Get** /domains/{domainID}/mx-record | Return all MX Records found for given zone
-[**GetPtrRecordIdResource**](DomainsApi.md#GetPtrRecordIdResource) | **Get** /domains/ptr/{recordId} | 
+[**GetPtrRecordIdResource**](DomainsApi.md#GetPtrRecordIdResource) | **Get** /domains/ptr/{recordId} | Get PTR record by ID and name
 [**GetPtrRecordResource**](DomainsApi.md#GetPtrRecordResource) | **Get** /domains/ptr | Return the PTR records of a client
 [**PostARecordResource**](DomainsApi.md#PostARecordResource) | **Post** /domains/{domain}/a-record | Create a new A Record for given zone
 [**PostAaaaRecordResource**](DomainsApi.md#PostAaaaRecordResource) | **Post** /domains/{domainID}/aaaa-record | Create a new AAAA Record for given zone
@@ -25,7 +25,7 @@ Method | HTTP request | Description
 [**PutARecordIdResource**](DomainsApi.md#PutARecordIdResource) | **Put** /domains/{domain}/a-record/{record} | Update an A Record for given zone
 [**PutAaaaRecordIdResource**](DomainsApi.md#PutAaaaRecordIdResource) | **Put** /domains/{domainID}/aaaa-record/{recordId} | Update an AAAA Record for given id
 [**PutMxRecordIdResource**](DomainsApi.md#PutMxRecordIdResource) | **Put** /domains/{domainID}/mx-record/{recordId} | Update an MX Record for given zone
-[**PutPtrRecordIdResource**](DomainsApi.md#PutPtrRecordIdResource) | **Put** /domains/ptr/{recordId} | 
+[**PutPtrRecordIdResource**](DomainsApi.md#PutPtrRecordIdResource) | **Put** /domains/ptr/{recordId} | Update PTR record
 
 
 # **DeleteARecordIdResource**
@@ -421,7 +421,7 @@ Name | Type | Description  | Notes
 
 # **GetPtrRecordIdResource**
 > PtrRecordReturn GetPtrRecordIdResource(ctx, recordId, optional)
-
+Get PTR record by ID and name
 
 ### Required Parameters
 
@@ -752,7 +752,7 @@ Name | Type | Description  | Notes
 
 # **PutPtrRecordIdResource**
 > PtrRecordReturn PutPtrRecordIdResource(ctx, recordId, payload, optional)
-
+Update PTR record
 
 ### Required Parameters
 

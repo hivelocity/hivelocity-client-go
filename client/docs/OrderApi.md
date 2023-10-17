@@ -5,7 +5,7 @@ All URIs are relative to *https://core.hivelocity.net/api/v2*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**GetOrderIdResource**](OrderApi.md#GetOrderIdResource) | **Get** /order/{orderId} | Return details of a specific Order
-[**GetOrderInprogressResource**](OrderApi.md#GetOrderInprogressResource) | **Get** /order/in-progress | Return a list with all Orders
+[**GetOrderInprogressResource**](OrderApi.md#GetOrderInprogressResource) | **Get** /order/in-progress | Return a list of all In-Progress orders
 [**GetOrderResource**](OrderApi.md#GetOrderResource) | **Get** /order/ | Return a list with all Orders
 
 
@@ -46,7 +46,7 @@ Name | Type | Description  | Notes
 
 # **GetOrderInprogressResource**
 > []OrderDump GetOrderInprogressResource(ctx, optional)
-Return a list with all Orders
+Return a list of all In-Progress orders
 
 ### Required Parameters
 

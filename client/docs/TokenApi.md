@@ -70,7 +70,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **PostTokenResource**
-> PublicApiTokenDump PostTokenResource(ctx, payload, optional)
+> PublicApiTokenResponsePostDump PostTokenResource(ctx, payload, optional)
 Create a new Public API Token for the current user
 
 ### Required Parameters
@@ -91,7 +91,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PublicApiTokenDump**](PublicApiToken-dump.md)
+[**PublicApiTokenResponsePostDump**](PublicApiTokenResponsePost-dump.md)
 
 ### Authorization
 

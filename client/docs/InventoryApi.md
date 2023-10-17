@@ -93,7 +93,7 @@ Optional parameters are passed through a pointer to a InventoryApiGetStockResour
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **location** | **optional.String**| Retrieve products by their location in the Hivelocity store:   MAIN: The main list of instant (and custom servers). MASSIVESTORAGE: Servers with up to 90 drives. GPU: Servers with GPUs. OUTLET: Discounted older hardware. LANDING: Periodic specials for events. | [default to MAIN]
+ **location** | **optional.String**| Retrieve products by their location in the Hivelocity store:   MAIN: The main list of instant servers. CUSTOM_DISPLAY: The main list of custom servers. MASSIVESTORAGE: Servers with up to 90 drives. GPU: Servers with GPUs. OUTLET: Discounted older hardware. LANDING: Periodic specials for events. | [default to MAIN]
  **includeCustom** | **optional.Bool**| Include custom server products. | [default to false]
  **bondingSupport** | **optional.String**| Filter by bonding support. Values are true/false. None will return a mix of both. *DEPRECATED:* Soon, all servers sold will have bonding support and this will be removed. | [default to null]
  **groupBy** | **optional.String**| Get results grouped by &#39;city&#39;, &#39;facility&#39;, or &#39;flat&#39; | [default to facility]

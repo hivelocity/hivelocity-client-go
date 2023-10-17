@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 
 # **GetBasicProfileResource**
-> BasicProfile GetBasicProfileResource(ctx, optional)
+> BasicProfileDump GetBasicProfileResource(ctx, optional)
 Get Basic Profile of current user or a contact with id
 
 The id is optional and if it is necessary must be sent as URL param.
@@ -32,7 +32,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**BasicProfile**](BasicProfile.md)
+[**BasicProfileDump**](BasicProfile-dump.md)
 
 ### Authorization
 
@@ -46,7 +46,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **GetProfileResource**
-> Profile GetProfileResource(ctx, optional)
+> ProfileDump GetProfileResource(ctx, optional)
 Get Profile of current user or a contact with id
 
 The id is optional and if it is necessary must be sent as URL param.
@@ -68,7 +68,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Profile**](Profile.md)
+[**ProfileDump**](Profile-dump.md)
 
 ### Authorization
 
@@ -82,7 +82,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **PutProfileResource**
-> Profile PutProfileResource(ctx, payload, optional)
+> ProfileDump PutProfileResource(ctx, payload, optional)
 Update Profile of current user or a contact with id
 
 The id is optional and if it is necessary must be sent as URL param.
@@ -106,7 +106,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Profile**](Profile.md)
+[**ProfileDump**](Profile-dump.md)
 
 ### Authorization
 

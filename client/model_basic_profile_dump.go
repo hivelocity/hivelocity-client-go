@@ -9,18 +9,18 @@
 
 package swagger
 
-type BasicProfile struct {
-	Email    string      `json:"email,omitempty"`
-	Zip      interface{} `json:"zip,omitempty"`
-	MetaData interface{} `json:"metaData,omitempty"`
-	Id       int32       `json:"id,omitempty"`
-	First    string      `json:"first,omitempty"`
+type BasicProfileDump struct {
 	FullName interface{} `json:"fullName,omitempty"`
-	City     interface{} `json:"city,omitempty"`
-	Country  interface{} `json:"country,omitempty"`
+	Zip      interface{} `json:"zip,omitempty"`
 	Last     string      `json:"last,omitempty"`
-	State    interface{} `json:"state,omitempty"`
+	Id       int32       `json:"id,omitempty"`
+	Email    string      `json:"email,omitempty"`
 	Company  interface{} `json:"company,omitempty"`
 	Login    string      `json:"login,omitempty"`
+	State    interface{} `json:"state,omitempty"`
+	Country  interface{} `json:"country,omitempty"`
 	IsClient bool        `json:"isClient,omitempty"`
+	MetaData interface{} `json:"metaData,omitempty"`
+	First    string      `json:"first,omitempty"`
+	City     interface{} `json:"city,omitempty"`
 }
