@@ -8,9 +8,9 @@ Method | HTTP request | Description
 [**GetContactIdResource**](ContactApi.md#GetContactIdResource) | **Get** /contact/{contactId} | Return details of a specific Contact
 [**GetContactResource**](ContactApi.md#GetContactResource) | **Get** /contact/ | Return a list with all Contacts
 [**PostContactResource**](ContactApi.md#PostContactResource) | **Post** /contact/ | Create a new Contact
-[**PostPasswordReset**](ContactApi.md#PostPasswordReset) | **Post** /contact/password | Recieve a request to reset password, and send a link by email with token
+[**PostPasswordReset**](ContactApi.md#PostPasswordReset) | **Post** /contact/password | Receive a request to reset password, and send a link by email with token
 [**PutContactIdResource**](ContactApi.md#PutContactIdResource) | **Put** /contact/{contactId} | Edit a Contact
-[**PutPasswordReset**](ContactApi.md#PutPasswordReset) | **Put** /contact/password | Recieve a token and password, verify the user and reset your password
+[**PutPasswordReset**](ContactApi.md#PutPasswordReset) | **Put** /contact/password | Receive a token and password, verify the user and reset your password
 [**PutPasswordResource**](ContactApi.md#PutPasswordResource) | **Put** /contact/{contactId}/password | Change password for a Contact
 
 
@@ -145,7 +145,7 @@ Name | Type | Description  | Notes
 
 # **PostPasswordReset**
 > PostPasswordReset(ctx, payload)
-Recieve a request to reset password, and send a link by email with token
+Receive a request to reset password, and send a link by email with token
 
 ### Required Parameters
 
@@ -208,7 +208,7 @@ Name | Type | Description  | Notes
 
 # **PutPasswordReset**
 > PutPasswordReset(ctx, payload)
-Recieve a token and password, verify the user and reset your password
+Receive a token and password, verify the user and reset your password
 
 ### Required Parameters
 

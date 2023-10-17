@@ -221,6 +221,8 @@ Name | Type | Description  | Notes
 > PostIpAssignmentResource(ctx, payload)
 Request new assignment
 
+This endpoint is used to request a new IP Assignment from MyV and the API itself.  It will create a request on Zendesk for Networking support team.
+
 ### Required Parameters
 
 Name | Type | Description  | Notes

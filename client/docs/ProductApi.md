@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 
 # **GetProductOperatingSystemsResource**
-> []Option GetProductOperatingSystemsResource(ctx, productId, optional)
+> []OptionDump GetProductOperatingSystemsResource(ctx, productId, optional)
 Get product operating systems
 
 ### Required Parameters
@@ -31,7 +31,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]Option**](Option.md)
+[**[]OptionDump**](Option-dump.md)
 
 ### Authorization
 

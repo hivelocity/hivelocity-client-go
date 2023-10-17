@@ -4,16 +4,16 @@ All URIs are relative to *https://core.hivelocity.net/api/v2*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**DeleteIgnitionResourceId**](IgnitionApi.md#DeleteIgnitionResourceId) | **Delete** /ignition/{ignitionId} | 
-[**GetIgnitionResource**](IgnitionApi.md#GetIgnitionResource) | **Get** /ignition/ | Gets an Ignition configuration
-[**GetIgnitionResourceId**](IgnitionApi.md#GetIgnitionResourceId) | **Get** /ignition/{ignitionId} | 
+[**DeleteIgnitionResourceId**](IgnitionApi.md#DeleteIgnitionResourceId) | **Delete** /ignition/{ignitionId} | Delete an Ignition configuration by ID
+[**GetIgnitionResource**](IgnitionApi.md#GetIgnitionResource) | **Get** /ignition/ | Return all Ignition configurations
+[**GetIgnitionResourceId**](IgnitionApi.md#GetIgnitionResourceId) | **Get** /ignition/{ignitionId} | Return an Ignition configuration by ID
 [**PostIgnitionResource**](IgnitionApi.md#PostIgnitionResource) | **Post** /ignition/ | Creates a new Ignition configuration
-[**PutIgnitionResourceId**](IgnitionApi.md#PutIgnitionResourceId) | **Put** /ignition/{ignitionId} | 
+[**PutIgnitionResourceId**](IgnitionApi.md#PutIgnitionResourceId) | **Put** /ignition/{ignitionId} | Update an Ignition configuration by ID
 
 
 # **DeleteIgnitionResourceId**
 > DeleteIgnitionResourceId(ctx, ignitionId, optional)
-
+Delete an Ignition configuration by ID
 
 ### Required Parameters
 
@@ -48,7 +48,7 @@ Name | Type | Description  | Notes
 
 # **GetIgnitionResource**
 > []IgnitionResponse GetIgnitionResource(ctx, optional)
-Gets an Ignition configuration
+Return all Ignition configurations
 
 ### Required Parameters
 
@@ -81,7 +81,7 @@ Name | Type | Description  | Notes
 
 # **GetIgnitionResourceId**
 > IgnitionResponse GetIgnitionResourceId(ctx, ignitionId, optional)
-
+Return an Ignition configuration by ID
 
 ### Required Parameters
 
@@ -151,7 +151,7 @@ Name | Type | Description  | Notes
 
 # **PutIgnitionResourceId**
 > IgnitionResponse PutIgnitionResourceId(ctx, ignitionId, payload, optional)
-
+Update an Ignition configuration by ID
 
 ### Required Parameters
 

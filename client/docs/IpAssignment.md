@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **Netmask** | **string** | Netmask for this assignment. | [optional] [default to null]
 **BroadcastIp** | **string** | Broadcast address for this subnet. | [optional] [default to null]
 **GatewayIp** | **string** | Gateway address for this subnet. | [optional] [default to null]
+**DnsResolvers** | **[]string** | DNS resolvers for this subnet. Only applicable to VPS instances. | [optional] [default to null]
 **FirstUsableIp** | **string** | First address available for use by Devices on this subnet. | [optional] [default to null]
 **LastUsableIp** | **string** | Last address available for use by Devices on this subnet. | [optional] [default to null]
 **UsableIps** | **[]string** | A list of usable IP addresses on assignment. It is only filled for IPv4 subnets. | [optional] [default to null]

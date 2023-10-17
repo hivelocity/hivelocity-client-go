@@ -1,5 +1,5 @@
 VERSION=v$(shell date -u +"%Y.%m.%d").1
-CODEGEN_VERSION=2.4.29
+CODEGEN_VERSION=2.4.33
 CODEGEN_JAR=swagger-codegen-cli-$(CODEGEN_VERSION).jar
 
 

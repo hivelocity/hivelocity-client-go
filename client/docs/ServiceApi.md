@@ -9,6 +9,8 @@ Method | HTTP request | Description
 [**GetServiceManagedReqResource**](ServiceApi.md#GetServiceManagedReqResource) | **Get** /service/managed-requirements | Return a dictionary with managed services operating system and panel requirements
 [**GetServiceResource**](ServiceApi.md#GetServiceResource) | **Get** /service/ | Return a list of all account services
 [**GetServiceTypeResource**](ServiceApi.md#GetServiceTypeResource) | **Get** /service/types | Return all available service types
+[**PostServiceIdApplyCouponResource**](ServiceApi.md#PostServiceIdApplyCouponResource) | **Post** /service/{serviceId}/apply-coupon | Apply the coupon code for a service
+[**PostServiceIdValidateCouponResource**](ServiceApi.md#PostServiceIdValidateCouponResource) | **Post** /service/{serviceId}/validate-coupon | Validate the coupon code for a service
 
 
 # **GetServiceIdResource**
@@ -134,7 +136,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **typeCode** | **optional.String**| Return service having the same service type code, the default value is all  The list of service types can be accessed on https://core.hivelocity.net/api/v2/service/types | [default to null]
- **orderId** | **optional.Int32**| Order id of the service | 
+ **orderId** | **optional.Int32**| Order id of the service | [default to 0]
  **xFields** | **optional.String**| An optional fields mask | 
 
 ### Return type
@@ -173,6 +175,70 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**[]ServiceType**](ServiceType.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **PostServiceIdApplyCouponResource**
+> PostServiceIdApplyCouponResource(ctx, serviceId, payload)
+Apply the coupon code for a service
+
+### Required Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+  **serviceId** | **int32**|  | 
+  **payload** | [**CartCoupon**](CartCoupon.md)|  | 
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[apiKey](../README.md#apiKey)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **PostServiceIdValidateCouponResource**
+> ValidateCartCouponDump PostServiceIdValidateCouponResource(ctx, serviceId, payload, optional)
+Validate the coupon code for a service
+
+### Required Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+  **serviceId** | **int32**|  | 
+  **payload** | [**CartCoupon**](CartCoupon.md)|  | 
+ **optional** | ***ServiceApiPostServiceIdValidateCouponResourceOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+Optional parameters are passed through a pointer to a ServiceApiPostServiceIdValidateCouponResourceOpts struct
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+ **xFields** | **optional.String**| An optional fields mask | 
+
+### Return type
+
+[**ValidateCartCouponDump**](ValidateCartCoupon-dump.md)
 
 ### Authorization
 

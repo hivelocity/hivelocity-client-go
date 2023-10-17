@@ -390,7 +390,7 @@ Optional parameters are passed through a pointer to a DeviceApiGetDeviceResource
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **rackId** | **optional.Int32**| Filter Devices only in this Rack ID | 
+ **rackId** | **optional.Int32**| Filter Devices only in this Rack ID | [default to 0]
  **xFields** | **optional.String**| An optional fields mask | 
 
 ### Return type
@@ -869,7 +869,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
   **deviceId** | **int32**| ID of Device to View / Update | 
-  **action** | **string**| Must be one of boot|reboot|shutdown | 
+  **action** | **string**| power action to either boot, reboot, or shutdown | 
  **optional** | ***DeviceApiPostPowerResourceOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
