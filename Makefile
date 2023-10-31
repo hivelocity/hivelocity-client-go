@@ -1,7 +1,5 @@
-VERSION=v$(shell date -u +"%Y.%m.%d").1
 CODEGEN_VERSION=2.4.33
 CODEGEN_JAR=swagger-codegen-cli-$(CODEGEN_VERSION).jar
-
 
 .PHONY: client
 client: $(CODEGEN_JAR)
@@ -23,7 +21,5 @@ clean:
 	@rm -rf client/
 	@rm -f swagger-codegen-cli*jar
 
-.PHONY: tag
-release:
-	git tag $(VERSION)
-	git push origin $(VERSION)
+generate-modules:
+	./hack/golang-modules-update.sh
