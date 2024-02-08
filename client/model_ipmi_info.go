@@ -10,23 +10,23 @@
 package swagger
 
 type IpmiInfo struct {
-	SensorDevice        string `json:"sensorDevice,omitempty"`
-	DeviceAvailable     string `json:"deviceAvailable,omitempty"`
-	IpmbEventReceiver   string `json:"ipmbEventReceiver,omitempty"`
-	IpmbEventGenerator  string `json:"ipmbEventGenerator,omitempty"`
-	Bridge              string `json:"bridge,omitempty"`
-	DeviceRevision      string `json:"deviceRevision,omitempty"`
-	AuxFirmwareRevInfo  string `json:"auxFirmwareRevInfo,omitempty"`
-	IpmiVersion         string `json:"ipmiVersion,omitempty"`
-	FruInventoryDevice  string `json:"fruInventoryDevice,omitempty"`
-	SdrRepositoryDevice string `json:"sdrRepositoryDevice,omitempty"`
-	SelDevice           string `json:"selDevice,omitempty"`
+	ManufacturerName   string `json:"manufacturerName,omitempty"`
+	DeviceRevision     string `json:"deviceRevision,omitempty"`
+	FirmwareRevision   string `json:"firmwareRevision,omitempty"`
+	DeviceSDRs         string `json:"deviceSDRs,omitempty"`
+	SelDevice          string `json:"selDevice,omitempty"`
+	IpmbEventReceiver  string `json:"ipmbEventReceiver,omitempty"`
+	IpmiVersion        string `json:"ipmiVersion,omitempty"`
+	AuxFirmwareRevInfo string `json:"auxFirmwareRevInfo,omitempty"`
+	Bridge             string `json:"bridge,omitempty"`
 	// The IPMI ID of the device.
-	DeviceId         string `json:"deviceId,omitempty"`
-	ProductId        string `json:"productId,omitempty"`
-	DeviceSDRs       string `json:"deviceSDRs,omitempty"`
-	ManufacturerId   string `json:"manufacturerId,omitempty"`
-	FirmwareRevision string `json:"firmwareRevision,omitempty"`
-	ManufacturerName string `json:"manufacturerName,omitempty"`
-	ChassisDevice    string `json:"chassisDevice,omitempty"`
+	DeviceId            string `json:"deviceId,omitempty"`
+	SdrRepositoryDevice string `json:"sdrRepositoryDevice,omitempty"`
+	ManufacturerId      string `json:"manufacturerId,omitempty"`
+	ChassisDevice       string `json:"chassisDevice,omitempty"`
+	FruInventoryDevice  string `json:"fruInventoryDevice,omitempty"`
+	DeviceAvailable     string `json:"deviceAvailable,omitempty"`
+	IpmbEventGenerator  string `json:"ipmbEventGenerator,omitempty"`
+	ProductId           string `json:"productId,omitempty"`
+	SensorDevice        string `json:"sensorDevice,omitempty"`
 }

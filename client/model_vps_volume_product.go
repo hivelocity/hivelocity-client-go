@@ -10,8 +10,8 @@
 package swagger
 
 type VpsVolumeProduct struct {
-	// Monthly cost of volume size
-	MonthlyPrice float32 `json:"monthlyPrice,omitempty"`
 	// Size of available volume size in GiB
 	Size int32 `json:"size,omitempty"`
+	// Monthly cost of volume size
+	MonthlyPrice float32 `json:"monthlyPrice,omitempty"`
 }

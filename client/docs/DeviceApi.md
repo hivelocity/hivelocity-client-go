@@ -13,6 +13,7 @@ Method | HTTP request | Description
 [**GetDeviceIdServiceResource**](DeviceApi.md#GetDeviceIdServiceResource) | **Get** /device/{deviceId}/services | Get all device services
 [**GetDeviceIpAssignmentsResource**](DeviceApi.md#GetDeviceIpAssignmentsResource) | **Get** /device/{deviceId}/ips | Get IPs
 [**GetDeviceIpminatRuleResource**](DeviceApi.md#GetDeviceIpminatRuleResource) | **Get** /device/{deviceId}/ipmi/nat | Clear IPMI whitelist
+[**GetDevicePaymentMethodLinkedResource**](DeviceApi.md#GetDevicePaymentMethodLinkedResource) | **Get** /device/linked-payment-method/{billingInfoId} | Get by payment method
 [**GetDevicePortResource**](DeviceApi.md#GetDevicePortResource) | **Get** /device/{deviceId}/ports | Get ports
 [**GetDeviceResource**](DeviceApi.md#GetDeviceResource) | **Get** /device/ | Get all devices
 [**GetDeviceTagIdResource**](DeviceApi.md#GetDeviceTagIdResource) | **Get** /device/{deviceId}/tags | Get device tags
@@ -327,6 +328,41 @@ Name | Type | Description  | Notes
 ### Return type
 
  (empty response body)
+
+### Authorization
+
+[apiKey](../README.md#apiKey)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **GetDevicePaymentMethodLinkedResource**
+> []DeviceDump GetDevicePaymentMethodLinkedResource(ctx, billingInfoId, optional)
+Get by payment method
+
+### Required Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+  **billingInfoId** | **int32**|  | 
+ **optional** | ***DeviceApiGetDevicePaymentMethodLinkedResourceOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+Optional parameters are passed through a pointer to a DeviceApiGetDevicePaymentMethodLinkedResourceOpts struct
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **xFields** | **optional.String**| An optional fields mask | 
+
+### Return type
+
+[**[]DeviceDump**](Device-dump.md)
 
 ### Authorization
 

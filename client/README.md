@@ -34,14 +34,27 @@ Class | Method | HTTP request | Description
 *BareMetalDevicesApi* | [**PostBareMetalDeviceBatchResource**](docs/BareMetalDevicesApi.md#postbaremetaldevicebatchresource) | **Post** /bare-metal-devices/batch | Batch provision instant devices
 *BareMetalDevicesApi* | [**PostBareMetalDeviceResource**](docs/BareMetalDevicesApi.md#postbaremetaldeviceresource) | **Post** /bare-metal-devices/ | Provision an instant device
 *BareMetalDevicesApi* | [**PutBareMetalDeviceIdResource**](docs/BareMetalDevicesApi.md#putbaremetaldeviceidresource) | **Put** /bare-metal-devices/{deviceId} | Update/reload instant device
-*BillingInfoApi* | [**GetBillingInfoResource**](docs/BillingInfoApi.md#getbillinginforesource) | **Get** /billing-info/ | Return a list with all Billing Info
+*BillingInfoApi* | [**DeleteBillingInfoIdResource**](docs/BillingInfoApi.md#deletebillinginfoidresource) | **Delete** /billing-info/{billingInfoId} | Delete a Payment Method by Billing Info ID
+*BillingInfoApi* | [**GetBillingInfoIdResource**](docs/BillingInfoApi.md#getbillinginfoidresource) | **Get** /billing-info/{billingInfoId} | Return a Payment Method by Billing Info ID
+*BillingInfoApi* | [**GetBillingInfoResource**](docs/BillingInfoApi.md#getbillinginforesource) | **Get** /billing-info/ | Return a list with all Payment Methods (Billing Info)
+*BillingInfoApi* | [**GetPaymentMethodsEnableReadResource**](docs/BillingInfoApi.md#getpaymentmethodsenablereadresource) | **Get** /billing-info/enable | Return Payment Methods enabled for editing
+*BillingInfoApi* | [**PostBillingInfoBankAccountCreateResource**](docs/BillingInfoApi.md#postbillinginfobankaccountcreateresource) | **Post** /billing-info/bank-account | Add a new Bank Account as a Payment Method
+*BillingInfoApi* | [**PostBillingInfoCreditCardCreateResource**](docs/BillingInfoApi.md#postbillinginfocreditcardcreateresource) | **Post** /billing-info/credit-card | Add a new Credit Card as a Payment Method
 *BillingInfoApi* | [**PostBillingInfoResource**](docs/BillingInfoApi.md#postbillinginforesource) | **Post** /billing-info/ | Create verification for credit card with all Billing Info
+*BillingInfoApi* | [**PutBillingInfoBankAccountUpdateResource**](docs/BillingInfoApi.md#putbillinginfobankaccountupdateresource) | **Put** /billing-info/bank-account/{billingInfoId} | Update a Bank Account
+*BillingInfoApi* | [**PutBillingInfoCreditCardUpdateResource**](docs/BillingInfoApi.md#putbillinginfocreditcardupdateresource) | **Put** /billing-info/credit-card/{billingInfoId} | Update a Credit Card
 *BillingInfoApi* | [**PutBillingInfoResource**](docs/BillingInfoApi.md#putbillinginforesource) | **Put** /billing-info/ | Verify credit card with all Billing Info
+*CancellationsApi* | [**DeleteCancellationIdDeleteResource**](docs/CancellationsApi.md#deletecancellationiddeleteresource) | **Delete** /cancellation/cancellation/{cancellationId} | Delete a Cancellation
 *CancellationsApi* | [**GetCancellationDeviceResource**](docs/CancellationsApi.md#getcancellationdeviceresource) | **Get** /cancellation/device/{deviceId} | Get cancel request by device
-*CancellationsApi* | [**GetCancellationIdClientResource**](docs/CancellationsApi.md#getcancellationidclientresource) | **Get** /cancellation/cancellation/{cancellationId} | Get cancel request
 *CancellationsApi* | [**GetCancellationResource**](docs/CancellationsApi.md#getcancellationresource) | **Get** /cancellation/cancellation | Get all cancel requests
 *CancellationsApi* | [**GetCancellationServiceResource**](docs/CancellationsApi.md#getcancellationserviceresource) | **Get** /cancellation/service/{serviceId} | Get cancel request by service
 *CancellationsApi* | [**PostCancellationResource**](docs/CancellationsApi.md#postcancellationresource) | **Post** /cancellation/cancellation | Create cancel request
+*ComputeDevicesApi* | [**DeleteBareMetalDeviceIdResource**](docs/ComputeDevicesApi.md#deletebaremetaldeviceidresource) | **Delete** /compute/{deviceId} | Cancel/delete device
+*ComputeDevicesApi* | [**GetBareMetalDeviceIdResource**](docs/ComputeDevicesApi.md#getbaremetaldeviceidresource) | **Get** /compute/{deviceId} | Get device
+*ComputeDevicesApi* | [**GetBareMetalDeviceResource**](docs/ComputeDevicesApi.md#getbaremetaldeviceresource) | **Get** /compute/ | Get all devices
+*ComputeDevicesApi* | [**PostBareMetalDeviceBatchResource**](docs/ComputeDevicesApi.md#postbaremetaldevicebatchresource) | **Post** /compute/batch | Batch provision instant devices
+*ComputeDevicesApi* | [**PostBareMetalDeviceResource**](docs/ComputeDevicesApi.md#postbaremetaldeviceresource) | **Post** /compute/ | Provision an instant device
+*ComputeDevicesApi* | [**PutBareMetalDeviceIdResource**](docs/ComputeDevicesApi.md#putbaremetaldeviceidresource) | **Put** /compute/{deviceId} | Update/reload instant device
 *ContactApi* | [**DeleteContactIdResource**](docs/ContactApi.md#deletecontactidresource) | **Delete** /contact/{contactId} | Delete a Contact
 *ContactApi* | [**GetContactIdResource**](docs/ContactApi.md#getcontactidresource) | **Get** /contact/{contactId} | Return details of a specific Contact
 *ContactApi* | [**GetContactResource**](docs/ContactApi.md#getcontactresource) | **Get** /contact/ | Return a list with all Contacts
@@ -70,6 +83,7 @@ Class | Method | HTTP request | Description
 *DeviceApi* | [**GetDeviceIdServiceResource**](docs/DeviceApi.md#getdeviceidserviceresource) | **Get** /device/{deviceId}/services | Get all device services
 *DeviceApi* | [**GetDeviceIpAssignmentsResource**](docs/DeviceApi.md#getdeviceipassignmentsresource) | **Get** /device/{deviceId}/ips | Get IPs
 *DeviceApi* | [**GetDeviceIpminatRuleResource**](docs/DeviceApi.md#getdeviceipminatruleresource) | **Get** /device/{deviceId}/ipmi/nat | Clear IPMI whitelist
+*DeviceApi* | [**GetDevicePaymentMethodLinkedResource**](docs/DeviceApi.md#getdevicepaymentmethodlinkedresource) | **Get** /device/linked-payment-method/{billingInfoId} | Get by payment method
 *DeviceApi* | [**GetDevicePortResource**](docs/DeviceApi.md#getdeviceportresource) | **Get** /device/{deviceId}/ports | Get ports
 *DeviceApi* | [**GetDeviceResource**](docs/DeviceApi.md#getdeviceresource) | **Get** /device/ | Get all devices
 *DeviceApi* | [**GetDeviceTagIdResource**](docs/DeviceApi.md#getdevicetagidresource) | **Get** /device/{deviceId}/tags | Get device tags
@@ -138,15 +152,15 @@ Class | Method | HTTP request | Description
 *InvoiceApi* | [**GetInvoiceResource**](docs/InvoiceApi.md#getinvoiceresource) | **Get** /invoice/ | Return serialized data on all invoices
 *InvoiceApi* | [**GetInvoiceSearchResource**](docs/InvoiceApi.md#getinvoicesearchresource) | **Get** /invoice/search | Return results of invoice search
 *InvoiceApi* | [**GetInvoiceUnpaidResource**](docs/InvoiceApi.md#getinvoiceunpaidresource) | **Get** /invoice/unpaid | Return total balance of all unpaid invoices
+*InvoiceApi* | [**PostInvoiceIdApplyAccountCredit**](docs/InvoiceApi.md#postinvoiceidapplyaccountcredit) | **Post** /invoice/{invoiceId}/apply-account-credit | Apply account credit to an invoice
+*MaintenanceApi* | [**GetMaintenanceEventClientResource**](docs/MaintenanceApi.md#getmaintenanceeventclientresource) | **Get** /maintenance/ | Get all Maintenance Events for a client
+*MaintenanceApi* | [**GetMaintenanceEventIdClientResource**](docs/MaintenanceApi.md#getmaintenanceeventidclientresource) | **Get** /maintenance/{maintenanceEventId} | Get Maintenance Events
 *NetworkApi* | [**DeleteNullRoutesIdResource**](docs/NetworkApi.md#deletenullroutesidresource) | **Delete** /network/null-route/{ipAddress} | Remove Null Route for an IP Address
 *NetworkApi* | [**GetDeviceNetworkPortResource**](docs/NetworkApi.md#getdevicenetworkportresource) | **Get** /network/device/ports | Get all ports by device
 *NetworkApi* | [**GetNetworkTaskClientResource**](docs/NetworkApi.md#getnetworktaskclientresource) | **Get** /network/status/ | Get network task status
 *NetworkApi* | [**GetNetworkTaskIdResource**](docs/NetworkApi.md#getnetworktaskidresource) | **Get** /network/status/{id} | Get network task status by Device ID or Task ID
-*NetworkApi* | [**GetNullRouteResource**](docs/NetworkApi.md#getnullrouteresource) | **Get** /network/null/{ip} | Null route IP (deprecated)
 *NetworkApi* | [**GetNullRoutesIdResource**](docs/NetworkApi.md#getnullroutesidresource) | **Get** /network/null-route/{ipAddress} | Return record if IP Address is Null Routed
 *NetworkApi* | [**GetNullRoutesResource**](docs/NetworkApi.md#getnullroutesresource) | **Get** /network/null-route | Return Null Routed IPs
-*NetworkApi* | [**GetRemoveNullRouteResource**](docs/NetworkApi.md#getremovenullrouteresource) | **Get** /network/unnull/{ip} | Unnull IP (deprecated)
-*NetworkApi* | [**PostDetailedNullRouteResource**](docs/NetworkApi.md#postdetailednullrouteresource) | **Post** /network/null | Null route IP - detailed (deprecated)
 *NetworkApi* | [**PostNullRoutesResource**](docs/NetworkApi.md#postnullroutesresource) | **Post** /network/null-route | Add a Null Route for an IP Address
 *OrderApi* | [**GetOrderIdResource**](docs/OrderApi.md#getorderidresource) | **Get** /order/{orderId} | Return details of a specific Order
 *OrderApi* | [**GetOrderInprogressResource**](docs/OrderApi.md#getorderinprogressresource) | **Get** /order/in-progress | Return a list of all In-Progress orders
@@ -195,7 +209,9 @@ Class | Method | HTTP request | Description
 *VLANApi* | [**PostVlanIdClearResource**](docs/VLANApi.md#postvlanidclearresource) | **Post** /vlan/{vlanId}/clear | Clear all configurations on this VLAN, including Ports, IPs and associated Static Routes
 *VLANApi* | [**PostVlanResource**](docs/VLANApi.md#postvlanresource) | **Post** /vlan/ | Create VLAN
 *VLANApi* | [**PutVlanIdResource**](docs/VLANApi.md#putvlanidresource) | **Put** /vlan/{vlanId} | Modify VLAN
-*VPSApi* | [**DeleteVpsIdResource**](docs/VPSApi.md#deletevpsidresource) | **Delete** /vps/{deviceId} | Delete VPS instance
+*VPSApi* | [**DeleteVpsIdNetworkRemoveResource**](docs/VPSApi.md#deletevpsidnetworkremoveresource) | **Delete** /vps/{deviceId}/network/{networkId} | Detach a VPS Network from a VPS Device
+*VPSApi* | [**DeleteVpsNetworkIdResource**](docs/VPSApi.md#deletevpsnetworkidresource) | **Delete** /vps/network/{networkId} | Delete VPS Network
+*VPSApi* | [**DeleteVpsSecondaryIpRemoveResource**](docs/VPSApi.md#deletevpssecondaryipremoveresource) | **Delete** /vps/{deviceId}/secondaryIp/{ipAssignmentId} | Remove a Secondary IP Address from VPS instance
 *VPSApi* | [**DeleteVpsSnapshotIdResource**](docs/VPSApi.md#deletevpssnapshotidresource) | **Delete** /vps/snapshot/{snapshotId} | Delete a VPS Volume Snapshot
 *VPSApi* | [**DeleteVpsSnapshotScheduleIdResource**](docs/VPSApi.md#deletevpssnapshotscheduleidresource) | **Delete** /vps/snapshotSchedule/{snapshotScheduleId} | Delete a VPS Snapshot Schedule
 *VPSApi* | [**DeleteVpsVolumeIdResource**](docs/VPSApi.md#deletevpsvolumeidresource) | **Delete** /vps/volume/{volumeId} | Deletes a Volume
@@ -205,6 +221,10 @@ Class | Method | HTTP request | Description
 *VPSApi* | [**GetVpsIdEventsResource**](docs/VPSApi.md#getvpsideventsresource) | **Get** /vps/{deviceId}/events | Get VPS Instance Events
 *VPSApi* | [**GetVpsIdResource**](docs/VPSApi.md#getvpsidresource) | **Get** /vps/{deviceId} | Get VPS instance
 *VPSApi* | [**GetVpsMetricsResource**](docs/VPSApi.md#getvpsmetricsresource) | **Get** /vps/{deviceId}/metrics | Get Metrics for a VPS instance
+*VPSApi* | [**GetVpsNetworkIdResource**](docs/VPSApi.md#getvpsnetworkidresource) | **Get** /vps/network/{networkId} | Get VPS Network
+*VPSApi* | [**GetVpsNetworkResource**](docs/VPSApi.md#getvpsnetworkresource) | **Get** /vps/network | Get all VPS Networks
+*VPSApi* | [**GetVpsResource**](docs/VPSApi.md#getvpsresource) | **Get** /vps/ | Get all VPS instances
+*VPSApi* | [**GetVpsSecondaryIpAddResource**](docs/VPSApi.md#getvpssecondaryipaddresource) | **Get** /vps/{deviceId}/secondaryIp | Get all Secondary IP Addresses attached to VPS instance
 *VPSApi* | [**GetVpsSelfMetadataResource**](docs/VPSApi.md#getvpsselfmetadataresource) | **Get** /vps/self-metadata | 
 *VPSApi* | [**GetVpsSnapshotIdResource**](docs/VPSApi.md#getvpssnapshotidresource) | **Get** /vps/snapshot/{snapshotId} | Get a VPS Volume Snapshot by ID
 *VPSApi* | [**GetVpsSnapshotResource**](docs/VPSApi.md#getvpssnapshotresource) | **Get** /vps/snapshot | Get all VPS Volume Snapshots available
@@ -215,14 +235,22 @@ Class | Method | HTTP request | Description
 *VPSApi* | [**GetVpsisoIdResource**](docs/VPSApi.md#getvpsisoidresource) | **Get** /vps/iso/{isoId} | Get the details of the VPS ISO ID specified
 *VPSApi* | [**GetVpsisoResource**](docs/VPSApi.md#getvpsisoresource) | **Get** /vps/iso | Get all VPS ISOs available
 *VPSApi* | [**PostVpsAttachIsoResource**](docs/VPSApi.md#postvpsattachisoresource) | **Post** /vps/{deviceId}/attachiso | Attach ISO to VPS instance
+*VPSApi* | [**PostVpsAttachVolumeResource**](docs/VPSApi.md#postvpsattachvolumeresource) | **Post** /vps/{deviceId}/volume/{volumeId}/attach | Attach Volume to VPS instance
 *VPSApi* | [**PostVpsConsoleAccessResource**](docs/VPSApi.md#postvpsconsoleaccessresource) | **Post** /vps/{deviceId}/console | Create a one time use URL for console access to a VPS instance
 *VPSApi* | [**PostVpsDetachIsoResource**](docs/VPSApi.md#postvpsdetachisoresource) | **Post** /vps/{deviceId}/detachiso | Detach ISO from VPS instance
+*VPSApi* | [**PostVpsDetachVolumeResource**](docs/VPSApi.md#postvpsdetachvolumeresource) | **Post** /vps/{deviceId}/volume/{volumeId}/detach | Detach Volume from VPS instance
+*VPSApi* | [**PostVpsIdNetworkAddResource**](docs/VPSApi.md#postvpsidnetworkaddresource) | **Post** /vps/{deviceId}/network | Attach VPS Network to a VPS Device
+*VPSApi* | [**PostVpsNetworkResource**](docs/VPSApi.md#postvpsnetworkresource) | **Post** /vps/network | Create a new VPS Network
+*VPSApi* | [**PostVpsResetPasswordResource**](docs/VPSApi.md#postvpsresetpasswordresource) | **Post** /vps/{deviceId}/reset-password | Request token to reset root password for VPS
+*VPSApi* | [**PostVpsSecondaryIpAddResource**](docs/VPSApi.md#postvpssecondaryipaddresource) | **Post** /vps/{deviceId}/secondaryIp | Add a Secondary IP Address to VPS instance
 *VPSApi* | [**PostVpsSnapshotIdResource**](docs/VPSApi.md#postvpssnapshotidresource) | **Post** /vps/snapshot/{snapshotId} | Restore a VPS Volume Snapshot
 *VPSApi* | [**PostVpsSnapshotResource**](docs/VPSApi.md#postvpssnapshotresource) | **Post** /vps/snapshot | Create a VPS Volume Snapshot
 *VPSApi* | [**PostVpsSnapshotScheduleResource**](docs/VPSApi.md#postvpssnapshotscheduleresource) | **Post** /vps/snapshotSchedule | Create a VPS Snapshot Schedule
 *VPSApi* | [**PostVpsVolumeResource**](docs/VPSApi.md#postvpsvolumeresource) | **Post** /vps/volume | Creates a new Volume
 *VPSApi* | [**PostVpsisoResource**](docs/VPSApi.md#postvpsisoresource) | **Post** /vps/iso | Create a new ISO
 *VPSApi* | [**PutVpsIdResource**](docs/VPSApi.md#putvpsidresource) | **Put** /vps/{deviceId} | Update VPS instance
+*VPSApi* | [**PutVpsNetworkIdResource**](docs/VPSApi.md#putvpsnetworkidresource) | **Put** /vps/network/{networkId} | Update VPS Network
+*VPSApi* | [**PutVpsResetPasswordResource**](docs/VPSApi.md#putvpsresetpasswordresource) | **Put** /vps/{deviceId}/reset-password | Reset VPS root password, requires vps to be powered off
 *VPSApi* | [**PutVpsVolumeIdResource**](docs/VPSApi.md#putvpsvolumeidresource) | **Put** /vps/volume/{volumeId} | Resize a Volume
 *WebhookApi* | [**DeleteWebhookIdResource**](docs/WebhookApi.md#deletewebhookidresource) | **Delete** /webhooks/{webhookId} | Deletes a single webhook
 *WebhookApi* | [**GetWebhookEventResource**](docs/WebhookApi.md#getwebhookeventresource) | **Get** /webhooks/events | Returns all available Webhook Events
@@ -248,11 +276,14 @@ Class | Method | HTTP request | Description
  - [BareMetalDeviceUpdate](docs/BareMetalDeviceUpdate.md)
  - [BasicProfileDump](docs/BasicProfileDump.md)
  - [BillingInfo](docs/BillingInfo.md)
+ - [BillingInfoCreateBankAccount](docs/BillingInfoCreateBankAccount.md)
+ - [BillingInfoCreateCreditCard](docs/BillingInfoCreateCreditCard.md)
  - [BillingInfoVerification](docs/BillingInfoVerification.md)
  - [Cancellation](docs/Cancellation.md)
  - [CancellationCreate](docs/CancellationCreate.md)
  - [CartCoupon](docs/CartCoupon.md)
  - [CartCouponDump](docs/CartCouponDump.md)
+ - [CartCouponUsageStatisticsDump](docs/CartCouponUsageStatisticsDump.md)
  - [CityStateCountry](docs/CityStateCountry.md)
  - [Client](docs/Client.md)
  - [ClientCreateDump](docs/ClientCreateDump.md)
@@ -269,7 +300,6 @@ Class | Method | HTTP request | Description
  - [Deployment](docs/Deployment.md)
  - [DeploymentCustomization](docs/DeploymentCustomization.md)
  - [DeploymentStart](docs/DeploymentStart.md)
- - [DetailedNullIp](docs/DetailedNullIp.md)
  - [DeviceDump](docs/DeviceDump.md)
  - [DeviceEvent](docs/DeviceEvent.md)
  - [DeviceInitialCreds](docs/DeviceInitialCreds.md)
@@ -307,6 +337,7 @@ Class | Method | HTTP request | Description
  - [IpmiValidLogin](docs/IpmiValidLogin.md)
  - [Location](docs/Location.md)
  - [LocationLocation](docs/LocationLocation.md)
+ - [MaintenanceEvent](docs/MaintenanceEvent.md)
  - [Modification](docs/Modification.md)
  - [MxRecordCreate](docs/MxRecordCreate.md)
  - [MxRecordReturn](docs/MxRecordReturn.md)
@@ -324,6 +355,7 @@ Class | Method | HTTP request | Description
  - [Password](docs/Password.md)
  - [PasswordRequest](docs/PasswordRequest.md)
  - [PasswordResponse](docs/PasswordResponse.md)
+ - [PaymentMethodsEnabled](docs/PaymentMethodsEnabled.md)
  - [Permission](docs/Permission.md)
  - [PermissionReturn](docs/PermissionReturn.md)
  - [PreviewEffectiveIgnition](docs/PreviewEffectiveIgnition.md)
@@ -371,8 +403,13 @@ Class | Method | HTTP request | Description
  - [VpsAvailableUpgradeSizes](docs/VpsAvailableUpgradeSizes.md)
  - [VpsConsoleAccess](docs/VpsConsoleAccess.md)
  - [VpsEvent](docs/VpsEvent.md)
+ - [VpsInstanceNetworkAdd](docs/VpsInstanceNetworkAdd.md)
  - [VpsMetricsResponse](docs/VpsMetricsResponse.md)
+ - [VpsNetwork](docs/VpsNetwork.md)
+ - [VpsNetworkCreate](docs/VpsNetworkCreate.md)
  - [VpsNetworkInterface](docs/VpsNetworkInterface.md)
+ - [VpsNetworkUpdate](docs/VpsNetworkUpdate.md)
+ - [VpsResetRootPassword](docs/VpsResetRootPassword.md)
  - [VpsSnapshot](docs/VpsSnapshot.md)
  - [VpsSnapshotCreate](docs/VpsSnapshotCreate.md)
  - [VpsSnapshotRestore](docs/VpsSnapshotRestore.md)

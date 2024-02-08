@@ -10,12 +10,12 @@
 package swagger
 
 type VpsMetricsResponse struct {
-	// Actual Start Time for Chart Data.
-	StartTime int32 `json:"startTime,omitempty"`
-	// Actual End Time for Chart Data.
-	EndTime int32 `json:"endTime,omitempty"`
 	// The Metric Type requested.
 	MetricType string `json:"metricType,omitempty"`
+	// Actual Start Time for Chart Data.
+	StartTime int32 `json:"startTime,omitempty"`
 	// Base64 encoded Image Data.
 	ImageData string `json:"imageData,omitempty"`
+	// Actual End Time for Chart Data.
+	EndTime int32 `json:"endTime,omitempty"`
 }

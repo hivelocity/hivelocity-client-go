@@ -10,24 +10,24 @@
 package swagger
 
 type DeploymentCustomization struct {
-	AdditionalNotes []string `json:"additionalNotes,omitempty"`
+	Options []int32 `json:"options,omitempty"`
+	// ID of SSH Key to use for deployment
+	PublicSshKeyId int32 `json:"publicSshKeyId,omitempty"`
+	// URL to download custom iPXE script if not supplying script in entirety
+	CustomIPXEScriptURL string   `json:"customIPXEScriptURL,omitempty"`
+	Hostnames           []string `json:"hostnames"`
+	LocationCode        string   `json:"locationCode,omitempty"`
 	// Operating System's Name or ID
 	OperatingSystem string `json:"operatingSystem"`
-	// must be one of ['monthly', 'quarterly', 'semi-annually', 'annually', 'biennial', 'triennial', 'hourly']
-	BillingPeriod string `json:"billingPeriod,omitempty"`
-	// Contents of iPXE script if not supplying URL
-	CustomIPXEScriptContents string `json:"customIPXEScriptContents,omitempty"`
-	// URL to download custom iPXE script if not supplying script in entirety
-	CustomIPXEScriptURL string `json:"customIPXEScriptURL,omitempty"`
-	Quantity            int32  `json:"quantity,omitempty"`
-	ProductId           int32  `json:"productId"`
 	// Either deploy these Device IDs or fail
 	ForceDeviceIds []int32 `json:"forceDeviceIds,omitempty"`
-	LocationCode   string  `json:"locationCode,omitempty"`
-	Options        []int32 `json:"options,omitempty"`
-	// ID of SSH Key to use for deployment
-	PublicSshKeyId int32    `json:"publicSshKeyId,omitempty"`
-	Hostnames      []string `json:"hostnames"`
+	Quantity       int32   `json:"quantity,omitempty"`
+	// Contents of iPXE script if not supplying URL
+	CustomIPXEScriptContents string `json:"customIPXEScriptContents,omitempty"`
+	// must be one of ['monthly', 'quarterly', 'semi-annually', 'annually', 'biennial', 'triennial', 'hourly']
+	BillingPeriod   string   `json:"billingPeriod,omitempty"`
+	AdditionalNotes []string `json:"additionalNotes,omitempty"`
 	// Specify Ignition file ID for CoreOS/Flatcar provisions
 	IgnitionIds []int32 `json:"ignitionIds,omitempty"`
+	ProductId   int32   `json:"productId"`
 }

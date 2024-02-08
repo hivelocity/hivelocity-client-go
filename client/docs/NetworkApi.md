@@ -8,11 +8,8 @@ Method | HTTP request | Description
 [**GetDeviceNetworkPortResource**](NetworkApi.md#GetDeviceNetworkPortResource) | **Get** /network/device/ports | Get all ports by device
 [**GetNetworkTaskClientResource**](NetworkApi.md#GetNetworkTaskClientResource) | **Get** /network/status/ | Get network task status
 [**GetNetworkTaskIdResource**](NetworkApi.md#GetNetworkTaskIdResource) | **Get** /network/status/{id} | Get network task status by Device ID or Task ID
-[**GetNullRouteResource**](NetworkApi.md#GetNullRouteResource) | **Get** /network/null/{ip} | Null route IP (deprecated)
 [**GetNullRoutesIdResource**](NetworkApi.md#GetNullRoutesIdResource) | **Get** /network/null-route/{ipAddress} | Return record if IP Address is Null Routed
 [**GetNullRoutesResource**](NetworkApi.md#GetNullRoutesResource) | **Get** /network/null-route | Return Null Routed IPs
-[**GetRemoveNullRouteResource**](NetworkApi.md#GetRemoveNullRouteResource) | **Get** /network/unnull/{ip} | Unnull IP (deprecated)
-[**PostDetailedNullRouteResource**](NetworkApi.md#PostDetailedNullRouteResource) | **Post** /network/null | Null route IP - detailed (deprecated)
 [**PostNullRoutesResource**](NetworkApi.md#PostNullRoutesResource) | **Post** /network/null-route | Add a Null Route for an IP Address
 
 
@@ -154,32 +151,6 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **GetNullRouteResource**
-> GetNullRouteResource(ctx, ip)
-Null route IP (deprecated)
-
-### Required Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-  **ip** | **string**|  | 
-
-### Return type
-
- (empty response body)
-
-### Authorization
-
-[apiKey](../README.md#apiKey)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **GetNullRoutesIdResource**
 > NullRoute GetNullRoutesIdResource(ctx, ipAddress, optional)
 Return record if IP Address is Null Routed
@@ -237,58 +208,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**[]NullRoute**](NullRoute.md)
-
-### Authorization
-
-[apiKey](../README.md#apiKey)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **GetRemoveNullRouteResource**
-> GetRemoveNullRouteResource(ctx, ip)
-Unnull IP (deprecated)
-
-### Required Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-  **ip** | **string**|  | 
-
-### Return type
-
- (empty response body)
-
-### Authorization
-
-[apiKey](../README.md#apiKey)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **PostDetailedNullRouteResource**
-> PostDetailedNullRouteResource(ctx, payload)
-Null route IP - detailed (deprecated)
-
-### Required Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-  **payload** | [**DetailedNullIp**](DetailedNullIp.md)|  | 
-
-### Return type
-
- (empty response body)
 
 ### Authorization
 

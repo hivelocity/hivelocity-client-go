@@ -10,21 +10,21 @@
 package swagger
 
 type ProfileDump struct {
-	FullName interface{} `json:"fullName,omitempty"`
-	Zip      interface{} `json:"zip,omitempty"`
-	Created  interface{} `json:"created,omitempty"`
-	Address  interface{} `json:"address,omitempty"`
-	Last     string      `json:"last,omitempty"`
+	Phone    string      `json:"phone,omitempty"`
+	First    string      `json:"first,omitempty"`
 	Id       int32       `json:"id,omitempty"`
-	Email    string      `json:"email,omitempty"`
-	Fax      interface{} `json:"fax,omitempty"`
-	Company  interface{} `json:"company,omitempty"`
-	Login    string      `json:"login,omitempty"`
-	State    interface{} `json:"state,omitempty"`
-	Country  interface{} `json:"country,omitempty"`
 	IsClient bool        `json:"isClient,omitempty"`
 	MetaData interface{} `json:"metaData,omitempty"`
-	First    string      `json:"first,omitempty"`
-	Phone    string      `json:"phone,omitempty"`
+	Address  interface{} `json:"address,omitempty"`
 	City     interface{} `json:"city,omitempty"`
+	Email    string      `json:"email,omitempty"`
+	Company  interface{} `json:"company,omitempty"`
+	Fax      interface{} `json:"fax,omitempty"`
+	Country  interface{} `json:"country,omitempty"`
+	Zip      interface{} `json:"zip,omitempty"`
+	Last     string      `json:"last,omitempty"`
+	Login    string      `json:"login,omitempty"`
+	FullName interface{} `json:"fullName,omitempty"`
+	State    interface{} `json:"state,omitempty"`
+	Created  interface{} `json:"created,omitempty"`
 }

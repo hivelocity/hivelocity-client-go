@@ -11,5 +11,5 @@ package swagger
 
 type VpsVolumeDelete struct {
 	// Device ID the disk is attached to
-	DeviceId int32 `json:"deviceId"`
+	DeviceId int32 `json:"deviceId,omitempty"`
 }

@@ -28,19 +28,10 @@ type BareMetalDevicesApiService service
 
 /*
 BareMetalDevicesApiService Cancel/delete device
- * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param deviceId
- * @param optional nil or *BareMetalDevicesApiDeleteBareMetalDeviceIdResourceOpts - Optional Parameters:
-     * @param "DeploymentId" (optional.String) -  Id of the deployment to interact with
-
-
+  - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param deviceId
 */
-
-type BareMetalDevicesApiDeleteBareMetalDeviceIdResourceOpts struct {
-	DeploymentId optional.String
-}
-
-func (a *BareMetalDevicesApiService) DeleteBareMetalDeviceIdResource(ctx context.Context, deviceId int32, localVarOptionals *BareMetalDevicesApiDeleteBareMetalDeviceIdResourceOpts) (*http.Response, error) {
+func (a *BareMetalDevicesApiService) DeleteBareMetalDeviceIdResource(ctx context.Context, deviceId int32) (*http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Delete")
 		localVarPostBody   interface{}
@@ -56,9 +47,6 @@ func (a *BareMetalDevicesApiService) DeleteBareMetalDeviceIdResource(ctx context
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
-	if localVarOptionals != nil && localVarOptionals.DeploymentId.IsSet() {
-		localVarQueryParams.Add("deploymentId", parameterToString(localVarOptionals.DeploymentId.Value(), ""))
-	}
 	// to determine the Content-Type header
 	localVarHttpContentTypes := []string{"application/json"}
 
@@ -122,15 +110,13 @@ BareMetalDevicesApiService Get device
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param deviceId
  * @param optional nil or *BareMetalDevicesApiGetBareMetalDeviceIdResourceOpts - Optional Parameters:
-     * @param "DeploymentId" (optional.String) -  Id of the deployment to interact with
      * @param "XFields" (optional.String) -  An optional fields mask
 
 @return BareMetalDevice
 */
 
 type BareMetalDevicesApiGetBareMetalDeviceIdResourceOpts struct {
-	DeploymentId optional.String
-	XFields      optional.String
+	XFields optional.String
 }
 
 func (a *BareMetalDevicesApiService) GetBareMetalDeviceIdResource(ctx context.Context, deviceId int32, localVarOptionals *BareMetalDevicesApiGetBareMetalDeviceIdResourceOpts) (BareMetalDevice, *http.Response, error) {
@@ -150,9 +136,6 @@ func (a *BareMetalDevicesApiService) GetBareMetalDeviceIdResource(ctx context.Co
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
-	if localVarOptionals != nil && localVarOptionals.DeploymentId.IsSet() {
-		localVarQueryParams.Add("deploymentId", parameterToString(localVarOptionals.DeploymentId.Value(), ""))
-	}
 	// to determine the Content-Type header
 	localVarHttpContentTypes := []string{"application/json"}
 
@@ -564,7 +547,6 @@ BareMetalDevicesApiService Update/reload instant device
  * @param deviceId
  * @param payload
  * @param optional nil or *BareMetalDevicesApiPutBareMetalDeviceIdResourceOpts - Optional Parameters:
-     * @param "DeploymentId" (optional.String) -  Id of the deployment to interact with
      * @param "SkipPowerCheck" (optional.Bool) -  If true, bypass the powered off check.
      * @param "XFields" (optional.String) -  An optional fields mask
 
@@ -572,7 +554,6 @@ BareMetalDevicesApiService Update/reload instant device
 */
 
 type BareMetalDevicesApiPutBareMetalDeviceIdResourceOpts struct {
-	DeploymentId   optional.String
 	SkipPowerCheck optional.Bool
 	XFields        optional.String
 }
@@ -594,9 +575,6 @@ func (a *BareMetalDevicesApiService) PutBareMetalDeviceIdResource(ctx context.Co
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
-	if localVarOptionals != nil && localVarOptionals.DeploymentId.IsSet() {
-		localVarQueryParams.Add("deploymentId", parameterToString(localVarOptionals.DeploymentId.Value(), ""))
-	}
 	if localVarOptionals != nil && localVarOptionals.SkipPowerCheck.IsSet() {
 		localVarQueryParams.Add("skipPowerCheck", parameterToString(localVarOptionals.SkipPowerCheck.Value(), ""))
 	}

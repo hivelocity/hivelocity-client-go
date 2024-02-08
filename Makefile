@@ -1,12 +1,16 @@
-CODEGEN_VERSION=2.4.33
+CODEGEN_VERSION=2.4.39
 CODEGEN_JAR=swagger-codegen-cli-$(CODEGEN_VERSION).jar
 
+swagger.yaml:
+	# We want to keep swagger.yaml in version control, so that we can see what changed.
+	curl -sSL https://core.hivelocity.net/api/v2/swagger.json | yq -P > swagger.yaml
+
 .PHONY: client
-client: $(CODEGEN_JAR)
+client: $(CODEGEN_JAR) swagger.yaml
 	# Generate client
 	@rm -rf ./client
 	java -jar $(CODEGEN_JAR) generate \
-		-i  https://core.hivelocity.net/api/v2/swagger.json \
+		-i swagger.yaml \
 		-l go \
 		-o ./client
 	go fmt ./...

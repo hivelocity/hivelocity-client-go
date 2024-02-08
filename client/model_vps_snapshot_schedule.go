@@ -10,22 +10,22 @@
 package swagger
 
 type VpsSnapshotSchedule struct {
-	// The minute of the hour to run the snapshot process (0-59).
-	Minute int32 `json:"minute,omitempty"`
-	// The unique ID of the VPS instance volume to take a snapshot of.
-	VolumeId string `json:"volumeId,omitempty"`
-	// The maximum number of snapshots to take within the interval period.
-	MaxSnapshots int32 `json:"maxSnapshots,omitempty"`
-	// The day of the month to run the snapshot process (1-28).
-	Day int32 `json:"day,omitempty"`
-	// Snapshot interval options: HOURLY, DAILY, WEEKLY, MONTHLY.
-	IntervalType string `json:"intervalType,omitempty"`
-	// The timezone to use for the snapshot schedule in IANA format. Example: America/New_York.
-	Timezone string `json:"timezone,omitempty"`
-	// The unique ID associated with the snapshot schedule.
-	SnapshotScheduleId string `json:"snapshotScheduleId,omitempty"`
 	// The day of the week to run the snapshot process (1-7 with 1 being Monday).
 	Weekday int32 `json:"weekday,omitempty"`
 	// The hour of the day to run the snapshot process (0-23).
 	Hour int32 `json:"hour,omitempty"`
+	// The day of the month to run the snapshot process (1-28).
+	Day int32 `json:"day,omitempty"`
+	// The timezone to use for the snapshot schedule in IANA format. Example: America/New_York.
+	Timezone string `json:"timezone,omitempty"`
+	// The minute of the hour to run the snapshot process (0-59).
+	Minute int32 `json:"minute,omitempty"`
+	// The unique ID of the VPS instance volume to take a snapshot of.
+	VolumeId string `json:"volumeId,omitempty"`
+	// The unique ID associated with the snapshot schedule.
+	SnapshotScheduleId string `json:"snapshotScheduleId,omitempty"`
+	// Snapshot interval options: HOURLY, DAILY, WEEKLY, MONTHLY.
+	IntervalType string `json:"intervalType,omitempty"`
+	// The maximum number of snapshots to take within the interval period.
+	MaxSnapshots int32 `json:"maxSnapshots,omitempty"`
 }

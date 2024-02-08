@@ -10,6 +10,7 @@ Method | HTTP request | Description
 [**GetInvoiceResource**](InvoiceApi.md#GetInvoiceResource) | **Get** /invoice/ | Return serialized data on all invoices
 [**GetInvoiceSearchResource**](InvoiceApi.md#GetInvoiceSearchResource) | **Get** /invoice/search | Return results of invoice search
 [**GetInvoiceUnpaidResource**](InvoiceApi.md#GetInvoiceUnpaidResource) | **Get** /invoice/unpaid | Return total balance of all unpaid invoices
+[**PostInvoiceIdApplyAccountCredit**](InvoiceApi.md#PostInvoiceIdApplyAccountCredit) | **Post** /invoice/{invoiceId}/apply-account-credit | Apply account credit to an invoice
 
 
 # **GetInvoiceIdDetails**
@@ -211,6 +212,41 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**InvoiceUnpaid**](InvoiceUnpaid.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **PostInvoiceIdApplyAccountCredit**
+> Invoice PostInvoiceIdApplyAccountCredit(ctx, invoiceId, optional)
+Apply account credit to an invoice
+
+### Required Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+  **invoiceId** | **int32**| Invoice database ID | 
+ **optional** | ***InvoiceApiPostInvoiceIdApplyAccountCreditOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+Optional parameters are passed through a pointer to a InvoiceApiPostInvoiceIdApplyAccountCreditOpts struct
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **xFields** | **optional.String**| An optional fields mask | 
+
+### Return type
+
+[**Invoice**](Invoice.md)
 
 ### Authorization
 

@@ -10,6 +10,8 @@ Name | Type | Description | Notes
 **DeviceTypeGroup** | **string** | Generic group | [optional] [default to null]
 **PowerStatus** | **interface{}** | ON|OFF | [optional] [default to null]
 **HasCancellation** | **bool** | True if device has active cancellation request. | [optional] [default to null]
+**BillingStatus** | **string** | Device&#39;s service billing status. | [optional] [default to null]
+**BillingCancelDate** | **int32** | Device&#39;s service expected cancel date. | [optional] [default to null]
 **IsManaged** | **bool** | True if device enrolled in managed services. | [optional] [default to null]
 **IsReload** | **bool** | True if device currently reloading. | [optional] [default to null]
 **MonitorsUp** | **int32** | # of passing device monitors | [optional] [default to null]
@@ -30,7 +32,8 @@ Name | Type | Description | Notes
 **LastInvoiceId** | **int32** | The unique ID of the last invoice for this device. | [optional] [default to null]
 **SelfProvisioning** | **bool** | True if instant server. | [optional] [default to null]
 **Metadata** | **interface{}** | Additional metadata. | [optional] [default to null]
-**SpsStatus** | **string** | BUILDING|IPMI_READY|PROVISIONABLE|RESERVED|WAIT_FOR_PXE|PROVISION_STARTED|PROVISION_WAIT_FOR_ADDONS|PROVISION_FINISHED|WAIT_TO_COMPLETE_ORDER|WAIT_TO_ASSIGN_SERVICE|WAIT_FOR_HARDWARE_SCAN|IN_USE|RELOADING|DEVICE_READY_TO_TEST|DEVICE_READY_TO_WIPE|DEVICE_READY_TO_UPGRADE_FIRMWARE|FAILED|CLEANUP_MOVE_TO_FAILED|IN_REVIEW | [optional] [default to null]
+**SpsStatus** | **string** | BUILDING|IPMI_READY|PROVISIONABLE|RESERVED|WAIT_FOR_PXE|PROVISION_STARTED|PROVISION_WAIT_FOR_ADDONS|PROVISION_FINISHED|WAIT_TO_COMPLETE_ORDER|WAIT_TO_ASSIGN_SERVICE|WAIT_FOR_HARDWARE_SCAN|IN_USE|RELOADING|DEVICE_READY_TO_TEST|DEVICE_READY_TO_WIPE|DEVICE_READY_TO_UPGRADE_FIRMWARE|FAILED|CLEANUP_MOVE_TO_FAILED|IN_REVIEW|READY_FOR_MIGRATION | [optional] [default to null]
+**ClientId** | **int32** | The unique ID of the associated client. | [optional] [default to null]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

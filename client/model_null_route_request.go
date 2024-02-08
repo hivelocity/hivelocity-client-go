@@ -10,8 +10,8 @@
 package swagger
 
 type NullRouteRequest struct {
-	// User comments about reason for null routing
-	Comment string `json:"comment,omitempty"`
 	// Public IPv4 Address
 	Ip string `json:"ip"`
+	// User comments about reason for null routing
+	Comment string `json:"comment,omitempty"`
 }

@@ -10,13 +10,13 @@
 package swagger
 
 type ValidateCartCouponDump struct {
-	// The unique client account ID.
-	ClientId int32                         `json:"clientId,omitempty"`
-	Coupon   *ValidateCartCoupondumpCoupon `json:"coupon,omitempty"`
-	// The coupon code to validate.
-	CouponCode string `json:"couponCode"`
-	// Error message if coupon is invalid.
-	Error_ string `json:"error,omitempty"`
+	Coupon *ValidateCartCoupondumpCoupon `json:"coupon,omitempty"`
 	// Whether the coupon is valid.
 	IsValid bool `json:"isValid,omitempty"`
+	// The unique client account ID.
+	ClientId int32 `json:"clientId,omitempty"`
+	// Error message if coupon is invalid.
+	Error_ string `json:"error,omitempty"`
+	// The coupon code to validate.
+	CouponCode string `json:"couponCode"`
 }

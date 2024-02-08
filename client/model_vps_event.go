@@ -14,14 +14,14 @@ import (
 )
 
 type VpsEvent struct {
+	// The type of event being logged for the VPS instance.
+	Type_ string `json:"type,omitempty"`
+	// The unique ID corresponding to the event recorded.
+	EventId string `json:"eventId,omitempty"`
 	// The created date/time of the VPS instance event.
 	CreatedAt time.Time `json:"createdAt,omitempty"`
 	// The level of the event ie. INFO, ERROR or WARNING.
 	Level string `json:"level,omitempty"`
-	// The unique ID corresponding to the event recorded.
-	EventId string `json:"eventId,omitempty"`
 	// The state of the event at the time of recording ie. Scheduled, Started or Completed.
 	State string `json:"state,omitempty"`
-	// The type of event being logged for the VPS instance.
-	Type_ string `json:"type,omitempty"`
 }
