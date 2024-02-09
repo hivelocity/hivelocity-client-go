@@ -83,6 +83,14 @@ git switch main
 git pull
 ```
 
+```shell
+make client
+git diff
+```
+
+If there is something not commited yet, then create a PR first an merge that to main.
+
+
 Have a look at the current (old) version: [Github Releases / Tags](https://github.com/hivelocity/hivelocity-client-go/tags)
 
 ```shell
