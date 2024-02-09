@@ -228,7 +228,7 @@ paths:
         description: "End time of custom time period (Unix Epoch Time)"
         required: false
         type: "integer"
-        default: 1707406646
+        default: 1707469102
         x-exportParamName: "End"
         x-optionalDataType: "Int32"
       - name: "X-Fields"
@@ -305,7 +305,7 @@ paths:
         description: "End Time of Custom Time Period (Unix Epoch Time)"
         required: false
         type: "integer"
-        default: 1707406646
+        default: 1707469102
         x-exportParamName: "End"
         x-optionalDataType: "Int32"
       - name: "X-Fields"
@@ -391,7 +391,7 @@ paths:
         description: "End Time of Custom Time Period (Unix Epoch Time)"
         required: false
         type: "integer"
-        default: 1707406646
+        default: 1707469102
         x-exportParamName: "End"
         x-optionalDataType: "Int32"
       - name: "X-Fields"
@@ -468,7 +468,7 @@ paths:
         description: "End Time of Custom Time Period (Unix Epoch Time)"
         required: false
         type: "integer"
-        default: 1707406646
+        default: 1707469102
         x-exportParamName: "End"
         x-optionalDataType: "Int32"
       - name: "X-Fields"
@@ -1520,6 +1520,13 @@ paths:
       summary: "Return a list with all Credits"
       operationId: "get_credit_resource"
       parameters:
+      - name: "status"
+        in: "query"
+        description: "The current status of the service (all, active, inactive)"
+        required: false
+        type: "string"
+        x-exportParamName: "Status"
+        x-optionalDataType: "String"
       - name: "X-Fields"
         in: "header"
         description: "An optional fields mask"
@@ -4643,19 +4650,19 @@ paths:
       summary: "Get network task status"
       operationId: "get_network_task_client_resource"
       parameters:
-      - name: "clientId"
-        in: "query"
-        description: "Filter to retrieve tasks for a specific client."
-        required: false
-        type: "integer"
-        x-exportParamName: "ClientId"
-        x-optionalDataType: "Int32"
       - name: "createdInLast"
         in: "query"
         description: "Filter to retrieve tasks created in the last timedelta hours."
         required: false
         type: "integer"
         x-exportParamName: "CreatedInLast"
+        x-optionalDataType: "Int32"
+      - name: "clientId"
+        in: "query"
+        description: "Filter to retrieve tasks for a specific client."
+        required: false
+        type: "integer"
+        x-exportParamName: "ClientId"
         x-optionalDataType: "Int32"
       - name: "X-Fields"
         in: "header"
@@ -6126,6 +6133,13 @@ paths:
       summary: "Get all VPS instances"
       operationId: "get_vps_resource"
       parameters:
+      - name: "storageId"
+        in: "query"
+        description: "The storage server ID of the VPS instance."
+        required: false
+        type: "string"
+        x-exportParamName: "StorageId"
+        x-optionalDataType: "String"
       - name: "clientId"
         in: "query"
         description: "The unique client account ID."
@@ -6133,6 +6147,13 @@ paths:
         type: "integer"
         x-exportParamName: "ClientId"
         x-optionalDataType: "Int32"
+      - name: "hostId"
+        in: "query"
+        description: "Host ID (hypervisor) of the VPS instance."
+        required: false
+        type: "string"
+        x-exportParamName: "HostId"
+        x-optionalDataType: "String"
       - name: "facilityCode"
         in: "query"
         description: "The facility code associated with the VPS instance. For example:\
@@ -6147,20 +6168,6 @@ paths:
         required: false
         type: "string"
         x-exportParamName: "NetworkId"
-        x-optionalDataType: "String"
-      - name: "storageId"
-        in: "query"
-        description: "The storage server ID of the VPS instance."
-        required: false
-        type: "string"
-        x-exportParamName: "StorageId"
-        x-optionalDataType: "String"
-      - name: "hostId"
-        in: "query"
-        description: "Host ID (hypervisor) of the VPS instance."
-        required: false
-        type: "string"
-        x-exportParamName: "HostId"
         x-optionalDataType: "String"
       - name: "X-Fields"
         in: "header"
@@ -6360,6 +6367,13 @@ paths:
       summary: "Get all VPS Networks"
       operationId: "get_vps_network_resource"
       parameters:
+      - name: "clientId"
+        in: "query"
+        description: "The unique client account ID."
+        required: false
+        type: "integer"
+        x-exportParamName: "ClientId"
+        x-optionalDataType: "Int32"
       - name: "facilityCode"
         in: "query"
         description: "The facility code where the VPS Network is located. For example:\
@@ -6368,13 +6382,6 @@ paths:
         type: "string"
         x-exportParamName: "FacilityCode"
         x-optionalDataType: "String"
-      - name: "clientId"
-        in: "query"
-        description: "The unique client account ID."
-        required: false
-        type: "integer"
-        x-exportParamName: "ClientId"
-        x-optionalDataType: "Int32"
       - name: "X-Fields"
         in: "header"
         description: "An optional fields mask"
@@ -6433,6 +6440,13 @@ paths:
         required: true
         type: "string"
         x-exportParamName: "NetworkId"
+      - name: "clientId"
+        in: "query"
+        description: "The unique client account ID."
+        required: false
+        type: "integer"
+        x-exportParamName: "ClientId"
+        x-optionalDataType: "Int32"
       - name: "facilityCode"
         in: "query"
         description: "The facility code where the VPS Network is located. For example:\
@@ -6441,13 +6455,6 @@ paths:
         type: "string"
         x-exportParamName: "FacilityCode"
         x-optionalDataType: "String"
-      - name: "clientId"
-        in: "query"
-        description: "The unique client account ID."
-        required: false
-        type: "integer"
-        x-exportParamName: "ClientId"
-        x-optionalDataType: "Int32"
       - name: "X-Fields"
         in: "header"
         description: "An optional fields mask"
@@ -6543,6 +6550,13 @@ paths:
       summary: "Get all VPS Volume Snapshots available"
       operationId: "get_vps_snapshot_resource"
       parameters:
+      - name: "deviceId"
+        in: "query"
+        description: "The unique device ID of the VPS instance."
+        required: false
+        type: "integer"
+        x-exportParamName: "DeviceId"
+        x-optionalDataType: "Int32"
       - name: "facilityCode"
         in: "query"
         description: "The facility code associated with the VPS instance. For example:\
@@ -6551,13 +6565,6 @@ paths:
         type: "string"
         x-exportParamName: "FacilityCode"
         x-optionalDataType: "String"
-      - name: "deviceId"
-        in: "query"
-        description: "The unique device ID of the VPS instance."
-        required: false
-        type: "integer"
-        x-exportParamName: "DeviceId"
-        x-optionalDataType: "Int32"
       - name: "clientId"
         in: "query"
         description: "The unique client account ID."
@@ -6623,6 +6630,13 @@ paths:
         required: true
         type: "string"
         x-exportParamName: "SnapshotId"
+      - name: "clientId"
+        in: "query"
+        description: "The unique client account ID."
+        required: false
+        type: "integer"
+        x-exportParamName: "ClientId"
+        x-optionalDataType: "Int32"
       - name: "facilityCode"
         in: "query"
         description: "The facility code associated with the VPS instance. For example:\
@@ -6631,13 +6645,6 @@ paths:
         type: "string"
         x-exportParamName: "FacilityCode"
         x-optionalDataType: "String"
-      - name: "clientId"
-        in: "query"
-        description: "The unique client account ID."
-        required: false
-        type: "integer"
-        x-exportParamName: "ClientId"
-        x-optionalDataType: "Int32"
       - name: "X-Fields"
         in: "header"
         description: "An optional fields mask"
@@ -6698,6 +6705,13 @@ paths:
         required: true
         type: "string"
         x-exportParamName: "SnapshotId"
+      - name: "clientId"
+        in: "query"
+        description: "The unique client account ID."
+        required: false
+        type: "integer"
+        x-exportParamName: "ClientId"
+        x-optionalDataType: "Int32"
       - name: "facilityCode"
         in: "query"
         description: "The facility code associated with the VPS instance. For example:\
@@ -6706,13 +6720,6 @@ paths:
         type: "string"
         x-exportParamName: "FacilityCode"
         x-optionalDataType: "String"
-      - name: "clientId"
-        in: "query"
-        description: "The unique client account ID."
-        required: false
-        type: "integer"
-        x-exportParamName: "ClientId"
-        x-optionalDataType: "Int32"
       - name: "X-Fields"
         in: "header"
         description: "An optional fields mask"
@@ -6736,6 +6743,13 @@ paths:
       summary: "Get all VPS Snapshot Schedules for a Facility or VPS Instance"
       operationId: "get_vps_snapshot_schedule_resource"
       parameters:
+      - name: "deviceId"
+        in: "query"
+        description: "The unique device ID of the VPS instance."
+        required: false
+        type: "integer"
+        x-exportParamName: "DeviceId"
+        x-optionalDataType: "Int32"
       - name: "facilityCode"
         in: "query"
         description: "The facility code associated with the VPS instance. For example:\
@@ -6744,13 +6758,6 @@ paths:
         type: "string"
         x-exportParamName: "FacilityCode"
         x-optionalDataType: "String"
-      - name: "deviceId"
-        in: "query"
-        description: "The unique device ID of the VPS instance."
-        required: false
-        type: "integer"
-        x-exportParamName: "DeviceId"
-        x-optionalDataType: "Int32"
       - name: "clientId"
         in: "query"
         description: "The unique client account ID."
@@ -6816,6 +6823,13 @@ paths:
         required: true
         type: "string"
         x-exportParamName: "SnapshotScheduleId"
+      - name: "clientId"
+        in: "query"
+        description: "The unique client account ID."
+        required: false
+        type: "integer"
+        x-exportParamName: "ClientId"
+        x-optionalDataType: "Int32"
       - name: "facilityCode"
         in: "query"
         description: "The facility code associated with the VPS instance. For example:\
@@ -6824,13 +6838,6 @@ paths:
         type: "string"
         x-exportParamName: "FacilityCode"
         x-optionalDataType: "String"
-      - name: "clientId"
-        in: "query"
-        description: "The unique client account ID."
-        required: false
-        type: "integer"
-        x-exportParamName: "ClientId"
-        x-optionalDataType: "Int32"
       - name: "X-Fields"
         in: "header"
         description: "An optional fields mask"
@@ -6858,6 +6865,13 @@ paths:
         required: true
         type: "string"
         x-exportParamName: "SnapshotScheduleId"
+      - name: "clientId"
+        in: "query"
+        description: "The unique client account ID."
+        required: false
+        type: "integer"
+        x-exportParamName: "ClientId"
+        x-optionalDataType: "Int32"
       - name: "facilityCode"
         in: "query"
         description: "The facility code associated with the VPS instance. For example:\
@@ -6866,13 +6880,6 @@ paths:
         type: "string"
         x-exportParamName: "FacilityCode"
         x-optionalDataType: "String"
-      - name: "clientId"
-        in: "query"
-        description: "The unique client account ID."
-        required: false
-        type: "integer"
-        x-exportParamName: "ClientId"
-        x-optionalDataType: "Int32"
       - name: "X-Fields"
         in: "header"
         description: "An optional fields mask"
@@ -6894,6 +6901,13 @@ paths:
       summary: "Get all VPS Instance Volumes available"
       operationId: "get_vps_volume_resource"
       parameters:
+      - name: "deviceId"
+        in: "query"
+        description: "The unique device ID of the VPS instance."
+        required: false
+        type: "integer"
+        x-exportParamName: "DeviceId"
+        x-optionalDataType: "Int32"
       - name: "facilityCode"
         in: "query"
         description: "The facility code associated with the VPS instance. For example:\
@@ -6902,13 +6916,6 @@ paths:
         type: "string"
         x-exportParamName: "FacilityCode"
         x-optionalDataType: "String"
-      - name: "deviceId"
-        in: "query"
-        description: "The unique device ID of the VPS instance."
-        required: false
-        type: "integer"
-        x-exportParamName: "DeviceId"
-        x-optionalDataType: "Int32"
       - name: "clientId"
         in: "query"
         description: "The unique client account ID."
@@ -7823,15 +7830,15 @@ definitions:
     - "company"
     - "email"
     properties:
-      email:
-        type: "string"
-        description: "The email to be associated with the client account"
-      company:
-        type: "string"
-        description: "The company to be asociated with the client account"
       password:
         type: "string"
         description: "The client account password to be used"
+      company:
+        type: "string"
+        description: "The company to be asociated with the client account"
+      email:
+        type: "string"
+        description: "The email to be associated with the client account"
     example:
       password: "password"
       company: "company"
@@ -7846,71 +7853,12 @@ definitions:
         description: "ID of the controlled client account"
     example:
       clientId: 0
-  ControlledClient-dump:
-    type: "object"
-    properties:
-      phone:
-        type: "string"
-        description: "The phone number associated with the account"
-      first:
-        type: "string"
-        description: "The first name associated with the account"
-      id:
-        type: "integer"
-        description: "The ID of the client/contact account"
-      fax:
-        type: "string"
-        description: "The fax number associated with the account"
-      country:
-        type: "string"
-        description: "The country associated with the account"
-      zip:
-        type: "string"
-        description: "The zip/postal code associated with the account"
-      address:
-        type: "string"
-        description: "The street address associated with the account"
-      active:
-        type: "boolean"
-      city:
-        type: "string"
-        description: "The city associated with the account"
-      email:
-        type: "string"
-        description: "The email address associated with the account"
-      company:
-        type: "string"
-        description: "The company name associated with the account"
-      last:
-        type: "string"
-        description: "The last name associated with the account"
-      state:
-        type: "string"
-        description: "The state associated with the account"
-      created:
-        type: "integer"
-        description: "The date/time the account was created"
-    example:
-      zip: "zip"
-      country: "country"
-      address: "address"
-      last: "last"
-      city: "city"
-      created: 6
-      active: true
-      phone: "phone"
-      company: "company"
-      id: 0
-      state: "state"
-      fax: "fax"
-      first: "first"
-      email: "email"
   ClientCreate-dump:
     type: "object"
     properties:
-      phone:
+      address:
         type: "string"
-        description: "The phone number associated with the account"
+        description: "The street address associated with the account"
       first:
         type: "string"
         description: "The first name associated with the account"
@@ -7920,22 +7868,12 @@ definitions:
       fax:
         type: "string"
         description: "The fax number associated with the account"
-      country:
+      state:
         type: "string"
-        description: "The country associated with the account"
+        description: "The state associated with the account"
       zip:
         type: "string"
         description: "The zip/postal code associated with the account"
-      password:
-        type: "string"
-      address:
-        type: "string"
-        description: "The street address associated with the account"
-      active:
-        type: "boolean"
-      city:
-        type: "string"
-        description: "The city associated with the account"
       email:
         type: "string"
         description: "The email address associated with the account"
@@ -7945,12 +7883,22 @@ definitions:
       last:
         type: "string"
         description: "The last name associated with the account"
-      state:
-        type: "string"
-        description: "The state associated with the account"
       created:
         type: "integer"
         description: "The date/time the account was created"
+      country:
+        type: "string"
+        description: "The country associated with the account"
+      password:
+        type: "string"
+      city:
+        type: "string"
+        description: "The city associated with the account"
+      active:
+        type: "boolean"
+      phone:
+        type: "string"
+        description: "The phone number associated with the account"
     example:
       zip: "zip"
       country: "country"
@@ -7960,6 +7908,65 @@ definitions:
       created: 6
       active: true
       password: "password"
+      phone: "phone"
+      company: "company"
+      id: 0
+      state: "state"
+      fax: "fax"
+      first: "first"
+      email: "email"
+  ControlledClient-dump:
+    type: "object"
+    properties:
+      address:
+        type: "string"
+        description: "The street address associated with the account"
+      first:
+        type: "string"
+        description: "The first name associated with the account"
+      id:
+        type: "integer"
+        description: "The ID of the client/contact account"
+      fax:
+        type: "string"
+        description: "The fax number associated with the account"
+      state:
+        type: "string"
+        description: "The state associated with the account"
+      zip:
+        type: "string"
+        description: "The zip/postal code associated with the account"
+      email:
+        type: "string"
+        description: "The email address associated with the account"
+      company:
+        type: "string"
+        description: "The company name associated with the account"
+      last:
+        type: "string"
+        description: "The last name associated with the account"
+      created:
+        type: "integer"
+        description: "The date/time the account was created"
+      country:
+        type: "string"
+        description: "The country associated with the account"
+      city:
+        type: "string"
+        description: "The city associated with the account"
+      active:
+        type: "boolean"
+      phone:
+        type: "string"
+        description: "The phone number associated with the account"
+    example:
+      zip: "zip"
+      country: "country"
+      address: "address"
+      last: "last"
+      city: "city"
+      created: 6
+      active: true
       phone: "phone"
       company: "company"
       id: 0
@@ -8026,117 +8033,95 @@ definitions:
     - "osName"
     - "productId"
     properties:
-      period:
+      locationName:
         type: "string"
-        example: "hourly"
-        description: "hourly|monthly|quarterly|semi-annually|annually|biennial|triennial"
-        default: "hourly"
-      productId:
+        description: "A facility code. For example `NYC1`."
+      vlanId:
         type: "integer"
-        description: "The unique ID of the desired product to provision."
-      customIPXEScriptURL:
+      forceDeviceId:
+        type: "integer"
+        description: "For users with reserved devices. The unique ID of the target\
+          \ device to provision."
+      osName:
         type: "string"
-        description: "URL to download custom iPXE script if not supplying script in\
-          \ entirety"
-      publicSshKeyId:
-        type: "integer"
+        description: "The name of the Operating System to provision on this device.\
+          \ Must match name of an operating system product option."
       hostname:
         type: "string"
         description: "A FQDN for the device. For example: `example.hivelocity.net`"
       customIPXEScriptContents:
         type: "string"
         description: "Contents of iPXE script if not supplying URL"
-      vlanId:
-        type: "integer"
-      ignitionId:
-        type: "integer"
-        description: "The unique ID of an Ignition File for FlatcarOS provisions."
-      bondingSupport:
-        type: "boolean"
-        description: "If true, ensures the provisioned device supports port bonding.\
-          \ If false, ensures no bonding support."
-      script:
+      period:
         type: "string"
-        description: "A Cloud-Init script or a post-install script (Bash for Linux\
-          \ or Powershell for Windows)."
+        example: "hourly"
+        description: "hourly|monthly|quarterly|semi-annually|annually|biennial|triennial"
+        default: "hourly"
       tags:
         type: "array"
         example: []
         description: "User specified values."
         items:
           type: "string"
-      osName:
-        type: "string"
-        description: "The name of the Operating System to provision on this device.\
-          \ Must match name of an operating system product option."
-      locationName:
-        type: "string"
-        description: "A facility code. For example `NYC1`."
-      forceDeviceId:
+      ignitionId:
         type: "integer"
-        description: "For users with reserved devices. The unique ID of the target\
-          \ device to provision."
+        description: "The unique ID of an Ignition File for FlatcarOS provisions."
+      productId:
+        type: "integer"
+        description: "The unique ID of the desired product to provision."
+      publicSshKeyId:
+        type: "integer"
+      script:
+        type: "string"
+        description: "A Cloud-Init script or a post-install script (Bash for Linux\
+          \ or Powershell for Windows)."
+      customIPXEScriptURL:
+        type: "string"
+        description: "URL to download custom iPXE script if not supplying script in\
+          \ entirety"
+      bondingSupport:
+        type: "boolean"
+        description: "If true, ensures the provisioned device supports port bonding.\
+          \ If false, ensures no bonding support."
     example:
       period: "hourly"
       locationName: "locationName"
-      productId: 0
-      vlanId: 1
+      productId: 5
+      vlanId: 0
       customIPXEScriptContents: "customIPXEScriptContents"
+      forceDeviceId: 6
       osName: "osName"
-      forceDeviceId: 5
-      ignitionId: 5
+      ignitionId: 1
       script: "script"
-      publicSshKeyId: 6
       tags: []
+      publicSshKeyId: 5
       hostname: "hostname"
       customIPXEScriptURL: "customIPXEScriptURL"
       bondingSupport: true
   BareMetalDevice:
     type: "object"
     properties:
-      orderId:
-        type: "integer"
-        description: "The unique ID of the order for this device."
-      period:
+      locationName:
         type: "string"
-        example: "hourly"
-        description: "This device's service's billing period."
-      productId:
-        type: "integer"
-        description: "The unique ID of the product associated with this device."
-      customIPXEScriptURL:
-        type: "string"
-        description: "URL of custom iPXE script used to provision device"
-      publicSshKeyId:
-        type: "integer"
-      hostname:
-        type: "string"
-        description: "The user specified hostname for the device. Note: If the hostname\
-          \ is changed in the portal or on the device itself this value may not reflect\
-          \ the actual hostname on the device."
-      primaryIp:
-        type: "string"
-        description: "The first assigned public IP for accessing this device."
-      customIPXEScriptContents:
-        type: "string"
-        description: "Contents of custom iPXE used to provision device"
+        description: "A facility code. For example `NYC1`."
       vlanId:
         type: "integer"
+      serviceId:
+        type: "integer"
+        description: "The unique ID of the service associated with this device."
       script:
         type: "string"
         description: "The post-install/cloud-init script used during this device's\
           \ last provisioning."
-      serviceId:
-        type: "integer"
-        description: "The unique ID of the service associated with this device."
-      tags:
-        type: "array"
-        description: "User specified values."
-        items:
-          type: "string"
-      productName:
+      primaryIp:
         type: "string"
-        description: "The name of the product associated with this device."
+        description: "The first assigned public IP for accessing this device."
+      deviceId:
+        type: "integer"
+        description: "The unique ID of the device."
+      orderId:
+        type: "integer"
+        description: "The unique ID of the order for this device."
       powerStatus:
         type: "string"
         description: "ON|OFF"
@@ -8145,123 +8130,145 @@ definitions:
         description: "The name of the operating system currently installed on this\
           \ device. Note: If you manually reload your own OS over IPMI this value\
           \ may not reflect the OS currently on your device."
-      locationName:
+      hostname:
         type: "string"
-        description: "A facility code. For example `NYC1`."
-      deviceId:
+        description: "The user specified hostname for the device. Note: If the hostname\
+          \ is changed in the portal or on the device itself this value may not reflect\
+          \ the actual hostname on the device."
+      customIPXEScriptContents:
+        type: "string"
+        description: "Contents of custom iPXE used to provision device"
+      productName:
+        type: "string"
+        description: "The name of the product associated with this device."
+      tags:
+        type: "array"
+        description: "User specified values."
+        items:
+          type: "string"
+      productId:
         type: "integer"
-        description: "The unique ID of the device."
+        description: "The unique ID of the product associated with this device."
+      publicSshKeyId:
+        type: "integer"
+      period:
+        type: "string"
+        example: "hourly"
+        description: "This device's service's billing period."
+      customIPXEScriptURL:
+        type: "string"
+        description: "URL of custom iPXE script used to provision device"
     example:
       period: "hourly"
       locationName: "locationName"
-      productId: 6
-      orderId: 0
-      vlanId: 5
+      productId: 5
+      vlanId: 0
+      orderId: 5
       customIPXEScriptContents: "customIPXEScriptContents"
       osName: "osName"
-      deviceId: 2
+      deviceId: 1
       script: "script"
       productName: "productName"
-      publicSshKeyId: 1
       tags:
       - "tags"
       - "tags"
-      hostname: "hostname"
+      publicSshKeyId: 2
       powerStatus: "powerStatus"
+      hostname: "hostname"
       customIPXEScriptURL: "customIPXEScriptURL"
       primaryIp: "primaryIp"
-      serviceId: 5
+      serviceId: 6
   BareMetalDeviceUpdate:
     type: "object"
     required:
     - "hostname"
     - "osName"
     properties:
-      customIPXEScriptContents:
-        type: "string"
-        description: "Contents of iPXE script if not specifying URL. If both script\
-          \ URL and contents are not specified, the last iPXE script contents are\
-          \ used if OS selection requires an iPXE script."
-      customIPXEScriptURL:
-        type: "string"
-        description: "URL to download custom iPXE script if not specifying contents\
-          \ in entirety. If both script URL and contents are not specified, the last\
-          \ iPXE script contents are used if OS selection requires an  iPXE script."
-      publicSshKeyId:
-        type: "integer"
-      hostname:
-        type: "string"
-        description: "A FQDN for the device. For example: `example.hivelocity.net`"
-      ignitionId:
-        type: "integer"
-        description: "The unique ID of an Ignition File for FlatcarOS provisions."
-      script:
-        type: "string"
-        description: "A Cloud-Init script or a post-install script (Bash for Linux\
-          \ or Powershell for Windows)."
-      tags:
-        type: "array"
-        items:
-          type: "string"
-      osName:
-        type: "string"
-        description: "The name of the Operating System to provision on this device.\
-          \ Must match name of an operating system product option."
       forceReload:
         type: "boolean"
         example: false
         description: "Whether to force a reload even if fields have not changed"
         default: false
+      osName:
+        type: "string"
+        description: "The name of the Operating System to provision on this device.\
+          \ Must match name of an operating system product option."
+      hostname:
+        type: "string"
+        description: "A FQDN for the device. For example: `example.hivelocity.net`"
+      customIPXEScriptContents:
+        type: "string"
+        description: "Contents of iPXE script if not specifying URL. If both script\
+          \ URL and contents are not specified, the last iPXE script contents are\
+          \ used if OS selection requires an iPXE script."
+      tags:
+        type: "array"
+        items:
+          type: "string"
+      ignitionId:
+        type: "integer"
+        description: "The unique ID of an Ignition File for FlatcarOS provisions."
+      publicSshKeyId:
+        type: "integer"
+      script:
+        type: "string"
+        description: "A Cloud-Init script or a post-install script (Bash for Linux\
+          \ or Powershell for Windows)."
+      customIPXEScriptURL:
+        type: "string"
+        description: "URL to download custom iPXE script if not specifying contents\
+          \ in entirety. If both script URL and contents are not specified, the last\
+          \ iPXE script contents are used if OS selection requires an  iPXE script."
     example:
       hostname: "hostname"
       customIPXEScriptURL: "customIPXEScriptURL"
       customIPXEScriptContents: "customIPXEScriptContents"
       osName: "osName"
-      ignitionId: 6
       forceReload: false
+      ignitionId: 0
       script: "script"
-      publicSshKeyId: 0
       tags:
       - "tags"
       - "tags"
+      publicSshKeyId: 6
   BareMetalDeviceBatchCreate:
     type: "object"
     properties:
+      orderGroupId:
+        type: "integer"
+        description: "Unique ID to identify the group order."
       devices:
         type: "array"
         description: "List of devices to provision."
         items:
           $ref: "#/definitions/BareMetalDeviceCreate"
-      orderGroupId:
-        type: "integer"
-        description: "Unique ID to identify the group order."
     example:
       devices:
       - period: "hourly"
         locationName: "locationName"
-        productId: 0
-        vlanId: 1
+        productId: 5
+        vlanId: 0
         customIPXEScriptContents: "customIPXEScriptContents"
+        forceDeviceId: 6
         osName: "osName"
-        forceDeviceId: 5
-        ignitionId: 5
+        ignitionId: 1
         script: "script"
-        publicSshKeyId: 6
         tags: []
+        publicSshKeyId: 5
         hostname: "hostname"
         customIPXEScriptURL: "customIPXEScriptURL"
         bondingSupport: true
       - period: "hourly"
         locationName: "locationName"
-        productId: 0
-        vlanId: 1
+        productId: 5
+        vlanId: 0
         customIPXEScriptContents: "customIPXEScriptContents"
+        forceDeviceId: 6
         osName: "osName"
-        forceDeviceId: 5
-        ignitionId: 5
+        ignitionId: 1
         script: "script"
-        publicSshKeyId: 6
         tags: []
+        publicSshKeyId: 5
         hostname: "hostname"
         customIPXEScriptURL: "customIPXEScriptURL"
         bondingSupport: true
@@ -8269,54 +8276,54 @@ definitions:
   BareMetalDeviceBatch:
     type: "object"
     properties:
+      orderGroupId:
+        type: "integer"
+        description: "Unique ID of the group order."
       devices:
         type: "array"
         description: "List of provisioned devices."
         items:
           $ref: "#/definitions/BareMetalDevice"
-      orderGroupId:
-        type: "integer"
-        description: "Unique ID of the group order."
     example:
       devices:
       - period: "hourly"
         locationName: "locationName"
-        productId: 6
-        orderId: 0
-        vlanId: 5
+        productId: 5
+        vlanId: 0
+        orderId: 5
         customIPXEScriptContents: "customIPXEScriptContents"
         osName: "osName"
-        deviceId: 2
+        deviceId: 1
         script: "script"
         productName: "productName"
-        publicSshKeyId: 1
         tags:
         - "tags"
         - "tags"
-        hostname: "hostname"
+        publicSshKeyId: 2
         powerStatus: "powerStatus"
+        hostname: "hostname"
         customIPXEScriptURL: "customIPXEScriptURL"
         primaryIp: "primaryIp"
-        serviceId: 5
+        serviceId: 6
       - period: "hourly"
         locationName: "locationName"
-        productId: 6
-        orderId: 0
-        vlanId: 5
+        productId: 5
+        vlanId: 0
+        orderId: 5
         customIPXEScriptContents: "customIPXEScriptContents"
         osName: "osName"
-        deviceId: 2
+        deviceId: 1
         script: "script"
         productName: "productName"
-        publicSshKeyId: 1
         tags:
         - "tags"
         - "tags"
-        hostname: "hostname"
+        publicSshKeyId: 2
         powerStatus: "powerStatus"
+        hostname: "hostname"
         customIPXEScriptURL: "customIPXEScriptURL"
         primaryIp: "primaryIp"
-        serviceId: 5
+        serviceId: 6
       orderGroupId: 0
   BillingInfoVerification:
     type: "object"
@@ -8326,73 +8333,86 @@ definitions:
       id:
         type: "integer"
         description: "The unique Billing ID used to associate Billing Info"
+      provisionOrderId:
+        type: "integer"
+        description: "The order ID associated with this billing ID"
       verificationAmount:
         type: "number"
         description: "The verification amount posted to the financial institution\
           \ associated with the billing ID"
-      provisionOrderId:
-        type: "integer"
-        description: "The order ID associated with this billing ID"
     example:
-      provisionOrderId: 1
-      verificationAmount: 6.02745618307040320615897144307382404804229736328125
+      provisionOrderId: 6
+      verificationAmount: 1.46581298050294517310021547018550336360931396484375
       id: 0
   BillingInfo:
     type: "object"
     properties:
-      phone:
-        type: "string"
-        description: "The phone number associated with the billing ID"
       first:
         type: "string"
         description: "The first name of the individual associated with the billing\
           \ ID"
-      id:
-        type: "integer"
-        description: "The unique Billing ID used to associate Billing Info"
-      status:
-        type: "integer"
-        description: "The active status associated with the billing ID (0/1)"
-      ccNum:
-        type: "string"
-        description: "The credit card account number"
-      country:
-        type: "string"
-        description: "The country associated with the billing ID"
-      zip:
-        type: "string"
-        description: "The zip/postal code associated with the billing ID"
-      pendingVerification:
-        type: "boolean"
-        description: "Yes or No for the Pending Verification status"
-      address:
-        type: "string"
-        description: "The street address associated with the billing ID"
-      ccExpire:
-        type: "string"
-        description: "The expiration date for the credit card"
-      city:
-        type: "string"
-        description: "The city associated with the billing ID in question"
-      company:
-        type: "string"
-        description: "The company name associated with the billing ID"
       achAccount:
         type: "string"
         description: "The bank account number"
+      state:
+        type: "string"
+        description: "The state associated with the billing ID"
+      zip:
+        type: "string"
+        description: "The zip/postal code associated with the billing ID"
+      achBank:
+        type: "string"
+        description: "The name of the bank associated with the billing ID"
+      email:
+        type: "string"
+        description: "The email address associated with the billing ID"
+      company:
+        type: "string"
+        description: "The company name associated with the billing ID"
       achType:
         type: "string"
         description: "The bank account type (Checking or Savings)"
+      address:
+        type: "string"
+        description: "The street address associated with the billing ID"
+      isCCVerified:
+        type: "boolean"
+        description: "The verification status of the Credit Card in question"
+      pendingVerification:
+        type: "boolean"
+        description: "Yes or No for the Pending Verification status"
+      id:
+        type: "integer"
+        description: "The unique Billing ID used to associate Billing Info"
       last:
         type: "string"
         description: "The last name of the individual associated with the billing\
           \ ID"
-      state:
-        type: "string"
-        description: "The state associated with the billing ID"
       default:
         type: "boolean"
         description: "True if this is the default payment method for future orders"
+      country:
+        type: "string"
+        description: "The country associated with the billing ID"
+      ccExpire:
+        type: "string"
+        description: "The expiration date for the credit card"
+      status:
+        type: "integer"
+        description: "The active status associated with the billing ID (0/1)"
+      ccType:
+        type: "string"
+        description: "The credit card network associated with the billing ID"
+      city:
+        type: "string"
+        description: "The city associated with the billing ID in question"
+      ccNum:
+        type: "string"
+        description: "The credit card account number"
+      clientId:
+        type: "integer"
+        description: "The identification number for the client associated with the\
+          \ Billing info ID"
       achAba:
         type: "string"
         description: "The bank routing number"
@@ -8400,22 +8420,9 @@ definitions:
         type: "string"
         description: "The type of payment associated with the billing ID ie: CC, ACH\
           \ etc"
-      ccType:
+      phone:
         type: "string"
-        description: "The credit card network associated with the billing ID"
-      achBank:
-        type: "string"
-        description: "The name of the bank associated with the billing ID"
-      email:
-        type: "string"
-        description: "The email address associated with the billing ID"
-      clientId:
-        type: "integer"
-        description: "The identification number for the client associated with the\
-          \ Billing info ID"
-      isCCVerified:
-        type: "boolean"
-        description: "The verification status of the Credit Card in question"
+        description: "The phone number associated with the billing ID"
     example:
       zip: "zip"
       country: "country"
@@ -8423,9 +8430,9 @@ definitions:
       clientId: 1
       last: "last"
       city: "city"
-      ccNum: "ccNum"
       achBank: "achBank"
       isCCVerified: true
+      ccNum: "ccNum"
       achType: "achType"
       paymentType: "paymentType"
       ccType: "ccType"
@@ -8436,8 +8443,8 @@ definitions:
       achAccount: "achAccount"
       pendingVerification: true
       company: "company"
-      id: 0
       state: "state"
+      id: 0
       first: "first"
       email: "email"
       status: 6
@@ -8475,17 +8482,35 @@ definitions:
       billingInfoId:
         type: "integer"
         description: "The Billing Info ID used to purchase the credits on this account"
+      serviceIds:
+        type: "array"
+        description: "The list of service IDs associated with the credit ID"
+        items:
+          type: "integer"
+      autoApply:
+        type: "integer"
+        description: "Whether credits are automatically being applied to new orders\
+          \ or invoices. [0 = Not Auto Apply, 1 = Auto Apply New Invoices, 2 = Auto\
+          \ Apply All Invoices]"
+      expirationDate:
+        type: "integer"
+        description: "The expiration date of the credit"
     example:
       reason: "reason"
       amount: 6.02745618307040320615897144307382404804229736328125
       clientId: 5
       isHourly: true
-      balance: 1.46581298050294517310021547018550336360931396484375
+      autoApply: 3
       orderId: 2
       billingInfoId: 7
       created: 5
+      serviceIds:
+      - 9
+      - 9
+      balance: 1.46581298050294517310021547018550336360931396484375
       id: 0
       status: "status"
+      expirationDate: 2
   BillingInfoCreateCreditCard:
     type: "object"
     required:
@@ -8504,36 +8529,51 @@ definitions:
     - "state"
     - "zip"
     properties:
-      phone:
-        type: "string"
-        description: "The phone number associated with the billing ID"
       first:
         type: "string"
         description: "The first name of the individual associated with the billing\
           \ ID"
-      ccExpireYear:
+      address:
         type: "string"
-        description: "The expiration year for the credit card with 2 digits"
-      ccCvv2:
-        type: "string"
-        description: "The credit card verification number"
+        description: "The street address associated with the billing ID"
+      setDefault:
+        type: "boolean"
+        description: "Make this the default payment method for future orders"
+        default: false
       defaultAllServices:
         type: "boolean"
         description: "Make this the default payment method for all services in the\
           \ client's account"
         default: false
-      city:
+      state:
         type: "string"
-        description: "The city associated with the billing ID in question"
-      email:
+        description: "The state associated with the billing ID"
+      zip:
         type: "string"
-        description: "The email address associated with the billing ID"
-      ccExpireMonth:
+        description: "The zip/postal code associated with the billing ID"
+      last:
         type: "string"
-        description: "The expiration month for the credit card"
+        description: "The last name of the individual associated with the billing\
+          \ ID"
       company:
         type: "string"
         description: "The company name associated with the billing ID"
+      email:
+        type: "string"
+        description: "The email address associated with the billing ID"
+      ccType:
+        type: "string"
+        description: "The credit card network associated with the billing ID: `visa`,\
+          \ `mastercard`, `discover`, `amex`, etc."
+      city:
+        type: "string"
+        description: "The city associated with the billing ID in question"
+      ccExpireMonth:
+        type: "string"
+        description: "The expiration month for the credit card"
+      ccExpireYear:
+        type: "string"
+        description: "The expiration year for the credit card with 2 digits"
       clientId:
         type: "integer"
         description: "The identification number for the client associated with the\
@@ -8541,42 +8581,27 @@ definitions:
       ccNum:
         type: "string"
         description: "The credit card account number"
+      ccCvv2:
+        type: "string"
+        description: "The credit card verification number"
+      phone:
+        type: "string"
+        description: "The phone number associated with the billing ID"
       country:
         type: "string"
         description: "The 2 digit country code associated with the billing ID"
-      zip:
-        type: "string"
-        description: "The zip/postal code associated with the billing ID"
-      ccType:
-        type: "string"
-        description: "The credit card network associated with the billing ID: `visa`,\
-          \ `mastercard`, `discover`, `amex`, etc."
-      last:
-        type: "string"
-        description: "The last name of the individual associated with the billing\
-          \ ID"
-      setDefault:
-        type: "boolean"
-        description: "Make this the default payment method for future orders"
-        default: false
-      address:
-        type: "string"
-        description: "The street address associated with the billing ID"
-      state:
-        type: "string"
-        description: "The state associated with the billing ID"
     example:
       zip: "zip"
       country: "country"
-      clientId: 0
       address: "address"
+      clientId: 0
       last: "last"
       city: "city"
       ccNum: "ccNum"
       ccExpireYear: "ccExpireYear"
       ccCvv2: "ccCvv2"
-      ccExpireMonth: "ccExpireMonth"
       setDefault: false
+      ccExpireMonth: "ccExpireMonth"
       ccType: "ccType"
       phone: "phone"
       company: "company"
@@ -8601,73 +8626,73 @@ definitions:
     - "state"
     - "zip"
     properties:
-      phone:
-        type: "string"
-        description: "The phone number associated with the billing ID"
       first:
         type: "string"
         description: "The first name of the individual associated with the billing\
           \ ID"
-      achBank:
+      address:
         type: "string"
-        description: "The name of the bank associated with the billing ID"
-      achAba:
-        type: "string"
-        description: "The bank routing number"
+        description: "The street address associated with the billing ID"
+      setDefault:
+        type: "boolean"
+        description: "Make this the default payment method for future orders"
+        default: false
       defaultAllServices:
         type: "boolean"
         description: "Make this the default payment method for all services in the\
           \ client's account"
         default: false
-      city:
-        type: "string"
-        description: "The city associated with the billing ID in question"
-      email:
-        type: "string"
-        description: "The email address associated with the billing ID"
-      company:
-        type: "string"
-        description: "The company name associated with the billing ID"
-      clientId:
-        type: "integer"
-        description: "The identification number for the client associated with the\
-          \ Billing Info ID"
-      country:
-        type: "string"
-        description: "The 2 digit country code associated with the billing ID"
-      zip:
-        type: "string"
-        description: "The zip/postal code associated with the billing ID"
       achAccount:
         type: "string"
         description: "The bank account number"
-      achType:
+      state:
         type: "string"
-        description: "The bank account type (`C` for Checking or `S` for Savings)"
+        description: "The state associated with the billing ID"
+      zip:
+        type: "string"
+        description: "The zip/postal code associated with the billing ID"
+      achBank:
+        type: "string"
+        description: "The name of the bank associated with the billing ID"
       last:
         type: "string"
         description: "The last name of the individual associated with the billing\
           \ ID"
-      setDefault:
-        type: "boolean"
-        description: "Make this the default payment method for future orders"
-        default: false
-      address:
+      company:
         type: "string"
-        description: "The street address associated with the billing ID"
-      state:
+        description: "The company name associated with the billing ID"
+      email:
         type: "string"
-        description: "The state associated with the billing ID"
+        description: "The email address associated with the billing ID"
+      city:
+        type: "string"
+        description: "The city associated with the billing ID in question"
+      clientId:
+        type: "integer"
+        description: "The identification number for the client associated with the\
+          \ Billing Info ID"
+      achAba:
+        type: "string"
+        description: "The bank routing number"
+      phone:
+        type: "string"
+        description: "The phone number associated with the billing ID"
+      country:
+        type: "string"
+        description: "The 2 digit country code associated with the billing ID"
+      achType:
+        type: "string"
+        description: "The bank account type (`C` for Checking or `S` for Savings)"
     example:
       zip: "zip"
       country: "country"
-      clientId: 0
       address: "address"
+      clientId: 0
       last: "last"
       city: "city"
       achBank: "achBank"
-      achType: "achType"
       setDefault: false
+      achType: "achType"
       achAba: "achAba"
       phone: "phone"
       achAccount: "achAccount"
@@ -8686,12 +8711,12 @@ definitions:
       ccEnabled:
         type: "boolean"
         description: "Credit Card Enabled"
-      clientId:
-        type: "integer"
-        description: "Client ID"
       achEnabled:
         type: "boolean"
         description: "ACH Enabled"
+      clientId:
+        type: "integer"
+        description: "Client ID"
     example:
       ccEnabled: true
       clientId: 0
@@ -8703,6 +8728,15 @@ definitions:
     - "reason"
     - "serviceId"
     properties:
+      deviceId:
+        type: "integer"
+        description: "Unique ID of a device. Must be related to `service_id`."
+      comments:
+        type: "string"
+        description: "Details why the device is being cancelled"
+      serviceId:
+        type: "integer"
+        description: "Unique ID of a service. Must be related to `device_id`."
       reason:
         type: "string"
         description: "My current service is being upgraded|Hardware/software/network\
@@ -8711,15 +8745,6 @@ definitions:
           \ reseller and my customer cancelled|I am moving to a different technology\
           \ solution: Public Cloud|I am moving to a different technology solution:\
           \ Managed Hosting Company|A product difference (Example: AWS)"
-      deviceId:
-        type: "integer"
-        description: "Unique ID of a device. Must be related to `service_id`."
-      serviceId:
-        type: "integer"
-        description: "Unique ID of a service. Must be related to `device_id`."
-      comments:
-        type: "string"
-        description: "Details why the device is being cancelled"
     example:
       reason: "reason"
       comments: "comments"
@@ -8731,86 +8756,86 @@ definitions:
       salesRepId:
         type: "integer"
         description: "Sales Rep ID."
-      id:
+      serviceId:
         type: "integer"
-        description: "Unique ID of the cancellation request."
-      comments:
-        type: "string"
-        description: "Details why the device is being cancelled"
-      startDate:
-        type: "string"
-        format: "date-time"
-        description: "Date of cancel request submission."
+        description: "Unique ID of a service."
       couponType:
         type: "string"
         description: "Type of the coupon."
-      reason:
-        type: "string"
-        description: "Reason"
       deletedAt:
         type: "string"
         format: "date-time"
         description: "Date of cancellation completion."
-      couponValue:
-        type: "integer"
-        description: "Value of the coupon."
-      couponCode:
-        type: "string"
-        description: "Code of the coupon."
       cancelled:
         type: "boolean"
         description: "True if cancel completed."
-      requestDate:
-        type: "string"
-        format: "date-time"
-        description: "The requested cancellation date, if specified."
-      couponName:
-        type: "string"
-        description: "Name of the coupon used."
-      monthlyPayment:
-        type: "integer"
-        description: "The monthly cost of the cancelled device."
-      planId:
-        type: "integer"
-        description: "Deprecated."
-      name:
-        type: "string"
-        description: "Name of user who submitted the request"
       cancelDate:
         type: "string"
         format: "date-time"
         description: "Date of cancellation."
-      clientId:
-        type: "integer"
-        description: "Unique ID of a client."
-      activeMonths:
-        type: "integer"
-        description: "The number of months the target device has been active."
       deviceId:
         type: "integer"
         description: "Unique ID of a device."
-      serviceId:
+      startDate:
+        type: "string"
+        format: "date-time"
+        description: "Date of cancel request submission."
+      couponCode:
+        type: "string"
+        description: "Code of the coupon."
+      comments:
+        type: "string"
+        description: "Details why the device is being cancelled"
+      couponName:
+        type: "string"
+        description: "Name of the coupon used."
+      activeMonths:
         type: "integer"
-        description: "Unique ID of a service."
+        description: "The number of months the target device has been active."
+      id:
+        type: "integer"
+        description: "Unique ID of the cancellation request."
+      monthlyPayment:
+        type: "integer"
+        description: "The monthly cost of the cancelled device."
+      name:
+        type: "string"
+        description: "Name of user who submitted the request"
+      planId:
+        type: "integer"
+        description: "Deprecated."
+      requestDate:
+        type: "string"
+        format: "date-time"
+        description: "The requested cancellation date, if specified."
+      clientId:
+        type: "integer"
+        description: "Unique ID of a client."
+      couponValue:
+        type: "integer"
+        description: "Value of the coupon."
+      reason:
+        type: "string"
+        description: "Reason"
     example:
       reason: "reason"
-      couponName: "couponName"
       cancelDate: "2000-01-23T04:56:07.000+00:00"
+      couponName: "couponName"
       comments: "comments"
-      clientId: 2
-      deviceId: 9
-      couponValue: 1
+      clientId: 9
+      deviceId: 1
+      couponValue: 3
       deletedAt: "2000-01-23T04:56:07.000+00:00"
-      monthlyPayment: 5
+      monthlyPayment: 2
       couponType: "couponType"
-      activeMonths: 7
-      requestDate: "2000-01-23T04:56:07.000+00:00"
+      activeMonths: 5
       name: "name"
+      requestDate: "2000-01-23T04:56:07.000+00:00"
       cancelled: true
-      planId: 5
-      id: 6
+      planId: 7
+      id: 5
       salesRepId: 0
-      serviceId: 3
+      serviceId: 6
       couponCode: "couponCode"
       startDate: "2000-01-23T04:56:07.000+00:00"
   ContactCreate:
@@ -8820,24 +8845,24 @@ definitions:
     - "email"
     - "fullName"
     properties:
-      phone:
-        type: "string"
-      active:
-        type: "integer"
       email:
         type: "string"
       password:
         type: "string"
-        default: "b43832c09fef1c010a8cf335f7ee4f10"
+        default: "cf42664c6330ee70e5445433b3db03f8"
       fullName:
+        type: "string"
+      active:
+        type: "integer"
+      phone:
         type: "string"
       description:
         type: "string"
     example:
-      password: "b43832c09fef1c010a8cf335f7ee4f10"
+      password: "cf42664c6330ee70e5445433b3db03f8"
       phone: "phone"
-      active: 0
       fullName: "fullName"
+      active: 0
       description: "description"
       email: "email"
   Contact-dump:
@@ -8847,51 +8872,51 @@ definitions:
     - "email"
     - "fullName"
     properties:
-      phone:
-        type: "string"
-      active:
-        type: "integer"
       email:
+        type: "string"
+      fullName:
         type: "string"
       isClient:
         type: "boolean"
-      contactId:
-        type: "integer"
       clientId:
         type: "integer"
       referralCode:
         type: "string"
-      fullName:
+      active:
+        type: "integer"
+      phone:
         type: "string"
       description:
         type: "string"
+      contactId:
+        type: "integer"
     example:
-      clientId: 1
+      clientId: 0
       phone: "phone"
-      contactId: 6
+      contactId: 1
       referralCode: "referralCode"
-      active: 0
       fullName: "fullName"
+      active: 6
       description: "description"
       isClient: true
       email: "email"
   ContactUpdate:
     type: "object"
     properties:
-      phone:
-        type: "string"
-      active:
-        type: "integer"
       email:
         type: "string"
       fullName:
+        type: "string"
+      active:
+        type: "integer"
+      phone:
         type: "string"
       description:
         type: "string"
     example:
       phone: "phone"
-      active: 0
       fullName: "fullName"
+      active: 0
       description: "description"
       email: "email"
   Password:
@@ -8944,9 +8969,6 @@ definitions:
   TotalActiveCredit:
     type: "object"
     properties:
-      totalActive:
-        type: "number"
-        description: "The total active amount of credit available on the client account"
       autoApply:
         type: "boolean"
         description: "Whether credits are automatically being applied to new orders"
@@ -8954,6 +8976,9 @@ definitions:
         type: "boolean"
         description: "If a client has an incomplete order that is using credit, the\
           \ \"total active\" will remain at 0 until the order is completed."
+      totalActive:
+        type: "number"
+        description: "The total active amount of credit available on the client account"
     example:
       autoApply: true
       hasCreditPendingOrder: true
@@ -8973,20 +8998,20 @@ definitions:
     required:
     - "couponCode"
     properties:
+      couponCode:
+        type: "string"
+        description: "The coupon code to validate."
       coupon:
         $ref: "#/definitions/ValidateCartCoupondump_coupon"
-      isValid:
-        type: "boolean"
-        description: "Whether the coupon is valid."
       clientId:
         type: "integer"
         description: "The unique client account ID."
       error:
         type: "string"
         description: "Error message if coupon is invalid."
-      couponCode:
-        type: "string"
-        description: "The coupon code to validate."
+      isValid:
+        type: "boolean"
+        description: "Whether the coupon is valid."
     example:
       clientId: 0
       coupon: {}
@@ -9006,141 +9031,141 @@ definitions:
     - "type"
     - "value"
     properties:
-      id:
-        type: "integer"
-      userLoginRequired:
-        type: "object"
-        properties: {}
+      canApplyCreditToCart:
+        type: "boolean"
+        example: false
+        description: "Can apply credit to cart"
       usageTypeLimit:
         type: "array"
         example: []
         description: "Coupon usage type limit max_total|one_per_user|one_per_user_in_24_hours"
         items:
           type: "string"
-      value:
-        type: "number"
-        description: "Coupon value"
-      end:
-        type: "string"
-        format: "date"
-        description: "Coupon end date"
       hasEndDate:
         type: "boolean"
         example: true
         description: "Set end date"
-      code:
-        type: "string"
-        description: "Coupon code"
-      active:
-        type: "boolean"
-        example: false
-        description: "Coupon active"
-      start:
-        type: "string"
-        format: "date"
-        description: "Coupon start date"
-      usageStatistics:
-        $ref: "#/definitions/CartCouponUsageStatistics-dump"
-      canApplyCreditToCart:
-        type: "boolean"
-        example: false
-        description: "Can apply credit to cart"
-      accountApplicableCredit:
-        type: "boolean"
-        example: false
-        description: "Account applicable credit"
-      productIds:
-        type: "array"
-        example: []
-        description: "Products ids the coupon will be available"
-        items:
-          type: "integer"
-      expireValue:
-        type: "integer"
-        example: 0
-        description: "Coupon expire value"
-      serviceEligibility:
-        type: "string"
-        example: "none"
-        description: "Coupon service eligibility none|all"
-      created:
-        type: "string"
-        format: "date-time"
-      expireType:
-        type: "string"
-        example: "first_billing_period"
-        description: "Coupon expire type first_billing_period|number_of_days|never_expire"
       clientIds:
         type: "array"
         example: []
         description: "Clients ids the coupon will be available"
         items:
           type: "integer"
+      created:
+        type: "string"
+        format: "date-time"
+      expireValue:
+        type: "integer"
+        example: 0
+        description: "Coupon expire value"
+      usageStatistics:
+        $ref: "#/definitions/CartCouponUsageStatistics-dump"
+      accountApplicableCredit:
+        type: "boolean"
+        example: false
+        description: "Account applicable credit"
+      minimumPurchaseAmount:
+        type: "number"
+        example: 0.0
+        description: "Minimum purchase requirement"
+      value:
+        type: "number"
+        description: "Coupon value"
+      maximumPurchaseAmount:
+        type: "number"
+        example: 0.0
+        description: "Maximum purchase requirement max"
       type:
         type: "string"
         example: "%"
         description: "Coupon type %|$|credit"
-      maxUsageLimit:
-        type: "integer"
-        example: 0
-        description: "Coupon max uses"
+      serviceEligibility:
+        type: "string"
+        example: "none"
+        description: "Coupon service eligibility none|all"
       customerEligibilityRules:
         type: "array"
         example: []
         description: "Eligible client rules to use this coupon block_enterprise_client|block_reseller|block_partner|has_no_purchase|has_one_purchase|has_multiple_purchase|account_created_recently"
         items:
           type: "string"
-      name:
-        type: "string"
-        description: "Coupon name"
-      customerEligibility:
-        type: "string"
-        example: "all"
-        description: "Coupon customer eligibility all|rules|specific"
-      maximumPurchaseAmount:
-        type: "number"
-        example: 0.0
-        description: "Maximum purchase requirement max"
+      active:
+        type: "boolean"
+        example: false
+        description: "Coupon active"
       maxUseSameCart:
         type: "integer"
         example: 0
         description: "Max use same cart"
-      minimumPurchaseAmount:
-        type: "number"
-        example: 0.0
-        description: "Minimum purchase requirement"
-      maxUseSameCartUseType:
+      customerEligibility:
         type: "string"
-        example: "first_item"
-        description: "Coupon max use same cart use type first_item|highest_price"
+        example: "all"
+        description: "Coupon customer eligibility all|rules|specific"
+      id:
+        type: "integer"
+      name:
+        type: "string"
+        description: "Coupon name"
       allowOtherDiscounts:
         type: "boolean"
         example: false
         description: "Allow other discounts"
+      userLoginRequired:
+        type: "object"
+        properties: {}
+      maxUsageLimit:
+        type: "integer"
+        example: 0
+        description: "Coupon max uses"
+      maxUseSameCartUseType:
+        type: "string"
+        example: "first_item"
+        description: "Coupon max use same cart use type first_item|highest_price"
+      code:
+        type: "string"
+        description: "Coupon code"
+      end:
+        type: "string"
+        format: "date"
+        description: "Coupon end date"
+      productIds:
+        type: "array"
+        example: []
+        description: "Products ids the coupon will be available"
+        items:
+          type: "integer"
+      expireType:
+        type: "string"
+        example: "first_billing_period"
+        description: "Coupon expire type first_billing_period|number_of_days|never_expire"
+      start:
+        type: "string"
+        format: "date"
+        description: "Coupon start date"
   CartCouponUsageStatistics-dump:
     type: "object"
     properties:
-      totalAccountCredits:
-        type: "integer"
-        description: "Total of the coupon applied to accounts"
-      totalAbandonedCarts:
-        type: "integer"
-        description: "Coupon total abandoned carts"
-      totalRemaining:
-        type: "integer"
-        description: "Coupon total remaining"
-      totalUses:
-        type: "integer"
-        description: "Coupon total uses"
-      totalCompletedCarts:
-        type: "integer"
-        description: "Total of completed carts with coupon"
       totalServices:
         type: "integer"
         description: "Total of the coupon applied to existing services"
+      totalAccountCredits:
+        type: "integer"
+        description: "Total of the coupon applied to accounts"
+      totalCompletedCarts:
+        type: "integer"
+        description: "Total of completed carts with coupon"
       totalCarts:
         type: "integer"
         description: "Total of carts with coupon"
+      totalRemaining:
+        type: "integer"
+        description: "Coupon total remaining"
+      totalAbandonedCarts:
+        type: "integer"
+        description: "Coupon total abandoned carts"
+      totalUses:
+        type: "integer"
+        description: "Coupon total uses"
   Device-dump:
     type: "object"
     required:
@@ -9348,15 +9373,15 @@ definitions:
     - "device_ids"
     - "thresholds"
     properties:
-      thresholds:
-        type: "object"
-        description: "Alert thresholds for IPMI sensor values."
-        properties: {}
       device_ids:
         type: "array"
         description: "List of unique device IDs."
         items:
           type: "integer"
+      thresholds:
+        type: "object"
+        description: "Alert thresholds for IPMI sensor values."
+        properties: {}
   DevicesIPMIThresholds:
     type: "object"
     required:
@@ -9381,14 +9406,14 @@ definitions:
       - name: "name"
         reading: 0.80082819046101150206595775671303272247314453125
         units: "units"
-        group: "group"
         status: true
+        group: "group"
         sensorId: "sensorId"
       - name: "name"
         reading: 0.80082819046101150206595775671303272247314453125
         units: "units"
-        group: "group"
         status: true
+        group: "group"
         sensorId: "sensorId"
       info:
         fruInventoryDevice: "fruInventoryDevice"
@@ -9401,8 +9426,8 @@ definitions:
         manufacturerId: "manufacturerId"
         ipmbEventGenerator: "ipmbEventGenerator"
         deviceId: "deviceId"
-        ipmiVersion: "ipmiVersion"
         chassisDevice: "chassisDevice"
+        ipmiVersion: "ipmiVersion"
         selDevice: "selDevice"
         ipmbEventReceiver: "ipmbEventReceiver"
         auxFirmwareRevInfo: "auxFirmwareRevInfo"
@@ -9414,40 +9439,40 @@ definitions:
     properties:
       manufacturerName:
         type: "string"
-      deviceRevision:
-        type: "string"
-      firmwareRevision:
-        type: "string"
-      deviceSDRs:
-        type: "string"
-      selDevice:
-        type: "string"
       ipmbEventReceiver:
         type: "string"
-      ipmiVersion:
+      productId:
         type: "string"
       auxFirmwareRevInfo:
         type: "string"
+      deviceSDRs:
+        type: "string"
+      sensorDevice:
+        type: "string"
+      fruInventoryDevice:
+        type: "string"
       bridge:
+        type: "string"
+      deviceRevision:
+        type: "string"
+      chassisDevice:
+        type: "string"
+      deviceAvailable:
+        type: "string"
+      selDevice:
+        type: "string"
+      manufacturerId:
+        type: "string"
+      ipmiVersion:
         type: "string"
       deviceId:
         type: "string"
         description: "The IPMI ID of the device."
-      sdrRepositoryDevice:
-        type: "string"
-      manufacturerId:
-        type: "string"
-      chassisDevice:
-        type: "string"
-      fruInventoryDevice:
-        type: "string"
-      deviceAvailable:
-        type: "string"
       ipmbEventGenerator:
         type: "string"
-      productId:
+      firmwareRevision:
         type: "string"
-      sensorDevice:
+      sdrRepositoryDevice:
         type: "string"
     example:
       fruInventoryDevice: "fruInventoryDevice"
@@ -9460,8 +9485,8 @@ definitions:
       manufacturerId: "manufacturerId"
       ipmbEventGenerator: "ipmbEventGenerator"
       deviceId: "deviceId"
-      ipmiVersion: "ipmiVersion"
       chassisDevice: "chassisDevice"
+      ipmiVersion: "ipmiVersion"
       selDevice: "selDevice"
       ipmbEventReceiver: "ipmbEventReceiver"
       auxFirmwareRevInfo: "auxFirmwareRevInfo"
@@ -9471,40 +9496,40 @@ definitions:
   IPMISensor:
     type: "object"
     properties:
-      group:
-        type: "string"
       status:
         type: "boolean"
-      sensorId:
+      reading:
+        type: "number"
+      name:
+        type: "string"
+      group:
         type: "string"
       units:
         type: "string"
-      name:
+      sensorId:
         type: "string"
-      reading:
-        type: "number"
     example:
       name: "name"
       reading: 0.80082819046101150206595775671303272247314453125
       units: "units"
-      group: "group"
       status: true
+      group: "group"
       sensorId: "sensorId"
   IPMILoginData:
     type: "object"
     properties:
+      password:
+        type: "string"
+        description: "Password for IPMI console."
       host:
         type: "string"
         description: "IP for IPMI access. Requires your current IP to be whitelisted\
           \ or the IPMI VPN."
-      drivertype:
-        type: "string"
-      password:
-        type: "string"
-        description: "Password for IPMI console."
       username:
         type: "string"
         description: "Username for IPMI console."
+      drivertype:
+        type: "string"
     example:
       password: "password"
       host: "host"
@@ -9536,13 +9561,6 @@ definitions:
       passwordReturnsUntil:
         type: "integer"
         description: "Date password will expire from API."
-      lockerUrl:
-        type: "string"
-        description: "Link to encrypted locker containing password for initial ssh\
-          \ access. Locker contents be expired from api 7 days after initial provision."
-      user:
-        type: "string"
-        description: "User for initial ssh access."
       password:
         type: "string"
         description: "Password for initial ssh access. Will expire from api 7 days\
@@ -9550,9 +9568,16 @@ definitions:
       port:
         type: "integer"
         description: "Port for initial ssh access."
+      lockerUrl:
+        type: "string"
+        description: "Link to encrypted locker containing password for initial ssh\
+          \ access. Locker contents be expired from api 7 days after initial provision."
+      user:
+        type: "string"
+        description: "User for initial ssh access."
     example:
-      lockerUrl: "lockerUrl"
       password: "password"
+      lockerUrl: "lockerUrl"
       port: 6
       user: "user"
       passwordReturnsUntil: 0
@@ -9566,10 +9591,10 @@ definitions:
   DeviceEvent:
     type: "object"
     properties:
-      action:
-        type: "string"
       time:
         type: "integer"
+      action:
+        type: "string"
     example:
       action: "action"
       time: 0
@@ -9578,63 +9603,63 @@ definitions:
     required:
     - "operatingSystemId"
     properties:
-      ignitionId:
-        type: "integer"
-        description: "The unique ID of an Ignition File for FlatcarOS provisions."
-      operatingSystemId:
-        type: "integer"
-        description: "The unique ID of the operating system product option to provision\
-          \ on this device."
-      script:
-        type: "string"
-        description: "A Cloud-Init script or a post-install script (Bash for Linux\
-          \ or Powershell for Windows)."
       controlPanelId:
         type: "integer"
         description: "The unique ID of the control panel product option to provision\
           \ on this device. This is used only for custom devices."
-      customIPXEScriptUrl:
-        type: "string"
-        description: "Custom IPXE script URL. If device was provisioned was one before\
-          \ and this field is omitted, the original custom iPXE script is used. Otherwise\
-          \ specifying the script will override."
-      body:
-        type: "string"
-        description: "Describe any special requests for custom devices."
+      ignitionId:
+        type: "integer"
+        description: "The unique ID of an Ignition File for FlatcarOS provisions."
       publicSshKeyIds:
         type: "array"
         description: "List of public ssh keys"
         items:
           type: "integer"
+      body:
+        type: "string"
+        description: "Describe any special requests for custom devices."
+      operatingSystemId:
+        type: "integer"
+        description: "The unique ID of the operating system product option to provision\
+          \ on this device."
+      customIPXEScriptUrl:
+        type: "string"
+        description: "Custom IPXE script URL. If device was provisioned was one before\
+          \ and this field is omitted, the original custom iPXE script is used. Otherwise\
+          \ specifying the script will override."
+      script:
+        type: "string"
+        description: "A Cloud-Init script or a post-install script (Bash for Linux\
+          \ or Powershell for Windows)."
     example:
-      operatingSystemId: 6
-      controlPanelId: 1
+      controlPanelId: 0
+      operatingSystemId: 5
       publicSshKeyIds:
-      - 5
-      - 5
+      - 1
+      - 1
       customIPXEScriptUrl: "customIPXEScriptUrl"
       body: "body"
-      ignitionId: 0
+      ignitionId: 6
       script: "script"
   ServiceOption:
     type: "object"
     properties:
-      optionId:
-        type: "integer"
-      optionName:
-        type: "string"
-        description: "Option name of hardware option"
       upgradeId:
         type: "integer"
         description: "Upgrade ID of hardware option"
       upgradeName:
         type: "string"
         description: "Upgrade name of hardware option"
+      optionName:
+        type: "string"
+        description: "Option name of hardware option"
+      optionId:
+        type: "integer"
     example:
-      optionId: 0
-      optionName: "optionName"
+      optionId: 6
       upgradeName: "upgradeName"
-      upgradeId: 6
+      optionName: "optionName"
+      upgradeId: 0
   IPAssignment:
     type: "object"
     required:
@@ -9766,118 +9791,33 @@ definitions:
       - 6
       portId: 0
       enabled: true
-  DevicePort:
-    type: "object"
-    required:
-    - "private"
-    properties:
-      status:
-        type: "string"
-        description: "ENABLED|DISABLED|UNKOWN"
-      nativeVlanId:
-        type: "integer"
-        description: "The unique ID of the native VLAN, if applicable."
-      ips:
-        type: "array"
-        description: "IPs applied to this port."
-        items:
-          $ref: "#/definitions/IPAssignment"
-      portId:
-        type: "integer"
-        description: "The unique ID of the port."
-      type:
-        type: "string"
-        description: "Indicates if is a bond interface. If not, indicates the Mbps\
-          \ rate of the port."
-      clientId:
-        type: "integer"
-        example: 0
-        description: "Your client account's unique ID."
-      nativeVlanTag:
-        type: "integer"
-        description: "The vlan tag of the port's native vlan, if applicable."
-      private:
-        type: "boolean"
-      deviceId:
-        type: "integer"
-        description: "The unique ID of the port's device."
-      name:
-        type: "string"
-      mtu:
-        type: "integer"
-    example:
-      private: true
-      nativeVlanId: 0
-      clientId: 0
-      name: "name"
-      portId: 6
-      type: "type"
-      nativeVlanTag: 1
-      ips:
-      - facilityCode: "facilityCode"
-        subnet: "subnet"
-        broadcastIp: "broadcastIp"
-        clientId: 0
-        vlanId: 5
-        description: "description"
-        gatewayIp: "gatewayIp"
-        portId: 5
-        version: 0
-        assignmentId: 6
-        dnsResolvers: []
-        deviceId: 1
-        lastUsableIp: "lastUsableIp"
-        usableIps: []
-        netmask: "netmask"
-        firstUsableIp: "firstUsableIp"
-        nextHopIp: "nextHopIp"
-      - facilityCode: "facilityCode"
-        subnet: "subnet"
-        broadcastIp: "broadcastIp"
-        clientId: 0
-        vlanId: 5
-        description: "description"
-        gatewayIp: "gatewayIp"
-        portId: 5
-        version: 0
-        assignmentId: 6
-        dnsResolvers: []
-        deviceId: 1
-        lastUsableIp: "lastUsableIp"
-        usableIps: []
-        netmask: "netmask"
-        firstUsableIp: "firstUsableIp"
-        nextHopIp: "nextHopIp"
-      deviceId: 5
-      status: "status"
-      mtu: 5
   NetworkTask-dump:
     type: "object"
     properties:
-      clientId:
-        type: "integer"
-        description: "Unique ID of the client triggering the task."
-      taskId:
-        type: "string"
-        description: "Unique ID of the network task."
-      deviceId:
-        type: "integer"
-        description: "Unique ID of the target device."
-      result:
-        type: "string"
-        description: "Success|Pending|Failed. Null value also means Pending."
-      metaData:
-        type: "string"
-        description: "Key value arguments used to trigger the task."
       taskCreated:
         type: "object"
         description: "Timestamp of task creation date."
         properties: {}
+      result:
+        type: "string"
+        description: "Success|Pending|Failed. Null value also means Pending."
       taskUpdated:
         type: "object"
         description: "Timestamp of most recent activity taken on the network task.\
           \ This will update multiple times for multi-step tasks."
         properties: {}
+      taskId:
+        type: "string"
+        description: "Unique ID of the network task."
+      clientId:
+        type: "integer"
+        description: "Unique ID of the client triggering the task."
+      deviceId:
+        type: "integer"
+        description: "Unique ID of the target device."
+      metaData:
+        type: "string"
+        description: "Key value arguments used to trigger the task."
     example:
       result: "result"
       metaData: "metaData"
@@ -9886,6 +9826,91 @@ definitions:
       taskUpdated: "{}"
       deviceId: 6
       taskId: "taskId"
+  DevicePort:
+    type: "object"
+    required:
+    - "private"
+    properties:
+      private:
+        type: "boolean"
+      portId:
+        type: "integer"
+        description: "The unique ID of the port."
+      nativeVlanTag:
+        type: "integer"
+        description: "The vlan tag of the port's native vlan, if applicable."
+      status:
+        type: "string"
+        description: "ENABLED|DISABLED|UNKOWN"
+      type:
+        type: "string"
+        description: "Indicates if is a bond interface. If not, indicates the Mbps\
+          \ rate of the port."
+      nativeVlanId:
+        type: "integer"
+        description: "The unique ID of the native VLAN, if applicable."
+      name:
+        type: "string"
+      clientId:
+        type: "integer"
+        example: 0
+        description: "Your client account's unique ID."
+      deviceId:
+        type: "integer"
+        description: "The unique ID of the port's device."
+      ips:
+        type: "array"
+        description: "IPs applied to this port."
+        items:
+          $ref: "#/definitions/IPAssignment"
+      mtu:
+        type: "integer"
+    example:
+      private: true
+      nativeVlanId: 1
+      clientId: 0
+      name: "name"
+      portId: 0
+      nativeVlanTag: 6
+      type: "type"
+      deviceId: 5
+      ips:
+      - facilityCode: "facilityCode"
+        subnet: "subnet"
+        broadcastIp: "broadcastIp"
+        clientId: 0
+        vlanId: 5
+        description: "description"
+        gatewayIp: "gatewayIp"
+        portId: 5
+        version: 0
+        assignmentId: 6
+        dnsResolvers: []
+        deviceId: 1
+        lastUsableIp: "lastUsableIp"
+        usableIps: []
+        netmask: "netmask"
+        firstUsableIp: "firstUsableIp"
+        nextHopIp: "nextHopIp"
+      - facilityCode: "facilityCode"
+        subnet: "subnet"
+        broadcastIp: "broadcastIp"
+        clientId: 0
+        vlanId: 5
+        description: "description"
+        gatewayIp: "gatewayIp"
+        portId: 5
+        version: 0
+        assignmentId: 6
+        dnsResolvers: []
+        deviceId: 1
+        lastUsableIp: "lastUsableIp"
+        usableIps: []
+        netmask: "netmask"
+        firstUsableIp: "firstUsableIp"
+        nextHopIp: "nextHopIp"
+      status: "status"
+      mtu: 5
   EffectiveIgnitionResponse:
     type: "object"
     required:
@@ -9900,28 +9925,28 @@ definitions:
     required:
     - "ignition"
     properties:
-      primaryInterface:
-        $ref: "#/definitions/PrimaryInterface"
-      hostname:
-        type: "string"
       bonded:
         type: "boolean"
         example: false
         default: false
+      hostname:
+        type: "string"
+      password:
+        type: "string"
       publicKeys:
         type: "array"
         example: []
         items:
           type: "string"
-      password:
-        type: "string"
+      primaryInterface:
+        $ref: "#/definitions/PrimaryInterface"
       ignition:
         type: "object"
         properties: {}
     example:
       hostname: "hostname"
-      publicKeys: []
       password: "password"
+      publicKeys: []
       bonded: false
       primaryInterface:
         subnet: "subnet"
@@ -9934,13 +9959,13 @@ definitions:
     properties:
       ip:
         type: "string"
+      gateway:
+        type: "string"
       dnsServers:
         type: "array"
         example: []
         items:
           type: "string"
-      gateway:
-        type: "string"
       subnet:
         type: "string"
     example:
@@ -9951,39 +9976,39 @@ definitions:
   PreviewEffectiveIgnitionResponse:
     type: "object"
     properties:
-      result:
-        type: "object"
-        properties: {}
-      original:
-        type: "object"
-        properties: {}
       modifications:
         type: "array"
         items:
           $ref: "#/definitions/Modification"
+      original:
+        type: "object"
+        properties: {}
+      result:
+        type: "object"
+        properties: {}
     example:
       result: "{}"
       original: "{}"
       modifications:
-      - reason: "reason"
-        path: "path"
+      - path: "path"
+        reason: "reason"
         contents: "{}"
-      - reason: "reason"
-        path: "path"
+      - path: "path"
+        reason: "reason"
         contents: "{}"
   Modification:
     type: "object"
     properties:
-      reason:
-        type: "string"
-      path:
-        type: "string"
       contents:
         type: "object"
         properties: {}
+      path:
+        type: "string"
+      reason:
+        type: "string"
     example:
-      reason: "reason"
       path: "path"
+      reason: "reason"
       contents: "{}"
   Services:
     type: "object"
@@ -10009,13 +10034,13 @@ definitions:
     properties:
       name:
         type: "string"
-      domainId:
-        type: "integer"
       summary:
         type: "object"
         properties: {}
       directsTo:
         type: "string"
+      domainId:
+        type: "integer"
     example:
       summary: "{}"
       directsTo: "directsTo"
@@ -10027,14 +10052,14 @@ definitions:
     - "name"
     - "ttl"
     properties:
+      name:
+        type: "string"
       addresses:
         type: "array"
         items:
           type: "string"
       ttl:
         type: "integer"
-      name:
-        type: "string"
     example:
       addresses:
       - "addresses"
@@ -10048,12 +10073,12 @@ definitions:
     - "name"
     - "ttl"
     properties:
-      ttl:
-        type: "integer"
       name:
         type: "string"
       address:
         type: "string"
+      ttl:
+        type: "integer"
   AAAARecordReturn:
     type: "object"
     required:
@@ -10062,12 +10087,12 @@ definitions:
     - "ttl"
     - "type"
     properties:
-      ttl:
-        type: "integer"
-      id:
-        type: "integer"
       address:
         type: "string"
+      id:
+        type: "integer"
+      ttl:
+        type: "integer"
       type:
         type: "string"
       name:
@@ -10077,19 +10102,19 @@ definitions:
     example:
       address: "address"
       name: "name"
-      id: 6
+      id: 0
       type: "type"
-      ttl: 0
+      ttl: 6
       domainId: 1
   AAAARecordUpdate:
     type: "object"
     properties:
-      ttl:
-        type: "integer"
       name:
         type: "string"
       address:
         type: "string"
+      ttl:
+        type: "integer"
   MXRecordCreate:
     type: "object"
     required:
@@ -10098,14 +10123,14 @@ definitions:
     - "preference"
     - "ttl"
     properties:
-      ttl:
-        type: "integer"
       name:
         type: "string"
-      preference:
+      ttl:
         type: "integer"
       exchange:
         type: "string"
+      preference:
+        type: "integer"
   MXRecordReturn:
     type: "object"
     required:
@@ -10117,18 +10142,18 @@ definitions:
     - "ttl"
     - "type"
     properties:
+      exchange:
+        type: "string"
       id:
         type: "integer"
       ttl:
         type: "integer"
-      exchange:
-        type: "string"
       type:
-        type: "string"
-      name:
         type: "string"
       preference:
         type: "integer"
+      name:
+        type: "string"
       domainId:
         type: "integer"
     example:
@@ -10145,31 +10170,31 @@ definitions:
     - "exchange"
     - "preference"
     properties:
-      ttl:
-        type: "integer"
       name:
         type: "string"
-      preference:
+      ttl:
         type: "integer"
       exchange:
         type: "string"
+      preference:
+        type: "integer"
   PTRRecordReturn:
     type: "object"
     properties:
+      address:
+        type: "string"
       id:
         type: "integer"
       ttl:
         type: "integer"
-      address:
-        type: "string"
       type:
         type: "string"
-      disabled:
-        type: "boolean"
       name:
         type: "string"
       domainId:
         type: "integer"
+      disabled:
+        type: "boolean"
     example:
       address: "address"
       name: "name"
@@ -10183,10 +10208,10 @@ definitions:
     required:
     - "name"
     properties:
-      ttl:
-        type: "integer"
       name:
         type: "string"
+      ttl:
+        type: "integer"
   CreateIgnition:
     type: "object"
     properties:
@@ -10202,10 +10227,10 @@ definitions:
     properties:
       name:
         type: "string"
-      id:
-        type: "integer"
       contents:
         type: "string"
+      id:
+        type: "integer"
     example:
       contents: "contents"
       name: "name"
@@ -10228,106 +10253,45 @@ definitions:
   Stock:
     type: "object"
     properties:
-      product_drive:
-        type: "string"
-        description: "Human readable drive specs. Can include multiple drives."
-      core:
+      is_sps:
         type: "boolean"
-        description: "true|false if core site."
-      product_disabled_billing_periods:
-        type: "array"
-        description: "Orders for the periods in the array will fail. Possible values:\
-          \ hourly|monthly|quarterly|semi-annually|biennial|triennial"
-        items:
-          type: "string"
-      product_display_price:
+        description: "true|false. If product is SPS"
+      product_hourly_price:
         type: "number"
-        description: "*DEPRECATED*."
-      location_option_id:
-        type: "integer"
-        description: "Location option ID for datacenter"
-      biennial_location_premium:
-        type: "number"
-        description: "Additional biennial fee for this `product_id` in this `data_center`."
-      monthly_location_premium:
-        type: "number"
-        description: "Additional monthly fee for this `product_id` in this `data_center`."
-      product_name:
-        type: "string"
-        description: "The unique name of this product."
-      product_monthly_price:
-        type: "number"
-        description: "Price per month."
+        description: "Price per hour."
       product_cpu_cores:
         type: "string"
         description: "Human readable CPU core and thread info in HTML format."
-      stock:
-        type: "string"
-        description: "available|limited|unavailable. Limited denotes minimal stock."
-      quarterly_location_premium:
+      biennial_location_premium:
         type: "number"
-        description: "Additional quarterly fee for this `product_id` in this `data_center`."
-      product_id:
-        type: "integer"
-        description: "The unique ID of this product."
-      hourly_location_premium:
+        description: "Additional biennial fee for this `product_id` in this `data_center`."
+      product_triennial_price:
         type: "number"
-        description: "Additional hourly fee for this `product_id` in this `data_center`."
-      product_quarterly_price:
-        type: "number"
-        description: "Price per quarter (3 months)."
-      annually_location_premium:
-        type: "number"
-        description: "Additional annual fee for this `product_id` in this `data_center`."
+        description: "Price per 3 year period (36 months)."
       triennial_location_premium:
         type: "number"
         description: "Additional triennial fee for this `product_id` in this `data_center`."
       is_vps:
         type: "boolean"
         description: "true|false. If SPS product is VPS type"
-      is_sps:
-        type: "boolean"
-        description: "true|false. If product is SPS"
+      annually_location_premium:
+        type: "number"
+        description: "Additional annual fee for this `product_id` in this `data_center`."
+      semi_annually_location_premium:
+        type: "number"
+        description: "Additional semi-annual fee for this `product_id` in this `data_center`."
+      product_gpu:
+        type: "string"
+        description: "Human readable GPU specs."
       product_on_sale:
         type: "boolean"
         description: "true|false. Use with `product_original_price`."
       product_original_price:
         type: "number"
         description: "Retail price of product. Use with `product_on_sale`."
-      product_cpu:
-        type: "string"
-        description: "Human readable CPU specs."
-      semi_annually_location_premium:
-        type: "number"
-        description: "Additional semi-annual fee for this `product_id` in this `data_center`."
-      product_triennial_price:
-        type: "number"
-        description: "Price per 3 year period (36 months)."
-      product_hourly_price:
-        type: "number"
-        description: "Price per hour."
-      data_center:
-        type: "string"
-        description: "A facility code. For example `NYC1`."
-      product_gpu:
-        type: "string"
-        description: "Human readable GPU specs."
       product_semi_annually_price:
         type: "number"
         description: "Price per half year (6 months)."
-      processor_info:
-        type: "object"
-        description: "JSON CPU info for cores, threads, sockets, and vCPUs."
-        properties: {}
-      product_annually_price:
-        type: "number"
-        description: "Price per year (12 months)."
-      product_memory:
-        type: "string"
-        description: "Human readable memory specs."
-      edge:
-        type: "boolean"
-        description: "true|false if edge site."
       product_bandwidth:
         type: "string"
         description: "Human readable networking specs in the format: Free Outbound\
@@ -10335,63 +10299,124 @@ definitions:
       product_biennial_price:
         type: "number"
         description: "Price per 2 year period (24 months)."
+      product_annually_price:
+        type: "number"
+        description: "Price per year (12 months)."
+      product_monthly_price:
+        type: "number"
+        description: "Price per month."
+      product_name:
+        type: "string"
+        description: "The unique name of this product."
+      stock:
+        type: "string"
+        description: "available|limited|unavailable. Limited denotes minimal stock."
+      product_disabled_billing_periods:
+        type: "array"
+        description: "Orders for the periods in the array will fail. Possible values:\
+          \ hourly|monthly|quarterly|semi-annually|biennial|triennial"
+        items:
+          type: "string"
+      product_quarterly_price:
+        type: "number"
+        description: "Price per quarter (3 months)."
+      product_cpu:
+        type: "string"
+        description: "Human readable CPU specs."
+      hourly_location_premium:
+        type: "number"
+        description: "Additional hourly fee for this `product_id` in this `data_center`."
+      location_option_id:
+        type: "integer"
+        description: "Location option ID for datacenter"
+      product_id:
+        type: "integer"
+        description: "The unique ID of this product."
+      processor_info:
+        type: "object"
+        description: "JSON CPU info for cores, threads, sockets, and vCPUs."
+        properties: {}
+      product_display_price:
+        type: "number"
+        description: "*DEPRECATED*."
+      product_drive:
+        type: "string"
+        description: "Human readable drive specs. Can include multiple drives."
+      product_memory:
+        type: "string"
+        description: "Human readable memory specs."
+      core:
+        type: "boolean"
+        description: "true|false if core site."
+      data_center:
+        type: "string"
+        description: "A facility code. For example `NYC1`."
+      quarterly_location_premium:
+        type: "number"
+        description: "Additional quarterly fee for this `product_id` in this `data_center`."
+      monthly_location_premium:
+        type: "number"
+        description: "Additional monthly fee for this `product_id` in this `data_center`."
+      edge:
+        type: "boolean"
+        description: "true|false if edge site."
     example:
       product_gpu: "product_gpu"
       product_cpu: "product_cpu"
       processor_info: "{}"
-      biennial_location_premium: 1.46581298050294517310021547018550336360931396484375
+      biennial_location_premium: 6.02745618307040320615897144307382404804229736328125
       is_vps: true
       is_sps: true
       product_memory: "product_memory"
-      product_monthly_price: 5.63737665663332876420099637471139430999755859375
+      product_monthly_price: 4.1456080298839363962315474054776132106781005859375
       edge: true
-      product_hourly_price: 1.489415909854170383397331534069962799549102783203125
-      quarterly_location_premium: 2.3021358869347654518833223846741020679473876953125
-      product_id: 7
-      semi_annually_location_premium: 1.231513536777255612975068288506008684635162353515625
-      location_option_id: 6
+      product_hourly_price: 0.80082819046101150206595775671303272247314453125
+      quarterly_location_premium: 7.4577447736837658709418974467553198337554931640625
+      product_id: 1
+      semi_annually_location_premium: 2.3021358869347654518833223846741020679473876953125
       stock: "stock"
-      hourly_location_premium: 9.301444243932575517419536481611430644989013671875
+      location_option_id: 1
+      hourly_location_premium: 1.231513536777255612975068288506008684635162353515625
       data_center: "data_center"
+      product_annually_price: 2.027123023002321833274663731572218239307403564453125
       product_name: "product_name"
-      product_annually_price: 7.4577447736837658709418974467553198337554931640625
-      triennial_location_premium: 4.1456080298839363962315474054776132106781005859375
-      core: true
+      triennial_location_premium: 5.962133916683182377482808078639209270477294921875
+      product_triennial_price: 1.46581298050294517310021547018550336360931396484375
       product_disabled_billing_periods:
       - "product_disabled_billing_periods"
       - "product_disabled_billing_periods"
-      product_triennial_price: 1.024645700144157789424070870154537260532379150390625
+      core: true
       product_drive: "product_drive"
       product_cpu_cores: "product_cpu_cores"
-      product_quarterly_price: 3.61607674925191080461672754609026014804840087890625
+      product_quarterly_price: 7.3862819483858839220147274318151175975799560546875
       product_bandwidth: "product_bandwidth"
-      annually_location_premium: 2.027123023002321833274663731572218239307403564453125
+      annually_location_premium: 5.63737665663332876420099637471139430999755859375
       product_on_sale: true
-      product_display_price: 0.80082819046101150206595775671303272247314453125
-      monthly_location_premium: 5.962133916683182377482808078639209270477294921875
-      product_biennial_price: 1.173074250955943309548956676735542714595794677734375
-      product_original_price: 7.3862819483858839220147274318151175975799560546875
-      product_semi_annually_price: 6.8468526983526398765889098285697400569915771484375
+      product_biennial_price: 3.61607674925191080461672754609026014804840087890625
+      product_display_price: 6.8468526983526398765889098285697400569915771484375
+      monthly_location_premium: 1.173074250955943309548956676735542714595794677734375
+      product_original_price: 7.061401241503109105224211816675961017608642578125
+      product_semi_annually_price: 9.301444243932575517419536481611430644989013671875
   Location:
     type: "object"
     properties:
-      id:
-        type: "integer"
-        description: "The unique identifier for a facility"
       code:
         type: "string"
         description: "The unique facility code."
+      location:
+        $ref: "#/definitions/Location_location"
       core:
         type: "boolean"
         description: "true|false if core site."
+      id:
+        type: "integer"
+        description: "The unique identifier for a facility"
       title:
         type: "string"
         description: "The unique facility name."
       edge:
         type: "boolean"
         description: "true|false if edge site."
-      location:
-        $ref: "#/definitions/Location_location"
       location_option_ids:
         type: "array"
         description: "Location option IDs of location"
@@ -10412,9 +10437,9 @@ definitions:
     properties:
       city:
         type: "string"
-      country:
-        type: "string"
       state:
+        type: "string"
+      country:
         type: "string"
   Invoice:
     type: "object"
@@ -10525,16 +10550,16 @@ definitions:
       - "{}"
       - "{}"
       serviceItems:
-      - unitPrice: 1.46581298050294517310021547018550336360931396484375
+      - unitPrice: 6.02745618307040320615897144307382404804229736328125
         quantity: 5
         dateRange: "{}"
         description: "description"
-        serviceId: 6
-      - unitPrice: 1.46581298050294517310021547018550336360931396484375
+        serviceId: 1
+      - unitPrice: 6.02745618307040320615897144307382404804229736328125
         quantity: 5
         dateRange: "{}"
         description: "description"
-        serviceId: 6
+        serviceId: 1
       invoiceDate: "2000-01-23T04:56:07.000+00:00"
       clientAddress: "clientAddress"
       priorBalance: 7.061401241503109105224211816675961017608642578125
@@ -10545,52 +10570,52 @@ definitions:
   InvoiceDetailsServiceItems:
     type: "object"
     properties:
-      dateRange:
-        type: "object"
-        properties: {}
-      serviceId:
-        type: "integer"
       unitPrice:
         type: "number"
-      quantity:
+      serviceId:
         type: "integer"
       description:
         type: "string"
+      dateRange:
+        type: "object"
+        properties: {}
+      quantity:
+        type: "integer"
     example:
-      unitPrice: 1.46581298050294517310021547018550336360931396484375
+      unitPrice: 6.02745618307040320615897144307382404804229736328125
       quantity: 5
       dateRange: "{}"
       description: "description"
-      serviceId: 6
+      serviceId: 1
   InvoiceSeachResult:
     type: "object"
     properties:
-      perPage:
+      pages:
+        type: "integer"
+      nextPage:
         type: "integer"
       items:
         $ref: "#/definitions/Invoice"
-      total:
-        type: "integer"
       page:
+        type: "integer"
+      prevPage:
         type: "integer"
       hasNext:
         type: "boolean"
-      prevPage:
+      total:
+        type: "integer"
+      perPage:
         type: "integer"
       hasPrev:
         type: "boolean"
-      nextPage:
-        type: "integer"
-      pages:
-        type: "integer"
     example:
-      total: 6
-      perPage: 0
-      pages: 2
+      total: 5
+      pages: 0
+      perPage: 2
       hasPrev: true
-      nextPage: 5
-      hasNext: true
+      nextPage: 6
       prevPage: 5
+      hasNext: true
       page: 1
       items:
         amount: 6.02745618307040320615897144307382404804229736328125
@@ -10605,19 +10630,19 @@ definitions:
   IpAssignmentRequest:
     type: "object"
     properties:
-      facilityCode:
-        type: "string"
-        description: "For example: `NYC1`."
+      prefixLength:
+        type: "integer"
+        description: "For example: `/27`."
       purpose:
         type: "string"
         description: "List the intended use of each IP in the subnet. Required by\
           \ ICANN."
-      prefixLength:
-        type: "integer"
-        description: "For example: `/27`."
+      facilityCode:
+        type: "string"
+        description: "For example: `NYC1`."
     example:
-      facilityCode: "facilityCode"
       prefixLength: 0
+      facilityCode: "facilityCode"
       purpose: "purpose"
   IpAssignmentCombine:
     type: "object"
@@ -10643,6 +10668,21 @@ definitions:
   MaintenanceEvent:
     type: "object"
     properties:
+      end:
+        type: "string"
+        format: "date-time"
+        description: "Maintenance Event End (UTC)"
+      device_ids:
+        type: "array"
+        description: "Device IDs affected by event"
+        items:
+          type: "integer"
+      title:
+        type: "string"
+        description: "Maintenance Event Title"
+      maintenanceEventId:
+        type: "integer"
+        description: "Maintenance Event ID"
       start:
         type: "string"
         format: "date-time"
@@ -10650,21 +10690,6 @@ definitions:
       description:
         type: "string"
         description: "Maintenance Event Description"
-      title:
-        type: "string"
-        description: "Maintenance Event Title"
-      device_ids:
-        type: "array"
-        description: "Device IDs affected by event"
-        items:
-          type: "integer"
-      end:
-        type: "string"
-        format: "date-time"
-        description: "Maintenance Event End (UTC)"
-      maintenanceEventId:
-        type: "integer"
-        description: "Maintenance Event ID"
     example:
       start: "2000-01-23T04:56:07.000+00:00"
       description: "description"
@@ -10691,68 +10716,68 @@ definitions:
   NullRoute:
     type: "object"
     properties:
-      clientId:
-        type: "integer"
-        description: "Client ID who owns the IP"
       adminId:
         type: "integer"
         description: "Filled if IP was nulled by an admin user"
       ip:
         type: "string"
         description: "IP address"
-      comment:
-        type: "string"
-        description: "Comment of the null route"
       created:
         type: "string"
         format: "date-time"
         description: "Timestamp the null route was created"
+      clientId:
+        type: "integer"
+        description: "Client ID who owns the IP"
+      comment:
+        type: "string"
+        description: "Comment of the null route"
     example:
-      clientId: 0
+      clientId: 6
       created: "2000-01-23T04:56:07.000+00:00"
       ip: "ip"
-      adminId: 6
+      adminId: 0
       comment: "comment"
   Order-dump:
     type: "object"
     properties:
+      status:
+        type: "string"
+      orderId:
+        type: "integer"
       info:
         type: "object"
         properties: {}
-      status:
-        type: "string"
       total:
         type: "number"
-      orderId:
-        type: "integer"
       owner:
         type: "string"
     example:
       owner: "owner"
-      total: 0.80082819046101150206595775671303272247314453125
-      orderId: 6
-      info: "{}"
+      total: 6.02745618307040320615897144307382404804229736328125
+      orderId: 0
       status: "status"
+      info: "{}"
   OrderGroupCreate:
     type: "object"
     required:
     - "name"
     properties:
+      name:
+        type: "string"
       same_rack:
         type: "boolean"
         default: false
-      name:
-        type: "string"
     example:
       same_rack: false
       name: "name"
   OrderGroup:
     type: "object"
     properties:
-      same_rack:
-        type: "boolean"
       name:
         type: "string"
+      same_rack:
+        type: "boolean"
       id:
         type: "integer"
       device_ids:
@@ -10781,12 +10806,12 @@ definitions:
     - "permissions"
     - "userId"
     properties:
+      userId:
+        type: "integer"
       permissions:
         type: "array"
         items:
           type: "string"
-      userId:
-        type: "integer"
     example:
       permissions:
       - "permissions"
@@ -10810,12 +10835,21 @@ definitions:
     required:
     - "name"
     properties:
-      id:
-        type: "integer"
-        description: "Unique ID of the option. Stays the same across products."
+      expressions:
+        type: "array"
+        description: "Used with `tags` to determine option compatibility. See product\
+          \ docs."
+        items:
+          type: "string"
       currency:
         type: "string"
         description: "USD|other"
+      id:
+        type: "integer"
+        description: "Unique ID of the option. Stays the same across products."
+      name:
+        type: "string"
+        description: "Unique option name."
       monthlyPrice:
         type: "number"
         description: "Monthly price of the option."
@@ -10825,29 +10859,20 @@ definitions:
           \ product docs."
         items:
           type: "string"
-      name:
-        type: "string"
-        description: "Unique option name."
       operatingSystemFeatures:
         $ref: "#/definitions/OperatingSystem"
-      expressions:
-        type: "array"
-        description: "Used with `tags` to determine option compatibility. See product\
-          \ docs."
-        items:
-          type: "string"
     example:
       name: "name"
       currency: "currency"
       id: 0
       monthlyPrice: 6.02745618307040320615897144307382404804229736328125
+      expressions:
+      - "expressions"
+      - "expressions"
       operatingSystemFeatures:
         cloudInit: true
         sshKey: true
         postInstall: true
-      expressions:
-      - "expressions"
-      - "expressions"
       tags:
       - "tags"
       - "tags"
@@ -10885,41 +10910,41 @@ definitions:
   ProfileUpdate:
     type: "object"
     properties:
-      phone:
+      address:
         type: "string"
       first:
         type: "string"
-      fullName:
-        type: "string"
-      city:
-        type: "string"
-      email:
-        type: "string"
-      requirePayPalOauthLogin:
-        type: "string"
-      company:
-        type: "string"
-      country:
-        type: "string"
-      password:
-        type: "string"
-      zip:
-        type: "string"
-      disableInvoiceEmails:
-        type: "boolean"
-      requireOauthLogin:
-        type: "string"
       directToZendesk:
-        type: "string"
-      last:
-        type: "string"
-      address:
         type: "string"
       state:
         type: "string"
+      zip:
+        type: "string"
+      email:
+        type: "string"
+      company:
+        type: "string"
+      last:
+        type: "string"
+      password:
+        type: "string"
+      city:
+        type: "string"
+      requireOauthLogin:
+        type: "string"
+      fullName:
+        type: "string"
+      requirePayPalOauthLogin:
+        type: "string"
+      disableInvoiceEmails:
+        type: "boolean"
+      phone:
+        type: "string"
+      country:
+        type: "string"
     example:
-      requirePayPalOauthLogin: "requirePayPalOauthLogin"
       zip: "zip"
+      requirePayPalOauthLogin: "requirePayPalOauthLogin"
       country: "country"
       address: "address"
       last: "last"
@@ -10937,21 +10962,24 @@ definitions:
   Profile-dump:
     type: "object"
     properties:
-      phone:
+      login:
         type: "string"
       first:
         type: "string"
-      id:
-        type: "integer"
-      isClient:
-        type: "boolean"
-      metaData:
-        type: "object"
-        properties: {}
       address:
         type: "object"
         properties: {}
-      city:
+      phone:
+        type: "string"
+      id:
+        type: "integer"
+      state:
+        type: "object"
+        properties: {}
+      zip:
+        type: "object"
+        properties: {}
+      fax:
         type: "object"
         properties: {}
       email:
@@ -10959,26 +10987,23 @@ definitions:
       company:
         type: "object"
         properties: {}
-      fax:
-        type: "object"
-        properties: {}
-      country:
-        type: "object"
-        properties: {}
-      zip:
-        type: "object"
-        properties: {}
       last:
         type: "string"
-      login:
-        type: "string"
+      city:
+        type: "object"
+        properties: {}
+      metaData:
+        type: "object"
+        properties: {}
       fullName:
         type: "object"
         properties: {}
-      state:
+      created:
         type: "object"
         properties: {}
-      created:
+      isClient:
+        type: "boolean"
+      country:
         type: "object"
         properties: {}
     example:
@@ -11002,16 +11027,16 @@ definitions:
   BasicProfile-dump:
     type: "object"
     properties:
+      login:
+        type: "string"
       first:
         type: "string"
       id:
         type: "integer"
-      isClient:
-        type: "boolean"
-      metaData:
+      state:
         type: "object"
         properties: {}
-      city:
+      zip:
         type: "object"
         properties: {}
       email:
@@ -11019,20 +11044,20 @@ definitions:
       company:
         type: "object"
         properties: {}
-      country:
-        type: "object"
-        properties: {}
-      zip:
-        type: "object"
-        properties: {}
       last:
         type: "string"
-      login:
-        type: "string"
+      city:
+        type: "object"
+        properties: {}
+      metaData:
+        type: "object"
+        properties: {}
       fullName:
         type: "object"
         properties: {}
-      state:
+      isClient:
+        type: "boolean"
+      country:
         type: "object"
         properties: {}
     example:
@@ -11052,46 +11077,34 @@ definitions:
   Deployment:
     type: "object"
     properties:
-      deploymentConfiguration:
-        type: "array"
-        items:
-          type: "object"
-          properties: {}
+      deploymentId:
+        type: "integer"
+      startedProvisioning:
+        type: "boolean"
+      deploymentName:
+        type: "string"
+      empty:
+        type: "boolean"
       price:
         type: "number"
       orderNumber:
         type: "string"
         example: ""
-      deploymentName:
-        type: "string"
-      deploymentId:
-        type: "integer"
-      startedProvisioning:
-        type: "boolean"
-      empty:
-        type: "boolean"
+      deploymentConfiguration:
+        type: "array"
+        items:
+          type: "object"
+          properties: {}
     example:
+      orderNumber: ""
       deploymentConfiguration:
       - "{}"
       - "{}"
-      orderNumber: ""
-      price: 0.80082819046101150206595775671303272247314453125
-      deploymentId: 6
-      deploymentName: "deploymentName"
+      price: 6.02745618307040320615897144307382404804229736328125
+      deploymentId: 0
       startedProvisioning: true
+      deploymentName: "deploymentName"
       empty: true
-  DeploymentStart:
-    type: "object"
-    required:
-    - "billingInfo"
-    properties:
-      billingInfo:
-        type: "integer"
-      script:
-        type: "string"
-    example:
-      billingInfo: 0
-      script: "script"
   DeploymentCustomization:
     type: "object"
     required:
@@ -11099,64 +11112,64 @@ definitions:
     - "operatingSystem"
     - "productId"
     properties:
-      options:
-        type: "array"
-        items:
-          type: "integer"
-      publicSshKeyId:
-        type: "integer"
-        description: "ID of SSH Key to use for deployment"
-      customIPXEScriptURL:
-        type: "string"
-        description: "URL to download custom iPXE script if not supplying script in\
-          \ entirety"
-      hostnames:
-        type: "array"
-        items:
-          type: "string"
-      locationCode:
-        type: "string"
-        default: ""
-      operatingSystem:
-        type: "string"
-        description: "Operating System's Name or ID"
-      forceDeviceIds:
-        type: "array"
-        example: []
-        description: "Either deploy these Device IDs or fail"
-        items:
-          type: "integer"
-      quantity:
-        type: "integer"
-      customIPXEScriptContents:
-        type: "string"
-        description: "Contents of iPXE script if not supplying URL"
       billingPeriod:
         type: "string"
         description: "must be one of ['monthly', 'quarterly', 'semi-annually', 'annually',\
           \ 'biennial', 'triennial', 'hourly']"
         default: "monthly"
-      additionalNotes:
+      operatingSystem:
+        type: "string"
+        description: "Operating System's Name or ID"
+      options:
         type: "array"
         items:
-          type: "string"
+          type: "integer"
+      customIPXEScriptContents:
+        type: "string"
+        description: "Contents of iPXE script if not supplying URL"
+      publicSshKeyId:
+        type: "integer"
+        description: "ID of SSH Key to use for deployment"
+      locationCode:
+        type: "string"
+        default: ""
       ignitionIds:
         type: "array"
         example: []
         description: "Specify Ignition file ID for CoreOS/Flatcar provisions"
         items:
           type: "integer"
+      customIPXEScriptURL:
+        type: "string"
+        description: "URL to download custom iPXE script if not supplying script in\
+          \ entirety"
       productId:
+        type: "integer"
+      forceDeviceIds:
+        type: "array"
+        example: []
+        description: "Either deploy these Device IDs or fail"
+        items:
+          type: "integer"
+      additionalNotes:
+        type: "array"
+        items:
+          type: "string"
+      hostnames:
+        type: "array"
+        items:
+          type: "string"
+      quantity:
         type: "integer"
     example:
       ignitionIds: []
-      quantity: 1
-      productId: 5
+      quantity: 5
+      productId: 1
       billingPeriod: "monthly"
+      customIPXEScriptContents: "customIPXEScriptContents"
       hostnames:
       - "hostnames"
       - "hostnames"
-      customIPXEScriptContents: "customIPXEScriptContents"
       operatingSystem: "operatingSystem"
       publicSshKeyId: 6
       forceDeviceIds: []
@@ -11168,6 +11181,18 @@ definitions:
       additionalNotes:
       - "additionalNotes"
       - "additionalNotes"
+  DeploymentStart:
+    type: "object"
+    required:
+    - "billingInfo"
+    properties:
+      script:
+        type: "string"
+      billingInfo:
+        type: "integer"
+    example:
+      billingInfo: 0
+      script: "script"
   FastService-dump:
     type: "object"
     properties:
@@ -11254,6 +11279,8 @@ definitions:
           \ on https://core.hivelocity.net/api/v2/service/types ."
       bandwidthBilling:
         $ref: "#/definitions/ServiceBandwidthBilling"
+      acquisition:
+        type: "string"
     example:
       serviceType: "serviceType"
       discountedCost: 4.1456080298839363962315474054776132106781005859375
@@ -11268,6 +11295,7 @@ definitions:
       colocationCharge: 9.3693102714106686335071572102606296539306640625
       discountType: "discountType"
       facilityName: "facilityName"
+      acquisition: "acquisition"
       serviceId: 0
       renewDate: 7
       serviceDevices:
@@ -11435,6 +11463,8 @@ definitions:
           \ on https://core.hivelocity.net/api/v2/service/types ."
       bandwidthBilling:
         $ref: "#/definitions/ServiceBandwidthBilling"
+      acquisition:
+        type: "string"
     example:
       serviceType: "serviceType"
       discountedCost: 4.1456080298839363962315474054776132106781005859375
@@ -11449,6 +11479,7 @@ definitions:
       colocationCharge: 5.02500479152029466689555192715488374233245849609375
       discountType: "discountType"
       facilityName: "facilityName"
+      acquisition: "acquisition"
       serviceId: 0
       renewDate: 7
       serviceDevices:
@@ -11464,14 +11495,14 @@ definitions:
       ipAddress: "ipAddress"
       reseller: "reseller"
       serviceOptions:
-      - optionId: 0
-        optionName: "optionName"
+      - optionId: 6
         upgradeName: "upgradeName"
-        upgradeId: 6
-      - optionId: 0
         optionName: "optionName"
+        upgradeId: 0
+      - optionId: 6
         upgradeName: "upgradeName"
-        upgradeId: 6
+        optionName: "optionName"
+        upgradeId: 0
       autoBill: true
       typeCode: "typeCode"
       childServices:
@@ -11531,21 +11562,21 @@ definitions:
     - "name"
     - "publicKey"
     properties:
+      name:
+        type: "string"
       publicKey:
         type: "string"
         description: "Public key content (RSA or Ed25519 supported)"
-      name:
-        type: "string"
     example:
       name: "name"
       publicKey: "publicKey"
   SshKeyResponse:
     type: "object"
     properties:
-      sshKeyId:
-        type: "integer"
       name:
         type: "string"
+      sshKeyId:
+        type: "integer"
       publicKey:
         type: "string"
     example:
@@ -11555,11 +11586,11 @@ definitions:
   SshKeyUpdate:
     type: "object"
     properties:
+      name:
+        type: "string"
       publicKey:
         type: "string"
         description: "Public key content (RSA or Ed25519 supported)"
-      name:
-        type: "string"
     example:
       name: "name"
       publicKey: "publicKey"
@@ -11569,31 +11600,31 @@ definitions:
     - "queue"
     - "subject"
     properties:
-      status:
-        type: "string"
-        example: "open"
-      queue:
-        type: "string"
-      assignment:
-        type: "number"
-        example: 0.0
-      body:
-        type: "string"
-        example: ""
-      subject:
-        type: "string"
       source:
         type: "number"
         example: 0.0
       priority:
         type: "number"
         example: 0.0
+      body:
+        type: "string"
+        example: ""
+      status:
+        type: "string"
+        example: "open"
+      subject:
+        type: "string"
+      assignment:
+        type: "number"
+        example: 0.0
+      queue:
+        type: "string"
     example:
-      assignment: 0.0
       subject: "subject"
+      assignment: 0.0
       source: 0.0
-      body: ""
       priority: 0.0
+      body: ""
       queue: "queue"
       status: "open"
   Ticket:
@@ -11613,7 +11644,7 @@ definitions:
         example: 0.0
       opened:
         type: "number"
-        example: 1.707406648E9
+        example: 1.707469103E9
       serviceId:
         type: "number"
         example: 0.0
@@ -11652,7 +11683,7 @@ definitions:
       clientId: 1.231513536777255612975068288506008684635162353515625
       contactId: 1.024645700144157789424070870154537260532379150390625
       subject: ""
-      opened: 1.707406648E9
+      opened: 1.707469103E9
       priority: ""
       body: ""
       posts: 1.46581298050294517310021547018550336360931396484375
@@ -11661,47 +11692,47 @@ definitions:
       metaData: "{}"
       internalTicket: 6.8468526983526398765889098285697400569915771484375
       replies:
-      - date: 7.3862819483858839220147274318151175975799560546875
-        clientId: 7.061401241503109105224211816675961017608642578125
-        attachments: 2.027123023002321833274663731572218239307403564453125
-        hidden: 5.63737665663332876420099637471139430999755859375
+      - date: 4.1456080298839363962315474054776132106781005859375
+        attachments: 2.3021358869347654518833223846741020679473876953125
+        clientId: 2.027123023002321833274663731572218239307403564453125
         fromAdmin: true
-        contactId: 2.3021358869347654518833223846741020679473876953125
+        hidden: 7.061401241503109105224211816675961017608642578125
+        contactId: 7.3862819483858839220147274318151175975799560546875
         subject: ""
         body: ""
         ubersmith_attached_files:
         - name: ""
-          id: 4.1456080298839363962315474054776132106781005859375
+          id: 9.301444243932575517419536481611430644989013671875
         - name: ""
-          id: 4.1456080298839363962315474054776132106781005859375
-        adminId: 9.301444243932575517419536481611430644989013671875
+          id: 9.301444243932575517419536481611430644989013671875
+        adminId: 5.962133916683182377482808078639209270477294921875
         from: {}
-        id: 5.962133916683182377482808078639209270477294921875
+        id: 5.63737665663332876420099637471139430999755859375
         ticketId: 3.61607674925191080461672754609026014804840087890625
-      - date: 7.3862819483858839220147274318151175975799560546875
-        clientId: 7.061401241503109105224211816675961017608642578125
-        attachments: 2.027123023002321833274663731572218239307403564453125
-        hidden: 5.63737665663332876420099637471139430999755859375
+      - date: 4.1456080298839363962315474054776132106781005859375
+        attachments: 2.3021358869347654518833223846741020679473876953125
+        clientId: 2.027123023002321833274663731572218239307403564453125
         fromAdmin: true
-        contactId: 2.3021358869347654518833223846741020679473876953125
+        hidden: 7.061401241503109105224211816675961017608642578125
+        contactId: 7.3862819483858839220147274318151175975799560546875
         subject: ""
         body: ""
         ubersmith_attached_files:
         - name: ""
-          id: 4.1456080298839363962315474054776132106781005859375
+          id: 9.301444243932575517419536481611430644989013671875
         - name: ""
-          id: 4.1456080298839363962315474054776132106781005859375
-        adminId: 9.301444243932575517419536481611430644989013671875
+          id: 9.301444243932575517419536481611430644989013671875
+        adminId: 5.962133916683182377482808078639209270477294921875
         from: {}
-        id: 5.962133916683182377482808078639209270477294921875
+        id: 5.63737665663332876420099637471139430999755859375
         ticketId: 3.61607674925191080461672754609026014804840087890625
       contact:
-        clientId: 1
+        clientId: 0
         phone: "phone"
-        contactId: 6
+        contactId: 1
         referralCode: "referralCode"
-        active: 0
         fullName: "fullName"
+        active: 6
         description: "description"
         isClient: true
         email: "email"
@@ -11727,34 +11758,34 @@ definitions:
   Client:
     type: "object"
     properties:
-      first:
-        type: "string"
-      id:
-        type: "number"
-      email:
-        type: "string"
-      city:
-        type: "string"
-      isClient:
-        type: "boolean"
-      company:
-        type: "string"
-      country:
-        type: "string"
-      zip:
-        type: "string"
-      fullName:
-        type: "string"
-      last:
-        type: "string"
       login:
         type: "string"
-      state:
+      first:
         type: "string"
       metaData:
         type: "object"
         example: {}
         properties: {}
+      id:
+        type: "number"
+      state:
+        type: "string"
+      zip:
+        type: "string"
+      email:
+        type: "string"
+      last:
+        type: "string"
+      fullName:
+        type: "string"
+      company:
+        type: "string"
+      city:
+        type: "string"
+      isClient:
+        type: "boolean"
+      country:
+        type: "string"
     example:
       zip: "zip"
       country: "country"
@@ -11772,18 +11803,10 @@ definitions:
   TicketPost:
     type: "object"
     properties:
-      id:
-        type: "number"
-      hidden:
-        type: "number"
-      contactId:
-        type: "number"
-      clientId:
-        type: "number"
       adminId:
         type: "number"
-      ticketId:
-        type: "number"
+      fromAdmin:
+        type: "boolean"
       body:
         type: "string"
         example: ""
@@ -11791,36 +11814,44 @@ definitions:
         type: "object"
         example: {}
         properties: {}
+      id:
+        type: "number"
+      attachments:
+        type: "number"
+      hidden:
+        type: "number"
       subject:
         type: "string"
         example: ""
-      attachments:
-        type: "number"
       ubersmith_attached_files:
         type: "array"
         items:
           $ref: "#/definitions/TicketAttach"
+      ticketId:
+        type: "number"
+      clientId:
+        type: "number"
       date:
         type: "number"
-      fromAdmin:
-        type: "boolean"
+      contactId:
+        type: "number"
     example:
-      date: 7.3862819483858839220147274318151175975799560546875
-      clientId: 7.061401241503109105224211816675961017608642578125
-      attachments: 2.027123023002321833274663731572218239307403564453125
-      hidden: 5.63737665663332876420099637471139430999755859375
+      date: 4.1456080298839363962315474054776132106781005859375
+      attachments: 2.3021358869347654518833223846741020679473876953125
+      clientId: 2.027123023002321833274663731572218239307403564453125
       fromAdmin: true
-      contactId: 2.3021358869347654518833223846741020679473876953125
+      hidden: 7.061401241503109105224211816675961017608642578125
+      contactId: 7.3862819483858839220147274318151175975799560546875
       subject: ""
       body: ""
       ubersmith_attached_files:
       - name: ""
-        id: 4.1456080298839363962315474054776132106781005859375
+        id: 9.301444243932575517419536481611430644989013671875
       - name: ""
-        id: 4.1456080298839363962315474054776132106781005859375
-      adminId: 9.301444243932575517419536481611430644989013671875
+        id: 9.301444243932575517419536481611430644989013671875
+      adminId: 5.962133916683182377482808078639209270477294921875
       from: {}
-      id: 5.962133916683182377482808078639209270477294921875
+      id: 5.63737665663332876420099637471139430999755859375
       ticketId: 3.61607674925191080461672754609026014804840087890625
   TicketAttach:
     type: "object"
@@ -11832,54 +11863,54 @@ definitions:
         type: "number"
     example:
       name: ""
-      id: 4.1456080298839363962315474054776132106781005859375
+      id: 9.301444243932575517419536481611430644989013671875
   TicketSeachResult:
     type: "object"
     properties:
-      perPage:
+      pages:
+        type: "integer"
+      nextPage:
         type: "integer"
       items:
         $ref: "#/definitions/TicketPost"
-      total:
-        type: "integer"
       page:
+        type: "integer"
+      prevPage:
         type: "integer"
       hasNext:
         type: "boolean"
-      prevPage:
+      total:
+        type: "integer"
+      perPage:
         type: "integer"
       hasPrev:
         type: "boolean"
-      nextPage:
-        type: "integer"
-      pages:
-        type: "integer"
     example:
-      total: 6
-      perPage: 0
-      pages: 2
+      total: 5
+      pages: 0
+      perPage: 2
       hasPrev: true
-      nextPage: 5
-      hasNext: true
+      nextPage: 6
       prevPage: 5
+      hasNext: true
       page: 1
       items:
-        date: 7.3862819483858839220147274318151175975799560546875
-        clientId: 7.061401241503109105224211816675961017608642578125
-        attachments: 2.027123023002321833274663731572218239307403564453125
-        hidden: 5.63737665663332876420099637471139430999755859375
+        date: 4.1456080298839363962315474054776132106781005859375
+        attachments: 2.3021358869347654518833223846741020679473876953125
+        clientId: 2.027123023002321833274663731572218239307403564453125
         fromAdmin: true
-        contactId: 2.3021358869347654518833223846741020679473876953125
+        hidden: 7.061401241503109105224211816675961017608642578125
+        contactId: 7.3862819483858839220147274318151175975799560546875
         subject: ""
         body: ""
         ubersmith_attached_files:
         - name: ""
-          id: 4.1456080298839363962315474054776132106781005859375
+          id: 9.301444243932575517419536481611430644989013671875
         - name: ""
-          id: 4.1456080298839363962315474054776132106781005859375
-        adminId: 9.301444243932575517419536481611430644989013671875
+          id: 9.301444243932575517419536481611430644989013671875
+        adminId: 5.962133916683182377482808078639209270477294921875
         from: {}
-        id: 5.962133916683182377482808078639209270477294921875
+        id: 5.63737665663332876420099637471139430999755859375
         ticketId: 3.61607674925191080461672754609026014804840087890625
   TicketPut:
     type: "object"
@@ -11894,24 +11925,12 @@ definitions:
     required:
     - "body"
     properties:
-      headers:
-        type: "string"
-      hidden:
-        type: "number"
-      contactId:
-        type: "number"
-      encrypted:
-        type: "string"
-      type:
-        type: "number"
-      cc:
-        type: "string"
       body:
         type: "string"
-      recipient:
+      replyTo:
         type: "string"
-      subject:
-        type: "string"
+      date:
+        type: "number"
       attachments:
         type: "array"
         example:
@@ -11920,41 +11939,60 @@ definitions:
         items:
           type: "object"
           properties: {}
-      replyTo:
+      hidden:
+        type: "number"
+      subject:
         type: "string"
-      date:
+      type:
+        type: "number"
+      headers:
+        type: "string"
+      cc:
+        type: "string"
+      recipient:
+        type: "string"
+      encrypted:
+        type: "string"
+      contactId:
         type: "number"
     example:
+      date: 0.80082819046101150206595775671303272247314453125
       cc: "cc"
-      date: 5.962133916683182377482808078639209270477294921875
       headers: "headers"
       attachments:
       - name: ""
         file: ""
-      hidden: 0.80082819046101150206595775671303272247314453125
+      hidden: 6.02745618307040320615897144307382404804229736328125
       encrypted: "encrypted"
-      contactId: 6.02745618307040320615897144307382404804229736328125
+      contactId: 5.962133916683182377482808078639209270477294921875
       subject: "subject"
-      recipient: "recipient"
       replyTo: "replyTo"
-      type: 1.46581298050294517310021547018550336360931396484375
+      recipient: "recipient"
       body: "body"
+      type: 1.46581298050294517310021547018550336360931396484375
   DeleteApiToken-load:
     type: "object"
     properties:
       apiTokenId:
         type: "string"
+  PublicApiToken-load:
+    type: "object"
+    properties:
+      name:
+        type: "string"
+      apiTokenId:
+        type: "string"
   PublicApiToken:
     type: "object"
     properties:
-      ipAddresses:
-        $ref: "#/definitions/PublicApiTokenIp"
       name:
         type: "string"
       timeExpiration:
         type: "string"
         format: "date-time"
         description: "Token expiration datetime in Unix time format."
+      ipAddresses:
+        $ref: "#/definitions/PublicApiTokenIp"
     example:
       name: "name"
       ipAddresses:
@@ -11979,47 +12017,40 @@ definitions:
       ips:
       - "ips"
       - "ips"
-  PublicApiToken-load:
-    type: "object"
-    properties:
-      apiTokenId:
-        type: "string"
-      name:
-        type: "string"
   PublicApiHideToken-dump:
     type: "object"
     required:
     - "timeExpiration"
     - "token"
     properties:
-      ipAddresses:
-        $ref: "#/definitions/PublicApiTokenIp"
-      apiTokenId:
-        type: "string"
       timeCreated:
         type: "string"
         format: "date-time"
-      name:
-        type: "string"
-      token:
-        type: "string"
       timeUpdated:
         type: "string"
         format: "date-time"
+      ipAddresses:
+        $ref: "#/definitions/PublicApiTokenIp"
+      name:
+        type: "string"
       timeExpiration:
         type: "string"
         format: "date-time"
         description: "Token expiration datetime in UTC format."
+      token:
+        type: "string"
+      apiTokenId:
+        type: "string"
     example:
       apiTokenId: "apiTokenId"
       timeUpdated: "2000-01-23T04:56:07.000+00:00"
       name: "name"
+      timeCreated: "2000-01-23T04:56:07.000+00:00"
       ipAddresses:
         name: "name"
         ips:
         - "ips"
         - "ips"
-      timeCreated: "2000-01-23T04:56:07.000+00:00"
       timeExpiration: "2000-01-23T04:56:07.000+00:00"
       token: "token"
   PublicApiTokenResponsePost-dump:
@@ -12028,34 +12059,34 @@ definitions:
     - "timeExpiration"
     - "token"
     properties:
-      ipAddresses:
-        $ref: "#/definitions/PublicApiTokenIp"
-      apiTokenId:
-        type: "string"
       timeCreated:
         type: "string"
         format: "date-time"
-      name:
-        type: "string"
-      token:
-        type: "string"
       timeUpdated:
         type: "string"
         format: "date-time"
+      ipAddresses:
+        $ref: "#/definitions/PublicApiTokenIp"
+      name:
+        type: "string"
       timeExpiration:
         type: "string"
         format: "date-time"
         description: "Token expiration datetime in UTC format."
+      token:
+        type: "string"
+      apiTokenId:
+        type: "string"
     example:
       apiTokenId: "apiTokenId"
       timeUpdated: "2000-01-23T04:56:07.000+00:00"
       name: "name"
+      timeCreated: "2000-01-23T04:56:07.000+00:00"
       ipAddresses:
         name: "name"
         ips:
         - "ips"
         - "ips"
-      timeCreated: "2000-01-23T04:56:07.000+00:00"
       timeExpiration: "2000-01-23T04:56:07.000+00:00"
       token: "token"
   VlanCreate:
@@ -12085,11 +12116,25 @@ definitions:
   Vlan:
     type: "object"
     properties:
+      vlanId:
+        type: "integer"
+        description: "Unique ID of the VLAN."
       ipIds:
         type: "array"
         description: "Unique IDs of IP Assignments."
         items:
           type: "integer"
+      automated:
+        type: "boolean"
+        description: "If true, VLAN can be automated via API. If false, contact support\
+          \ to enable automation."
+      type:
+        type: "string"
+        description: "If `public`, this VLAN can have IPs assigned to become reachable\
+          \ from the internet. If `private`, this VLAN can not have IPs assigned and\
+          \ will never be reachabled from the internet. All VLANs are subject to traffic\
+          \ billing and overages, with the exception of private VLAN traffic on unbonded\
+          \ Devices."
       vlanTag:
         type: "integer"
         description: "The VLAN Tag id from the switch. Use this value when configuring\
@@ -12098,39 +12143,25 @@ definitions:
         type: "boolean"
         description: "If true, VLAN is configured in Q-in-Q Mode. Automation is not\
           \ currently supported on Q-in-Q VLANs."
-      type:
-        type: "string"
-        description: "If `public`, this VLAN can have IPs assigned to become reachable\
-          \ from the internet. If `private`, this VLAN can not have IPs assigned and\
-          \ will never be reachabled from the internet. All VLANs are subject to traffic\
-          \ billing and overages, with the exception of private VLAN traffic on unbonded\
-          \ Devices."
-      facilityCode:
-        type: "string"
-        description: "For example: `NYC1`."
-      automated:
-        type: "boolean"
-        description: "If true, VLAN can be automated via API. If false, contact support\
-          \ to enable automation."
       portIds:
         type: "array"
         description: "Unique IDs of ports or bonds."
         items:
           type: "integer"
-      vlanId:
-        type: "integer"
-        description: "Unique ID of the VLAN."
+      facilityCode:
+        type: "string"
+        description: "For example: `NYC1`."
     example:
       facilityCode: "facilityCode"
       automated: true
-      vlanTag: 6
-      vlanId: 5
+      vlanTag: 1
+      vlanId: 0
       portIds:
-      - 1
-      - 1
+      - 5
+      - 5
       ipIds:
-      - 0
-      - 0
+      - 6
+      - 6
       type: "type"
       qInQ: true
   VlanUpdate:
@@ -12158,12 +12189,9 @@ definitions:
   VPS:
     type: "object"
     properties:
-      isoId:
-        type: "string"
-        description: "The unique ID of the VPS ISO."
-      status:
-        type: "string"
-        description: "VPS Instance Status. Example: `Running`"
+      vcpu:
+        type: "integer"
+        description: "Number of vCPUs"
       sshKeyIds:
         type: "array"
         description: "List of SSH Key IDs"
@@ -12172,21 +12200,18 @@ definitions:
       cloudInit:
         type: "string"
         description: "Cloud-init script"
-      vcpu:
-        type: "integer"
-        description: "Number of vCPUs"
+      status:
+        type: "string"
+        description: "VPS Instance Status. Example: `Running`"
       memory:
         type: "integer"
         description: "Memory in MB"
-      facilityCode:
-        type: "string"
-        description: "Facility Code. Example: `LAX3`"
-      deviceId:
-        type: "integer"
-        description: "Device ID"
       password:
         type: "string"
         description: "VPS Instance root password"
+      isoId:
+        type: "string"
+        description: "The unique ID of the VPS ISO."
       nics:
         type: "array"
         items:
@@ -12194,6 +12219,12 @@ definitions:
           description: "Network Interfaces"
           allOf:
           - $ref: "#/definitions/VPSNetworkInterface"
+      deviceId:
+        type: "integer"
+        description: "Device ID"
+      facilityCode:
+        type: "string"
+        description: "Facility Code. Example: `LAX3`"
       templateId:
         type: "string"
         description: "Template used for the install"
@@ -12202,7 +12233,7 @@ definitions:
       cloudInit: "cloudInit"
       password: "password"
       memory: 1
-      vcpu: 6
+      vcpu: 0
       nics:
       - ""
       - ""
@@ -12210,59 +12241,56 @@ definitions:
       isoId: "isoId"
       deviceId: 5
       sshKeyIds:
-      - 0
-      - 0
+      - 6
+      - 6
       status: "status"
   VPSNetworkInterface:
     type: "object"
     properties:
+      nicId:
+        type: "string"
+        description: "The unique ID of the VPS instance NIC."
+      ipv6Address:
+        type: "string"
+        description: "The IPv6 address assigned to the VPS instance NIC."
+      vlanId:
+        type: "integer"
+        description: "The VLAN ID of the VPS Network. This will be returned for VLAN\
+          \ enabled networks."
       ipv6Cidr:
         type: "string"
         description: "The IPv6 CIDR assigned to the VPS instance NIC."
       netmask:
         type: "string"
         description: "The netmask assigned to the VPS instance NIC."
-      ipv6Gateway:
-        type: "string"
-        description: "The IPv6 gateway assigned to the VPS instance NIC."
       nicName:
         type: "string"
         description: "The name of the VPS instance NIC."
+      networkName:
+        type: "string"
+        description: "The name of the VPS Network."
+      ipv6Gateway:
+        type: "string"
+        description: "The IPv6 gateway assigned to the VPS instance NIC."
+      ipAddress:
+        type: "string"
+        description: "The IP address assigned to the VPS instance NIC."
       vlanTag:
         type: "integer"
         description: "The VLAN tag of the VPS Network. This will be returned for VLAN\
           \ enabled networks."
-      macAddress:
-        type: "string"
-        description: "The MAC address of the VPS instance NIC."
       gateway:
         type: "string"
         description: "The gateway assigned to the VPS instance NIC."
-      nicId:
+      macAddress:
         type: "string"
-        description: "The unique ID of the VPS instance NIC."
-      networkName:
-        type: "string"
-        description: "The name of the VPS Network."
-      ipv6Address:
-        type: "string"
-        description: "The IPv6 address assigned to the VPS instance NIC."
+        description: "The MAC address of the VPS instance NIC."
       networkId:
         type: "string"
         description: "The unique ID of the VPS Network."
-      vlanId:
-        type: "integer"
-        description: "The VLAN ID of the VPS Network. This will be returned for VLAN\
-          \ enabled networks."
-      ipAddress:
-        type: "string"
-        description: "The IP address assigned to the VPS instance NIC."
   VPSUpdate:
     type: "object"
     properties:
-      cloudInit:
-        type: "string"
-        description: "Cloud-init script"
       productId:
         type: "integer"
         description: "ID of VPS product to scale to"
@@ -12271,6 +12299,9 @@ definitions:
         description: "List of SSH Key IDs"
         items:
           type: "integer"
+      cloudInit:
+        type: "string"
+        description: "Cloud-init script"
   VPSResetRootPassword:
     type: "object"
     required:
@@ -12282,15 +12313,15 @@ definitions:
   VPSMetricsResponse:
     type: "object"
     properties:
+      imageData:
+        type: "string"
+        description: "Base64 encoded Image Data."
       metricType:
         type: "string"
         description: "The Metric Type requested."
       startTime:
         type: "integer"
         description: "Actual Start Time for Chart Data."
-      imageData:
-        type: "string"
-        description: "Base64 encoded Image Data."
       endTime:
         type: "integer"
         description: "Actual End Time for Chart Data."
@@ -12310,26 +12341,26 @@ definitions:
   VPSEvent:
     type: "object"
     properties:
-      type:
-        type: "string"
-        description: "The type of event being logged for the VPS instance."
-      eventId:
-        type: "string"
-        description: "The unique ID corresponding to the event recorded."
-      createdAt:
-        type: "string"
-        format: "date-time"
-        description: "The created date/time of the VPS instance event."
-      level:
-        type: "string"
-        description: "The level of the event ie. INFO, ERROR or WARNING."
       state:
         type: "string"
         description: "The state of the event at the time of recording ie. Scheduled,\
           \ Started or Completed."
+      level:
+        type: "string"
+        description: "The level of the event ie. INFO, ERROR or WARNING."
+      type:
+        type: "string"
+        description: "The type of event being logged for the VPS instance."
+      createdAt:
+        type: "string"
+        format: "date-time"
+        description: "The created date/time of the VPS instance event."
+      eventId:
+        type: "string"
+        description: "The unique ID corresponding to the event recorded."
     example:
-      eventId: "eventId"
       createdAt: "2000-01-23T04:56:07.000+00:00"
+      eventId: "eventId"
       level: "level"
       state: "state"
       type: "type"
@@ -12344,10 +12375,6 @@ definitions:
     required:
     - "facilityCode"
     properties:
-      facilityCode:
-        type: "string"
-        description: "The facility code where the VPS Network should be created. For\
-          \ example: `TPA1`."
       name:
         type: "string"
         description: "The name of the VPS Network."
@@ -12355,12 +12382,23 @@ definitions:
         type: "integer"
         description: "The VLAN ID of the VPS Network. This will make the network bridgeble\
           \ to dedicated servers."
+      facilityCode:
+        type: "string"
+        description: "The facility code where the VPS Network should be created. For\
+          \ example: `TPA1`."
       clientId:
         type: "integer"
         description: "The unique client account ID."
   VPSNetwork:
     type: "object"
     properties:
+      vlanId:
+        type: "integer"
+        description: "The VLAN ID of the VPS Network. This will be returned for VLAN\
+          \ enabled networks."
+      name:
+        type: "string"
+        description: "The name of the VPS Network."
       vlanTag:
         type: "integer"
         description: "The VLAN tag of the VPS Network. This will be returned for VLAN\
@@ -12369,20 +12407,13 @@ definitions:
         type: "string"
         description: "The facility code associated with the VPS Network. For example:\
           \ `TPA1`."
-      name:
-        type: "string"
-        description: "The name of the VPS Network."
       networkId:
         type: "string"
         description: "The unique ID of the VPS Network."
-      vlanId:
-        type: "integer"
-        description: "The VLAN ID of the VPS Network. This will be returned for VLAN\
-          \ enabled networks."
     example:
       facilityCode: "facilityCode"
-      vlanTag: 0
-      vlanId: 6
+      vlanTag: 6
+      vlanId: 0
       name: "name"
       networkId: "networkId"
   VPSNetworkUpdate:
@@ -12402,31 +12433,31 @@ definitions:
     - "name"
     - "url"
     properties:
-      clientId:
-        type: "integer"
-        description: "The unique client account ID."
-      facilityCode:
-        type: "string"
-        description: "The facility code associated wth the VPS instance.  For example:TPA1."
-      name:
-        type: "string"
-        description: "The name of the VPS instance ISO."
-      description:
-        type: "string"
-        description: "The description of the VPS instance ISO."
       bootable:
         type: "boolean"
         description: "Determines whether the VPS instance ISO is bootable or not."
+      name:
+        type: "string"
+        description: "The name of the VPS instance ISO."
+      clientId:
+        type: "integer"
+        description: "The unique client account ID."
       url:
         type: "string"
         description: "The URL to be directed to when downloading the VPS instance\
           \ ISO."
+      description:
+        type: "string"
+        description: "The description of the VPS instance ISO."
+      facilityCode:
+        type: "string"
+        description: "The facility code associated wth the VPS instance.  For example:TPA1."
   VPSISO:
     type: "object"
     properties:
-      isoId:
-        type: "string"
-        description: "The unique ID of the VPS instance ISO."
+      bootable:
+        type: "boolean"
+        description: "Determines whether the VPS instance ISO is bootable or not."
       status:
         type: "string"
         description: "The status of the VPS instance ISO."
@@ -12438,25 +12469,25 @@ definitions:
       size:
         type: "integer"
         description: "The size of the VPS instance ISO."
-      ready:
-        type: "boolean"
-        description: "The ready state of the VPS instance ISO."
-      facilityCode:
-        type: "string"
-        description: "The facility code associated with the ISO instance. For example:TPA1."
       name:
         type: "string"
         description: "The name of the VPS instance ISO."
-      description:
-        type: "string"
-        description: "The description of the VPS instance ISO."
-      bootable:
+      ready:
         type: "boolean"
-        description: "Determines whether the VPS instance ISO is bootable or not."
+        description: "The ready state of the VPS instance ISO."
+      isoId:
+        type: "string"
+        description: "The unique ID of the VPS instance ISO."
       url:
         type: "string"
         description: "The URL to be directed to when downloading the VPS instance\
           \ ISO."
+      description:
+        type: "string"
+        description: "The description of the VPS instance ISO."
+      facilityCode:
+        type: "string"
+        description: "The facility code associated with the ISO instance. For example:TPA1."
     example:
       facilityCode: "facilityCode"
       deviceIds:
@@ -12466,8 +12497,8 @@ definitions:
       ready: true
       name: "name"
       description: "description"
-      isoId: "isoId"
       bootable: true
+      isoId: "isoId"
       url: "url"
       status: "status"
   VPSISOAttach:
@@ -12493,34 +12524,34 @@ definitions:
   VPSVolume:
     type: "object"
     properties:
+      volumeId:
+        type: "string"
+        description: "The unique VPS instance volume ID."
       type:
         type: "string"
         description: "Disk type. Options are `ROOT` for root volumes and `DATADISK`\
           \ for additional disks."
-      facilityCode:
-        type: "string"
-        description: "The facility code associated with the VPS Volume. For example:\
-          \ `TPA1`."
-      deviceId:
+      size:
         type: "integer"
-        description: "Device ID the disk is attached to"
+        description: "Disk size in bytes"
       createdAt:
         type: "string"
         format: "date-time"
         description: "The created date/time of the VPS instance volume."
-      volumeId:
-        type: "string"
-        description: "The unique VPS instance volume ID."
-      size:
+      deviceId:
         type: "integer"
-        description: "Disk size in bytes"
+        description: "Device ID the disk is attached to"
+      facilityCode:
+        type: "string"
+        description: "The facility code associated with the VPS Volume. For example:\
+          \ `TPA1`."
     example:
       facilityCode: "facilityCode"
       createdAt: "2000-01-23T04:56:07.000+00:00"
-      size: 6
+      size: 0
       volumeId: "volumeId"
       type: "type"
-      deviceId: 0
+      deviceId: 6
   VPSAvailableNewVolumeSizes:
     type: "object"
     properties:
@@ -12531,22 +12562,22 @@ definitions:
           $ref: "#/definitions/VPSVolumeProduct"
     example:
       volumeProducts:
-      - size: 0
-        monthlyPrice: 6.02745618307040320615897144307382404804229736328125
-      - size: 0
-        monthlyPrice: 6.02745618307040320615897144307382404804229736328125
+      - size: 6
+        monthlyPrice: 0.80082819046101150206595775671303272247314453125
+      - size: 6
+        monthlyPrice: 0.80082819046101150206595775671303272247314453125
   VPSVolumeProduct:
     type: "object"
     properties:
-      size:
-        type: "integer"
-        description: "Size of available volume size in GiB"
       monthlyPrice:
         type: "number"
         description: "Monthly cost of volume size"
+      size:
+        type: "integer"
+        description: "Size of available volume size in GiB"
     example:
-      size: 0
-      monthlyPrice: 6.02745618307040320615897144307382404804229736328125
+      size: 6
+      monthlyPrice: 0.80082819046101150206595775671303272247314453125
   VPSAvailableUpgradeSizes:
     type: "object"
     properties:
@@ -12557,10 +12588,10 @@ definitions:
           $ref: "#/definitions/VPSVolumeProduct"
     example:
       volumeProducts:
-      - size: 0
-        monthlyPrice: 6.02745618307040320615897144307382404804229736328125
-      - size: 0
-        monthlyPrice: 6.02745618307040320615897144307382404804229736328125
+      - size: 6
+        monthlyPrice: 0.80082819046101150206595775671303272247314453125
+      - size: 6
+        monthlyPrice: 0.80082819046101150206595775671303272247314453125
   VPSVolumeDelete:
     type: "object"
     properties:
@@ -12585,9 +12616,6 @@ definitions:
     - "name"
     - "volumeId"
     properties:
-      facilityCode:
-        type: "string"
-        description: "The facility code associated with the VPS instance. For example:TPA1."
       name:
         type: "string"
         description: "The name of the VPS instance snapshot."
@@ -12597,50 +12625,53 @@ definitions:
       volumeId:
         type: "string"
         description: "The unique VPS instance volume ID the snapshot is taken of."
+      facilityCode:
+        type: "string"
+        description: "The facility code associated with the VPS instance. For example:TPA1."
   VPSSnapshot:
     type: "object"
     properties:
+      volumeId:
+        type: "string"
+        description: "The unique VPS instance volume ID the snapshot is taken of."
       snapshotId:
         type: "string"
         description: "The unique ID associated with the snapshot."
-      snapshotType:
+      state:
         type: "string"
-        description: "Snapshot interval options: HOURLY, DAILY, WEEKLY, MONTHLY."
+        description: "The state of the snapshot ie. Scheduled, Started or Completed."
+      size:
+        type: "integer"
+        description: "Snapshot size in bytes"
       name:
         type: "string"
         description: "The name of the VPS instance snapshot."
+      snapshotType:
+        type: "string"
+        description: "Snapshot interval options: HOURLY, DAILY, WEEKLY, MONTHLY."
       createdAt:
         type: "string"
         format: "date-time"
         description: "The created date/tie of the VPS instance snapshot."
-      volumeId:
-        type: "string"
-        description: "The unique VPS instance volume ID the snapshot is taken of."
-      size:
-        type: "integer"
-        description: "Snapshot size in bytes"
-      state:
-        type: "string"
-        description: "The state of the snapshot ie. Scheduled, Started or Completed."
     example:
       createdAt: "2000-01-23T04:56:07.000+00:00"
       snapshotId: "snapshotId"
-      snapshotType: "snapshotType"
       size: 0
-      name: "name"
+      snapshotType: "snapshotType"
       volumeId: "volumeId"
+      name: "name"
       state: "state"
   VPSSnapshotRestore:
     type: "object"
     required:
     - "facilityCode"
     properties:
-      facilityCode:
-        type: "string"
-        description: "The facility code associated with the VPS instance. For example:TPA1."
       clientId:
         type: "integer"
         description: "The unique client acount ID."
+      facilityCode:
+        type: "string"
+        description: "The facility code associated with the VPS instance. For example:TPA1."
   VPSSnapshotScheduleCreate:
     type: "object"
     required:
@@ -12652,26 +12683,6 @@ definitions:
     - "timezone"
     - "volumeId"
     properties:
-      weekday:
-        type: "integer"
-        description: "The day of the week to run the snapshot process (1-7 with 1\
-          \ being Monday). This is required for Weekly."
-      hour:
-        type: "integer"
-        description: "The hour of the day to run the snapshot process (0-23)."
-      day:
-        type: "integer"
-        description: "The day of the month to run th snapshot process (1-28). This\
-          \ is required for Monthly."
-      timezone:
-        type: "string"
-        description: "Timezone in IANA format. Example: `America/New_York`"
-      clientId:
-        type: "integer"
-        description: "The unique client account ID."
-      facilityCode:
-        type: "string"
-        description: "The facility code associated witht he VPS instance. For example:TPA1."
       minute:
         type: "integer"
         description: "The minute of the hour to run the snapshot process (0-59)."
@@ -12679,6 +12690,14 @@ definitions:
         type: "string"
         description: "The unique ID of the VPS instance volume to take a snapshot\
           \ of."
+      day:
+        type: "integer"
+        description: "The day of the month to run th snapshot process (1-28). This\
+          \ is required for Monthly."
+      weekday:
+        type: "integer"
+        description: "The day of the week to run the snapshot process (1-7 with 1\
+          \ being Monday). This is required for Weekly."
       intervalType:
         type: "string"
         description: "Options: `HOURLY`, `DAILY`, `WEEKLY`, `MONTHLY`"
@@ -12686,23 +12705,24 @@ definitions:
         type: "integer"
         description: "The maximum number of snapshots to retain at a time for this\
           \ schedule."
-  VPSSnapshotSchedule:
-    type: "object"
-    properties:
-      weekday:
+      clientId:
         type: "integer"
-        description: "The day of the week to run the snapshot process (1-7 with 1\
-          \ being Monday)."
+        description: "The unique client account ID."
       hour:
         type: "integer"
         description: "The hour of the day to run the snapshot process (0-23)."
-      day:
-        type: "integer"
-        description: "The day of the month to run the snapshot process (1-28)."
+      facilityCode:
+        type: "string"
+        description: "The facility code associated witht he VPS instance. For example:TPA1."
       timezone:
         type: "string"
-        description: "The timezone to use for the snapshot schedule in IANA format.\
-          \ Example: America/New_York."
+        description: "Timezone in IANA format. Example: `America/New_York`"
+  VPSSnapshotSchedule:
+    type: "object"
+    properties:
+      snapshotScheduleId:
+        type: "string"
+        description: "The unique ID associated with the snapshot schedule."
       minute:
         type: "integer"
         description: "The minute of the hour to run the snapshot process (0-59)."
@@ -12710,9 +12730,13 @@ definitions:
         type: "string"
         description: "The unique ID of the VPS instance volume to take a snapshot\
           \ of."
-      snapshotScheduleId:
-        type: "string"
-        description: "The unique ID associated with the snapshot schedule."
+      day:
+        type: "integer"
+        description: "The day of the month to run the snapshot process (1-28)."
+      weekday:
+        type: "integer"
+        description: "The day of the week to run the snapshot process (1-7 with 1\
+          \ being Monday)."
       intervalType:
         type: "string"
         description: "Snapshot interval options: HOURLY, DAILY, WEEKLY, MONTHLY."
@@ -12720,16 +12744,23 @@ definitions:
         type: "integer"
         description: "The maximum number of snapshots to take within the interval\
           \ period."
+      hour:
+        type: "integer"
+        description: "The hour of the day to run the snapshot process (0-23)."
+      timezone:
+        type: "string"
+        description: "The timezone to use for the snapshot schedule in IANA format.\
+          \ Example: America/New_York."
     example:
       maxSnapshots: 5
       intervalType: "intervalType"
-      hour: 6
+      hour: 5
       timezone: "timezone"
-      weekday: 0
       volumeId: "volumeId"
-      day: 1
+      weekday: 1
       snapshotScheduleId: "snapshotScheduleId"
-      minute: 5
+      day: 6
+      minute: 0
   WebhookEvent:
     type: "object"
     required:

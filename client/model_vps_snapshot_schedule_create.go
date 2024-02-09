@@ -10,24 +10,24 @@
 package swagger
 
 type VpsSnapshotScheduleCreate struct {
-	// The day of the week to run the snapshot process (1-7 with 1 being Monday). This is required for Weekly.
-	Weekday int32 `json:"weekday,omitempty"`
-	// The hour of the day to run the snapshot process (0-23).
-	Hour int32 `json:"hour"`
-	// The day of the month to run th snapshot process (1-28). This is required for Monthly.
-	Day int32 `json:"day,omitempty"`
-	// Timezone in IANA format. Example: `America/New_York`
-	Timezone string `json:"timezone"`
-	// The unique client account ID.
-	ClientId int32 `json:"clientId,omitempty"`
-	// The facility code associated witht he VPS instance. For example:TPA1.
-	FacilityCode string `json:"facilityCode"`
 	// The minute of the hour to run the snapshot process (0-59).
 	Minute int32 `json:"minute"`
 	// The unique ID of the VPS instance volume to take a snapshot of.
 	VolumeId string `json:"volumeId"`
+	// The day of the month to run th snapshot process (1-28). This is required for Monthly.
+	Day int32 `json:"day,omitempty"`
+	// The day of the week to run the snapshot process (1-7 with 1 being Monday). This is required for Weekly.
+	Weekday int32 `json:"weekday,omitempty"`
 	// Options: `HOURLY`, `DAILY`, `WEEKLY`, `MONTHLY`
 	IntervalType string `json:"intervalType"`
 	// The maximum number of snapshots to retain at a time for this schedule.
 	MaxSnapshots int32 `json:"maxSnapshots"`
+	// The unique client account ID.
+	ClientId int32 `json:"clientId,omitempty"`
+	// The hour of the day to run the snapshot process (0-23).
+	Hour int32 `json:"hour"`
+	// The facility code associated witht he VPS instance. For example:TPA1.
+	FacilityCode string `json:"facilityCode"`
+	// Timezone in IANA format. Example: `America/New_York`
+	Timezone string `json:"timezone"`
 }

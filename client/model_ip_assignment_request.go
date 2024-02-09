@@ -10,10 +10,10 @@
 package swagger
 
 type IpAssignmentRequest struct {
-	// For example: `NYC1`.
-	FacilityCode string `json:"facilityCode,omitempty"`
-	// List the intended use of each IP in the subnet. Required by ICANN.
-	Purpose string `json:"purpose,omitempty"`
 	// For example: `/27`.
 	PrefixLength int32 `json:"prefixLength,omitempty"`
+	// List the intended use of each IP in the subnet. Required by ICANN.
+	Purpose string `json:"purpose,omitempty"`
+	// For example: `NYC1`.
+	FacilityCode string `json:"facilityCode,omitempty"`
 }

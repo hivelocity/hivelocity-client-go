@@ -11,22 +11,22 @@ package swagger
 
 type IpmiInfo struct {
 	ManufacturerName   string `json:"manufacturerName,omitempty"`
-	DeviceRevision     string `json:"deviceRevision,omitempty"`
-	FirmwareRevision   string `json:"firmwareRevision,omitempty"`
-	DeviceSDRs         string `json:"deviceSDRs,omitempty"`
-	SelDevice          string `json:"selDevice,omitempty"`
 	IpmbEventReceiver  string `json:"ipmbEventReceiver,omitempty"`
-	IpmiVersion        string `json:"ipmiVersion,omitempty"`
+	ProductId          string `json:"productId,omitempty"`
 	AuxFirmwareRevInfo string `json:"auxFirmwareRevInfo,omitempty"`
+	DeviceSDRs         string `json:"deviceSDRs,omitempty"`
+	SensorDevice       string `json:"sensorDevice,omitempty"`
+	FruInventoryDevice string `json:"fruInventoryDevice,omitempty"`
 	Bridge             string `json:"bridge,omitempty"`
+	DeviceRevision     string `json:"deviceRevision,omitempty"`
+	ChassisDevice      string `json:"chassisDevice,omitempty"`
+	DeviceAvailable    string `json:"deviceAvailable,omitempty"`
+	SelDevice          string `json:"selDevice,omitempty"`
+	ManufacturerId     string `json:"manufacturerId,omitempty"`
+	IpmiVersion        string `json:"ipmiVersion,omitempty"`
 	// The IPMI ID of the device.
 	DeviceId            string `json:"deviceId,omitempty"`
-	SdrRepositoryDevice string `json:"sdrRepositoryDevice,omitempty"`
-	ManufacturerId      string `json:"manufacturerId,omitempty"`
-	ChassisDevice       string `json:"chassisDevice,omitempty"`
-	FruInventoryDevice  string `json:"fruInventoryDevice,omitempty"`
-	DeviceAvailable     string `json:"deviceAvailable,omitempty"`
 	IpmbEventGenerator  string `json:"ipmbEventGenerator,omitempty"`
-	ProductId           string `json:"productId,omitempty"`
-	SensorDevice        string `json:"sensorDevice,omitempty"`
+	FirmwareRevision    string `json:"firmwareRevision,omitempty"`
+	SdrRepositoryDevice string `json:"sdrRepositoryDevice,omitempty"`
 }

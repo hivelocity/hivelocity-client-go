@@ -97,8 +97,8 @@ Optional parameters are passed through a pointer to a NetworkApiGetNetworkTaskCl
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **clientId** | **optional.Int32**| Filter to retrieve tasks for a specific client. | 
  **createdInLast** | **optional.Int32**| Filter to retrieve tasks created in the last timedelta hours. | 
+ **clientId** | **optional.Int32**| Filter to retrieve tasks for a specific client. | 
  **xFields** | **optional.String**| An optional fields mask | 
 
 ### Return type

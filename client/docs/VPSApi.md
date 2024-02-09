@@ -176,8 +176,8 @@ Optional parameters are passed through a pointer to a VPSApiDeleteVpsSnapshotIdR
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **facilityCode** | **optional.String**| The facility code associated with the VPS instance. For example: TPA1. | 
  **clientId** | **optional.Int32**| The unique client account ID. | 
+ **facilityCode** | **optional.String**| The facility code associated with the VPS instance. For example: TPA1. | 
  **xFields** | **optional.String**| An optional fields mask | 
 
 ### Return type
@@ -213,8 +213,8 @@ Optional parameters are passed through a pointer to a VPSApiDeleteVpsSnapshotSch
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **facilityCode** | **optional.String**| The facility code associated with the VPS instance. For example: TPA1. | 
  **clientId** | **optional.Int32**| The unique client account ID. | 
+ **facilityCode** | **optional.String**| The facility code associated with the VPS instance. For example: TPA1. | 
  **xFields** | **optional.String**| An optional fields mask | 
 
 ### Return type
@@ -505,8 +505,8 @@ Optional parameters are passed through a pointer to a VPSApiGetVpsNetworkIdResou
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **facilityCode** | **optional.String**| The facility code where the VPS Network is located. For example: &#x60;TPA1&#x60;. | 
  **clientId** | **optional.Int32**| The unique client account ID. | 
+ **facilityCode** | **optional.String**| The facility code where the VPS Network is located. For example: &#x60;TPA1&#x60;. | 
  **xFields** | **optional.String**| An optional fields mask | 
 
 ### Return type
@@ -540,8 +540,8 @@ Optional parameters are passed through a pointer to a VPSApiGetVpsNetworkResourc
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **facilityCode** | **optional.String**| The facility code where the VPS Network is located. For example: &#x60;TPA1&#x60;. | 
  **clientId** | **optional.Int32**| The unique client account ID. | 
+ **facilityCode** | **optional.String**| The facility code where the VPS Network is located. For example: &#x60;TPA1&#x60;. | 
  **xFields** | **optional.String**| An optional fields mask | 
 
 ### Return type
@@ -575,11 +575,11 @@ Optional parameters are passed through a pointer to a VPSApiGetVpsResourceOpts s
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **storageId** | **optional.String**| The storage server ID of the VPS instance. | 
  **clientId** | **optional.Int32**| The unique client account ID. | 
+ **hostId** | **optional.String**| Host ID (hypervisor) of the VPS instance. | 
  **facilityCode** | **optional.String**| The facility code associated with the VPS instance. For example: TPA1. | 
  **networkId** | **optional.String**| The Network ID the VPS instance is attached to. | 
- **storageId** | **optional.String**| The storage server ID of the VPS instance. | 
- **hostId** | **optional.String**| Host ID (hypervisor) of the VPS instance. | 
  **xFields** | **optional.String**| An optional fields mask | 
 
 ### Return type
@@ -672,8 +672,8 @@ Optional parameters are passed through a pointer to a VPSApiGetVpsSnapshotIdReso
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **facilityCode** | **optional.String**| The facility code associated with the VPS instance. For example: TPA1. | 
  **clientId** | **optional.Int32**| The unique client account ID. | 
+ **facilityCode** | **optional.String**| The facility code associated with the VPS instance. For example: TPA1. | 
  **xFields** | **optional.String**| An optional fields mask | 
 
 ### Return type
@@ -707,8 +707,8 @@ Optional parameters are passed through a pointer to a VPSApiGetVpsSnapshotResour
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **facilityCode** | **optional.String**| The facility code associated with the VPS instance. For example: TPA1. | 
  **deviceId** | **optional.Int32**| The unique device ID of the VPS instance. | 
+ **facilityCode** | **optional.String**| The facility code associated with the VPS instance. For example: TPA1. | 
  **clientId** | **optional.Int32**| The unique client account ID. | 
  **xFields** | **optional.String**| An optional fields mask | 
 
@@ -745,8 +745,8 @@ Optional parameters are passed through a pointer to a VPSApiGetVpsSnapshotSchedu
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **facilityCode** | **optional.String**| The facility code associated with the VPS instance. For example: TPA1. | 
  **clientId** | **optional.Int32**| The unique client account ID. | 
+ **facilityCode** | **optional.String**| The facility code associated with the VPS instance. For example: TPA1. | 
  **xFields** | **optional.String**| An optional fields mask | 
 
 ### Return type
@@ -780,8 +780,8 @@ Optional parameters are passed through a pointer to a VPSApiGetVpsSnapshotSchedu
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **facilityCode** | **optional.String**| The facility code associated with the VPS instance. For example: TPA1. | 
  **deviceId** | **optional.Int32**| The unique device ID of the VPS instance. | 
+ **facilityCode** | **optional.String**| The facility code associated with the VPS instance. For example: TPA1. | 
  **clientId** | **optional.Int32**| The unique client account ID. | 
  **xFields** | **optional.String**| An optional fields mask | 
 
@@ -851,8 +851,8 @@ Optional parameters are passed through a pointer to a VPSApiGetVpsVolumeResource
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **facilityCode** | **optional.String**| The facility code associated with the VPS instance. For example: TPA1. | 
  **deviceId** | **optional.Int32**| The unique device ID of the VPS instance. | 
+ **facilityCode** | **optional.String**| The facility code associated with the VPS instance. For example: TPA1. | 
  **clientId** | **optional.Int32**| The unique client account ID. | 
  **xFields** | **optional.String**| An optional fields mask | 
 

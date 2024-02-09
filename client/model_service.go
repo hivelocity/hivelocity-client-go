@@ -47,4 +47,5 @@ type Service struct {
 	// The service type code. The list of service types can be accessed on https://core.hivelocity.net/api/v2/service/types .
 	TypeCode         string                   `json:"typeCode,omitempty"`
 	BandwidthBilling *ServiceBandwidthBilling `json:"bandwidthBilling,omitempty"`
+	Acquisition      string                   `json:"acquisition,omitempty"`
 }

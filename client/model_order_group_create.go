@@ -10,6 +10,6 @@
 package swagger
 
 type OrderGroupCreate struct {
-	SameRack bool   `json:"same_rack,omitempty"`
 	Name     string `json:"name"`
+	SameRack bool   `json:"same_rack,omitempty"`
 }

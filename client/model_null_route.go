@@ -14,14 +14,14 @@ import (
 )
 
 type NullRoute struct {
-	// Client ID who owns the IP
-	ClientId int32 `json:"clientId,omitempty"`
 	// Filled if IP was nulled by an admin user
 	AdminId int32 `json:"adminId,omitempty"`
 	// IP address
 	Ip string `json:"ip,omitempty"`
-	// Comment of the null route
-	Comment string `json:"comment,omitempty"`
 	// Timestamp the null route was created
 	Created time.Time `json:"created,omitempty"`
+	// Client ID who owns the IP
+	ClientId int32 `json:"clientId,omitempty"`
+	// Comment of the null route
+	Comment string `json:"comment,omitempty"`
 }

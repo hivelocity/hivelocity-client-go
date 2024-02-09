@@ -74,8 +74,27 @@ After all the dependencies are installed, run the following make command to upda
 $ make client
 ```
 
-To release a version of the client using the current date (i.e: `v2020.08.12.1`), run:
+### Releasing
+
+Get the current changes:
 
 ```shell
-$ make release
+git switch main
+git pull
 ```
+
+Have a look at the current (old) version: [Github Releases / Tags](https://github.com/hivelocity/hivelocity-client-go/tags)
+
+```shell
+export RELEASE_TAG=<the tag of the release to be cut> (eg. export RELEASE_TAG=v0.1.0)
+git tag -a ${RELEASE_TAG} -m ${RELEASE_TAG}
+```
+
+Push the tag to the GitHub repository.
+
+NOTE: origin should be the name of the remote pointing to github.com/hivelocity/hivelocity-client-go
+
+```shell
+git push origin ${RELEASE_TAG}
+```
+

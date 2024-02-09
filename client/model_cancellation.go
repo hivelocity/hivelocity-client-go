@@ -16,42 +16,42 @@ import (
 type Cancellation struct {
 	// Sales Rep ID.
 	SalesRepId int32 `json:"salesRepId,omitempty"`
-	// Unique ID of the cancellation request.
-	Id int32 `json:"id,omitempty"`
-	// Details why the device is being cancelled
-	Comments string `json:"comments,omitempty"`
-	// Date of cancel request submission.
-	StartDate time.Time `json:"startDate,omitempty"`
-	// Type of the coupon.
-	CouponType string `json:"couponType,omitempty"`
-	// Reason
-	Reason string `json:"reason,omitempty"`
-	// Date of cancellation completion.
-	DeletedAt time.Time `json:"deletedAt,omitempty"`
-	// Value of the coupon.
-	CouponValue int32 `json:"couponValue,omitempty"`
-	// Code of the coupon.
-	CouponCode string `json:"couponCode,omitempty"`
-	// True if cancel completed.
-	Cancelled bool `json:"cancelled,omitempty"`
-	// The requested cancellation date, if specified.
-	RequestDate time.Time `json:"requestDate,omitempty"`
-	// Name of the coupon used.
-	CouponName string `json:"couponName,omitempty"`
-	// The monthly cost of the cancelled device.
-	MonthlyPayment int32 `json:"monthlyPayment,omitempty"`
-	// Deprecated.
-	PlanId int32 `json:"planId,omitempty"`
-	// Name of user who submitted the request
-	Name string `json:"name,omitempty"`
-	// Date of cancellation.
-	CancelDate time.Time `json:"cancelDate,omitempty"`
-	// Unique ID of a client.
-	ClientId int32 `json:"clientId,omitempty"`
-	// The number of months the target device has been active.
-	ActiveMonths int32 `json:"activeMonths,omitempty"`
-	// Unique ID of a device.
-	DeviceId int32 `json:"deviceId,omitempty"`
 	// Unique ID of a service.
 	ServiceId int32 `json:"serviceId,omitempty"`
+	// Type of the coupon.
+	CouponType string `json:"couponType,omitempty"`
+	// Date of cancellation completion.
+	DeletedAt time.Time `json:"deletedAt,omitempty"`
+	// True if cancel completed.
+	Cancelled bool `json:"cancelled,omitempty"`
+	// Date of cancellation.
+	CancelDate time.Time `json:"cancelDate,omitempty"`
+	// Unique ID of a device.
+	DeviceId int32 `json:"deviceId,omitempty"`
+	// Date of cancel request submission.
+	StartDate time.Time `json:"startDate,omitempty"`
+	// Code of the coupon.
+	CouponCode string `json:"couponCode,omitempty"`
+	// Details why the device is being cancelled
+	Comments string `json:"comments,omitempty"`
+	// Name of the coupon used.
+	CouponName string `json:"couponName,omitempty"`
+	// The number of months the target device has been active.
+	ActiveMonths int32 `json:"activeMonths,omitempty"`
+	// Unique ID of the cancellation request.
+	Id int32 `json:"id,omitempty"`
+	// The monthly cost of the cancelled device.
+	MonthlyPayment int32 `json:"monthlyPayment,omitempty"`
+	// Name of user who submitted the request
+	Name string `json:"name,omitempty"`
+	// Deprecated.
+	PlanId int32 `json:"planId,omitempty"`
+	// The requested cancellation date, if specified.
+	RequestDate time.Time `json:"requestDate,omitempty"`
+	// Unique ID of a client.
+	ClientId int32 `json:"clientId,omitempty"`
+	// Value of the coupon.
+	CouponValue int32 `json:"couponValue,omitempty"`
+	// Reason
+	Reason string `json:"reason,omitempty"`
 }

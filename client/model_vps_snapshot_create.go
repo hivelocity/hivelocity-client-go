@@ -10,12 +10,12 @@
 package swagger
 
 type VpsSnapshotCreate struct {
-	// The facility code associated with the VPS instance. For example:TPA1.
-	FacilityCode string `json:"facilityCode"`
 	// The name of the VPS instance snapshot.
 	Name string `json:"name"`
 	// The unique client account ID.
 	ClientId int32 `json:"clientId,omitempty"`
 	// The unique VPS instance volume ID the snapshot is taken of.
 	VolumeId string `json:"volumeId"`
+	// The facility code associated with the VPS instance. For example:TPA1.
+	FacilityCode string `json:"facilityCode"`
 }

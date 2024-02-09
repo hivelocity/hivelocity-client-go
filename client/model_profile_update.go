@@ -10,20 +10,20 @@
 package swagger
 
 type ProfileUpdate struct {
-	Phone                   string `json:"phone,omitempty"`
-	First                   string `json:"first,omitempty"`
-	FullName                string `json:"fullName,omitempty"`
-	City                    string `json:"city,omitempty"`
-	Email                   string `json:"email,omitempty"`
-	RequirePayPalOauthLogin string `json:"requirePayPalOauthLogin,omitempty"`
-	Company                 string `json:"company,omitempty"`
-	Country                 string `json:"country,omitempty"`
-	Password                string `json:"password,omitempty"`
-	Zip                     string `json:"zip,omitempty"`
-	DisableInvoiceEmails    bool   `json:"disableInvoiceEmails,omitempty"`
-	RequireOauthLogin       string `json:"requireOauthLogin,omitempty"`
-	DirectToZendesk         string `json:"directToZendesk,omitempty"`
-	Last                    string `json:"last,omitempty"`
 	Address                 string `json:"address,omitempty"`
+	First                   string `json:"first,omitempty"`
+	DirectToZendesk         string `json:"directToZendesk,omitempty"`
 	State                   string `json:"state,omitempty"`
+	Zip                     string `json:"zip,omitempty"`
+	Email                   string `json:"email,omitempty"`
+	Company                 string `json:"company,omitempty"`
+	Last                    string `json:"last,omitempty"`
+	Password                string `json:"password,omitempty"`
+	City                    string `json:"city,omitempty"`
+	RequireOauthLogin       string `json:"requireOauthLogin,omitempty"`
+	FullName                string `json:"fullName,omitempty"`
+	RequirePayPalOauthLogin string `json:"requirePayPalOauthLogin,omitempty"`
+	DisableInvoiceEmails    bool   `json:"disableInvoiceEmails,omitempty"`
+	Phone                   string `json:"phone,omitempty"`
+	Country                 string `json:"country,omitempty"`
 }

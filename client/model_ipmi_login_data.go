@@ -10,11 +10,11 @@
 package swagger
 
 type IpmiLoginData struct {
-	// IP for IPMI access. Requires your current IP to be whitelisted or the IPMI VPN.
-	Host       string `json:"host,omitempty"`
-	Drivertype string `json:"drivertype,omitempty"`
 	// Password for IPMI console.
 	Password string `json:"password,omitempty"`
+	// IP for IPMI access. Requires your current IP to be whitelisted or the IPMI VPN.
+	Host string `json:"host,omitempty"`
 	// Username for IPMI console.
-	Username string `json:"username,omitempty"`
+	Username   string `json:"username,omitempty"`
+	Drivertype string `json:"drivertype,omitempty"`
 }

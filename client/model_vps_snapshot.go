@@ -14,18 +14,18 @@ import (
 )
 
 type VpsSnapshot struct {
-	// The unique ID associated with the snapshot.
-	SnapshotId string `json:"snapshotId,omitempty"`
-	// Snapshot interval options: HOURLY, DAILY, WEEKLY, MONTHLY.
-	SnapshotType string `json:"snapshotType,omitempty"`
-	// The name of the VPS instance snapshot.
-	Name string `json:"name,omitempty"`
-	// The created date/tie of the VPS instance snapshot.
-	CreatedAt time.Time `json:"createdAt,omitempty"`
 	// The unique VPS instance volume ID the snapshot is taken of.
 	VolumeId string `json:"volumeId,omitempty"`
-	// Snapshot size in bytes
-	Size int32 `json:"size,omitempty"`
+	// The unique ID associated with the snapshot.
+	SnapshotId string `json:"snapshotId,omitempty"`
 	// The state of the snapshot ie. Scheduled, Started or Completed.
 	State string `json:"state,omitempty"`
+	// Snapshot size in bytes
+	Size int32 `json:"size,omitempty"`
+	// The name of the VPS instance snapshot.
+	Name string `json:"name,omitempty"`
+	// Snapshot interval options: HOURLY, DAILY, WEEKLY, MONTHLY.
+	SnapshotType string `json:"snapshotType,omitempty"`
+	// The created date/tie of the VPS instance snapshot.
+	CreatedAt time.Time `json:"createdAt,omitempty"`
 }

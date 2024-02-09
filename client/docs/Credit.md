@@ -13,6 +13,9 @@ Name | Type | Description | Notes
 **Status** | **string** | The status of the credit | [optional] [default to null]
 **IsHourly** | **bool** | If credit is for hourly billing | [optional] [default to null]
 **BillingInfoId** | **int32** | The Billing Info ID used to purchase the credits on this account | [optional] [default to null]
+**ServiceIds** | **[]int32** | The list of service IDs associated with the credit ID | [optional] [default to null]
+**AutoApply** | **int32** | Whether credits are automatically being applied to new orders or invoices. [0 &#x3D; Not Auto Apply, 1 &#x3D; Auto Apply New Invoices, 2 &#x3D; Auto Apply All Invoices] | [optional] [default to null]
+**ExpirationDate** | **int32** | The expiration date of the credit | [optional] [default to null]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
