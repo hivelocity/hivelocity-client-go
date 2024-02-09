@@ -10,8 +10,8 @@
 package swagger
 
 type MxRecordUpdate struct {
-	Ttl        int32  `json:"ttl,omitempty"`
 	Name       string `json:"name,omitempty"`
-	Preference int32  `json:"preference"`
+	Ttl        int32  `json:"ttl,omitempty"`
 	Exchange   string `json:"exchange"`
+	Preference int32  `json:"preference"`
 }

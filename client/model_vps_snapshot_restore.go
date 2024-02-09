@@ -10,8 +10,8 @@
 package swagger
 
 type VpsSnapshotRestore struct {
-	// The facility code associated with the VPS instance. For example:TPA1.
-	FacilityCode string `json:"facilityCode"`
 	// The unique client acount ID.
 	ClientId int32 `json:"clientId,omitempty"`
+	// The facility code associated with the VPS instance. For example:TPA1.
+	FacilityCode string `json:"facilityCode"`
 }

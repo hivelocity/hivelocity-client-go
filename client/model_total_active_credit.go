@@ -10,10 +10,10 @@
 package swagger
 
 type TotalActiveCredit struct {
-	// The total active amount of credit available on the client account
-	TotalActive float32 `json:"totalActive,omitempty"`
 	// Whether credits are automatically being applied to new orders
 	AutoApply bool `json:"autoApply,omitempty"`
 	// If a client has an incomplete order that is using credit, the \"total active\" will remain at 0 until the order is completed.
 	HasCreditPendingOrder bool `json:"hasCreditPendingOrder,omitempty"`
+	// The total active amount of credit available on the client account
+	TotalActive float32 `json:"totalActive,omitempty"`
 }

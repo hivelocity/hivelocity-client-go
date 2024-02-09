@@ -12,8 +12,8 @@ package swagger
 type BillingInfoVerification struct {
 	// The unique Billing ID used to associate Billing Info
 	Id int32 `json:"id"`
-	// The verification amount posted to the financial institution associated with the billing ID
-	VerificationAmount float32 `json:"verificationAmount,omitempty"`
 	// The order ID associated with this billing ID
 	ProvisionOrderId int32 `json:"provisionOrderId,omitempty"`
+	// The verification amount posted to the financial institution associated with the billing ID
+	VerificationAmount float32 `json:"verificationAmount,omitempty"`
 }

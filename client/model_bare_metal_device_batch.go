@@ -10,8 +10,8 @@
 package swagger
 
 type BareMetalDeviceBatch struct {
-	// List of provisioned devices.
-	Devices []BareMetalDevice `json:"devices,omitempty"`
 	// Unique ID of the group order.
 	OrderGroupId int32 `json:"orderGroupId,omitempty"`
+	// List of provisioned devices.
+	Devices []BareMetalDevice `json:"devices,omitempty"`
 }

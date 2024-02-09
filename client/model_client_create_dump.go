@@ -10,32 +10,32 @@
 package swagger
 
 type ClientCreateDump struct {
-	// The phone number associated with the account
-	Phone string `json:"phone,omitempty"`
+	// The street address associated with the account
+	Address string `json:"address,omitempty"`
 	// The first name associated with the account
 	First string `json:"first,omitempty"`
 	// The ID of the client/contact account
 	Id int32 `json:"id,omitempty"`
 	// The fax number associated with the account
 	Fax string `json:"fax,omitempty"`
-	// The country associated with the account
-	Country string `json:"country,omitempty"`
+	// The state associated with the account
+	State string `json:"state,omitempty"`
 	// The zip/postal code associated with the account
-	Zip      string `json:"zip,omitempty"`
-	Password string `json:"password,omitempty"`
-	// The street address associated with the account
-	Address string `json:"address,omitempty"`
-	Active  bool   `json:"active,omitempty"`
-	// The city associated with the account
-	City string `json:"city,omitempty"`
+	Zip string `json:"zip,omitempty"`
 	// The email address associated with the account
 	Email string `json:"email,omitempty"`
 	// The company name associated with the account
 	Company string `json:"company,omitempty"`
 	// The last name associated with the account
 	Last string `json:"last,omitempty"`
-	// The state associated with the account
-	State string `json:"state,omitempty"`
 	// The date/time the account was created
 	Created int32 `json:"created,omitempty"`
+	// The country associated with the account
+	Country  string `json:"country,omitempty"`
+	Password string `json:"password,omitempty"`
+	// The city associated with the account
+	City   string `json:"city,omitempty"`
+	Active bool   `json:"active,omitempty"`
+	// The phone number associated with the account
+	Phone string `json:"phone,omitempty"`
 }

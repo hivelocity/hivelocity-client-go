@@ -10,6 +10,6 @@
 package swagger
 
 type PtrRecordUpdate struct {
-	Ttl  int32  `json:"ttl,omitempty"`
 	Name string `json:"name"`
+	Ttl  int32  `json:"ttl,omitempty"`
 }

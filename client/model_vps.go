@@ -10,25 +10,25 @@
 package swagger
 
 type Vps struct {
-	// The unique ID of the VPS ISO.
-	IsoId string `json:"isoId,omitempty"`
-	// VPS Instance Status. Example: `Running`
-	Status string `json:"status,omitempty"`
+	// Number of vCPUs
+	Vcpu int32 `json:"vcpu,omitempty"`
 	// List of SSH Key IDs
 	SshKeyIds []int32 `json:"sshKeyIds,omitempty"`
 	// Cloud-init script
 	CloudInit string `json:"cloudInit,omitempty"`
-	// Number of vCPUs
-	Vcpu int32 `json:"vcpu,omitempty"`
+	// VPS Instance Status. Example: `Running`
+	Status string `json:"status,omitempty"`
 	// Memory in MB
 	Memory int32 `json:"memory,omitempty"`
-	// Facility Code. Example: `LAX3`
-	FacilityCode string `json:"facilityCode,omitempty"`
+	// VPS Instance root password
+	Password string `json:"password,omitempty"`
+	// The unique ID of the VPS ISO.
+	IsoId string        `json:"isoId,omitempty"`
+	Nics  []interface{} `json:"nics,omitempty"`
 	// Device ID
 	DeviceId int32 `json:"deviceId,omitempty"`
-	// VPS Instance root password
-	Password string        `json:"password,omitempty"`
-	Nics     []interface{} `json:"nics,omitempty"`
+	// Facility Code. Example: `LAX3`
+	FacilityCode string `json:"facilityCode,omitempty"`
 	// Template used for the install
 	TemplateId string `json:"templateId,omitempty"`
 }

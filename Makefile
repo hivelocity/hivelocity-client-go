@@ -15,6 +15,8 @@ client: $(CODEGEN_JAR) swagger.yaml
 		-o ./client
 	go fmt ./...
 	go build github.com/hivelocity/hivelocity-client-go/client
+	go mod tidy
+	go mod vendor
 	go test ./...
 
 $(CODEGEN_JAR):

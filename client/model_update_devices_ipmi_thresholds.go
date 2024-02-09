@@ -10,8 +10,8 @@
 package swagger
 
 type UpdateDevicesIpmiThresholds struct {
-	// Alert thresholds for IPMI sensor values.
-	Thresholds interface{} `json:"thresholds"`
 	// List of unique device IDs.
 	DeviceIds []int32 `json:"device_ids"`
+	// Alert thresholds for IPMI sensor values.
+	Thresholds interface{} `json:"thresholds"`
 }

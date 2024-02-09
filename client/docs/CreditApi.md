@@ -27,6 +27,7 @@ Optional parameters are passed through a pointer to a CreditApiGetCreditResource
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **status** | **optional.String**| The current status of the service (all, active, inactive) | 
  **xFields** | **optional.String**| An optional fields mask | 
 
 ### Return type

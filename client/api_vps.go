@@ -362,16 +362,16 @@ VPSApiService Delete a VPS Volume Snapshot
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param snapshotId
  * @param optional nil or *VPSApiDeleteVpsSnapshotIdResourceOpts - Optional Parameters:
-     * @param "FacilityCode" (optional.String) -  The facility code associated with the VPS instance. For example: TPA1.
      * @param "ClientId" (optional.Int32) -  The unique client account ID.
+     * @param "FacilityCode" (optional.String) -  The facility code associated with the VPS instance. For example: TPA1.
      * @param "XFields" (optional.String) -  An optional fields mask
 
 @return NetworkTaskDump
 */
 
 type VPSApiDeleteVpsSnapshotIdResourceOpts struct {
-	FacilityCode optional.String
 	ClientId     optional.Int32
+	FacilityCode optional.String
 	XFields      optional.String
 }
 
@@ -392,11 +392,11 @@ func (a *VPSApiService) DeleteVpsSnapshotIdResource(ctx context.Context, snapsho
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
-	if localVarOptionals != nil && localVarOptionals.FacilityCode.IsSet() {
-		localVarQueryParams.Add("facilityCode", parameterToString(localVarOptionals.FacilityCode.Value(), ""))
-	}
 	if localVarOptionals != nil && localVarOptionals.ClientId.IsSet() {
 		localVarQueryParams.Add("clientId", parameterToString(localVarOptionals.ClientId.Value(), ""))
+	}
+	if localVarOptionals != nil && localVarOptionals.FacilityCode.IsSet() {
+		localVarQueryParams.Add("facilityCode", parameterToString(localVarOptionals.FacilityCode.Value(), ""))
 	}
 	// to determine the Content-Type header
 	localVarHttpContentTypes := []string{"application/json"}
@@ -481,16 +481,16 @@ VPSApiService Delete a VPS Snapshot Schedule
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param snapshotScheduleId
  * @param optional nil or *VPSApiDeleteVpsSnapshotScheduleIdResourceOpts - Optional Parameters:
-     * @param "FacilityCode" (optional.String) -  The facility code associated with the VPS instance. For example: TPA1.
      * @param "ClientId" (optional.Int32) -  The unique client account ID.
+     * @param "FacilityCode" (optional.String) -  The facility code associated with the VPS instance. For example: TPA1.
      * @param "XFields" (optional.String) -  An optional fields mask
 
 
 */
 
 type VPSApiDeleteVpsSnapshotScheduleIdResourceOpts struct {
-	FacilityCode optional.String
 	ClientId     optional.Int32
+	FacilityCode optional.String
 	XFields      optional.String
 }
 
@@ -510,11 +510,11 @@ func (a *VPSApiService) DeleteVpsSnapshotScheduleIdResource(ctx context.Context,
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
-	if localVarOptionals != nil && localVarOptionals.FacilityCode.IsSet() {
-		localVarQueryParams.Add("facilityCode", parameterToString(localVarOptionals.FacilityCode.Value(), ""))
-	}
 	if localVarOptionals != nil && localVarOptionals.ClientId.IsSet() {
 		localVarQueryParams.Add("clientId", parameterToString(localVarOptionals.ClientId.Value(), ""))
+	}
+	if localVarOptionals != nil && localVarOptionals.FacilityCode.IsSet() {
+		localVarQueryParams.Add("facilityCode", parameterToString(localVarOptionals.FacilityCode.Value(), ""))
 	}
 	// to determine the Content-Type header
 	localVarHttpContentTypes := []string{"application/json"}
@@ -1379,16 +1379,16 @@ VPSApiService Get VPS Network
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param networkId
  * @param optional nil or *VPSApiGetVpsNetworkIdResourceOpts - Optional Parameters:
-     * @param "FacilityCode" (optional.String) -  The facility code where the VPS Network is located. For example: &#x60;TPA1&#x60;.
      * @param "ClientId" (optional.Int32) -  The unique client account ID.
+     * @param "FacilityCode" (optional.String) -  The facility code where the VPS Network is located. For example: &#x60;TPA1&#x60;.
      * @param "XFields" (optional.String) -  An optional fields mask
 
 @return VpsNetwork
 */
 
 type VPSApiGetVpsNetworkIdResourceOpts struct {
-	FacilityCode optional.String
 	ClientId     optional.Int32
+	FacilityCode optional.String
 	XFields      optional.String
 }
 
@@ -1409,11 +1409,11 @@ func (a *VPSApiService) GetVpsNetworkIdResource(ctx context.Context, networkId s
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
-	if localVarOptionals != nil && localVarOptionals.FacilityCode.IsSet() {
-		localVarQueryParams.Add("facilityCode", parameterToString(localVarOptionals.FacilityCode.Value(), ""))
-	}
 	if localVarOptionals != nil && localVarOptionals.ClientId.IsSet() {
 		localVarQueryParams.Add("clientId", parameterToString(localVarOptionals.ClientId.Value(), ""))
+	}
+	if localVarOptionals != nil && localVarOptionals.FacilityCode.IsSet() {
+		localVarQueryParams.Add("facilityCode", parameterToString(localVarOptionals.FacilityCode.Value(), ""))
 	}
 	// to determine the Content-Type header
 	localVarHttpContentTypes := []string{"application/json"}
@@ -1497,16 +1497,16 @@ func (a *VPSApiService) GetVpsNetworkIdResource(ctx context.Context, networkId s
 VPSApiService Get all VPS Networks
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param optional nil or *VPSApiGetVpsNetworkResourceOpts - Optional Parameters:
-     * @param "FacilityCode" (optional.String) -  The facility code where the VPS Network is located. For example: &#x60;TPA1&#x60;.
      * @param "ClientId" (optional.Int32) -  The unique client account ID.
+     * @param "FacilityCode" (optional.String) -  The facility code where the VPS Network is located. For example: &#x60;TPA1&#x60;.
      * @param "XFields" (optional.String) -  An optional fields mask
 
 @return []VpsNetwork
 */
 
 type VPSApiGetVpsNetworkResourceOpts struct {
-	FacilityCode optional.String
 	ClientId     optional.Int32
+	FacilityCode optional.String
 	XFields      optional.String
 }
 
@@ -1526,11 +1526,11 @@ func (a *VPSApiService) GetVpsNetworkResource(ctx context.Context, localVarOptio
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
-	if localVarOptionals != nil && localVarOptionals.FacilityCode.IsSet() {
-		localVarQueryParams.Add("facilityCode", parameterToString(localVarOptionals.FacilityCode.Value(), ""))
-	}
 	if localVarOptionals != nil && localVarOptionals.ClientId.IsSet() {
 		localVarQueryParams.Add("clientId", parameterToString(localVarOptionals.ClientId.Value(), ""))
+	}
+	if localVarOptionals != nil && localVarOptionals.FacilityCode.IsSet() {
+		localVarQueryParams.Add("facilityCode", parameterToString(localVarOptionals.FacilityCode.Value(), ""))
 	}
 	// to determine the Content-Type header
 	localVarHttpContentTypes := []string{"application/json"}
@@ -1614,22 +1614,22 @@ func (a *VPSApiService) GetVpsNetworkResource(ctx context.Context, localVarOptio
 VPSApiService Get all VPS instances
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param optional nil or *VPSApiGetVpsResourceOpts - Optional Parameters:
+     * @param "StorageId" (optional.String) -  The storage server ID of the VPS instance.
      * @param "ClientId" (optional.Int32) -  The unique client account ID.
+     * @param "HostId" (optional.String) -  Host ID (hypervisor) of the VPS instance.
      * @param "FacilityCode" (optional.String) -  The facility code associated with the VPS instance. For example: TPA1.
      * @param "NetworkId" (optional.String) -  The Network ID the VPS instance is attached to.
-     * @param "StorageId" (optional.String) -  The storage server ID of the VPS instance.
-     * @param "HostId" (optional.String) -  Host ID (hypervisor) of the VPS instance.
      * @param "XFields" (optional.String) -  An optional fields mask
 
 @return []Vps
 */
 
 type VPSApiGetVpsResourceOpts struct {
+	StorageId    optional.String
 	ClientId     optional.Int32
+	HostId       optional.String
 	FacilityCode optional.String
 	NetworkId    optional.String
-	StorageId    optional.String
-	HostId       optional.String
 	XFields      optional.String
 }
 
@@ -1649,20 +1649,20 @@ func (a *VPSApiService) GetVpsResource(ctx context.Context, localVarOptionals *V
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if localVarOptionals != nil && localVarOptionals.StorageId.IsSet() {
+		localVarQueryParams.Add("storageId", parameterToString(localVarOptionals.StorageId.Value(), ""))
+	}
 	if localVarOptionals != nil && localVarOptionals.ClientId.IsSet() {
 		localVarQueryParams.Add("clientId", parameterToString(localVarOptionals.ClientId.Value(), ""))
+	}
+	if localVarOptionals != nil && localVarOptionals.HostId.IsSet() {
+		localVarQueryParams.Add("hostId", parameterToString(localVarOptionals.HostId.Value(), ""))
 	}
 	if localVarOptionals != nil && localVarOptionals.FacilityCode.IsSet() {
 		localVarQueryParams.Add("facilityCode", parameterToString(localVarOptionals.FacilityCode.Value(), ""))
 	}
 	if localVarOptionals != nil && localVarOptionals.NetworkId.IsSet() {
 		localVarQueryParams.Add("networkId", parameterToString(localVarOptionals.NetworkId.Value(), ""))
-	}
-	if localVarOptionals != nil && localVarOptionals.StorageId.IsSet() {
-		localVarQueryParams.Add("storageId", parameterToString(localVarOptionals.StorageId.Value(), ""))
-	}
-	if localVarOptionals != nil && localVarOptionals.HostId.IsSet() {
-		localVarQueryParams.Add("hostId", parameterToString(localVarOptionals.HostId.Value(), ""))
 	}
 	// to determine the Content-Type header
 	localVarHttpContentTypes := []string{"application/json"}
@@ -1933,16 +1933,16 @@ VPSApiService Get a VPS Volume Snapshot by ID
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param snapshotId
  * @param optional nil or *VPSApiGetVpsSnapshotIdResourceOpts - Optional Parameters:
-     * @param "FacilityCode" (optional.String) -  The facility code associated with the VPS instance. For example: TPA1.
      * @param "ClientId" (optional.Int32) -  The unique client account ID.
+     * @param "FacilityCode" (optional.String) -  The facility code associated with the VPS instance. For example: TPA1.
      * @param "XFields" (optional.String) -  An optional fields mask
 
 @return VpsSnapshot
 */
 
 type VPSApiGetVpsSnapshotIdResourceOpts struct {
-	FacilityCode optional.String
 	ClientId     optional.Int32
+	FacilityCode optional.String
 	XFields      optional.String
 }
 
@@ -1963,11 +1963,11 @@ func (a *VPSApiService) GetVpsSnapshotIdResource(ctx context.Context, snapshotId
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
-	if localVarOptionals != nil && localVarOptionals.FacilityCode.IsSet() {
-		localVarQueryParams.Add("facilityCode", parameterToString(localVarOptionals.FacilityCode.Value(), ""))
-	}
 	if localVarOptionals != nil && localVarOptionals.ClientId.IsSet() {
 		localVarQueryParams.Add("clientId", parameterToString(localVarOptionals.ClientId.Value(), ""))
+	}
+	if localVarOptionals != nil && localVarOptionals.FacilityCode.IsSet() {
+		localVarQueryParams.Add("facilityCode", parameterToString(localVarOptionals.FacilityCode.Value(), ""))
 	}
 	// to determine the Content-Type header
 	localVarHttpContentTypes := []string{"application/json"}
@@ -2051,8 +2051,8 @@ func (a *VPSApiService) GetVpsSnapshotIdResource(ctx context.Context, snapshotId
 VPSApiService Get all VPS Volume Snapshots available
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param optional nil or *VPSApiGetVpsSnapshotResourceOpts - Optional Parameters:
-     * @param "FacilityCode" (optional.String) -  The facility code associated with the VPS instance. For example: TPA1.
      * @param "DeviceId" (optional.Int32) -  The unique device ID of the VPS instance.
+     * @param "FacilityCode" (optional.String) -  The facility code associated with the VPS instance. For example: TPA1.
      * @param "ClientId" (optional.Int32) -  The unique client account ID.
      * @param "XFields" (optional.String) -  An optional fields mask
 
@@ -2060,8 +2060,8 @@ VPSApiService Get all VPS Volume Snapshots available
 */
 
 type VPSApiGetVpsSnapshotResourceOpts struct {
-	FacilityCode optional.String
 	DeviceId     optional.Int32
+	FacilityCode optional.String
 	ClientId     optional.Int32
 	XFields      optional.String
 }
@@ -2082,11 +2082,11 @@ func (a *VPSApiService) GetVpsSnapshotResource(ctx context.Context, localVarOpti
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
-	if localVarOptionals != nil && localVarOptionals.FacilityCode.IsSet() {
-		localVarQueryParams.Add("facilityCode", parameterToString(localVarOptionals.FacilityCode.Value(), ""))
-	}
 	if localVarOptionals != nil && localVarOptionals.DeviceId.IsSet() {
 		localVarQueryParams.Add("deviceId", parameterToString(localVarOptionals.DeviceId.Value(), ""))
+	}
+	if localVarOptionals != nil && localVarOptionals.FacilityCode.IsSet() {
+		localVarQueryParams.Add("facilityCode", parameterToString(localVarOptionals.FacilityCode.Value(), ""))
 	}
 	if localVarOptionals != nil && localVarOptionals.ClientId.IsSet() {
 		localVarQueryParams.Add("clientId", parameterToString(localVarOptionals.ClientId.Value(), ""))
@@ -2174,16 +2174,16 @@ VPSApiService Get a VPS Snapshot Schedules
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param snapshotScheduleId
  * @param optional nil or *VPSApiGetVpsSnapshotScheduleIdResourceOpts - Optional Parameters:
-     * @param "FacilityCode" (optional.String) -  The facility code associated with the VPS instance. For example: TPA1.
      * @param "ClientId" (optional.Int32) -  The unique client account ID.
+     * @param "FacilityCode" (optional.String) -  The facility code associated with the VPS instance. For example: TPA1.
      * @param "XFields" (optional.String) -  An optional fields mask
 
 @return VpsSnapshotSchedule
 */
 
 type VPSApiGetVpsSnapshotScheduleIdResourceOpts struct {
-	FacilityCode optional.String
 	ClientId     optional.Int32
+	FacilityCode optional.String
 	XFields      optional.String
 }
 
@@ -2204,11 +2204,11 @@ func (a *VPSApiService) GetVpsSnapshotScheduleIdResource(ctx context.Context, sn
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
-	if localVarOptionals != nil && localVarOptionals.FacilityCode.IsSet() {
-		localVarQueryParams.Add("facilityCode", parameterToString(localVarOptionals.FacilityCode.Value(), ""))
-	}
 	if localVarOptionals != nil && localVarOptionals.ClientId.IsSet() {
 		localVarQueryParams.Add("clientId", parameterToString(localVarOptionals.ClientId.Value(), ""))
+	}
+	if localVarOptionals != nil && localVarOptionals.FacilityCode.IsSet() {
+		localVarQueryParams.Add("facilityCode", parameterToString(localVarOptionals.FacilityCode.Value(), ""))
 	}
 	// to determine the Content-Type header
 	localVarHttpContentTypes := []string{"application/json"}
@@ -2292,8 +2292,8 @@ func (a *VPSApiService) GetVpsSnapshotScheduleIdResource(ctx context.Context, sn
 VPSApiService Get all VPS Snapshot Schedules for a Facility or VPS Instance
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param optional nil or *VPSApiGetVpsSnapshotScheduleResourceOpts - Optional Parameters:
-     * @param "FacilityCode" (optional.String) -  The facility code associated with the VPS instance. For example: TPA1.
      * @param "DeviceId" (optional.Int32) -  The unique device ID of the VPS instance.
+     * @param "FacilityCode" (optional.String) -  The facility code associated with the VPS instance. For example: TPA1.
      * @param "ClientId" (optional.Int32) -  The unique client account ID.
      * @param "XFields" (optional.String) -  An optional fields mask
 
@@ -2301,8 +2301,8 @@ VPSApiService Get all VPS Snapshot Schedules for a Facility or VPS Instance
 */
 
 type VPSApiGetVpsSnapshotScheduleResourceOpts struct {
-	FacilityCode optional.String
 	DeviceId     optional.Int32
+	FacilityCode optional.String
 	ClientId     optional.Int32
 	XFields      optional.String
 }
@@ -2323,11 +2323,11 @@ func (a *VPSApiService) GetVpsSnapshotScheduleResource(ctx context.Context, loca
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
-	if localVarOptionals != nil && localVarOptionals.FacilityCode.IsSet() {
-		localVarQueryParams.Add("facilityCode", parameterToString(localVarOptionals.FacilityCode.Value(), ""))
-	}
 	if localVarOptionals != nil && localVarOptionals.DeviceId.IsSet() {
 		localVarQueryParams.Add("deviceId", parameterToString(localVarOptionals.DeviceId.Value(), ""))
+	}
+	if localVarOptionals != nil && localVarOptionals.FacilityCode.IsSet() {
+		localVarQueryParams.Add("facilityCode", parameterToString(localVarOptionals.FacilityCode.Value(), ""))
 	}
 	if localVarOptionals != nil && localVarOptionals.ClientId.IsSet() {
 		localVarQueryParams.Add("clientId", parameterToString(localVarOptionals.ClientId.Value(), ""))
@@ -2523,8 +2523,8 @@ func (a *VPSApiService) GetVpsVolumeIdResource(ctx context.Context, volumeId str
 VPSApiService Get all VPS Instance Volumes available
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param optional nil or *VPSApiGetVpsVolumeResourceOpts - Optional Parameters:
-     * @param "FacilityCode" (optional.String) -  The facility code associated with the VPS instance. For example: TPA1.
      * @param "DeviceId" (optional.Int32) -  The unique device ID of the VPS instance.
+     * @param "FacilityCode" (optional.String) -  The facility code associated with the VPS instance. For example: TPA1.
      * @param "ClientId" (optional.Int32) -  The unique client account ID.
      * @param "XFields" (optional.String) -  An optional fields mask
 
@@ -2532,8 +2532,8 @@ VPSApiService Get all VPS Instance Volumes available
 */
 
 type VPSApiGetVpsVolumeResourceOpts struct {
-	FacilityCode optional.String
 	DeviceId     optional.Int32
+	FacilityCode optional.String
 	ClientId     optional.Int32
 	XFields      optional.String
 }
@@ -2554,11 +2554,11 @@ func (a *VPSApiService) GetVpsVolumeResource(ctx context.Context, localVarOption
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
-	if localVarOptionals != nil && localVarOptionals.FacilityCode.IsSet() {
-		localVarQueryParams.Add("facilityCode", parameterToString(localVarOptionals.FacilityCode.Value(), ""))
-	}
 	if localVarOptionals != nil && localVarOptionals.DeviceId.IsSet() {
 		localVarQueryParams.Add("deviceId", parameterToString(localVarOptionals.DeviceId.Value(), ""))
+	}
+	if localVarOptionals != nil && localVarOptionals.FacilityCode.IsSet() {
+		localVarQueryParams.Add("facilityCode", parameterToString(localVarOptionals.FacilityCode.Value(), ""))
 	}
 	if localVarOptionals != nil && localVarOptionals.ClientId.IsSet() {
 		localVarQueryParams.Add("clientId", parameterToString(localVarOptionals.ClientId.Value(), ""))

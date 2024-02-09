@@ -11,7 +11,7 @@ package swagger
 
 type PrimaryInterface struct {
 	Ip         string   `json:"ip,omitempty"`
-	DnsServers []string `json:"dnsServers,omitempty"`
 	Gateway    string   `json:"gateway,omitempty"`
+	DnsServers []string `json:"dnsServers,omitempty"`
 	Subnet     string   `json:"subnet,omitempty"`
 }

@@ -30,4 +30,10 @@ type Credit struct {
 	IsHourly bool `json:"isHourly,omitempty"`
 	// The Billing Info ID used to purchase the credits on this account
 	BillingInfoId int32 `json:"billingInfoId,omitempty"`
+	// The list of service IDs associated with the credit ID
+	ServiceIds []int32 `json:"serviceIds,omitempty"`
+	// Whether credits are automatically being applied to new orders or invoices. [0 = Not Auto Apply, 1 = Auto Apply New Invoices, 2 = Auto Apply All Invoices]
+	AutoApply int32 `json:"autoApply,omitempty"`
+	// The expiration date of the credit
+	ExpirationDate int32 `json:"expirationDate,omitempty"`
 }

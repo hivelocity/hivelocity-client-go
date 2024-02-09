@@ -10,21 +10,21 @@
 package swagger
 
 type ProfileDump struct {
-	Phone    string      `json:"phone,omitempty"`
+	Login    string      `json:"login,omitempty"`
 	First    string      `json:"first,omitempty"`
-	Id       int32       `json:"id,omitempty"`
-	IsClient bool        `json:"isClient,omitempty"`
-	MetaData interface{} `json:"metaData,omitempty"`
 	Address  interface{} `json:"address,omitempty"`
-	City     interface{} `json:"city,omitempty"`
+	Phone    string      `json:"phone,omitempty"`
+	Id       int32       `json:"id,omitempty"`
+	State    interface{} `json:"state,omitempty"`
+	Zip      interface{} `json:"zip,omitempty"`
+	Fax      interface{} `json:"fax,omitempty"`
 	Email    string      `json:"email,omitempty"`
 	Company  interface{} `json:"company,omitempty"`
-	Fax      interface{} `json:"fax,omitempty"`
-	Country  interface{} `json:"country,omitempty"`
-	Zip      interface{} `json:"zip,omitempty"`
 	Last     string      `json:"last,omitempty"`
-	Login    string      `json:"login,omitempty"`
+	City     interface{} `json:"city,omitempty"`
+	MetaData interface{} `json:"metaData,omitempty"`
 	FullName interface{} `json:"fullName,omitempty"`
-	State    interface{} `json:"state,omitempty"`
 	Created  interface{} `json:"created,omitempty"`
+	IsClient bool        `json:"isClient,omitempty"`
+	Country  interface{} `json:"country,omitempty"`
 }

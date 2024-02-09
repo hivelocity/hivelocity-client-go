@@ -10,7 +10,7 @@
 package swagger
 
 type Modification struct {
-	Reason   string      `json:"reason,omitempty"`
-	Path     string      `json:"path,omitempty"`
 	Contents interface{} `json:"contents,omitempty"`
+	Path     string      `json:"path,omitempty"`
+	Reason   string      `json:"reason,omitempty"`
 }

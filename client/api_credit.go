@@ -29,12 +29,14 @@ type CreditApiService service
 CreditApiService Return a list with all Credits
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param optional nil or *CreditApiGetCreditResourceOpts - Optional Parameters:
+     * @param "Status" (optional.String) -  The current status of the service (all, active, inactive)
      * @param "XFields" (optional.String) -  An optional fields mask
 
 @return []Credit
 */
 
 type CreditApiGetCreditResourceOpts struct {
+	Status  optional.String
 	XFields optional.String
 }
 
@@ -54,6 +56,9 @@ func (a *CreditApiService) GetCreditResource(ctx context.Context, localVarOption
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if localVarOptionals != nil && localVarOptionals.Status.IsSet() {
+		localVarQueryParams.Add("status", parameterToString(localVarOptionals.Status.Value(), ""))
+	}
 	// to determine the Content-Type header
 	localVarHttpContentTypes := []string{"application/json"}
 

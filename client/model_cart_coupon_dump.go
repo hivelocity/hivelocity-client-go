@@ -14,56 +14,56 @@ import (
 )
 
 type CartCouponDump struct {
-	Id                int32       `json:"id,omitempty"`
-	UserLoginRequired interface{} `json:"userLoginRequired,omitempty"`
-	// Coupon usage type limit max_total|one_per_user|one_per_user_in_24_hours
-	UsageTypeLimit []string `json:"usageTypeLimit,omitempty"`
-	// Coupon value
-	Value float32 `json:"value"`
-	// Coupon end date
-	End string `json:"end,omitempty"`
-	// Set end date
-	HasEndDate bool `json:"hasEndDate"`
-	// Coupon code
-	Code string `json:"code"`
-	// Coupon active
-	Active bool `json:"active,omitempty"`
-	// Coupon start date
-	Start           string                         `json:"start"`
-	UsageStatistics *CartCouponUsageStatisticsDump `json:"usageStatistics,omitempty"`
 	// Can apply credit to cart
 	CanApplyCreditToCart bool `json:"canApplyCreditToCart,omitempty"`
+	// Coupon usage type limit max_total|one_per_user|one_per_user_in_24_hours
+	UsageTypeLimit []string `json:"usageTypeLimit,omitempty"`
+	// Set end date
+	HasEndDate bool `json:"hasEndDate"`
+	// Clients ids the coupon will be available
+	ClientIds []int32   `json:"clientIds,omitempty"`
+	Created   time.Time `json:"created,omitempty"`
+	// Coupon expire value
+	ExpireValue     int32                          `json:"expireValue,omitempty"`
+	UsageStatistics *CartCouponUsageStatisticsDump `json:"usageStatistics,omitempty"`
 	// Account applicable credit
 	AccountApplicableCredit bool `json:"accountApplicableCredit,omitempty"`
-	// Products ids the coupon will be available
-	ProductIds []int32 `json:"productIds,omitempty"`
-	// Coupon expire value
-	ExpireValue int32 `json:"expireValue,omitempty"`
-	// Coupon service eligibility none|all
-	ServiceEligibility string    `json:"serviceEligibility,omitempty"`
-	Created            time.Time `json:"created,omitempty"`
-	// Coupon expire type first_billing_period|number_of_days|never_expire
-	ExpireType string `json:"expireType"`
-	// Clients ids the coupon will be available
-	ClientIds []int32 `json:"clientIds,omitempty"`
-	// Coupon type %|$|credit
-	Type_ string `json:"type"`
-	// Coupon max uses
-	MaxUsageLimit int32 `json:"maxUsageLimit,omitempty"`
-	// Eligible client rules to use this coupon block_enterprise_client|block_reseller|block_partner|has_no_purchase|has_one_purchase|has_multiple_purchase|account_created_recently
-	CustomerEligibilityRules []string `json:"customerEligibilityRules,omitempty"`
-	// Coupon name
-	Name string `json:"name"`
-	// Coupon customer eligibility all|rules|specific
-	CustomerEligibility string `json:"customerEligibility"`
-	// Maximum purchase requirement max
-	MaximumPurchaseAmount float32 `json:"maximumPurchaseAmount,omitempty"`
-	// Max use same cart
-	MaxUseSameCart int32 `json:"maxUseSameCart,omitempty"`
 	// Minimum purchase requirement
 	MinimumPurchaseAmount float32 `json:"minimumPurchaseAmount,omitempty"`
+	// Coupon value
+	Value float32 `json:"value"`
+	// Maximum purchase requirement max
+	MaximumPurchaseAmount float32 `json:"maximumPurchaseAmount,omitempty"`
+	// Coupon type %|$|credit
+	Type_ string `json:"type"`
+	// Coupon service eligibility none|all
+	ServiceEligibility string `json:"serviceEligibility,omitempty"`
+	// Eligible client rules to use this coupon block_enterprise_client|block_reseller|block_partner|has_no_purchase|has_one_purchase|has_multiple_purchase|account_created_recently
+	CustomerEligibilityRules []string `json:"customerEligibilityRules,omitempty"`
+	// Coupon active
+	Active bool `json:"active,omitempty"`
+	// Max use same cart
+	MaxUseSameCart int32 `json:"maxUseSameCart,omitempty"`
+	// Coupon customer eligibility all|rules|specific
+	CustomerEligibility string `json:"customerEligibility"`
+	Id                  int32  `json:"id,omitempty"`
+	// Coupon name
+	Name string `json:"name"`
+	// Allow other discounts
+	AllowOtherDiscounts bool        `json:"allowOtherDiscounts"`
+	UserLoginRequired   interface{} `json:"userLoginRequired,omitempty"`
+	// Coupon max uses
+	MaxUsageLimit int32 `json:"maxUsageLimit,omitempty"`
 	// Coupon max use same cart use type first_item|highest_price
 	MaxUseSameCartUseType string `json:"maxUseSameCartUseType,omitempty"`
-	// Allow other discounts
-	AllowOtherDiscounts bool `json:"allowOtherDiscounts"`
+	// Coupon code
+	Code string `json:"code"`
+	// Coupon end date
+	End string `json:"end,omitempty"`
+	// Products ids the coupon will be available
+	ProductIds []int32 `json:"productIds,omitempty"`
+	// Coupon expire type first_billing_period|number_of_days|never_expire
+	ExpireType string `json:"expireType"`
+	// Coupon start date
+	Start string `json:"start"`
 }

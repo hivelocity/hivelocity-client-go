@@ -3,8 +3,8 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**SameRack** | **bool** |  | [optional] [default to null]
 **Name** | **string** |  | [optional] [default to null]
+**SameRack** | **bool** |  | [optional] [default to null]
 **Id** | **int32** |  | [optional] [default to null]
 **DeviceIds** | **[]int32** |  | [optional] [default to null]
 
