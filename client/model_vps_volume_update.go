@@ -11,7 +11,7 @@ package swagger
 
 type VpsVolumeUpdate struct {
 	// Device ID the disk is attached to
-	DeviceId int32 `json:"deviceId"`
+	DeviceId int32 `json:"deviceId,omitempty"`
 	// Disk size in GiB
 	Size int32 `json:"size"`
 }

@@ -13,7 +13,7 @@ Method | HTTP request | Description
 
 
 # **DeleteBareMetalDeviceIdResource**
-> DeleteBareMetalDeviceIdResource(ctx, deviceId, optional)
+> DeleteBareMetalDeviceIdResource(ctx, deviceId)
 Cancel/delete device
 
 ### Required Parameters
@@ -22,15 +22,6 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
   **deviceId** | **int32**|  | 
- **optional** | ***BareMetalDevicesApiDeleteBareMetalDeviceIdResourceOpts** | optional parameters | nil if no parameters
-
-### Optional Parameters
-Optional parameters are passed through a pointer to a BareMetalDevicesApiDeleteBareMetalDeviceIdResourceOpts struct
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **deploymentId** | **optional.String**| Id of the deployment to interact with | 
 
 ### Return type
 
@@ -65,7 +56,6 @@ Optional parameters are passed through a pointer to a BareMetalDevicesApiGetBare
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **deploymentId** | **optional.String**| Id of the deployment to interact with | 
  **xFields** | **optional.String**| An optional fields mask | 
 
 ### Return type
@@ -206,7 +196,6 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **deploymentId** | **optional.String**| Id of the deployment to interact with | 
  **skipPowerCheck** | **optional.Bool**| If true, bypass the powered off check. | 
  **xFields** | **optional.String**| An optional fields mask | 
 

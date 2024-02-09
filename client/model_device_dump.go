@@ -24,6 +24,10 @@ type DeviceDump struct {
 	PowerStatus interface{} `json:"powerStatus,omitempty"`
 	// True if device has active cancellation request.
 	HasCancellation bool `json:"hasCancellation,omitempty"`
+	// Device's service billing status.
+	BillingStatus string `json:"billingStatus,omitempty"`
+	// Device's service expected cancel date.
+	BillingCancelDate int32 `json:"billingCancelDate,omitempty"`
 	// True if device enrolled in managed services.
 	IsManaged bool `json:"isManaged,omitempty"`
 	// True if device currently reloading.
@@ -63,6 +67,8 @@ type DeviceDump struct {
 	SelfProvisioning bool `json:"selfProvisioning,omitempty"`
 	// Additional metadata.
 	Metadata interface{} `json:"metadata,omitempty"`
-	// BUILDING|IPMI_READY|PROVISIONABLE|RESERVED|WAIT_FOR_PXE|PROVISION_STARTED|PROVISION_WAIT_FOR_ADDONS|PROVISION_FINISHED|WAIT_TO_COMPLETE_ORDER|WAIT_TO_ASSIGN_SERVICE|WAIT_FOR_HARDWARE_SCAN|IN_USE|RELOADING|DEVICE_READY_TO_TEST|DEVICE_READY_TO_WIPE|DEVICE_READY_TO_UPGRADE_FIRMWARE|FAILED|CLEANUP_MOVE_TO_FAILED|IN_REVIEW
+	// BUILDING|IPMI_READY|PROVISIONABLE|RESERVED|WAIT_FOR_PXE|PROVISION_STARTED|PROVISION_WAIT_FOR_ADDONS|PROVISION_FINISHED|WAIT_TO_COMPLETE_ORDER|WAIT_TO_ASSIGN_SERVICE|WAIT_FOR_HARDWARE_SCAN|IN_USE|RELOADING|DEVICE_READY_TO_TEST|DEVICE_READY_TO_WIPE|DEVICE_READY_TO_UPGRADE_FIRMWARE|FAILED|CLEANUP_MOVE_TO_FAILED|IN_REVIEW|READY_FOR_MIGRATION
 	SpsStatus string `json:"spsStatus,omitempty"`
+	// The unique ID of the associated client.
+	ClientId int32 `json:"clientId,omitempty"`
 }

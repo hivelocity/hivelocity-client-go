@@ -15,7 +15,7 @@ import (
 
 type PublicApiToken struct {
 	IpAddresses *PublicApiTokenIp `json:"ipAddresses,omitempty"`
+	Name        string            `json:"name,omitempty"`
 	// Token expiration datetime in Unix time format.
 	TimeExpiration time.Time `json:"timeExpiration,omitempty"`
-	Name           string    `json:"name,omitempty"`
 }

@@ -10,18 +10,30 @@
 package swagger
 
 type VpsNetworkInterface struct {
-	// The netmask assigned to the VPS instance NIC.
-	Netmask string `json:"netmask,omitempty"`
-	// The IP address assigned to the VPS instance NIC.
-	IpAddress string `json:"ipAddress,omitempty"`
-	// The IPv6 address assigned to the VPS instance NIC.
-	Ipv6Address string `json:"ipv6Address,omitempty"`
 	// The IPv6 CIDR assigned to the VPS instance NIC.
 	Ipv6Cidr string `json:"ipv6Cidr,omitempty"`
+	// The netmask assigned to the VPS instance NIC.
+	Netmask string `json:"netmask,omitempty"`
+	// The IPv6 gateway assigned to the VPS instance NIC.
+	Ipv6Gateway string `json:"ipv6Gateway,omitempty"`
+	// The name of the VPS instance NIC.
+	NicName string `json:"nicName,omitempty"`
+	// The VLAN tag of the VPS Network. This will be returned for VLAN enabled networks.
+	VlanTag int32 `json:"vlanTag,omitempty"`
+	// The MAC address of the VPS instance NIC.
+	MacAddress string `json:"macAddress,omitempty"`
 	// The gateway assigned to the VPS instance NIC.
 	Gateway string `json:"gateway,omitempty"`
 	// The unique ID of the VPS instance NIC.
 	NicId string `json:"nicId,omitempty"`
-	// The IPv6 gateway assigned to the VPS instance NIC.
-	Ipv6Gateway string `json:"ipv6Gateway,omitempty"`
+	// The name of the VPS Network.
+	NetworkName string `json:"networkName,omitempty"`
+	// The IPv6 address assigned to the VPS instance NIC.
+	Ipv6Address string `json:"ipv6Address,omitempty"`
+	// The unique ID of the VPS Network.
+	NetworkId string `json:"networkId,omitempty"`
+	// The VLAN ID of the VPS Network. This will be returned for VLAN enabled networks.
+	VlanId int32 `json:"vlanId,omitempty"`
+	// The IP address assigned to the VPS instance NIC.
+	IpAddress string `json:"ipAddress,omitempty"`
 }

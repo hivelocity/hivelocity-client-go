@@ -10,8 +10,8 @@
 package swagger
 
 type MxRecordCreate struct {
-	Preference int32  `json:"preference"`
 	Ttl        int32  `json:"ttl"`
 	Name       string `json:"name"`
+	Preference int32  `json:"preference"`
 	Exchange   string `json:"exchange"`
 }

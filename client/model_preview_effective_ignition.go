@@ -11,9 +11,9 @@ package swagger
 
 type PreviewEffectiveIgnition struct {
 	PrimaryInterface *PrimaryInterface `json:"primaryInterface,omitempty"`
+	Hostname         string            `json:"hostname,omitempty"`
 	Bonded           bool              `json:"bonded,omitempty"`
 	PublicKeys       []string          `json:"publicKeys,omitempty"`
 	Password         string            `json:"password,omitempty"`
-	Hostname         string            `json:"hostname,omitempty"`
 	Ignition         interface{}       `json:"ignition"`
 }

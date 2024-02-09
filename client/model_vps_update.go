@@ -10,10 +10,10 @@
 package swagger
 
 type VpsUpdate struct {
+	// Cloud-init script
+	CloudInit string `json:"cloudInit,omitempty"`
 	// ID of VPS product to scale to
 	ProductId int32 `json:"productId,omitempty"`
 	// List of SSH Key IDs
 	SshKeyIds []int32 `json:"sshKeyIds,omitempty"`
-	// Cloud-init script
-	CloudInit string `json:"cloudInit,omitempty"`
 }

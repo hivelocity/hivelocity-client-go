@@ -27,20 +27,21 @@ var (
 type VPSApiService service
 
 /*
-VPSApiService Delete VPS instance
+VPSApiService Detach a VPS Network from a VPS Device
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param deviceId Device ID of VPS instance to View / Update
- * @param optional nil or *VPSApiDeleteVpsIdResourceOpts - Optional Parameters:
+ * @param deviceId
+ * @param networkId
+ * @param optional nil or *VPSApiDeleteVpsIdNetworkRemoveResourceOpts - Optional Parameters:
      * @param "XFields" (optional.String) -  An optional fields mask
 
 @return NetworkTaskDump
 */
 
-type VPSApiDeleteVpsIdResourceOpts struct {
+type VPSApiDeleteVpsIdNetworkRemoveResourceOpts struct {
 	XFields optional.String
 }
 
-func (a *VPSApiService) DeleteVpsIdResource(ctx context.Context, deviceId int32, localVarOptionals *VPSApiDeleteVpsIdResourceOpts) (NetworkTaskDump, *http.Response, error) {
+func (a *VPSApiService) DeleteVpsIdNetworkRemoveResource(ctx context.Context, deviceId int32, networkId string, localVarOptionals *VPSApiDeleteVpsIdNetworkRemoveResourceOpts) (NetworkTaskDump, *http.Response, error) {
 	var (
 		localVarHttpMethod  = strings.ToUpper("Delete")
 		localVarPostBody    interface{}
@@ -50,8 +51,229 @@ func (a *VPSApiService) DeleteVpsIdResource(ctx context.Context, deviceId int32,
 	)
 
 	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/vps/{deviceId}"
+	localVarPath := a.client.cfg.BasePath + "/vps/{deviceId}/network/{networkId}"
 	localVarPath = strings.Replace(localVarPath, "{"+"deviceId"+"}", fmt.Sprintf("%v", deviceId), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", fmt.Sprintf("%v", networkId), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHttpContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHttpContentType := selectHeaderContentType(localVarHttpContentTypes)
+	if localVarHttpContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHttpContentType
+	}
+
+	// to determine the Accept header
+	localVarHttpHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHttpHeaderAccept := selectHeaderAccept(localVarHttpHeaderAccepts)
+	if localVarHttpHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
+	}
+	if localVarOptionals != nil && localVarOptionals.XFields.IsSet() {
+		localVarHeaderParams["X-Fields"] = parameterToString(localVarOptionals.XFields.Value(), "")
+	}
+	if ctx != nil {
+		// API Key Authentication
+		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
+			var key string
+			if auth.Prefix != "" {
+				key = auth.Prefix + " " + auth.Key
+			} else {
+				key = auth.Key
+			}
+			localVarHeaderParams["X-API-KEY"] = key
+
+		}
+	}
+	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHttpResponse, err := a.client.callAPI(r)
+	if err != nil || localVarHttpResponse == nil {
+		return localVarReturnValue, localVarHttpResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHttpResponse.Body)
+	localVarHttpResponse.Body.Close()
+	if err != nil {
+		return localVarReturnValue, localVarHttpResponse, err
+	}
+
+	if localVarHttpResponse.StatusCode < 300 {
+		// If we succeed, return the data, otherwise pass on to decode error.
+		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+		return localVarReturnValue, localVarHttpResponse, err
+	}
+
+	if localVarHttpResponse.StatusCode >= 300 {
+		newErr := GenericSwaggerError{
+			body:  localVarBody,
+			error: localVarHttpResponse.Status,
+		}
+
+		if localVarHttpResponse.StatusCode == 201 {
+			var v NetworkTaskDump
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
+		}
+
+		return localVarReturnValue, localVarHttpResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHttpResponse, nil
+}
+
+/*
+VPSApiService Delete VPS Network
+ * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param networkId
+ * @param optional nil or *VPSApiDeleteVpsNetworkIdResourceOpts - Optional Parameters:
+     * @param "XFields" (optional.String) -  An optional fields mask
+
+@return NetworkTaskDump
+*/
+
+type VPSApiDeleteVpsNetworkIdResourceOpts struct {
+	XFields optional.String
+}
+
+func (a *VPSApiService) DeleteVpsNetworkIdResource(ctx context.Context, networkId string, localVarOptionals *VPSApiDeleteVpsNetworkIdResourceOpts) (NetworkTaskDump, *http.Response, error) {
+	var (
+		localVarHttpMethod  = strings.ToUpper("Delete")
+		localVarPostBody    interface{}
+		localVarFileName    string
+		localVarFileBytes   []byte
+		localVarReturnValue NetworkTaskDump
+	)
+
+	// create path and map variables
+	localVarPath := a.client.cfg.BasePath + "/vps/network/{networkId}"
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", fmt.Sprintf("%v", networkId), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHttpContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHttpContentType := selectHeaderContentType(localVarHttpContentTypes)
+	if localVarHttpContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHttpContentType
+	}
+
+	// to determine the Accept header
+	localVarHttpHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHttpHeaderAccept := selectHeaderAccept(localVarHttpHeaderAccepts)
+	if localVarHttpHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
+	}
+	if localVarOptionals != nil && localVarOptionals.XFields.IsSet() {
+		localVarHeaderParams["X-Fields"] = parameterToString(localVarOptionals.XFields.Value(), "")
+	}
+	if ctx != nil {
+		// API Key Authentication
+		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
+			var key string
+			if auth.Prefix != "" {
+				key = auth.Prefix + " " + auth.Key
+			} else {
+				key = auth.Key
+			}
+			localVarHeaderParams["X-API-KEY"] = key
+
+		}
+	}
+	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHttpResponse, err := a.client.callAPI(r)
+	if err != nil || localVarHttpResponse == nil {
+		return localVarReturnValue, localVarHttpResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHttpResponse.Body)
+	localVarHttpResponse.Body.Close()
+	if err != nil {
+		return localVarReturnValue, localVarHttpResponse, err
+	}
+
+	if localVarHttpResponse.StatusCode < 300 {
+		// If we succeed, return the data, otherwise pass on to decode error.
+		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+		return localVarReturnValue, localVarHttpResponse, err
+	}
+
+	if localVarHttpResponse.StatusCode >= 300 {
+		newErr := GenericSwaggerError{
+			body:  localVarBody,
+			error: localVarHttpResponse.Status,
+		}
+
+		if localVarHttpResponse.StatusCode == 201 {
+			var v NetworkTaskDump
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
+		}
+
+		return localVarReturnValue, localVarHttpResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHttpResponse, nil
+}
+
+/*
+VPSApiService Remove a Secondary IP Address from VPS instance
+ * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param deviceId
+ * @param ipAssignmentId
+ * @param optional nil or *VPSApiDeleteVpsSecondaryIpRemoveResourceOpts - Optional Parameters:
+     * @param "XFields" (optional.String) -  An optional fields mask
+
+@return NetworkTaskDump
+*/
+
+type VPSApiDeleteVpsSecondaryIpRemoveResourceOpts struct {
+	XFields optional.String
+}
+
+func (a *VPSApiService) DeleteVpsSecondaryIpRemoveResource(ctx context.Context, deviceId int32, ipAssignmentId int32, localVarOptionals *VPSApiDeleteVpsSecondaryIpRemoveResourceOpts) (NetworkTaskDump, *http.Response, error) {
+	var (
+		localVarHttpMethod  = strings.ToUpper("Delete")
+		localVarPostBody    interface{}
+		localVarFileName    string
+		localVarFileBytes   []byte
+		localVarReturnValue NetworkTaskDump
+	)
+
+	// create path and map variables
+	localVarPath := a.client.cfg.BasePath + "/vps/{deviceId}/secondaryIp/{ipAssignmentId}"
+	localVarPath = strings.Replace(localVarPath, "{"+"deviceId"+"}", fmt.Sprintf("%v", deviceId), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"ipAssignmentId"+"}", fmt.Sprintf("%v", ipAssignmentId), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -140,7 +362,7 @@ VPSApiService Delete a VPS Volume Snapshot
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param snapshotId
  * @param optional nil or *VPSApiDeleteVpsSnapshotIdResourceOpts - Optional Parameters:
-     * @param "FacilityCode" (optional.String) -  The facility code associated with the VPS instance. For example:TPA1.
+     * @param "FacilityCode" (optional.String) -  The facility code associated with the VPS instance. For example: TPA1.
      * @param "ClientId" (optional.Int32) -  The unique client account ID.
      * @param "XFields" (optional.String) -  An optional fields mask
 
@@ -259,7 +481,7 @@ VPSApiService Delete a VPS Snapshot Schedule
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param snapshotScheduleId
  * @param optional nil or *VPSApiDeleteVpsSnapshotScheduleIdResourceOpts - Optional Parameters:
-     * @param "FacilityCode" (optional.String) -  The facility code associated with the VPS instance. For example:TPA1.
+     * @param "FacilityCode" (optional.String) -  The facility code associated with the VPS instance. For example: TPA1.
      * @param "ClientId" (optional.Int32) -  The unique client account ID.
      * @param "XFields" (optional.String) -  An optional fields mask
 
@@ -473,7 +695,7 @@ VPSApiService Delete an ISO
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param isoId
  * @param optional nil or *VPSApiDeleteVpsisoIdResourceOpts - Optional Parameters:
-     * @param "FacilityCode" (optional.String) -  The facility code associated with the VPS instance. For example:TPA1.
+     * @param "FacilityCode" (optional.String) -  The facility code where the ISOs are stored.
      * @param "ClientId" (optional.Int32) -  The unique client account ID.
      * @param "XFields" (optional.String) -  An optional fields mask
 
@@ -1153,6 +1375,483 @@ func (a *VPSApiService) GetVpsMetricsResource(ctx context.Context, deviceId int3
 }
 
 /*
+VPSApiService Get VPS Network
+ * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param networkId
+ * @param optional nil or *VPSApiGetVpsNetworkIdResourceOpts - Optional Parameters:
+     * @param "FacilityCode" (optional.String) -  The facility code where the VPS Network is located. For example: &#x60;TPA1&#x60;.
+     * @param "ClientId" (optional.Int32) -  The unique client account ID.
+     * @param "XFields" (optional.String) -  An optional fields mask
+
+@return VpsNetwork
+*/
+
+type VPSApiGetVpsNetworkIdResourceOpts struct {
+	FacilityCode optional.String
+	ClientId     optional.Int32
+	XFields      optional.String
+}
+
+func (a *VPSApiService) GetVpsNetworkIdResource(ctx context.Context, networkId string, localVarOptionals *VPSApiGetVpsNetworkIdResourceOpts) (VpsNetwork, *http.Response, error) {
+	var (
+		localVarHttpMethod  = strings.ToUpper("Get")
+		localVarPostBody    interface{}
+		localVarFileName    string
+		localVarFileBytes   []byte
+		localVarReturnValue VpsNetwork
+	)
+
+	// create path and map variables
+	localVarPath := a.client.cfg.BasePath + "/vps/network/{networkId}"
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", fmt.Sprintf("%v", networkId), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	if localVarOptionals != nil && localVarOptionals.FacilityCode.IsSet() {
+		localVarQueryParams.Add("facilityCode", parameterToString(localVarOptionals.FacilityCode.Value(), ""))
+	}
+	if localVarOptionals != nil && localVarOptionals.ClientId.IsSet() {
+		localVarQueryParams.Add("clientId", parameterToString(localVarOptionals.ClientId.Value(), ""))
+	}
+	// to determine the Content-Type header
+	localVarHttpContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHttpContentType := selectHeaderContentType(localVarHttpContentTypes)
+	if localVarHttpContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHttpContentType
+	}
+
+	// to determine the Accept header
+	localVarHttpHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHttpHeaderAccept := selectHeaderAccept(localVarHttpHeaderAccepts)
+	if localVarHttpHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
+	}
+	if localVarOptionals != nil && localVarOptionals.XFields.IsSet() {
+		localVarHeaderParams["X-Fields"] = parameterToString(localVarOptionals.XFields.Value(), "")
+	}
+	if ctx != nil {
+		// API Key Authentication
+		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
+			var key string
+			if auth.Prefix != "" {
+				key = auth.Prefix + " " + auth.Key
+			} else {
+				key = auth.Key
+			}
+			localVarHeaderParams["X-API-KEY"] = key
+
+		}
+	}
+	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHttpResponse, err := a.client.callAPI(r)
+	if err != nil || localVarHttpResponse == nil {
+		return localVarReturnValue, localVarHttpResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHttpResponse.Body)
+	localVarHttpResponse.Body.Close()
+	if err != nil {
+		return localVarReturnValue, localVarHttpResponse, err
+	}
+
+	if localVarHttpResponse.StatusCode < 300 {
+		// If we succeed, return the data, otherwise pass on to decode error.
+		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+		return localVarReturnValue, localVarHttpResponse, err
+	}
+
+	if localVarHttpResponse.StatusCode >= 300 {
+		newErr := GenericSwaggerError{
+			body:  localVarBody,
+			error: localVarHttpResponse.Status,
+		}
+
+		if localVarHttpResponse.StatusCode == 200 {
+			var v VpsNetwork
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
+		}
+
+		return localVarReturnValue, localVarHttpResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHttpResponse, nil
+}
+
+/*
+VPSApiService Get all VPS Networks
+ * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param optional nil or *VPSApiGetVpsNetworkResourceOpts - Optional Parameters:
+     * @param "FacilityCode" (optional.String) -  The facility code where the VPS Network is located. For example: &#x60;TPA1&#x60;.
+     * @param "ClientId" (optional.Int32) -  The unique client account ID.
+     * @param "XFields" (optional.String) -  An optional fields mask
+
+@return []VpsNetwork
+*/
+
+type VPSApiGetVpsNetworkResourceOpts struct {
+	FacilityCode optional.String
+	ClientId     optional.Int32
+	XFields      optional.String
+}
+
+func (a *VPSApiService) GetVpsNetworkResource(ctx context.Context, localVarOptionals *VPSApiGetVpsNetworkResourceOpts) ([]VpsNetwork, *http.Response, error) {
+	var (
+		localVarHttpMethod  = strings.ToUpper("Get")
+		localVarPostBody    interface{}
+		localVarFileName    string
+		localVarFileBytes   []byte
+		localVarReturnValue []VpsNetwork
+	)
+
+	// create path and map variables
+	localVarPath := a.client.cfg.BasePath + "/vps/network"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	if localVarOptionals != nil && localVarOptionals.FacilityCode.IsSet() {
+		localVarQueryParams.Add("facilityCode", parameterToString(localVarOptionals.FacilityCode.Value(), ""))
+	}
+	if localVarOptionals != nil && localVarOptionals.ClientId.IsSet() {
+		localVarQueryParams.Add("clientId", parameterToString(localVarOptionals.ClientId.Value(), ""))
+	}
+	// to determine the Content-Type header
+	localVarHttpContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHttpContentType := selectHeaderContentType(localVarHttpContentTypes)
+	if localVarHttpContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHttpContentType
+	}
+
+	// to determine the Accept header
+	localVarHttpHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHttpHeaderAccept := selectHeaderAccept(localVarHttpHeaderAccepts)
+	if localVarHttpHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
+	}
+	if localVarOptionals != nil && localVarOptionals.XFields.IsSet() {
+		localVarHeaderParams["X-Fields"] = parameterToString(localVarOptionals.XFields.Value(), "")
+	}
+	if ctx != nil {
+		// API Key Authentication
+		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
+			var key string
+			if auth.Prefix != "" {
+				key = auth.Prefix + " " + auth.Key
+			} else {
+				key = auth.Key
+			}
+			localVarHeaderParams["X-API-KEY"] = key
+
+		}
+	}
+	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHttpResponse, err := a.client.callAPI(r)
+	if err != nil || localVarHttpResponse == nil {
+		return localVarReturnValue, localVarHttpResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHttpResponse.Body)
+	localVarHttpResponse.Body.Close()
+	if err != nil {
+		return localVarReturnValue, localVarHttpResponse, err
+	}
+
+	if localVarHttpResponse.StatusCode < 300 {
+		// If we succeed, return the data, otherwise pass on to decode error.
+		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+		return localVarReturnValue, localVarHttpResponse, err
+	}
+
+	if localVarHttpResponse.StatusCode >= 300 {
+		newErr := GenericSwaggerError{
+			body:  localVarBody,
+			error: localVarHttpResponse.Status,
+		}
+
+		if localVarHttpResponse.StatusCode == 200 {
+			var v []VpsNetwork
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
+		}
+
+		return localVarReturnValue, localVarHttpResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHttpResponse, nil
+}
+
+/*
+VPSApiService Get all VPS instances
+ * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param optional nil or *VPSApiGetVpsResourceOpts - Optional Parameters:
+     * @param "ClientId" (optional.Int32) -  The unique client account ID.
+     * @param "FacilityCode" (optional.String) -  The facility code associated with the VPS instance. For example: TPA1.
+     * @param "NetworkId" (optional.String) -  The Network ID the VPS instance is attached to.
+     * @param "StorageId" (optional.String) -  The storage server ID of the VPS instance.
+     * @param "HostId" (optional.String) -  Host ID (hypervisor) of the VPS instance.
+     * @param "XFields" (optional.String) -  An optional fields mask
+
+@return []Vps
+*/
+
+type VPSApiGetVpsResourceOpts struct {
+	ClientId     optional.Int32
+	FacilityCode optional.String
+	NetworkId    optional.String
+	StorageId    optional.String
+	HostId       optional.String
+	XFields      optional.String
+}
+
+func (a *VPSApiService) GetVpsResource(ctx context.Context, localVarOptionals *VPSApiGetVpsResourceOpts) ([]Vps, *http.Response, error) {
+	var (
+		localVarHttpMethod  = strings.ToUpper("Get")
+		localVarPostBody    interface{}
+		localVarFileName    string
+		localVarFileBytes   []byte
+		localVarReturnValue []Vps
+	)
+
+	// create path and map variables
+	localVarPath := a.client.cfg.BasePath + "/vps/"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	if localVarOptionals != nil && localVarOptionals.ClientId.IsSet() {
+		localVarQueryParams.Add("clientId", parameterToString(localVarOptionals.ClientId.Value(), ""))
+	}
+	if localVarOptionals != nil && localVarOptionals.FacilityCode.IsSet() {
+		localVarQueryParams.Add("facilityCode", parameterToString(localVarOptionals.FacilityCode.Value(), ""))
+	}
+	if localVarOptionals != nil && localVarOptionals.NetworkId.IsSet() {
+		localVarQueryParams.Add("networkId", parameterToString(localVarOptionals.NetworkId.Value(), ""))
+	}
+	if localVarOptionals != nil && localVarOptionals.StorageId.IsSet() {
+		localVarQueryParams.Add("storageId", parameterToString(localVarOptionals.StorageId.Value(), ""))
+	}
+	if localVarOptionals != nil && localVarOptionals.HostId.IsSet() {
+		localVarQueryParams.Add("hostId", parameterToString(localVarOptionals.HostId.Value(), ""))
+	}
+	// to determine the Content-Type header
+	localVarHttpContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHttpContentType := selectHeaderContentType(localVarHttpContentTypes)
+	if localVarHttpContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHttpContentType
+	}
+
+	// to determine the Accept header
+	localVarHttpHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHttpHeaderAccept := selectHeaderAccept(localVarHttpHeaderAccepts)
+	if localVarHttpHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
+	}
+	if localVarOptionals != nil && localVarOptionals.XFields.IsSet() {
+		localVarHeaderParams["X-Fields"] = parameterToString(localVarOptionals.XFields.Value(), "")
+	}
+	if ctx != nil {
+		// API Key Authentication
+		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
+			var key string
+			if auth.Prefix != "" {
+				key = auth.Prefix + " " + auth.Key
+			} else {
+				key = auth.Key
+			}
+			localVarHeaderParams["X-API-KEY"] = key
+
+		}
+	}
+	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHttpResponse, err := a.client.callAPI(r)
+	if err != nil || localVarHttpResponse == nil {
+		return localVarReturnValue, localVarHttpResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHttpResponse.Body)
+	localVarHttpResponse.Body.Close()
+	if err != nil {
+		return localVarReturnValue, localVarHttpResponse, err
+	}
+
+	if localVarHttpResponse.StatusCode < 300 {
+		// If we succeed, return the data, otherwise pass on to decode error.
+		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+		return localVarReturnValue, localVarHttpResponse, err
+	}
+
+	if localVarHttpResponse.StatusCode >= 300 {
+		newErr := GenericSwaggerError{
+			body:  localVarBody,
+			error: localVarHttpResponse.Status,
+		}
+
+		if localVarHttpResponse.StatusCode == 200 {
+			var v []Vps
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
+		}
+
+		return localVarReturnValue, localVarHttpResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHttpResponse, nil
+}
+
+/*
+VPSApiService Get all Secondary IP Addresses attached to VPS instance
+ * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param deviceId
+ * @param optional nil or *VPSApiGetVpsSecondaryIpAddResourceOpts - Optional Parameters:
+     * @param "XFields" (optional.String) -  An optional fields mask
+
+@return []IpAssignment
+*/
+
+type VPSApiGetVpsSecondaryIpAddResourceOpts struct {
+	XFields optional.String
+}
+
+func (a *VPSApiService) GetVpsSecondaryIpAddResource(ctx context.Context, deviceId int32, localVarOptionals *VPSApiGetVpsSecondaryIpAddResourceOpts) ([]IpAssignment, *http.Response, error) {
+	var (
+		localVarHttpMethod  = strings.ToUpper("Get")
+		localVarPostBody    interface{}
+		localVarFileName    string
+		localVarFileBytes   []byte
+		localVarReturnValue []IpAssignment
+	)
+
+	// create path and map variables
+	localVarPath := a.client.cfg.BasePath + "/vps/{deviceId}/secondaryIp"
+	localVarPath = strings.Replace(localVarPath, "{"+"deviceId"+"}", fmt.Sprintf("%v", deviceId), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHttpContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHttpContentType := selectHeaderContentType(localVarHttpContentTypes)
+	if localVarHttpContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHttpContentType
+	}
+
+	// to determine the Accept header
+	localVarHttpHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHttpHeaderAccept := selectHeaderAccept(localVarHttpHeaderAccepts)
+	if localVarHttpHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
+	}
+	if localVarOptionals != nil && localVarOptionals.XFields.IsSet() {
+		localVarHeaderParams["X-Fields"] = parameterToString(localVarOptionals.XFields.Value(), "")
+	}
+	if ctx != nil {
+		// API Key Authentication
+		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
+			var key string
+			if auth.Prefix != "" {
+				key = auth.Prefix + " " + auth.Key
+			} else {
+				key = auth.Key
+			}
+			localVarHeaderParams["X-API-KEY"] = key
+
+		}
+	}
+	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHttpResponse, err := a.client.callAPI(r)
+	if err != nil || localVarHttpResponse == nil {
+		return localVarReturnValue, localVarHttpResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHttpResponse.Body)
+	localVarHttpResponse.Body.Close()
+	if err != nil {
+		return localVarReturnValue, localVarHttpResponse, err
+	}
+
+	if localVarHttpResponse.StatusCode < 300 {
+		// If we succeed, return the data, otherwise pass on to decode error.
+		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+		return localVarReturnValue, localVarHttpResponse, err
+	}
+
+	if localVarHttpResponse.StatusCode >= 300 {
+		newErr := GenericSwaggerError{
+			body:  localVarBody,
+			error: localVarHttpResponse.Status,
+		}
+
+		if localVarHttpResponse.StatusCode == 200 {
+			var v []IpAssignment
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
+		}
+
+		return localVarReturnValue, localVarHttpResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHttpResponse, nil
+}
+
+/*
 VPSApiService
   - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 */
@@ -1234,7 +1933,7 @@ VPSApiService Get a VPS Volume Snapshot by ID
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param snapshotId
  * @param optional nil or *VPSApiGetVpsSnapshotIdResourceOpts - Optional Parameters:
-     * @param "FacilityCode" (optional.String) -  The facility code associated with the VPS instance. For example:TPA1.
+     * @param "FacilityCode" (optional.String) -  The facility code associated with the VPS instance. For example: TPA1.
      * @param "ClientId" (optional.Int32) -  The unique client account ID.
      * @param "XFields" (optional.String) -  An optional fields mask
 
@@ -1352,18 +2051,18 @@ func (a *VPSApiService) GetVpsSnapshotIdResource(ctx context.Context, snapshotId
 VPSApiService Get all VPS Volume Snapshots available
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param optional nil or *VPSApiGetVpsSnapshotResourceOpts - Optional Parameters:
+     * @param "FacilityCode" (optional.String) -  The facility code associated with the VPS instance. For example: TPA1.
      * @param "DeviceId" (optional.Int32) -  The unique device ID of the VPS instance.
      * @param "ClientId" (optional.Int32) -  The unique client account ID.
-     * @param "FacilityCode" (optional.String) -  The facility code associated with the VPS instance. For example:TPA1.
      * @param "XFields" (optional.String) -  An optional fields mask
 
 @return []VpsSnapshot
 */
 
 type VPSApiGetVpsSnapshotResourceOpts struct {
+	FacilityCode optional.String
 	DeviceId     optional.Int32
 	ClientId     optional.Int32
-	FacilityCode optional.String
 	XFields      optional.String
 }
 
@@ -1383,14 +2082,14 @@ func (a *VPSApiService) GetVpsSnapshotResource(ctx context.Context, localVarOpti
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if localVarOptionals != nil && localVarOptionals.FacilityCode.IsSet() {
+		localVarQueryParams.Add("facilityCode", parameterToString(localVarOptionals.FacilityCode.Value(), ""))
+	}
 	if localVarOptionals != nil && localVarOptionals.DeviceId.IsSet() {
 		localVarQueryParams.Add("deviceId", parameterToString(localVarOptionals.DeviceId.Value(), ""))
 	}
 	if localVarOptionals != nil && localVarOptionals.ClientId.IsSet() {
 		localVarQueryParams.Add("clientId", parameterToString(localVarOptionals.ClientId.Value(), ""))
-	}
-	if localVarOptionals != nil && localVarOptionals.FacilityCode.IsSet() {
-		localVarQueryParams.Add("facilityCode", parameterToString(localVarOptionals.FacilityCode.Value(), ""))
 	}
 	// to determine the Content-Type header
 	localVarHttpContentTypes := []string{"application/json"}
@@ -1475,7 +2174,7 @@ VPSApiService Get a VPS Snapshot Schedules
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param snapshotScheduleId
  * @param optional nil or *VPSApiGetVpsSnapshotScheduleIdResourceOpts - Optional Parameters:
-     * @param "FacilityCode" (optional.String) -  The facility code associated with the VPS instance. For example:TPA1.
+     * @param "FacilityCode" (optional.String) -  The facility code associated with the VPS instance. For example: TPA1.
      * @param "ClientId" (optional.Int32) -  The unique client account ID.
      * @param "XFields" (optional.String) -  An optional fields mask
 
@@ -1593,18 +2292,18 @@ func (a *VPSApiService) GetVpsSnapshotScheduleIdResource(ctx context.Context, sn
 VPSApiService Get all VPS Snapshot Schedules for a Facility or VPS Instance
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param optional nil or *VPSApiGetVpsSnapshotScheduleResourceOpts - Optional Parameters:
+     * @param "FacilityCode" (optional.String) -  The facility code associated with the VPS instance. For example: TPA1.
      * @param "DeviceId" (optional.Int32) -  The unique device ID of the VPS instance.
      * @param "ClientId" (optional.Int32) -  The unique client account ID.
-     * @param "FacilityCode" (optional.String) -  The facility code associated with the VPS instance. For example:TPA1.
      * @param "XFields" (optional.String) -  An optional fields mask
 
 @return []VpsSnapshotSchedule
 */
 
 type VPSApiGetVpsSnapshotScheduleResourceOpts struct {
+	FacilityCode optional.String
 	DeviceId     optional.Int32
 	ClientId     optional.Int32
-	FacilityCode optional.String
 	XFields      optional.String
 }
 
@@ -1624,14 +2323,14 @@ func (a *VPSApiService) GetVpsSnapshotScheduleResource(ctx context.Context, loca
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if localVarOptionals != nil && localVarOptionals.FacilityCode.IsSet() {
+		localVarQueryParams.Add("facilityCode", parameterToString(localVarOptionals.FacilityCode.Value(), ""))
+	}
 	if localVarOptionals != nil && localVarOptionals.DeviceId.IsSet() {
 		localVarQueryParams.Add("deviceId", parameterToString(localVarOptionals.DeviceId.Value(), ""))
 	}
 	if localVarOptionals != nil && localVarOptionals.ClientId.IsSet() {
 		localVarQueryParams.Add("clientId", parameterToString(localVarOptionals.ClientId.Value(), ""))
-	}
-	if localVarOptionals != nil && localVarOptionals.FacilityCode.IsSet() {
-		localVarQueryParams.Add("facilityCode", parameterToString(localVarOptionals.FacilityCode.Value(), ""))
 	}
 	// to determine the Content-Type header
 	localVarHttpContentTypes := []string{"application/json"}
@@ -1824,18 +2523,18 @@ func (a *VPSApiService) GetVpsVolumeIdResource(ctx context.Context, volumeId str
 VPSApiService Get all VPS Instance Volumes available
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param optional nil or *VPSApiGetVpsVolumeResourceOpts - Optional Parameters:
+     * @param "FacilityCode" (optional.String) -  The facility code associated with the VPS instance. For example: TPA1.
      * @param "DeviceId" (optional.Int32) -  The unique device ID of the VPS instance.
      * @param "ClientId" (optional.Int32) -  The unique client account ID.
-     * @param "FacilityCode" (optional.String) -  The facility code associated with the VPS instance. For example:TPA1.
      * @param "XFields" (optional.String) -  An optional fields mask
 
 @return []VpsVolume
 */
 
 type VPSApiGetVpsVolumeResourceOpts struct {
+	FacilityCode optional.String
 	DeviceId     optional.Int32
 	ClientId     optional.Int32
-	FacilityCode optional.String
 	XFields      optional.String
 }
 
@@ -1855,14 +2554,14 @@ func (a *VPSApiService) GetVpsVolumeResource(ctx context.Context, localVarOption
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if localVarOptionals != nil && localVarOptionals.FacilityCode.IsSet() {
+		localVarQueryParams.Add("facilityCode", parameterToString(localVarOptionals.FacilityCode.Value(), ""))
+	}
 	if localVarOptionals != nil && localVarOptionals.DeviceId.IsSet() {
 		localVarQueryParams.Add("deviceId", parameterToString(localVarOptionals.DeviceId.Value(), ""))
 	}
 	if localVarOptionals != nil && localVarOptionals.ClientId.IsSet() {
 		localVarQueryParams.Add("clientId", parameterToString(localVarOptionals.ClientId.Value(), ""))
-	}
-	if localVarOptionals != nil && localVarOptionals.FacilityCode.IsSet() {
-		localVarQueryParams.Add("facilityCode", parameterToString(localVarOptionals.FacilityCode.Value(), ""))
 	}
 	// to determine the Content-Type header
 	localVarHttpContentTypes := []string{"application/json"}
@@ -1947,7 +2646,7 @@ VPSApiService Get the details of the VPS ISO ID specified
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param isoId
  * @param optional nil or *VPSApiGetVpsisoIdResourceOpts - Optional Parameters:
-     * @param "FacilityCode" (optional.String) -  The facility code associated with the VPS instance. For example:TPA1.
+     * @param "FacilityCode" (optional.String) -  The facility code where the ISOs are stored.
      * @param "ClientId" (optional.Int32) -  The unique client account ID.
      * @param "XFields" (optional.String) -  An optional fields mask
 
@@ -2065,7 +2764,7 @@ func (a *VPSApiService) GetVpsisoIdResource(ctx context.Context, isoId string, l
 VPSApiService Get all VPS ISOs available
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param optional nil or *VPSApiGetVpsisoResourceOpts - Optional Parameters:
-     * @param "FacilityCode" (optional.String) -  The facility code associated with the VPS instance. For example:TPA1.
+     * @param "FacilityCode" (optional.String) -  The facility code where the ISOs are stored.
      * @param "ClientId" (optional.Int32) -  The unique client account ID.
      * @param "XFields" (optional.String) -  An optional fields mask
 
@@ -2291,6 +2990,117 @@ func (a *VPSApiService) PostVpsAttachIsoResource(ctx context.Context, deviceId i
 }
 
 /*
+VPSApiService Attach Volume to VPS instance
+ * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param volumeId Volume ID to attach
+ * @param deviceId Device ID of VPS instance
+ * @param optional nil or *VPSApiPostVpsAttachVolumeResourceOpts - Optional Parameters:
+     * @param "XFields" (optional.String) -  An optional fields mask
+
+@return NetworkTaskDump
+*/
+
+type VPSApiPostVpsAttachVolumeResourceOpts struct {
+	XFields optional.String
+}
+
+func (a *VPSApiService) PostVpsAttachVolumeResource(ctx context.Context, volumeId string, deviceId int32, localVarOptionals *VPSApiPostVpsAttachVolumeResourceOpts) (NetworkTaskDump, *http.Response, error) {
+	var (
+		localVarHttpMethod  = strings.ToUpper("Post")
+		localVarPostBody    interface{}
+		localVarFileName    string
+		localVarFileBytes   []byte
+		localVarReturnValue NetworkTaskDump
+	)
+
+	// create path and map variables
+	localVarPath := a.client.cfg.BasePath + "/vps/{deviceId}/volume/{volumeId}/attach"
+	localVarPath = strings.Replace(localVarPath, "{"+"volumeId"+"}", fmt.Sprintf("%v", volumeId), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"deviceId"+"}", fmt.Sprintf("%v", deviceId), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHttpContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHttpContentType := selectHeaderContentType(localVarHttpContentTypes)
+	if localVarHttpContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHttpContentType
+	}
+
+	// to determine the Accept header
+	localVarHttpHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHttpHeaderAccept := selectHeaderAccept(localVarHttpHeaderAccepts)
+	if localVarHttpHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
+	}
+	if localVarOptionals != nil && localVarOptionals.XFields.IsSet() {
+		localVarHeaderParams["X-Fields"] = parameterToString(localVarOptionals.XFields.Value(), "")
+	}
+	if ctx != nil {
+		// API Key Authentication
+		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
+			var key string
+			if auth.Prefix != "" {
+				key = auth.Prefix + " " + auth.Key
+			} else {
+				key = auth.Key
+			}
+			localVarHeaderParams["X-API-KEY"] = key
+
+		}
+	}
+	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHttpResponse, err := a.client.callAPI(r)
+	if err != nil || localVarHttpResponse == nil {
+		return localVarReturnValue, localVarHttpResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHttpResponse.Body)
+	localVarHttpResponse.Body.Close()
+	if err != nil {
+		return localVarReturnValue, localVarHttpResponse, err
+	}
+
+	if localVarHttpResponse.StatusCode < 300 {
+		// If we succeed, return the data, otherwise pass on to decode error.
+		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+		return localVarReturnValue, localVarHttpResponse, err
+	}
+
+	if localVarHttpResponse.StatusCode >= 300 {
+		newErr := GenericSwaggerError{
+			body:  localVarBody,
+			error: localVarHttpResponse.Status,
+		}
+
+		if localVarHttpResponse.StatusCode == 201 {
+			var v NetworkTaskDump
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
+		}
+
+		return localVarReturnValue, localVarHttpResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHttpResponse, nil
+}
+
+/*
 VPSApiService Create a one time use URL for console access to a VPS instance
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param deviceId Device ID of VPS instance
@@ -2424,6 +3234,527 @@ func (a *VPSApiService) PostVpsDetachIsoResource(ctx context.Context, deviceId i
 
 	// create path and map variables
 	localVarPath := a.client.cfg.BasePath + "/vps/{deviceId}/detachiso"
+	localVarPath = strings.Replace(localVarPath, "{"+"deviceId"+"}", fmt.Sprintf("%v", deviceId), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHttpContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHttpContentType := selectHeaderContentType(localVarHttpContentTypes)
+	if localVarHttpContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHttpContentType
+	}
+
+	// to determine the Accept header
+	localVarHttpHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHttpHeaderAccept := selectHeaderAccept(localVarHttpHeaderAccepts)
+	if localVarHttpHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
+	}
+	if localVarOptionals != nil && localVarOptionals.XFields.IsSet() {
+		localVarHeaderParams["X-Fields"] = parameterToString(localVarOptionals.XFields.Value(), "")
+	}
+	if ctx != nil {
+		// API Key Authentication
+		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
+			var key string
+			if auth.Prefix != "" {
+				key = auth.Prefix + " " + auth.Key
+			} else {
+				key = auth.Key
+			}
+			localVarHeaderParams["X-API-KEY"] = key
+
+		}
+	}
+	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHttpResponse, err := a.client.callAPI(r)
+	if err != nil || localVarHttpResponse == nil {
+		return localVarReturnValue, localVarHttpResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHttpResponse.Body)
+	localVarHttpResponse.Body.Close()
+	if err != nil {
+		return localVarReturnValue, localVarHttpResponse, err
+	}
+
+	if localVarHttpResponse.StatusCode < 300 {
+		// If we succeed, return the data, otherwise pass on to decode error.
+		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+		return localVarReturnValue, localVarHttpResponse, err
+	}
+
+	if localVarHttpResponse.StatusCode >= 300 {
+		newErr := GenericSwaggerError{
+			body:  localVarBody,
+			error: localVarHttpResponse.Status,
+		}
+
+		if localVarHttpResponse.StatusCode == 201 {
+			var v NetworkTaskDump
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
+		}
+
+		return localVarReturnValue, localVarHttpResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHttpResponse, nil
+}
+
+/*
+VPSApiService Detach Volume from VPS instance
+ * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param volumeId Volume ID to detach
+ * @param deviceId Device ID of VPS instance
+ * @param optional nil or *VPSApiPostVpsDetachVolumeResourceOpts - Optional Parameters:
+     * @param "XFields" (optional.String) -  An optional fields mask
+
+@return NetworkTaskDump
+*/
+
+type VPSApiPostVpsDetachVolumeResourceOpts struct {
+	XFields optional.String
+}
+
+func (a *VPSApiService) PostVpsDetachVolumeResource(ctx context.Context, volumeId string, deviceId int32, localVarOptionals *VPSApiPostVpsDetachVolumeResourceOpts) (NetworkTaskDump, *http.Response, error) {
+	var (
+		localVarHttpMethod  = strings.ToUpper("Post")
+		localVarPostBody    interface{}
+		localVarFileName    string
+		localVarFileBytes   []byte
+		localVarReturnValue NetworkTaskDump
+	)
+
+	// create path and map variables
+	localVarPath := a.client.cfg.BasePath + "/vps/{deviceId}/volume/{volumeId}/detach"
+	localVarPath = strings.Replace(localVarPath, "{"+"volumeId"+"}", fmt.Sprintf("%v", volumeId), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"deviceId"+"}", fmt.Sprintf("%v", deviceId), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHttpContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHttpContentType := selectHeaderContentType(localVarHttpContentTypes)
+	if localVarHttpContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHttpContentType
+	}
+
+	// to determine the Accept header
+	localVarHttpHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHttpHeaderAccept := selectHeaderAccept(localVarHttpHeaderAccepts)
+	if localVarHttpHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
+	}
+	if localVarOptionals != nil && localVarOptionals.XFields.IsSet() {
+		localVarHeaderParams["X-Fields"] = parameterToString(localVarOptionals.XFields.Value(), "")
+	}
+	if ctx != nil {
+		// API Key Authentication
+		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
+			var key string
+			if auth.Prefix != "" {
+				key = auth.Prefix + " " + auth.Key
+			} else {
+				key = auth.Key
+			}
+			localVarHeaderParams["X-API-KEY"] = key
+
+		}
+	}
+	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHttpResponse, err := a.client.callAPI(r)
+	if err != nil || localVarHttpResponse == nil {
+		return localVarReturnValue, localVarHttpResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHttpResponse.Body)
+	localVarHttpResponse.Body.Close()
+	if err != nil {
+		return localVarReturnValue, localVarHttpResponse, err
+	}
+
+	if localVarHttpResponse.StatusCode < 300 {
+		// If we succeed, return the data, otherwise pass on to decode error.
+		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+		return localVarReturnValue, localVarHttpResponse, err
+	}
+
+	if localVarHttpResponse.StatusCode >= 300 {
+		newErr := GenericSwaggerError{
+			body:  localVarBody,
+			error: localVarHttpResponse.Status,
+		}
+
+		if localVarHttpResponse.StatusCode == 201 {
+			var v NetworkTaskDump
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
+		}
+
+		return localVarReturnValue, localVarHttpResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHttpResponse, nil
+}
+
+/*
+VPSApiService Attach VPS Network to a VPS Device
+ * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param deviceId
+ * @param payload
+ * @param optional nil or *VPSApiPostVpsIdNetworkAddResourceOpts - Optional Parameters:
+     * @param "XFields" (optional.String) -  An optional fields mask
+
+@return NetworkTaskDump
+*/
+
+type VPSApiPostVpsIdNetworkAddResourceOpts struct {
+	XFields optional.String
+}
+
+func (a *VPSApiService) PostVpsIdNetworkAddResource(ctx context.Context, deviceId int32, payload VpsInstanceNetworkAdd, localVarOptionals *VPSApiPostVpsIdNetworkAddResourceOpts) (NetworkTaskDump, *http.Response, error) {
+	var (
+		localVarHttpMethod  = strings.ToUpper("Post")
+		localVarPostBody    interface{}
+		localVarFileName    string
+		localVarFileBytes   []byte
+		localVarReturnValue NetworkTaskDump
+	)
+
+	// create path and map variables
+	localVarPath := a.client.cfg.BasePath + "/vps/{deviceId}/network"
+	localVarPath = strings.Replace(localVarPath, "{"+"deviceId"+"}", fmt.Sprintf("%v", deviceId), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHttpContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHttpContentType := selectHeaderContentType(localVarHttpContentTypes)
+	if localVarHttpContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHttpContentType
+	}
+
+	// to determine the Accept header
+	localVarHttpHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHttpHeaderAccept := selectHeaderAccept(localVarHttpHeaderAccepts)
+	if localVarHttpHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
+	}
+	if localVarOptionals != nil && localVarOptionals.XFields.IsSet() {
+		localVarHeaderParams["X-Fields"] = parameterToString(localVarOptionals.XFields.Value(), "")
+	}
+	// body params
+	localVarPostBody = &payload
+	if ctx != nil {
+		// API Key Authentication
+		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
+			var key string
+			if auth.Prefix != "" {
+				key = auth.Prefix + " " + auth.Key
+			} else {
+				key = auth.Key
+			}
+			localVarHeaderParams["X-API-KEY"] = key
+
+		}
+	}
+	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHttpResponse, err := a.client.callAPI(r)
+	if err != nil || localVarHttpResponse == nil {
+		return localVarReturnValue, localVarHttpResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHttpResponse.Body)
+	localVarHttpResponse.Body.Close()
+	if err != nil {
+		return localVarReturnValue, localVarHttpResponse, err
+	}
+
+	if localVarHttpResponse.StatusCode < 300 {
+		// If we succeed, return the data, otherwise pass on to decode error.
+		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+		return localVarReturnValue, localVarHttpResponse, err
+	}
+
+	if localVarHttpResponse.StatusCode >= 300 {
+		newErr := GenericSwaggerError{
+			body:  localVarBody,
+			error: localVarHttpResponse.Status,
+		}
+
+		if localVarHttpResponse.StatusCode == 201 {
+			var v NetworkTaskDump
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
+		}
+
+		return localVarReturnValue, localVarHttpResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHttpResponse, nil
+}
+
+/*
+VPSApiService Create a new VPS Network
+ * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param payload
+ * @param optional nil or *VPSApiPostVpsNetworkResourceOpts - Optional Parameters:
+     * @param "XFields" (optional.String) -  An optional fields mask
+
+@return VpsNetwork
+*/
+
+type VPSApiPostVpsNetworkResourceOpts struct {
+	XFields optional.String
+}
+
+func (a *VPSApiService) PostVpsNetworkResource(ctx context.Context, payload VpsNetworkCreate, localVarOptionals *VPSApiPostVpsNetworkResourceOpts) (VpsNetwork, *http.Response, error) {
+	var (
+		localVarHttpMethod  = strings.ToUpper("Post")
+		localVarPostBody    interface{}
+		localVarFileName    string
+		localVarFileBytes   []byte
+		localVarReturnValue VpsNetwork
+	)
+
+	// create path and map variables
+	localVarPath := a.client.cfg.BasePath + "/vps/network"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHttpContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHttpContentType := selectHeaderContentType(localVarHttpContentTypes)
+	if localVarHttpContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHttpContentType
+	}
+
+	// to determine the Accept header
+	localVarHttpHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHttpHeaderAccept := selectHeaderAccept(localVarHttpHeaderAccepts)
+	if localVarHttpHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
+	}
+	if localVarOptionals != nil && localVarOptionals.XFields.IsSet() {
+		localVarHeaderParams["X-Fields"] = parameterToString(localVarOptionals.XFields.Value(), "")
+	}
+	// body params
+	localVarPostBody = &payload
+	if ctx != nil {
+		// API Key Authentication
+		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
+			var key string
+			if auth.Prefix != "" {
+				key = auth.Prefix + " " + auth.Key
+			} else {
+				key = auth.Key
+			}
+			localVarHeaderParams["X-API-KEY"] = key
+
+		}
+	}
+	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHttpResponse, err := a.client.callAPI(r)
+	if err != nil || localVarHttpResponse == nil {
+		return localVarReturnValue, localVarHttpResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHttpResponse.Body)
+	localVarHttpResponse.Body.Close()
+	if err != nil {
+		return localVarReturnValue, localVarHttpResponse, err
+	}
+
+	if localVarHttpResponse.StatusCode < 300 {
+		// If we succeed, return the data, otherwise pass on to decode error.
+		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+		return localVarReturnValue, localVarHttpResponse, err
+	}
+
+	if localVarHttpResponse.StatusCode >= 300 {
+		newErr := GenericSwaggerError{
+			body:  localVarBody,
+			error: localVarHttpResponse.Status,
+		}
+
+		if localVarHttpResponse.StatusCode == 200 {
+			var v VpsNetwork
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
+		}
+
+		return localVarReturnValue, localVarHttpResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHttpResponse, nil
+}
+
+/*
+VPSApiService Request token to reset root password for VPS
+  - @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param deviceId Device ID of VPS instance
+*/
+func (a *VPSApiService) PostVpsResetPasswordResource(ctx context.Context, deviceId int32) (*http.Response, error) {
+	var (
+		localVarHttpMethod = strings.ToUpper("Post")
+		localVarPostBody   interface{}
+		localVarFileName   string
+		localVarFileBytes  []byte
+	)
+
+	// create path and map variables
+	localVarPath := a.client.cfg.BasePath + "/vps/{deviceId}/reset-password"
+	localVarPath = strings.Replace(localVarPath, "{"+"deviceId"+"}", fmt.Sprintf("%v", deviceId), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHttpContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHttpContentType := selectHeaderContentType(localVarHttpContentTypes)
+	if localVarHttpContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHttpContentType
+	}
+
+	// to determine the Accept header
+	localVarHttpHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHttpHeaderAccept := selectHeaderAccept(localVarHttpHeaderAccepts)
+	if localVarHttpHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
+	}
+	if ctx != nil {
+		// API Key Authentication
+		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
+			var key string
+			if auth.Prefix != "" {
+				key = auth.Prefix + " " + auth.Key
+			} else {
+				key = auth.Key
+			}
+			localVarHeaderParams["X-API-KEY"] = key
+
+		}
+	}
+	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHttpResponse, err := a.client.callAPI(r)
+	if err != nil || localVarHttpResponse == nil {
+		return localVarHttpResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHttpResponse.Body)
+	localVarHttpResponse.Body.Close()
+	if err != nil {
+		return localVarHttpResponse, err
+	}
+
+	if localVarHttpResponse.StatusCode >= 300 {
+		newErr := GenericSwaggerError{
+			body:  localVarBody,
+			error: localVarHttpResponse.Status,
+		}
+
+		return localVarHttpResponse, newErr
+	}
+
+	return localVarHttpResponse, nil
+}
+
+/*
+VPSApiService Add a Secondary IP Address to VPS instance
+ * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param deviceId
+ * @param optional nil or *VPSApiPostVpsSecondaryIpAddResourceOpts - Optional Parameters:
+     * @param "XFields" (optional.String) -  An optional fields mask
+
+@return NetworkTaskDump
+*/
+
+type VPSApiPostVpsSecondaryIpAddResourceOpts struct {
+	XFields optional.String
+}
+
+func (a *VPSApiService) PostVpsSecondaryIpAddResource(ctx context.Context, deviceId int32, localVarOptionals *VPSApiPostVpsSecondaryIpAddResourceOpts) (NetworkTaskDump, *http.Response, error) {
+	var (
+		localVarHttpMethod  = strings.ToUpper("Post")
+		localVarPostBody    interface{}
+		localVarFileName    string
+		localVarFileBytes   []byte
+		localVarReturnValue NetworkTaskDump
+	)
+
+	// create path and map variables
+	localVarPath := a.client.cfg.BasePath + "/vps/{deviceId}/secondaryIp"
 	localVarPath = strings.Replace(localVarPath, "{"+"deviceId"+"}", fmt.Sprintf("%v", deviceId), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -3172,6 +4503,223 @@ func (a *VPSApiService) PutVpsIdResource(ctx context.Context, deviceId int32, pa
 	}
 
 	return localVarReturnValue, localVarHttpResponse, nil
+}
+
+/*
+VPSApiService Update VPS Network
+ * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param networkId
+ * @param payload
+ * @param optional nil or *VPSApiPutVpsNetworkIdResourceOpts - Optional Parameters:
+     * @param "XFields" (optional.String) -  An optional fields mask
+
+@return NetworkTaskDump
+*/
+
+type VPSApiPutVpsNetworkIdResourceOpts struct {
+	XFields optional.String
+}
+
+func (a *VPSApiService) PutVpsNetworkIdResource(ctx context.Context, networkId string, payload VpsNetworkUpdate, localVarOptionals *VPSApiPutVpsNetworkIdResourceOpts) (NetworkTaskDump, *http.Response, error) {
+	var (
+		localVarHttpMethod  = strings.ToUpper("Put")
+		localVarPostBody    interface{}
+		localVarFileName    string
+		localVarFileBytes   []byte
+		localVarReturnValue NetworkTaskDump
+	)
+
+	// create path and map variables
+	localVarPath := a.client.cfg.BasePath + "/vps/network/{networkId}"
+	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", fmt.Sprintf("%v", networkId), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHttpContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHttpContentType := selectHeaderContentType(localVarHttpContentTypes)
+	if localVarHttpContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHttpContentType
+	}
+
+	// to determine the Accept header
+	localVarHttpHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHttpHeaderAccept := selectHeaderAccept(localVarHttpHeaderAccepts)
+	if localVarHttpHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
+	}
+	if localVarOptionals != nil && localVarOptionals.XFields.IsSet() {
+		localVarHeaderParams["X-Fields"] = parameterToString(localVarOptionals.XFields.Value(), "")
+	}
+	// body params
+	localVarPostBody = &payload
+	if ctx != nil {
+		// API Key Authentication
+		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
+			var key string
+			if auth.Prefix != "" {
+				key = auth.Prefix + " " + auth.Key
+			} else {
+				key = auth.Key
+			}
+			localVarHeaderParams["X-API-KEY"] = key
+
+		}
+	}
+	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHttpResponse, err := a.client.callAPI(r)
+	if err != nil || localVarHttpResponse == nil {
+		return localVarReturnValue, localVarHttpResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHttpResponse.Body)
+	localVarHttpResponse.Body.Close()
+	if err != nil {
+		return localVarReturnValue, localVarHttpResponse, err
+	}
+
+	if localVarHttpResponse.StatusCode < 300 {
+		// If we succeed, return the data, otherwise pass on to decode error.
+		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+		return localVarReturnValue, localVarHttpResponse, err
+	}
+
+	if localVarHttpResponse.StatusCode >= 300 {
+		newErr := GenericSwaggerError{
+			body:  localVarBody,
+			error: localVarHttpResponse.Status,
+		}
+
+		if localVarHttpResponse.StatusCode == 201 {
+			var v NetworkTaskDump
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
+		}
+
+		return localVarReturnValue, localVarHttpResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHttpResponse, nil
+}
+
+/*
+VPSApiService Reset VPS root password, requires vps to be powered off
+ * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param deviceId Device ID of VPS instance
+ * @param payload
+ * @param optional nil or *VPSApiPutVpsResetPasswordResourceOpts - Optional Parameters:
+     * @param "XFields" (optional.String) -  An optional fields mask
+
+
+*/
+
+type VPSApiPutVpsResetPasswordResourceOpts struct {
+	XFields optional.String
+}
+
+func (a *VPSApiService) PutVpsResetPasswordResource(ctx context.Context, deviceId int32, payload VpsResetRootPassword, localVarOptionals *VPSApiPutVpsResetPasswordResourceOpts) (*http.Response, error) {
+	var (
+		localVarHttpMethod = strings.ToUpper("Put")
+		localVarPostBody   interface{}
+		localVarFileName   string
+		localVarFileBytes  []byte
+	)
+
+	// create path and map variables
+	localVarPath := a.client.cfg.BasePath + "/vps/{deviceId}/reset-password"
+	localVarPath = strings.Replace(localVarPath, "{"+"deviceId"+"}", fmt.Sprintf("%v", deviceId), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHttpContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHttpContentType := selectHeaderContentType(localVarHttpContentTypes)
+	if localVarHttpContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHttpContentType
+	}
+
+	// to determine the Accept header
+	localVarHttpHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHttpHeaderAccept := selectHeaderAccept(localVarHttpHeaderAccepts)
+	if localVarHttpHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
+	}
+	if localVarOptionals != nil && localVarOptionals.XFields.IsSet() {
+		localVarHeaderParams["X-Fields"] = parameterToString(localVarOptionals.XFields.Value(), "")
+	}
+	// body params
+	localVarPostBody = &payload
+	if ctx != nil {
+		// API Key Authentication
+		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
+			var key string
+			if auth.Prefix != "" {
+				key = auth.Prefix + " " + auth.Key
+			} else {
+				key = auth.Key
+			}
+			localVarHeaderParams["X-API-KEY"] = key
+
+		}
+	}
+	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHttpResponse, err := a.client.callAPI(r)
+	if err != nil || localVarHttpResponse == nil {
+		return localVarHttpResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHttpResponse.Body)
+	localVarHttpResponse.Body.Close()
+	if err != nil {
+		return localVarHttpResponse, err
+	}
+
+	if localVarHttpResponse.StatusCode >= 300 {
+		newErr := GenericSwaggerError{
+			body:  localVarBody,
+			error: localVarHttpResponse.Status,
+		}
+
+		if localVarHttpResponse.StatusCode == 201 {
+			var v NetworkTaskDump
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarHttpResponse, newErr
+		}
+
+		return localVarHttpResponse, newErr
+	}
+
+	return localVarHttpResponse, nil
 }
 
 /*

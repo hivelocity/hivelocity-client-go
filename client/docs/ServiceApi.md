@@ -135,7 +135,7 @@ Optional parameters are passed through a pointer to a ServiceApiGetServiceResour
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **typeCode** | **optional.String**| Return service having the same service type code, the default value is all  The list of service types can be accessed on https://core.hivelocity.net/api/v2/service/types | [default to null]
+ **typeCode** | **optional.String**| Return service having the same service type code, the default value is all  The list of service types can be accessed on https://core.hivelocity.net/api/v2/service/types | 
  **orderId** | **optional.Int32**| Order id of the service | [default to 0]
  **xFields** | **optional.String**| An optional fields mask | 
 

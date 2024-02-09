@@ -10,31 +10,31 @@
 package swagger
 
 type ControlledClientDump struct {
-	// The date/time the account was created
-	Created int32 `json:"created,omitempty"`
-	// The zip/postal code associated with the account
-	Zip    string `json:"zip,omitempty"`
-	Active bool   `json:"active,omitempty"`
-	// The last name associated with the account
-	Last string `json:"last,omitempty"`
-	// The city associated with the account
-	City string `json:"city,omitempty"`
-	// The street address associated with the account
-	Address string `json:"address,omitempty"`
-	// The fax number associated with the account
-	Fax string `json:"fax,omitempty"`
+	// The phone number associated with the account
+	Phone string `json:"phone,omitempty"`
+	// The first name associated with the account
+	First string `json:"first,omitempty"`
 	// The ID of the client/contact account
 	Id int32 `json:"id,omitempty"`
+	// The fax number associated with the account
+	Fax string `json:"fax,omitempty"`
+	// The country associated with the account
+	Country string `json:"country,omitempty"`
+	// The zip/postal code associated with the account
+	Zip string `json:"zip,omitempty"`
+	// The street address associated with the account
+	Address string `json:"address,omitempty"`
+	Active  bool   `json:"active,omitempty"`
+	// The city associated with the account
+	City string `json:"city,omitempty"`
 	// The email address associated with the account
 	Email string `json:"email,omitempty"`
 	// The company name associated with the account
 	Company string `json:"company,omitempty"`
+	// The last name associated with the account
+	Last string `json:"last,omitempty"`
 	// The state associated with the account
 	State string `json:"state,omitempty"`
-	// The country associated with the account
-	Country string `json:"country,omitempty"`
-	// The first name associated with the account
-	First string `json:"first,omitempty"`
-	// The phone number associated with the account
-	Phone string `json:"phone,omitempty"`
+	// The date/time the account was created
+	Created int32 `json:"created,omitempty"`
 }

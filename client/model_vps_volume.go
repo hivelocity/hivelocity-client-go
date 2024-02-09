@@ -14,14 +14,16 @@ import (
 )
 
 type VpsVolume struct {
-	// The unique VPS instance volume ID.
-	VolumeId string `json:"volumeId,omitempty"`
-	// The created date/time of the VPS instance volume.
-	CreatedAt time.Time `json:"createdAt,omitempty"`
 	// Disk type. Options are `ROOT` for root volumes and `DATADISK` for additional disks.
 	Type_ string `json:"type,omitempty"`
+	// The facility code associated with the VPS Volume. For example: `TPA1`.
+	FacilityCode string `json:"facilityCode,omitempty"`
 	// Device ID the disk is attached to
 	DeviceId int32 `json:"deviceId,omitempty"`
+	// The created date/time of the VPS instance volume.
+	CreatedAt time.Time `json:"createdAt,omitempty"`
+	// The unique VPS instance volume ID.
+	VolumeId string `json:"volumeId,omitempty"`
 	// Disk size in bytes
 	Size int32 `json:"size,omitempty"`
 }

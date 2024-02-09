@@ -30,13 +30,15 @@ type InventoryApiService service
 InventoryApiService Get all facilities
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param optional nil or *InventoryApiGetLocationResourceOpts - Optional Parameters:
+     * @param "VpsLocations" (optional.String) -  Filter by the VPS locations
      * @param "XFields" (optional.String) -  An optional fields mask
 
 @return []Location
 */
 
 type InventoryApiGetLocationResourceOpts struct {
-	XFields optional.String
+	VpsLocations optional.String
+	XFields      optional.String
 }
 
 func (a *InventoryApiService) GetLocationResource(ctx context.Context, localVarOptionals *InventoryApiGetLocationResourceOpts) ([]Location, *http.Response, error) {
@@ -55,6 +57,9 @@ func (a *InventoryApiService) GetLocationResource(ctx context.Context, localVarO
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if localVarOptionals != nil && localVarOptionals.VpsLocations.IsSet() {
+		localVarQueryParams.Add("vpsLocations", parameterToString(localVarOptionals.VpsLocations.Value(), ""))
+	}
 	// to determine the Content-Type header
 	localVarHttpContentTypes := []string{"application/json"}
 

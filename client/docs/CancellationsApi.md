@@ -4,12 +4,38 @@ All URIs are relative to *https://core.hivelocity.net/api/v2*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**DeleteCancellationIdDeleteResource**](CancellationsApi.md#DeleteCancellationIdDeleteResource) | **Delete** /cancellation/cancellation/{cancellationId} | Delete a Cancellation
 [**GetCancellationDeviceResource**](CancellationsApi.md#GetCancellationDeviceResource) | **Get** /cancellation/device/{deviceId} | Get cancel request by device
-[**GetCancellationIdClientResource**](CancellationsApi.md#GetCancellationIdClientResource) | **Get** /cancellation/cancellation/{cancellationId} | Get cancel request
 [**GetCancellationResource**](CancellationsApi.md#GetCancellationResource) | **Get** /cancellation/cancellation | Get all cancel requests
 [**GetCancellationServiceResource**](CancellationsApi.md#GetCancellationServiceResource) | **Get** /cancellation/service/{serviceId} | Get cancel request by service
 [**PostCancellationResource**](CancellationsApi.md#PostCancellationResource) | **Post** /cancellation/cancellation | Create cancel request
 
+
+# **DeleteCancellationIdDeleteResource**
+> DeleteCancellationIdDeleteResource(ctx, cancellationId)
+Delete a Cancellation
+
+### Required Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+  **cancellationId** | **int32**|  | 
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[apiKey](../README.md#apiKey)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **GetCancellationDeviceResource**
 > Cancellation GetCancellationDeviceResource(ctx, deviceId, optional)
@@ -25,41 +51,6 @@ Name | Type | Description  | Notes
 
 ### Optional Parameters
 Optional parameters are passed through a pointer to a CancellationsApiGetCancellationDeviceResourceOpts struct
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **xFields** | **optional.String**| An optional fields mask | 
-
-### Return type
-
-[**Cancellation**](Cancellation.md)
-
-### Authorization
-
-[apiKey](../README.md#apiKey)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **GetCancellationIdClientResource**
-> Cancellation GetCancellationIdClientResource(ctx, cancellationId, optional)
-Get cancel request
-
-### Required Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-  **cancellationId** | **int32**|  | 
- **optional** | ***CancellationsApiGetCancellationIdClientResourceOpts** | optional parameters | nil if no parameters
-
-### Optional Parameters
-Optional parameters are passed through a pointer to a CancellationsApiGetCancellationIdClientResourceOpts struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------

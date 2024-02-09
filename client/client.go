@@ -55,6 +55,8 @@ type APIClient struct {
 
 	CancellationsApi *CancellationsApiService
 
+	ComputeDevicesApi *ComputeDevicesApiService
+
 	ContactApi *ContactApiService
 
 	CreditApi *CreditApiService
@@ -72,6 +74,8 @@ type APIClient struct {
 	InventoryApi *InventoryApiService
 
 	InvoiceApi *InvoiceApiService
+
+	MaintenanceApi *MaintenanceApiService
 
 	NetworkApi *NetworkApiService
 
@@ -121,6 +125,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.BareMetalDevicesApi = (*BareMetalDevicesApiService)(&c.common)
 	c.BillingInfoApi = (*BillingInfoApiService)(&c.common)
 	c.CancellationsApi = (*CancellationsApiService)(&c.common)
+	c.ComputeDevicesApi = (*ComputeDevicesApiService)(&c.common)
 	c.ContactApi = (*ContactApiService)(&c.common)
 	c.CreditApi = (*CreditApiService)(&c.common)
 	c.DeploymentApi = (*DeploymentApiService)(&c.common)
@@ -130,6 +135,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.IgnitionApi = (*IgnitionApiService)(&c.common)
 	c.InventoryApi = (*InventoryApiService)(&c.common)
 	c.InvoiceApi = (*InvoiceApiService)(&c.common)
+	c.MaintenanceApi = (*MaintenanceApiService)(&c.common)
 	c.NetworkApi = (*NetworkApiService)(&c.common)
 	c.OrderApi = (*OrderApiService)(&c.common)
 	c.OrderGroupsApi = (*OrderGroupsApiService)(&c.common)
